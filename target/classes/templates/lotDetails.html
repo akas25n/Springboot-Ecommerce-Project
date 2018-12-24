@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>B2B | Motion Fashion | Lot Details</title>
+  
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+  	<script src="https://code.jquery.com/jquery-git.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  
+  
+  <link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+   <link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/campaignDetailsStyle.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+	
+  
+	<style type="text/css">
+	.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+     }
+
+      #lotDescHeader{
+        background-color: #CBD6D5;
+      }
+         
+      #lotDescDetails{
+        background-color: #cbd6d569;
+      }
+         
+        #tdBackground{
+	        background-color: white; !important;
+	        }
+	
+	.btn-default{
+	background-color: #CBD6D5;
+	border-color: #CBD6D5;
+	color: #333;
+	}
+	</style>
+</head>
+<body>
+
+
+                
+
+<div th:include="header :: copy"></div>
+		
+	<div th:include="filter :: copy"></div>
+
+	<div class="container">
+	<div th:each="lot : ${lots}">
+	<div class="row">
+      <div class="col-md-12">
+        <div class="col-md-3 col-sm-6">
+          <!-- <a href = "#" class = "thumbnail">  -->
+           <a  th:href="@{/lot/details/__${lot.lotId}__}" class="thumbnail">
+             <img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="image" style="height:250px;" alt = "Generic placeholder thumbnail">
+               
+              </a>
+              </div>
+      
+
+      <div class="col-md-9 col-sm-6">
+        
+        <div class="row">
+          <h2>Lot Details</h2>
+           <span class="glyphicon glyphicon-home"></span>
+          </div>
+          <div class="row" id="lotDescHeader">
+            <div class="col-sm-3">
+              <h4>Lot Name</h4>
+            </div>
+
+            <div class="col-sm-5">
+              <h4>Short Description</h4>
+            </div>
+            
+            <div class="col-sm-2">
+              <h4>Volume</h4>
+            </div>
+            
+            <div class="col-sm-2">
+              <h4>Price</h4>
+            </div>
+            
+          </div>
+          <div class="row" id="lotDescDetails">
+             <div class="col-sm-3">
+           		<h5 th:text="${lot.lotName}"></h5>
+            </div>
+
+            <div class="col-sm-5">
+              <h5 th:text="${lot.lotDescription}"></h5>
+            </div>
+            
+             <div class="col-sm-2">
+              <h5 th:text="${lot.volume}" style="padding-left:20px;"></h5>
+            </div>
+
+            
+            <div class="col-sm-2">
+              <h5 th:text="${lot.lotPrice}" style="padding-left:10px;"></h5>
+            </div>
+            
+          </div>
+          <hr>
+          <a th:href="@{/order/details/__${lot.lotId}__}" class="btn btn-default">Proceed to Buy</a>   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Your Contact Person</a>
+
+      </div>
+			</div>
+		</div>
+		
+		
+		<!-- *********************************************************************************Modal******************************************************************************* -->
+			  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="myModal">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+			          <h2 class="modal_header">Your Contact Person</h2>
+			
+			          <hr>
+			
+			          <div class="modal-body">
+			
+			                <div id="contactPerson">
+			                  
+			                      
+			                      <div class="col-sm-12">
+			                     	 <div class="row">
+			                        <div class="col-sm-6">
+			                        <img src="/images/contact.jpg" class="thumbnail" id="contactPersonImage">
+			                        </div>
+			                        
+			                        <div class="col-sm-6">
+			                          <p> <span class="glyphicon glyphicon-user"></span> Rayhanur Rahman</p>
+			                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 22 33 55 33</p>
+			                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:rayhan@example.com">  rayhan@example.com</a>
+			                    </div>
+			                    
+			                   
+			                  </div>
+			              </div>
+			          </div><!-- End of modal-body-->
+			        </div><!-- End of modal-header-->
+			      </div><!-- End of modal-content-->
+			    </div><!-- End of modal-dialog-->
+			  </div> <!-- End of modal-->
+		<!-- *********************************************************************************Modal******************************************************************************* -->
+		</div>
+    <hr>
+    
+     
+        <div >
+        	<h2>Article Details</h2>
+        	<hr>
+          <table class="table table-bordered">
+            <thead >
+              <tr>
+				<th>Article Image</th>
+                <th>A_id</th>
+                <th>Article Name</th>
+                <th>Brand</th>
+                <th>Gender</th>
+                <th>Size</th>
+                <th>length</th>
+                
+                <th>Width</th>
+                <th>Volume</th>
+                
+         
+              </tr>
+
+            </thead>
+            
+            <tbody id="tdBackground">
+				     
+					<tr th:each="product:${products}">
+					<td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
+	              <td th:text="${product.a_id}"></td>
+	               <td th:text="${product.p_name}"></td>
+	               <td th:text="${product.p_brand}"></td>
+	               <td th:text="${product.p_comp_zielgruppe_}"></td>
+	               <td th:text="${product.a_comp_groesse_}"></td>
+	               <td th:text="${product.a_length}"></td>
+	               
+	               <td th:text="${product.a_width}"></td>
+	               <td th:text="${product.a_stock}"></td>
+      
+              </tr>
+			</tbody>
+        </table> 
+        
+        <hr>
+        
+        </div>
+        
+        
+
+     <div class="imageDownload">
+
+            <h2>Article Images</h2>
+             <hr>
+            </div>
+
+
+            <div class="row">
+            
+            <div class="row">
+              <div th:each="product:${products}" class="col-sm-4">
+                  
+                    <a class="thumbnail"><img th:src="${product.a_media_image_0_}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
+                    
+                     <a class="thumbnail"><img th:src="${product.a_media_image_1_}" style="width:300px; height: 450px;" alt="W3Schools"></a>
+                     <a class="thumbnail"><img th:src="${product.a_media_image_2_}" style="width:300px; height: 450px;" alt="W3Schools"></a>
+                 
+              </div>
+				</div>
+				</div>
+        <!--   ****************************Contact person starts here**************************************************************  -->
+        
+        <div class="row">
+          <h2>Articles Description</h2>
+              <hr>
+       
+       	 
+       	  <table class="table table-bordered">
+       	  <col width="10%">
+ 			 <col width="90%">
+            <thead >
+              <tr>
+				
+                <th>Article Image</th>
+                <th>Article Description</th>
+         
+              </tr>
+
+            </thead>
+            
+            <tbody id="tdBackground">
+				     
+					<tr th:each="product:${products}">
+					
+	               <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
+	               <td th:text="${product.p_text}"></td>
+      
+              </tr>
+			</tbody>
+        </table> 
+       
+
+			<hr>
+          <div id="contactPerson">
+                  <h2 style="text-align:center;">Your Contact Person</h2>
+                  <hr>
+                      <div class="row">
+                      <div class="col-sm-3"></div>
+                        <div class="col-sm-3">
+                        <img src="/images/contact.jpg" class="thumbnail" id="contactPersonImage">
+                        </div>
+                        
+                        <div class="col-sm-3">
+                          <p> <span class="glyphicon glyphicon-user"></span> Rayhanur Rahman</p>
+                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 22 33 55 33</p>
+                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:rayhan@example.com">  rayhan@example.com</a>
+                    </div>
+                    
+                    <div class="col-sm-3"></div>
+                  </div>
+              </div>
+          
+       
+			
+        </div>
+         </div>
+       
+	<br>
+	<br>
+	<hr>
+	<div th:include="footer :: copy"></div>
+		
+</body>
+</html>

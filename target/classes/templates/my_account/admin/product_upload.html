@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | Products</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+  </script>
+
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+
+  <style type="text/css">
+  
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+    }
+  
+    #uploadbanner{
+      margin-left: 10px;
+
+    }
+
+    h3{
+      margin-left: 10px;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+	<div th:include="header :: copy"></div>
+	
+	<div class="container">
+	<hr>
+    <h3>UPLOAD PRODUCTS</h3>
+
+    <hr>
+
+    <ul class="nav nav-tabs">
+      
+     
+      <li><a href="/admin/product/list">Product List</a></li>
+       <li class="active"><a href="/admin/upload/product">Upload Products</a></li>
+      
+    </ul>
+    <br>
+	<br>
+      <form id = "uploadbanner" th:action="@{/admin/product/process}" enctype= "multipart/form-data"  method = "POST">
+      
+        <input type="file" name="multi_file" />
+        <br>
+        <br>
+        <input type = "submit" value = "submit" id = "submit"/>
+      </form>
+      
+      </div>
+
+      <div th:include="footer :: copy"></div>
+  </body>
+  </html>

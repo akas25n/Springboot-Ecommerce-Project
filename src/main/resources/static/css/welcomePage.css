@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+
+	.image-radio {
+		cursor: pointer;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		border: 4px solid transparent;
+		margin-bottom: 0;
+		outline: 0;
+		text-align: center;
+		color: brown;
+		}
+	
+		img {
+	  border-radius: 50%;
+		}
+		
+		#message{
+			text-align: center;
+			color: green;
+		}	
+		.message2{
+			text-align: center;
+			color: red;
+		}

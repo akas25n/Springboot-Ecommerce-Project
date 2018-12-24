@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+
+    /* ********************images***********************/
+    #campaigns{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .lotImage {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
+    
+      .image {
+      opacity: 1;
+      display: block;
+      width: 60px;
+      height: 60px;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
+    
+    .container:hover .image {
+      opacity: 10;
+    }
+
+    .container:hover .middle {
+      opacity: 1;
+    }
+
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    
+    .text {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+
+   #imagDet{
+      text-align: center;
+      padding-top: 10px;
+    }
+
+
+	.row{
+	margin-right: -15px;
+	margin-left: -15px;
+	} 
+    #brandName{
+      background-color: #b5e0ba5c;
+      padding-left: 5px;
+      margin-right: -17px;
+      margin-left: 15px;
+      font-family: Lucida Console;
+    }
+    /* ********************images***********************/

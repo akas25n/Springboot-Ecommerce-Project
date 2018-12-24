@@ -1,0 +1,85 @@
+@charset "ISO-8859-1";
+
+div#field{
+ 	background-color: #FFF;
+ }
+  .container-fluid{
+  padding-left: 30px;
+  }
+  
+  input.input1 {
+    font-style: italic;
+}
+ 
+  .fields{
+    margin-left: 100px;
+  }
+  .input1{
+    float: right;
+    width: 80%;
+    border: 1px solid #ccc;
+    height: 35px;
+    border-radius: 4px;
+  }
+  .input2{
+    float: right;
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 35px;
+    border-radius: 4px;
+    
+
+  }
+
+  .form-control{
+    width: 89.5%;
+    float: right;
+  }
+
+  button{
+    float: right;
+  }
+
+
+   .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+    }
+
+ 
+
+    button{
+      float: left;
+    }
+    form span.required{
+                color:red;
+      }
+
+      #sel1{
+        color:red;
+      }
+
+      .heading{
+        margin-bottom: -18px;
+        text-align: center;
+      }
+
+
+      .btn-success{
+        float: right;
+        margin-right: 10px;
+      }
+      .input3{
+        float: right;
+        width: 70%;
+        height: 35px;
+        border-radius: 4px;
+      }
+      p{
+        margin-left: 30%;
+      }
+
+     .hr1{
+    border: 2px solid #5cb85c;
+  }
+     
+    

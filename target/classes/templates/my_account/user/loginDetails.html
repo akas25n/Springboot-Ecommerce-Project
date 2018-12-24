@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | My Profile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/commonStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+
+</head>
+
+
+<body>
+	<div th:include="header :: copy"></div>
+
+  <div class="container" id="field">
+    <div class="row">
+    <hr>
+    <h3>EDIT YOUR LOGIN DETAILS</h3>
+    <h5><strong><span th:utext="${userName}"></span></strong></h5>
+    <hr>
+   
+   </div>
+
+      <form class="form-group">
+     
+       <div class="row">
+      
+        <div class="col-lg-3 col-md-6">
+        </div>
+
+        <div class="col-lg-9 col-md-6">
+           
+           
+            <label for="name">Your Login Id</label>
+             <input type="text" placeholder="Your email address...!" name="name" class="input1" required>
+            
+            </div>
+            <br>
+          </div>
+          
+          </form>
+
+            <br>
+ 		<form>
+          <div class="row">
+          
+          
+             <div class="col-lg-6">
+
+            </div>
+          
+         
+            <div class="col-lg-6">
+              <h4 class="heading"><strong>Passwords</strong></h4>
+              <hr class="hr1">
+             
+                <label for="password">New Password</label>
+                 <input type="text" name="password" class="input3"><br><br>
+
+                 <label for="password">Confirm Password<span  id="sel1">*</span></label>
+                 <input type="text" name="password" class="input3" required>
+                 
+                  <button class="btn btn-success" type="submit">Save Profile</button> <br>
+            </div>
+        
+
+   
+    </div>
+    <hr>
+         
+    </form>
+   </div>
+  <br>
+  <br>
+  <hr>
+  <br>
+<div th:include="footer :: copy"></div>
+  
+  </body>
+</html>

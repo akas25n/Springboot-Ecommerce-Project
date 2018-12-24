@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+
+
+	.bg-dark{
+			background-color: #2669b3!important;
+			padding-bottom: unset;
+			
+			height: 50px;
+			
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px; 
+			padding-top:10px;
+			
+		}
+		
+		a {
+		  color: #eee;
+		}
+			

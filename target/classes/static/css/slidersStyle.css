@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+/* ********************Slider***********************/
+  .carousel-inner> .item>img, .carousel-inner>.item>img, img-responsive, .thumbnail a>img, .thumbnail>img{
+      height: 240px;
+    }
+	
+
+    /* ********************Slider***********************/
+
+   

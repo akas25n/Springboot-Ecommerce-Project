@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | Admin | Customer Management</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<!-- ********************************************************** pagination***************************************************** -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+	<!-- ********************************************************** pagination***************************************************** -->
+	
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+	
+	<style>
+		.ui-icon, .ui-widget-content .ui-icon 
+		{
+		background-image: none;
+		}
+		
+		div#body1 {
+	        background-color: white; !important;
+	        }
+	      
+	      #tdBackground{
+	      	
+	      	background-color: white;
+	      }
+	      
+	       .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+
+        }
+        
+		</style>
+		
+</head>
+
+
+<body>
+
+<!-- ********************************************************** pagination***************************************************** -->
+	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+	 <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
+	    
+	
+	<script>
+	$(document).ready( function () {
+	    $('#table_id').DataTable();
+	} );
+	</script>
+	<!-- ********************************************************** pagination***************************************************** -->
+	
+	<div th:include="header :: copy"></div>
+	<div class="container" id="body1">
+	<hr>
+        <h2>USER LIST</h2>
+        
+        <hr>
+      <ul class="nav nav-tabs">
+      
+		<li><a href="/admin/account/administrators">Administrators</a></li>
+	    <li class="active"><a href="/admin/account/user/list">User List</a></li> 
+	  	 
+    </ul>
+      
+        <hr>
+
+            <br>
+
+                
+            <div class="row">
+                <div class="col-md-12  col-sm-6">
+                <table class="table table-bordered" id="table_id">
+                    <thead>
+                        <tr>
+	                        <th>ID</th>
+	                            
+
+	                        <th>Role</th>
+	                            
+	                        <th>First Name</th>
+	                            
+	                        <th>Last Name</th>
+	                           
+	                        <th>Company</th>
+	                            
+	
+	                        <th>Email</th>
+	                           
+	                        <th>Phone</th>
+	                            
+	                           
+	                        <th>Created</th>
+	                           
+	                        
+	                        <th>Actions </th>
+                       
+                       
+                       
+                      </tr>
+
+                    </thead>
+                    
+                    <tbody id="tdBackground">
+				      <tr>
+				        <td>Doe</td>
+				        <td>Admin</td>
+				        <td>Mary</td>
+				        <td>Moe</td>
+				        <td>john@example.com</td>
+				        <td>Mary</td>
+				        <td>Doe</td>
+				        <td>john@example.com</td>
+				        <td>Edit | Delete</td>
+				       
+				      </tr>
+				      
+				        <tr>
+				        <td>Doe</td>
+				        <td>User</td>
+				        <td>Mary</td>
+				        <td>Moe</td>
+				        <td>john@example.com</td>
+				        <td>Mary</td>
+				        <td>Doe</td>
+				        <td>john@example.com</td>
+				        <td>Edit | Delete</td>
+				      
+				      </tr>
+				      
+				        <tr>
+				        <td>Doe</td>
+				        <td>User</td>
+				        <td>Mary</td>
+				        <td>Moe</td>
+				        <td>john@example.com</td>
+				        <td>Mary</td>
+				        <td>Doe</td>
+				        <td>john@example.com</td>
+				        <td>Edit | Delete</td>
+				        
+				      </tr>
+				    </tbody>
+				    
+                </table>
+                
+            
+            </div>
+            </div>
+            </div>
+            
+            <div th:include="footer :: copy"></div>
+            
+            <script>$( "th" ).resizable();</script>
+    </body>
+    </html> 
