@@ -65,6 +65,13 @@ body {
   text-align: center;
   background-color: #f1f1f1;
 }
+
+.btn-primary{
+	padding-left: 50px;
+	padding-right:50px;
+
+	float: right;
+}
 </style>
 	
 </head>
@@ -73,52 +80,67 @@ body {
 	<div class="container">
 	<div th:include="header :: copy"></div>
 	<hr>
-	<h2>YOUR ADDRESSES</h2>
+	<h2>CHECK YOUR ADDRESSES</h2>
 	<hr>
 	
 		
 <div class="row">
+ 
   <div class="column">
-  <h3>Shipping Address</h3>
-  <hr>
+ 
     <div class="card">
+    <div style="background-color: lightgrey; border: 1px solid grey;"> 
+     <h3>Shipping Address</h3>
+     </div>
+  	
       <div th:each="shipAdd: ${shippAddress}">
 			
-			
-			
-				<div th:text="${shipAdd.contact_person}"></div><br>
-								<div th:text="${shipAdd.street}"></div><br>
-							<div th:text="${shipAdd.city}" ></div> <div th:text="${shipAdd.zip_code}"></div><br>
-								<div th:text="${shipAdd.country}"></div><br>
-								<div th:text="${shipAdd.phone_number}"></div>
-								<hr>
-								
-								
+		<strong><div th:text="${shipAdd.contact_person}"></div></strong>
+			<div th:text="${shipAdd.street}"></div>
+				<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+					<div th:text="${shipAdd.country}"></div>
+					<div th:text="${shipAdd.phone_number}"></div>
+					<hr style="border: 2px solid lightgrey;">			
 				</div>
+				
 				<div th:if="${msg}" 
-								class="alert alert-danger" role="alert" 
-          						th:text=${msg}>
+					class="alert alert-danger" role="alert" 
+          			th:text=${msg}>
           						
-								</div>
+				</div>
 								
-								<div><a th:href="@{/my/account/shipping/address}"> Add | </a>	<a>Edit</a></div>
+			<h4><a th:href="@{/my/account/shipping/address}"><strong>Add |</strong><a th:href="@{/my/account/shipping/address}"><strong> Edit</strong></h4>
     </div>
   </div>
   
-    <div class="column">
-  	<h3>Order summary</h3>
-     	<hr>
-  
+  <div class="column">
+  	
     <div class="card">
-     
+    <div style="background-color: lightgrey; border: 1px solid grey; color: black;"> 
+     <h3>Order Summary</h3>
+     </div>
      	
-     	
+     	<div th:each="lot : ${lots}">
+     	 <div class="row" id="lotDescDetails">
+            
+           	<h5 style="color: black;"><strong>Lot Name:</strong> <span th:text="${lot.lotName}"></span></h5>
+            <h5 style="color: black;"><strong >Volume:</strong> <span th:text="${lot.volume}"></span></h5>
+          
+          <hr style="border: 2px solid lightgrey; margin-top: 70px;">
+           
+              <h4 style="margin-left: -30px;"><strong>Total Price: <span th:text="${lot.lotPrice}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
+            
+            
+          </div>
+         
     </div>
-  </div>
-
- 
-		
- </div>
+  	</div>	
+ 	</div>
+ 	</div>
+ 	<hr>
+ 	 <div th:each="lot : ${lots}">
+     	<a th:href="@{/my/account/show/billing/address/__${lot.lotId}__}" class="btn btn-primary">Next</a></div>
+	
 	
 	</div><!-- end of the container -->
 	<div th:include="footer :: copy"></div>

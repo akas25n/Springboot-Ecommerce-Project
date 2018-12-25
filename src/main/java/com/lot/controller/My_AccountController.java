@@ -24,6 +24,7 @@ import com.lot.model.Order;
 import com.lot.model.ShippingAddress;
 import com.lot.model.User;
 import com.lot.repository.BillingAddressRepository;
+import com.lot.repository.LotRepository;
 import com.lot.repository.ShippingAddressRepository;
 import com.lot.repository.UserRepository;
 import com.lot.service.BillingAddressService;
@@ -51,6 +52,9 @@ public class My_AccountController {
 	
 	@Autowired
 	private ShippingAddressRepository shippingAddressRepository;
+	
+	@Autowired
+	private LotRepository lotRepository;
 	
 	
 	@RequestMapping("/account")
@@ -253,8 +257,8 @@ public class My_AccountController {
 	
 	// displaying billing address if exist
 	@SuppressWarnings("unused")
-	@RequestMapping(value="/account/show/billing/address")
-	public ModelAndView showBillAdd(@Valid BillingAddress billingAddress, BindingResult bindingResult) {
+	@RequestMapping(value="/account/show/billing/address/{lotId}")
+	public ModelAndView showBillAdd(@Valid BillingAddress billingAddress, BindingResult bindingResult, @PathVariable("lotId") long lotId) {
 		
 	
 		ModelAndView mv = new ModelAndView();
@@ -263,6 +267,9 @@ public class My_AccountController {
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
+        
+        Optional<Lot> newLot = lotRepository.findById(lotId);
+        Lot lots = newLot.get();
         
         int user_id=user.getUser_id();
 		
@@ -274,7 +281,7 @@ public class My_AccountController {
 			mv.addObject("message", "Please add a billing address");
 		}
 		
-		
+		mv.addObject("lots", lots);
 		mv.setViewName("/my_account/user/addressBill");
 		
 		return mv;
@@ -332,8 +339,8 @@ public class My_AccountController {
 
 // displaying billing address if exist
 @SuppressWarnings("unused")
-@RequestMapping(value="/account/show/shipping/address")
-public ModelAndView showShipAdd(@Valid ShippingAddress shippingAddress, BindingResult bindingResult) {
+@RequestMapping(value="/account/show/shipping/address/{lotId}")
+public ModelAndView showShipAdd(@Valid ShippingAddress shippingAddress, BindingResult bindingResult, @PathVariable("lotId") long lotId) {
 	
 
 	ModelAndView mv = new ModelAndView();
@@ -342,6 +349,9 @@ public ModelAndView showShipAdd(@Valid ShippingAddress shippingAddress, BindingR
     User user = userService.findUserByEmail(auth.getName());
     mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
     //********************************************************************************************
+    
+    Optional<Lot> newLot = lotRepository.findById(lotId);
+    Lot lots = newLot.get();
     
     int user_id=user.getUser_id();
 	
@@ -353,7 +363,7 @@ public ModelAndView showShipAdd(@Valid ShippingAddress shippingAddress, BindingR
 		mv.addObject("msg", "Please add a shipping address");
 	}
 	
-	
+	mv.addObject("lots", lots);
 	mv.setViewName("/my_account/user/addressShip");
 	
 	return mv;
