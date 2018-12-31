@@ -142,9 +142,6 @@ public class OrderDetailsController {
 		Order obj = orderRepository.findByUserAndLot(user_id, lotId);
 		
 		
-		
-		//List<Order> obj = orderRepository.findAll();
-		
 		if (obj == null) {
 			
 		

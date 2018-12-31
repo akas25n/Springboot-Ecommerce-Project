@@ -71,27 +71,7 @@ public class My_AccountController {
 		mv.setViewName("/my_account/myAccount");
 		return mv;
 	}
-	
-/*	@RequestMapping("/account/{id}")
-	public ModelAndView show(@PathVariable("id") Integer user_id) {
-		ModelAndView mv = new ModelAndView();
-		
-		//************************************************************************************
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
-        //************************************************************************************
-        
-        Optional<User> users = userRepository.findById(user_id);
-        
-        mv.addObject("user", users);
-      
-		mv.setViewName("/my_account/myAccount");
-		return mv;
-	}
-	*/
-	
-	
+
 	
 	@RequestMapping(value = "/account/orders", method= RequestMethod.GET)
 	public ModelAndView showOders() {
@@ -99,6 +79,8 @@ public class My_AccountController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        
+        // user can see his order list
 		mv.setViewName("/my_account/user/your_orders");
 		return mv;
 	}
