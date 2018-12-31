@@ -80,7 +80,7 @@ body {
 	<div class="container">
 	<div th:include="header :: copy"></div>
 	<hr>
-	<h2>CHECK YOUR ADDRESSES</h2>
+	<h3 style="color:grey;">CHECK YOUR ADDRESSES</h3>
 	<hr>
 	
 		
@@ -105,11 +105,16 @@ body {
 				
 				<div th:if="${msg}" 
 					class="alert alert-danger" role="alert" 
-          			th:text=${msg}>
-          						
+          			th:text=${msg}>			
 				</div>
-								
-			<h4><a th:href="@{/my/account/shipping/address}"><strong>Add |</strong><a th:href="@{/my/account/shipping/address}"><strong> Edit</strong></h4>
+		<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
+			<div th:if="${shippAddress} !=null">
+				<h4><a th:href="@{/my/account/shipping/address}"><strong> Edit</strong></a></h4>
+			</div>	
+			<div th:if="${shippAddress} == null">
+				<h4><a th:href="@{/my/account/shipping/address}"><strong>Add </strong></a></h4>
+			</div>				
+			
     </div>
   </div>
   
@@ -128,7 +133,7 @@ body {
           
           <hr style="border: 2px solid lightgrey; margin-top: 70px;">
            
-              <h4 style="margin-left: -30px;"><strong>Total Price: <span th:text="${lot.lotPrice}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
+              <h4 style="margin-left: -30px; color: #337ab7;"><strong>Total Price: <span th:text="${lot.lotPrice}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
             
             
           </div>

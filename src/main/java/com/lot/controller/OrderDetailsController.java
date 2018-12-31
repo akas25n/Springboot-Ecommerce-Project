@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lot.model.BillingAddress;
 import com.lot.model.Lot;
 import com.lot.model.Order;
 import com.lot.model.Product;
 import com.lot.model.ShippingAddress;
 import com.lot.model.User;
+import com.lot.repository.BillingAddressRepository;
 import com.lot.repository.LotRepository;
 import com.lot.repository.OrderRepository;
 import com.lot.repository.ProductRepository;
@@ -45,7 +47,8 @@ public class OrderDetailsController {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-
+	@Autowired
+	BillingAddressRepository billRepo;
 	@Autowired
 	ShippingAddressRepository shippingAddressRepository;
 	
@@ -60,6 +63,11 @@ public class OrderDetailsController {
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
+        int user_id = user.getId();
+        
+        BillingAddress billAddress= billRepo.findByUserId(user_id);
+        
+        ShippingAddress shippAddress = shippingAddressRepository.findByUserId(user_id);
         
 		Optional<Lot> new_obj = lotRepository.findById(lotId);
 		Lot lots= new_obj.get();
@@ -71,6 +79,11 @@ public class OrderDetailsController {
 
 		mv.addObject("lots",lots);
 		mv.addObject("products", product);
+		mv.addObject("billAddress", billAddress);
+		mv.addObject("shippAddress", shippAddress);
+		
+		mv.addObject("message1", "Please add a Shipping address");
+		mv.addObject("message2", "Please add a billing address");
 		
 		mv.setViewName("orderDetails");
 		return mv;
@@ -90,6 +103,8 @@ public class OrderDetailsController {
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
+        
+       
         
 		Optional<Lot> new_obj = lotRepository.findById(lotId);
 		Lot lots= new_obj.get();

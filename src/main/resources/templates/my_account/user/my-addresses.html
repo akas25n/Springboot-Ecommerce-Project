@@ -89,6 +89,41 @@ body {
  
     <div class="card">
     <div style="background-color: lightgrey; border: 1px solid grey;"> 
+     <h3>Shipping Address</h3>
+     </div>
+  	
+      <div th:each="shipAdd: ${shippAddress}">
+			
+		<strong><div th:text="${shipAdd.contact_person}"></div></strong>
+			<div th:text="${shipAdd.street}"></div>
+				<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+					<div th:text="${shipAdd.country}"></div>
+					<div th:text="${shipAdd.phone_number}"></div>
+					<hr style="border: 2px solid lightgrey;">			
+				</div>
+				
+				
+				
+			<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
+			<div th:if="${shippAddress} !=null">
+				<h4><a th:href="@{/my/account/shipping/address}"><strong> Edit</strong></a></h4>
+			</div>	
+			<div th:if="${shippAddress} == null">
+				<div th:if="${message1}" 
+					class="alert alert-danger" role="alert" 
+          			th:text=${message1}>          						
+				</div>
+				
+				<h4><a th:href="@{/my/account/shipping/address}"><strong>Add </strong></a></h4>
+			</div>
+		<!-- ................... if shipping address is empty then add......................... -->
+    </div>
+  </div>
+  
+  <div class="column">
+  	
+     <div class="card">
+    <div style="background-color: lightgrey; border: 1px solid grey;"> 
      <h3>Billing Address</h3>
      </div>
   	
@@ -102,51 +137,27 @@ body {
 					<hr style="border: 2px solid lightgrey;">			
 				</div>
 				
-				<div th:if="${message}" 
-					class="alert alert-danger" role="alert" 
-          			th:text=${message}>
-          						
-				</div>
 				
-				<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
+				
+			<!-- ................... if shipping address is empty then add......................... -->
 			<div th:if="${billAddress} !=null">
 				<h4><a th:href="@{/my/account/billing/address}"><strong> Edit</strong></a></h4>
 			</div>	
 			<div th:if="${billAddress} == null">
+				<div th:if="${message2}" 
+					class="alert alert-danger" role="alert" 
+          			th:text=${message2}>
+          						
+				</div>
 				<h4><a th:href="@{/my/account/billing/address}"><strong>Add </strong></a></h4>
 			</div>
-		
+		<!-- ................... if shipping address is empty then add......................... -->
     </div>
-  </div>
-  
-  <div class="column">
-  	
-    <div class="card">
-    <div style="background-color: lightgrey; border: 1px solid grey; color: black;"> 
-     <h3>Order Summary</h3>
-     </div>
-     	
-     	<div th:each="lot : ${lots}">
-     	 <div class="row" id="lotDescDetails">
-            
-           	<h5 style="color: black;"><strong>Lot Name:</strong> <span th:text="${lot.lotName}"></span></h5>
-            <h5 style="color: black;"><strong >Volume:</strong> <span th:text="${lot.volume}"></span></h5>
-          
-          <hr style="border: 2px solid lightgrey; margin-top: 70px;">
-           
-              <h4 style="margin-left: -30px; color: #337ab7;"><strong>Total Price: <span th:text="${lot.lotPrice}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
-            
-            
-          </div>
-     	
-    </div>
-  	</div>	
  	</div>
 	</div>
 	
 	<hr>
- 	 <div th:each="lot : ${lots}">
-     	<a th:href="@{/order/details/__${lot.lotId}__}" class="btn btn-primary">Next</a></div>
+ 	
 	</div><!-- end of the container -->
 	<div th:include="footer :: copy"></div>
 	

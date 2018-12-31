@@ -22,10 +22,10 @@
 
 
 	<style type="text/css">
-	.btn-default{
-		background-color: #c8d1cf;
+	.btn{
+		
 		width: 100%;
-		color: #5d7973!important;
+		
 	}
 
 	</style>
@@ -37,14 +37,14 @@
 	<div th:include="header :: copy"></div>
 	<hr>
 	
-	<h2>CHECK ORDER</h2>	
+	<h2 style="color:grey;">CHECK ORDER</h2>	
 	<hr>
 	<div class="row">
 		<div class="col-lg-12">
 		<div th:each="lot:${lots}">
 			<div class="col-md-7">
 
-				<h3>Lot Details</h3>
+				<h3 style="color:grey;">Lot Details</h3>
 				<hr>
 
 				<div class="col-sm-12">
@@ -59,12 +59,12 @@
 
 		             <div class="col-sm-8">
 		             
-		             	<h3 th:text="${lot.lotName}"></h3>
+		             	<h4 th:text="${lot.lotName}"></h4>
 		             	<hr>
 		             	Price: <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
-		             	<hr>
+		             	<br>
 		             	Quantity:<strong> Ganze Lot </strong>
-		             	<hr>
+		             	
 		             </div>
 				</div>
 			</div>
@@ -72,22 +72,54 @@
 
 			<div class="col-md-5">
 			<div>
-				<h3>Lieferadresse  <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
+				<h3 style="color:grey;">Lieferadresse  <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
 				<hr>
-				<p> Motion Fashion GmbH</p>
-				<p> Osterfelderstrasse 12-14</p>
-				<p> 22529 Hamburg, Germany</p> <br>
+				
+				   <div th:each="shipAdd: ${shippAddress}">
+					<strong><div th:text="${shipAdd.contact_person}"></div></strong>
+					<div th:text="${shipAdd.street}"></div>
+					<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+					<div th:text="${shipAdd.country}"></div>
+					<div th:text="${shipAdd.phone_number}"></div>
+								
+				</div>
+				
+			<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->	
+			<div th:if="${shippAddress} == null">
+				<div th:if="${message1}" 
+					class="alert alert-danger" role="alert" 
+          			th:text=${message1}>          						
+				</div>
+				
+				<h4><a th:href="@{/my/account/billing/address}"><strong>Add </strong></a></h4>
+			</div>
+			
 				<br>
 			</div>
 			<div>
-				<h3>Rechnungsadresse <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
+				<h3 style="color:grey;">Rechnungsadresse <span class="glyphicon glyphicon-pencil" style="float:right;"></span> </h3>
 				<hr>
-				<p> Motion Fashion GmbH</p>
-				<p> Osterfelderstrasse 12-14</p>
-				<p> 22529 Hamburg, Germany</p> <br>
+				 <div th:each="billAdd: ${billAddress}">
+			
+					<strong><div th:text="${billAdd.contact_person}"></div></strong>
+					<div th:text="${billAdd.street}"></div>
+					<span th:text="${billAdd.city}" ></span> <span th:text="${billAdd.zip_code}"></span>
+					<div th:text="${billAdd.country}"></div>
+					<div th:text="${billAdd.phone_number}"></div>
+								
 				<br>
+				
+				
 			</div>
-				<br><br><br>
+				<div th:if="${billAddress} == null">
+				<div th:if="${message2}" 
+					class="alert alert-danger" role="alert" 
+          			th:text=${message2}>
+          						
+				</div>
+				<h4><a th:href="@{/my/account/billing/address}"><strong>Add </strong></a></h4>
+			</div>
+				<br>
 				<hr>
 				<div class="col-sm-12">
 					<div class="col-sm-6">
@@ -102,7 +134,9 @@
 				</div>
 				
 				<div th:each="lot:${lots}">
-			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-default"><strong>Confirm your purchase</strong></a>
+				<br>
+				<br>
+			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a>
 				<!-- <a th:href="@{/admin/order/list}" class="btn btn-default"><strong>Confirm your purchase</strong></a> -->
 				</div>
 				</div>

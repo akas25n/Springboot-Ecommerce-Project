@@ -159,7 +159,7 @@ public class My_AccountController {
 	*/
 	
 	
-	@RequestMapping(value = "/account/details", method= RequestMethod.GET)
+	@RequestMapping(value = "/account/addresses", method= RequestMethod.GET)
 	public ModelAndView showDetails() {
 		
 		ModelAndView mv = new ModelAndView();
@@ -168,8 +168,21 @@ public class My_AccountController {
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //************************************************************************************************************************
+        int user_id = user.getId();
+        
+        BillingAddress billAddress= billingAddressRepository.findByUserId(user_id);
+        
+        ShippingAddress shippAddress = shippingAddressRepository.findByUserId(user_id);
+        
+        
         mv.addObject("user",user);
-			mv.setViewName("/my_account/user/common2");
+        mv.addObject("billAddress", billAddress);
+		mv.addObject("shippAddress", shippAddress);
+		
+		mv.addObject("message1", "Please add a Shipping address");
+		mv.addObject("message2", "Please add a billing address");
+		
+			mv.setViewName("/my_account/user/my-addresses");
       
 		return mv;
 	}
@@ -252,7 +265,7 @@ public class My_AccountController {
 		mv.addObject("message", "Address have been successfully saved");
 		mv.addObject("customerBillingAddressInfo", new BillingAddress());
 		
-		return new ModelAndView("redirect:/my/account");
+		return new ModelAndView("redirect:/my/account/addresses");
 	}
 	
 	// displaying billing address if exist
@@ -333,7 +346,7 @@ public class My_AccountController {
 		mv.addObject("message", "Address have been successfully saved");
 		mv.addObject("customerShippingAddressInfo", new ShippingAddress());
 		
-		return new ModelAndView("redirect:/my/account/billing/address");
+		return new ModelAndView("redirect:/my/account/addresses");
 	}
 
 
