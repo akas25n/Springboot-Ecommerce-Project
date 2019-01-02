@@ -33,6 +33,7 @@ import com.lot.model.User;
 import com.lot.repository.LotRepository;
 import com.lot.repository.OrderRepository;
 import com.lot.repository.ProductRepository;
+import com.lot.repository.UserRepository;
 import com.lot.service.LotService;
 import com.lot.service.ProductService;
 import com.lot.service.UserService;
@@ -52,6 +53,9 @@ public class Admin_Controller {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 
 	@Autowired
@@ -464,6 +468,19 @@ public class Admin_Controller {
 	
 	//####################################################################################### product ###########################
 	
+	@RequestMapping(value = "/account/all/list", method= RequestMethod.GET)
+	public ModelAndView showAllList() {
+		ModelAndView mv = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        
+        List<User> users = userRepo.findAll();     
+        mv.addObject("users", users);
+        
+		mv.setViewName("/my_account/admin/showAll");
+		return mv;
+	}
 
 	
 	@RequestMapping(value = "/account/user/list", method= RequestMethod.GET)
@@ -472,6 +489,10 @@ public class Admin_Controller {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        
+        List<User> users = userRepo.findAllUser();     
+        mv.addObject("users", users);
+        
 		mv.setViewName("/my_account/admin/user-list");
 		return mv;
 	}
@@ -483,10 +504,25 @@ public class Admin_Controller {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        
+        List<User> users = userRepo.findAllAdmin();     
+        mv.addObject("users", users);
+        
 		mv.setViewName("/my_account/admin/administrators");
 		return mv;
 	}
 	
+	
+	@RequestMapping(value = "/edit/user", method= RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView mv = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+ 
+		mv.setViewName("/my_account/admin/edit-user-details");
+		return mv;
+	}
 
 	
 	@RequestMapping(value = "/account/paid/invoices", method= RequestMethod.GET)

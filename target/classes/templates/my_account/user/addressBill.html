@@ -88,7 +88,7 @@ body {
   <div class="column">
  
     <div class="card">
-    <div style="background-color: lightgrey; border: 1px solid grey;"> 
+    <div style="background-color: #dbe1df; border: 1px solid grey;"> 
      <h3>Billing Address</h3>
      </div>
   	
@@ -122,7 +122,7 @@ body {
   <div class="column">
   	
     <div class="card">
-    <div style="background-color: lightgrey; border: 1px solid grey; color: black;"> 
+    <div style="background-color: #dbe1df; border: 1px solid grey; color: black;"> 
      <h3>Order Summary</h3>
      </div>
      	
@@ -144,14 +144,12 @@ body {
 	</div>
 	
 	<hr>
-	
-			<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
-			<div th:if="${billAddress} !=null">
-				<div th:each="lot : ${lots}">
-		     	<a th:href="@{/order/details/__${lot.lotId}__}" class="btn btn-primary">Next</a>
-		     </div>
-			</div>	
-			
+ 	
+     	   <!-- ................... if shipping address is empty then add...if not emty then edit...................... -->	
+	<div th:if="${billAddress} !=null">
+		<div th:each="lot : ${lots}">
+		    <a th:href="@{/order/details/__${lot.lotId}__}" class="btn btn-primary">Next</a></div>
+		 </div>
 	
 	</div><!-- end of the container -->
 	<div th:include="footer :: copy"></div>

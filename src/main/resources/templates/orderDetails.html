@@ -37,7 +37,7 @@
 	<div th:include="header :: copy"></div>
 	<hr>
 	
-	<h2 style="color:grey;">CHECK ORDER</h2>	
+	<h3 style="color:grey;">CHECK YOUR ORDER</h3>	
 	<hr>
 	<div class="row">
 		<div class="col-lg-12">
@@ -59,7 +59,7 @@
 
 		             <div class="col-sm-8">
 		             
-		             	<h4 th:text="${lot.lotName}"></h4>
+		             	<h4 th:text="${lot.lotName}" style="color:#337ab7;"></h4>
 		             	<hr>
 		             	Price: <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
 		             	<br>
@@ -83,16 +83,7 @@
 					<div th:text="${shipAdd.phone_number}"></div>
 								
 				</div>
-				
-			<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->	
-			<div th:if="${shippAddress} == null">
-				<div th:if="${message1}" 
-					class="alert alert-danger" role="alert" 
-          			th:text=${message1}>          						
-				</div>
-				
-				<h4><a th:href="@{/my/account/billing/address}"><strong>Add </strong></a></h4>
-			</div>
+			
 			
 				<br>
 			</div>
@@ -111,22 +102,13 @@
 				
 				
 			</div>
-				<div th:if="${billAddress} == null">
-				<div th:if="${message2}" 
-					class="alert alert-danger" role="alert" 
-          			th:text=${message2}>
-          						
-				</div>
-				<h4><a th:href="@{/my/account/billing/address}"><strong>Add </strong></a></h4>
-			</div>
-			
-			<div>
-				<h3 style="color:grey;">Zahlungsarten <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
+					<div>
+				<h3 style="color:grey;">Zahlungsarten  <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
 				<hr>
-			
-				<br>
+				
+	
 			</div>
-			
+		
 				<br>
 				<hr>
 				<div class="col-sm-12">
@@ -146,8 +128,6 @@
 				<br>
 			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a>
 				<!-- <a th:href="@{/admin/order/list}" class="btn btn-default"><strong>Confirm your purchase</strong></a> -->
-				<hr>
-				<br>
 				</div>
 				</div>
 			</div>
@@ -155,6 +135,7 @@
 	</div>
 	<br>
 	<hr>
+	</div>
 	</div> <!-- end of the container --> 
 	
 	

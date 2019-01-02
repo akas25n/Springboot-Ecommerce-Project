@@ -69,13 +69,13 @@
 	<div th:include="header :: copy"></div>
 	<div class="container" id="body1">
 	<hr>
-        <h3 style="color:grey;">USER LIST</h3>   
+        <h3 style="color:grey;">SHOW ALL</h3>   
         <hr>
-     <ul class="nav nav-tabs">
-      	<li><a href="/admin/account/all/list">All List</a></li>
+      <ul class="nav nav-tabs">
+      	<li class="active"><a href="/admin/account/all/list">All List</a></li>
 		<li><a href="/admin/account/administrators">Admin List</a></li>
-	    <li class="active"><a href="/admin/account/user/list">User List</a></li> 
-    </ul>   
+	    <li><a href="/admin/account/user/list">User List</a></li> 
+    </ul>     
         <hr>
             <br>    
             <div class="row">
@@ -110,10 +110,10 @@
 				        
 				        
 				       <td>
-			               		<span th:each="role,iterStat : ${user.roles}">
-			               		<span th:text="${role.role}"/>
+			               	<span th:each="role,iterStat : ${user.roles}">
+			               	<span th:text="${role.role}"/>
 			               </td>
-				         <td>
+				        <td>
 							<a href="/admin/edit/user" class="w3-button w3-green" style="color:green;">Edit</a> |
                     		<a href="#" class="w3-button w3-green" style="color:red;">Delete</a>
 				        </td>

@@ -46,7 +46,7 @@ public class UserService {
 	       
 	      //----------------------------------------------------------------------------------------------------changed
 	       // user.setActive(1);
-	        Role userRole = roleReposirtory.findByRole("ADMIN");  // ADMIN or USER
+	        Role userRole = roleReposirtory.findByRole("USER");  // ADMIN or USER
 	        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 	        return userRepository.save(user);
 	    }

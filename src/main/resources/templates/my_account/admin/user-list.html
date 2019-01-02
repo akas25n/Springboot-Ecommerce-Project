@@ -69,21 +69,15 @@
 	<div th:include="header :: copy"></div>
 	<div class="container" id="body1">
 	<hr>
-        <h2>USER LIST</h2>
-        
+        <h3 style="color:grey;">USER LIST</h3>   
         <hr>
-      <ul class="nav nav-tabs">
-      
-		<li><a href="/admin/account/administrators">Administrators</a></li>
+     <ul class="nav nav-tabs">
+      	<li><a href="/admin/account/all/list">All List</a></li>
+		<li><a href="/admin/account/administrators">Admin List</a></li>
 	    <li class="active"><a href="/admin/account/user/list">User List</a></li> 
-	  	 
-    </ul>
-      
+    </ul>   
         <hr>
-
-            <br>
-
-                
+            <br>    
             <div class="row">
                 <div class="col-md-12  col-sm-6">
                 <table class="table table-bordered" id="table_id">
@@ -91,70 +85,38 @@
                         <tr>
 	                        <th>ID</th>
 	                            
-
-	                        <th>Role</th>
-	                            
 	                        <th>First Name</th>
 	                            
 	                        <th>Last Name</th>
 	                           
-	                        <th>Company</th>
-	                            
+	                        <th>Company</th>   
 	
 	                        <th>Email</th>
 	                           
-	                        <th>Phone</th>
-	                            
-	                           
-	                        <th>Created</th>
-	                           
-	                        
+	                        <th>Role</th>
+	                             
 	                        <th>Actions </th>
-                       
-                       
-                       
                       </tr>
 
                     </thead>
                     
                     <tbody id="tdBackground">
-				      <tr>
-				        <td>Doe</td>
-				        <td>Admin</td>
-				        <td>Mary</td>
-				        <td>Moe</td>
-				        <td>john@example.com</td>
-				        <td>Mary</td>
-				        <td>Doe</td>
-				        <td>john@example.com</td>
-				        <td>Edit | Delete</td>
-				       
-				      </tr>
-				      
-				        <tr>
-				        <td>Doe</td>
-				        <td>User</td>
-				        <td>Mary</td>
-				        <td>Moe</td>
-				        <td>john@example.com</td>
-				        <td>Mary</td>
-				        <td>Doe</td>
-				        <td>john@example.com</td>
-				        <td>Edit | Delete</td>
-				      
-				      </tr>
-				      
-				        <tr>
-				        <td>Doe</td>
-				        <td>User</td>
-				        <td>Mary</td>
-				        <td>Moe</td>
-				        <td>john@example.com</td>
-				        <td>Mary</td>
-				        <td>Doe</td>
-				        <td>john@example.com</td>
-				        <td>Edit | Delete</td>
+				      <tr th:each="user : ${users}">
+				        <td th:text = "${user.user_id}"></td>
+				        <td th:text = "${user.first_name}"></td>
+				        <td th:text = "${user.last_name}"></td>
+				        <td th:text = "${user.company}"></td>
+				        <td th:text = "${user.email}"></td>
 				        
+				        
+				       <td>
+			               		<span th:each="role,iterStat : ${user.roles}">
+			               		<span th:text="${role.role}"/>
+			               </td>
+				         <td>
+							<a href="/admin/edit/user" class="w3-button w3-green" style="color:green;">Edit</a> |
+                    		<a href="#" class="w3-button w3-green" style="color:red;">Delete</a>
+				        </td>
 				      </tr>
 				    </tbody>
 				    
