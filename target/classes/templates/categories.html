@@ -44,7 +44,7 @@
 	 <div th:each="lot : ${lots}"> 
         <div class="col-lg-6 col-md-6 col-xs-6">
         <a  th:href="@{/lot/details/__${lot.lotId}__}" class="d-block mb-4 h-100">
-          <img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="img-fluid img-thumbnail" alt=" "> </a>
+          <img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="img-fluid img-thumbnail" alt=" " style="height:250px;"> </a>
             
              <div class="col-sm-12">
                 

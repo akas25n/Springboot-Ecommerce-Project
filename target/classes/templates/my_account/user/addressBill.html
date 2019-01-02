@@ -144,8 +144,15 @@ body {
 	</div>
 	
 	<hr>
- 	 <div th:each="lot : ${lots}">
-     	<a th:href="@{/order/details/__${lot.lotId}__}" class="btn btn-primary">Next</a></div>
+	
+			<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
+			<div th:if="${billAddress} !=null">
+				<div th:each="lot : ${lots}">
+		     	<a th:href="@{/order/details/__${lot.lotId}__}" class="btn btn-primary">Next</a>
+		     </div>
+			</div>	
+			
+	
 	</div><!-- end of the container -->
 	<div th:include="footer :: copy"></div>
 	

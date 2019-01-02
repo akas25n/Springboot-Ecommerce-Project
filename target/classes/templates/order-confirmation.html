@@ -76,9 +76,14 @@
 				<h3>Lot will be delivered to-</h3>
 				<hr>
 				
-				<p>	Motion Fashion GmbH</p>
-				<p>	Osterfelderstrasse 12-14</p>
-				<p>	22529 Hamburg, Germany</p> <br>
+				   <div th:each="shipAdd: ${shippAddress}">
+					<strong><div th:text="${shipAdd.contact_person}"></div></strong>
+					<div th:text="${shipAdd.street}"></div>
+					<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+					<div th:text="${shipAdd.country}"></div>
+					<div th:text="${shipAdd.phone_number}"></div>
+								
+				</div>
 				<br>
 			</div>
 			</div>
@@ -87,7 +92,13 @@
 	<br>
 	<hr>
 	
-	<h1 style="text-align:center;"><font face="verdana" size= "20" color="green">Thank you for your purchase!</font></h1>
+	<h1 style="text-align:center;"><font face="verdana" size= "20" color="green">
+		<div th:if="${message1}" 
+			class="alert alert-success" role="alert" 
+          	th:text=${message1}>				
+		</div>
+		</font>
+	</h1>
 	
 	<a href="/lot/home"><h3  style="text-align:center; color:red;"><i>Buy More here!</i></h3></a>
 	

@@ -104,7 +104,9 @@ public class OrderDetailsController {
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
         
+        int user_id=user.getId();
        
+        ShippingAddress shippAddress = shippingAddressRepository.findByUserId(user_id);
         
 		Optional<Lot> new_obj = lotRepository.findById(lotId);
 		Lot lots= new_obj.get();
@@ -112,7 +114,10 @@ public class OrderDetailsController {
 		List<Product> product = productRepository.findAllByLotId(lotId);
 
 		mv.addObject("lots",lots);
-		mv.addObject("products", product);
+		mv.addObject("products", product);	
+		mv.addObject("shippAddress", shippAddress);
+		
+		mv.addObject("message1", "Thank You for your purchase!");
 		
 		mv.setViewName("order-confirmation");
 		return mv;

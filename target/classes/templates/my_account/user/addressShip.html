@@ -143,8 +143,13 @@ body {
  	</div>
  	</div>
  	<hr>
- 	 <div th:each="lot : ${lots}">
-     	<a th:href="@{/my/account/show/billing/address/__${lot.lotId}__}" class="btn btn-primary">Next</a></div>
+ 
+     <!-- ................... if shipping address is empty then add...if not emty then edit...................... -->	
+	<div th:if="${shippAddress} !=null">
+		<div th:each="lot : ${lots}">
+		    <a th:href="@{/my/account/show/billing/address/__${lot.lotId}__}" class="btn btn-primary">Next</a>
+		 </div>
+	</div>	
 	
 	
 	</div><!-- end of the container -->
