@@ -512,18 +512,71 @@ public class Admin_Controller {
 		return mv;
 	}
 	
+	// get method for editing user details from admin view
+	@RequestMapping(value = "/edit/user/{user_id}", method= RequestMethod.GET)
+	public ModelAndView edit(@PathVariable (value="user_id") int user_id) {
+		ModelAndView mv = new ModelAndView();
+		
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());*/
+      //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        
+        Optional<User> obj = userRepo.findById(user_id);
+        User users = obj.get();
+        
+        mv.addObject("usr", users);
+		mv.setViewName("/my_account/admin/edit-user-details");
+		
+		return mv;
+	} // end of method edit
 	
-	@RequestMapping(value = "/edit/user", method= RequestMethod.GET)
-	public ModelAndView edit() {
+	// update user details from admin view
+		@RequestMapping(value = "/update/user/{user_id}", method= RequestMethod.POST)
+		public ModelAndView editPost(@PathVariable (value="user_id") int user_id,
+										@RequestParam String first_name,
+										@RequestParam String last_name,
+										@RequestParam String company,
+										@RequestParam String email
+										
+				) {
+			ModelAndView mv = new ModelAndView();
+			
+			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());*/
+	      //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	        
+	        Optional<User> obj = userRepo.findById(user_id);
+	        User users = obj.get();
+	        
+	        
+	        users.setFirst_name(first_name);
+	        users.setLast_name(last_name);
+	        users.setCompany(company);
+	        users.setEmail(email);
+	        
+	        userRepo.save(users);
+	        
+	        mv.addObject("usr", users);
+			mv.setViewName("/my_account/admin/edit-user-details");
+			
+			return new ModelAndView("redirect:/my/account");
+		} // end of method edit
+	
+
+	@RequestMapping(value = "/edit/admin", method= RequestMethod.GET)
+	public ModelAndView editAdmin() {
 		ModelAndView mv = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
  
-		mv.setViewName("/my_account/admin/edit-user-details");
+		mv.setViewName("/my_account/admin/edit-admin-details");
 		return mv;
 	}
-
 	
 	@RequestMapping(value = "/account/paid/invoices", method= RequestMethod.GET)
 	public ModelAndView showPaidInvoices() {

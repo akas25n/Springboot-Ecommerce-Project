@@ -91,10 +91,14 @@
 	              <tr>
 	              	
 	               <th></th>
-	                <th>EAN</th>
+	               <th>EAN</th>
+	               <th>A_ProdNr</th>
+	                
 	                <th>Brand</th>
 	                <th>Product Name</th>
 	                <th>Gender</th>
+	                <th>Color</th>
+                	<th>Size</th>
 	                <th>Stock</th>
 	  
 	              </tr>
@@ -106,10 +110,14 @@
 				<tr th:each="product:${products}">
 					
 					 <td><input type="checkbox" th:name="idChecked" th:value="${product.a_ean}" /></td>
-	               	<td th:text="${product.a_ean}">
+					 <td th:text="${product.a_ean}">
+					 <td th:text="${product.a_prodnr}">
+	               	
 					<td th:text="${product.p_brand}">
 					<td th:text="${product.p_name}">
 					<td th:text="${product.p_comp_zielgruppe_}">
+					<td th:text="${product.a_comp_farbe_}"></td>
+	               	<td th:text="${product.a_comp_groesse_}"></td>
 		            <td th:text="${product.a_stock}">
 		           
 	              </tr>

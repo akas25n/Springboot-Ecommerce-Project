@@ -63,29 +63,28 @@ textarea {
         <div class="col-md-12">
         <hr style="border: 2px solid #5cb85c;">
             <div class="fields">
-             <form>
+             <form action="#" th:action ="@{/admin/update/user/__${usr.user_id}__}" th:object="${usr}" method="POST">
 				
-				 <div class="form-group">
-				    <label for="formGroupExampleInput">User ID</label>
-				    <input type="text" id="formGroupExampleInput" name="user_id" class="form-control" required="required">
+				
+				<div class="form-group">
+				 <label for="formGroupExampleInput">First Name<span  style="color:red;">*</span></label>
+				    <input th:field="*{first_name}" type="text" id="formGroupExampleInput" name="first_name" class="form-control" required="required">
+				    <span th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"></span> 
 				  </div>
 				  
-               <div class="form-group">
-				    <label for="formGroupExampleInput">First Name<span  style="color:red;">*</span></label>
-				    <input type="text" id="formGroupExampleInput" name="first_name" class="form-control" required="required">
-				  </div>
 				  <div class="form-group">
 				    <label for="formGroupExampleInput2">Last Name<span  style="color:red;">*</span></label>
-				    <input type="text" class="form-control" id="formGroupExampleInput2" required>
+				    <input th:field="*{last_name}" type="text" class="form-control" id="formGroupExampleInput2" required>
 				  </div>
 				  
 				   <div class="form-group">
 				    <label for="formGroupExampleInput">Company<span  style="color:red;">*</span></label>
-				    <input  type="text" class="form-control" id="formGroupExampleInput" required>
+				    <input th:field="*{company}"  type="text" class="form-control" id="formGroupExampleInput" required>
 				  </div>
+				  
 				  <div class="form-group">
 				    <label for="formGroupExampleInput2">Email<span  style="color:red;">*</span></label>
-				    <input type="email" class="form-control" id="formGroupExampleInput2" required>
+				    <input th:field="*{email}" type="text" class="form-control" id="formGroupExampleInput2" required>
 				  </div>
 				  <hr>
 				  
@@ -98,19 +97,12 @@ textarea {
 				    <select>
 				    	<option>ADMIN</option>
 				    	<option class="default">USER</option>
-				    
 				    </select>
-				   
 				  </div>
 				  </div>
-				  
-				  
 				  <hr>
-				  <button type="submit" name="save" class="btn btn-success" style="float:right;">Save Changes</button>
-				  
-				     
+				  <button type="submit" name="save" class="btn btn-success" style="float:right;">Save Changes</button>			     
 		</form>
-		
       </div>
       </div>
     </div>

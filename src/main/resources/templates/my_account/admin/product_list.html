@@ -99,13 +99,12 @@ $(document).ready( function () {
               <tr>
               	
                <th>EAN</th>
-                <th>A_id</th>
+                <th>A_ProdNr</th>
                 <th>Product Name</th>
                 <th>Brand</th>
                 <th>Gender</th>
-                <th>length</th>
-                
-                <th>Width</th>
+                <th>Color</th>
+                <th>Size</th>
                 <th>Stock</th>
                 
                 
@@ -119,13 +118,12 @@ $(document).ready( function () {
 					<tr th:each="product:${products}">
 
                	<td th:text="${product.a_ean}">
-	              <td th:text="${product.a_id}">
+	              <td th:text="${product.a_prodnr}">
 	               <td th:text="${product.p_name}">
 	               <td th:text="${product.p_brand}">
 	               <td th:text="${product.p_comp_zielgruppe_}">
-	               <td th:text="${product.a_length}">
-	               
-	               <td th:text="${product.a_width}">
+	               <td th:text="${product.a_comp_farbe_}"></td>
+	               <td th:text="${product.a_comp_groesse_}"></td>
 	               <td th:text="${product.a_stock}">
                 
                 

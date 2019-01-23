@@ -167,14 +167,12 @@
             <thead >
               <tr>
 				<th>Article Image</th>
-                <th>A_id</th>
-                <th>Article Name</th>
+                <th>A_EAN</th>
+                <th>Product Name</th>
                 <th>Brand</th>
                 <th>Gender</th>
+                 <th>Color</th>
                 <th>Size</th>
-                <th>length</th>
-                
-                <th>Width</th>
                 <th>Volume</th>
                 
          
@@ -184,16 +182,14 @@
             
             <tbody id="tdBackground">
 				     
-					<tr th:each="product:${products}">
-					<td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
-	              <td th:text="${product.a_id}"></td>
+				  <tr th:each="product:${products}">
+				  <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
+	              <td th:text="${product.a_ean}"></td>
 	               <td th:text="${product.p_name}"></td>
 	               <td th:text="${product.p_brand}"></td>
 	               <td th:text="${product.p_comp_zielgruppe_}"></td>
+	               <td th:text="${product.a_comp_farbe_}"></td>
 	               <td th:text="${product.a_comp_groesse_}"></td>
-	               <td th:text="${product.a_length}"></td>
-	               
-	               <td th:text="${product.a_width}"></td>
 	               <td th:text="${product.a_stock}"></td>
       
               </tr>

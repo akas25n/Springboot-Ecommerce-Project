@@ -19,6 +19,7 @@
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
 
 
 	<style type="text/css">
@@ -54,19 +55,60 @@
 		               </a> -->
 		         		<a  th:href="@{/lot/details/__${lot.lotId}__}" class="thumbnail">
 		             	<img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="image" style="height:150px;"  alt = "Generic placeholder thumbnail"> 
-		              </a> 
+		              </a>
+		              <hr>  
 		             </div>
 
 		             <div class="col-sm-8">
 		             
 		             	<h4 th:text="${lot.lotName}" style="color:#337ab7;"></h4>
 		             	<hr>
-		             	Price: <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
+		             	<strong>Price:</strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
 		             	<br>
-		             	Quantity:<strong> Ganze Lot </strong>
-		             	
+		             	<strong>Quantity:</strong><strong style="color:#337ab7;"> Ganze Lot </strong><br>
+		             	<strong>Delivery:</strong> <strong style="color:#337ab7;"> Kostenlos Versand </strong>
+		             	<hr>
 		             </div>
+  
+         
 				</div>
+				
+				 <div >   
+						    
+			       <h3 style="color:grey;">Article Details</h3>
+			        <table class="table table-bordered">
+            <thead >
+              <tr>
+				<th>Article Image</th>
+                <th>A_EAN</th>
+                <th>Product Name</th>
+                <th>Brand</th>
+                <th>Gender</th>
+                 <th>Color</th>
+                <th>Size</th>
+                <th>Volume</th>
+              </tr>
+            </thead>
+            
+            <tbody id="tdBackground" style="background-color:white;">
+				     
+				  <tr th:each="product:${products}">
+				  <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
+	              <td th:text="${product.a_ean}"></td>
+	               <td th:text="${product.p_name}"></td>
+	               <td th:text="${product.p_brand}"></td>
+	               <td th:text="${product.p_comp_zielgruppe_}"></td>
+	               <td th:text="${product.a_comp_farbe_}"></td>
+	               <td th:text="${product.a_comp_groesse_}"></td>
+	               <td th:text="${product.a_stock}"></td>
+      
+              </tr>
+			</tbody>
+        </table> 
+			        
+			       
+			        
+			        </div>
 			</div>
 			</div>
 
@@ -74,17 +116,13 @@
 			<div>
 				<h3 style="color:grey;">Lieferadresse  <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
 				<hr>
-				
 				   <div th:each="shipAdd: ${shippAddress}">
 					<strong><div th:text="${shipAdd.contact_person}"></div></strong>
 					<div th:text="${shipAdd.street}"></div>
 					<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
 					<div th:text="${shipAdd.country}"></div>
-					<div th:text="${shipAdd.phone_number}"></div>
-								
+					<div th:text="${shipAdd.phone_number}"></div>			
 				</div>
-			
-			
 				<br>
 			</div>
 			<div>
@@ -136,6 +174,8 @@
 	<br>
 	<hr>
 	</div>
+	<br>
+	<hr>
 	</div> <!-- end of the container --> 
 	
 	

@@ -109,7 +109,7 @@ body {
 				</div>
 		<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
 			<div th:if="${shippAddress} !=null">
-				<h4><a th:href="@{/my/account/shipping/address}"><strong> Edit</strong></a></h4>
+				<h4><a th:href="@{/my/account/edit/shipping/address}"><strong> Edit</strong></a></h4>
 			</div>	
 			<div th:if="${shippAddress} == null">
 				<h4><a th:href="@{/my/account/shipping/address}"><strong>Add </strong></a></h4>

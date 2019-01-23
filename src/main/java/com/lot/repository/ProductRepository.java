@@ -27,5 +27,4 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	 @Query(value="SELECT * FROM campaigns c  left join campaign_user_private cup on c.campaign_id = cup.campaign_Foreign_k_id left join user u on u.user_id = cup.user_Foreign_k_id where u.user_id=?1",nativeQuery = true)
 	public List<Campaign> findAllPrivate_ById(int id);//client
 	 */
-
 }

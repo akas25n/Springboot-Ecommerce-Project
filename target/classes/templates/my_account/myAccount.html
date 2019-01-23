@@ -48,16 +48,18 @@
 			
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
+				<!-- <div th:each="usr: ${users}"> -->
 					 <div class="thumbnail">
-				      <a href="/my/account/edit">
+				      <a th:href="@{/my/account/edit/general/info/__${users.user_id}__}">
 				        <img src="/images/b.png" alt="Lights" style="height: 100px">
 				      </a>
+				    <!-- </div> -->
 				    </div>
 				</div>
 				
 				<div class="col-sm-8">
-					<h4>Login & Security</h4>
-					<p>Edit login Id and Password</p>
+					<h4>Edit My General Info</h4>
+					<p>Edit general and login details</p>
 				</div>
 			</div>
 		</div>
@@ -190,7 +192,7 @@
 		<br>
 		<hr>
 	</div> <!-- end of the container --> 
-	
+
 	
 	<div th:include="footer :: copy"></div>
 	

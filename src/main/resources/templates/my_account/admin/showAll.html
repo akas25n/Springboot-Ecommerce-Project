@@ -72,7 +72,7 @@
         <h3 style="color:grey;">SHOW ALL</h3>   
         <hr>
       <ul class="nav nav-tabs">
-      	<li class="active"><a href="/admin/account/all/list">All List</a></li>
+      	<li class="active"><a href="/admin/account/all/list">All User List</a></li>
 		<li><a href="/admin/account/administrators">Admin List</a></li>
 	    <li><a href="/admin/account/user/list">User List</a></li> 
     </ul>     
@@ -83,7 +83,7 @@
                 <table class="table table-bordered" id="table_id">
                     <thead>
                         <tr>
-	                        <th>ID</th>
+	                        <th>User ID</th>
 	                            
 	                        <th>First Name</th>
 	                            
@@ -114,7 +114,6 @@
 			               	<span th:text="${role.role}"/>
 			               </td>
 				        <td>
-							<a href="/admin/edit/user" class="w3-button w3-green" style="color:green;">Edit</a> |
                     		<a href="#" class="w3-button w3-green" style="color:red;">Delete</a>
 				        </td>
 				      </tr>

@@ -13,14 +13,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lot.model.BillingAddress;
 import com.lot.model.Lot;
 import com.lot.model.Order;
+import com.lot.model.ResourceNotFoundException;
 import com.lot.model.ShippingAddress;
 import com.lot.model.User;
 import com.lot.repository.BillingAddressRepository;
@@ -58,7 +63,7 @@ public class My_AccountController {
 	
 	
 	@RequestMapping("/account")
-	public ModelAndView show() {
+	public ModelAndView show(@RequestParam String attribute_select) {
 		ModelAndView mv = new ModelAndView();
 		
 		//************************************************************************************
@@ -67,12 +72,25 @@ public class My_AccountController {
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //************************************************************************************
   
+        String user_role = "USER";
+		String admin_role = "ADMIN";
+		
+		
+		if(attribute_select.matches(admin_role))
+		{
+			mv.setViewName("/my_account/admin/admin-account");
+		}
+		else if (attribute_select.matches(user_role))
+		{
+			mv.setViewName("/my_account/user/user-account\"");
+		}
+		
         mv.addObject("users", user);
-		mv.setViewName("/my_account/myAccount");
+		
 		return mv;
 	}
-
 	
+
 	@RequestMapping(value = "/account/orders", method= RequestMethod.GET)
 	public ModelAndView showOders() {
 		ModelAndView mv = new ModelAndView();
@@ -85,16 +103,102 @@ public class My_AccountController {
 		return mv;
 	}
 	
-/*	@RequestMapping(value = "/account/edit", method= RequestMethod.GET)
-	public ModelAndView showLogin() {
+	@RequestMapping(value = "/account/edit/login/details/{user_id}", method= RequestMethod.GET)
+	public ModelAndView showLogin(@PathVariable int user_id) {
 		ModelAndView mv = new ModelAndView();
+		//************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************
+       
+       Optional<User> obj = userRepository.findById(user_id);
+       User users = obj.get();
+       
+       mv.addObject("users", users);
 		mv.setViewName("/my_account/user/loginDetails");
 		return mv;
 	}
-*/
+	
+	
+	@RequestMapping(value = "/account/update/login/details/{user_id}", method= RequestMethod.GET)
+	public ModelAndView updateLogin(@PathVariable int user_id,
+									@RequestParam String password) {
+		ModelAndView mv = new ModelAndView();
+		//************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************
+       
+       Optional<User> obj = userRepository.findById(user_id);
+       User users = obj.get();
+       
+       users.setPassword(password);
+       
+       userRepository.save(users);
+       
+       mv.addObject("users", users);
+       mv.addObject("msg", "Info have been updated");
+       
+       mv.setViewName("/my_account/user/loginDetails");
+       
+       return new ModelAndView("redirect:/lot/login");
+		
+	}
+	
+	
+	//------------------------------------------------------updating user general info----------------------STARTS---------------
+	
+	@RequestMapping(value = "/account/edit/general/info/{user_id}", method= RequestMethod.GET)
+	public ModelAndView showInfo(@PathVariable int user_id) {
+		ModelAndView mv = new ModelAndView();
+		//************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************
+        
+        Optional<User> obj = userRepository.findById(user_id);
+        User users = obj.get();
+        
+
+        mv.addObject("users", users);
+		mv.setViewName("/my_account/user/edit-user-info");
+        
+		return mv;
+	}
+	
+	// updating user general info
+	@RequestMapping(value ="/account/save/changes/{user_id}", method=RequestMethod.POST)
+	public ModelAndView saveChanges(@PathVariable int user_id,
+									@RequestParam String first_name,
+									@RequestParam String last_name,
+									@RequestParam String company
+									//@RequestParam String email
+									){
+			
+			
+		ModelAndView mv = new ModelAndView();
+	
+		Optional<User> obj = userRepository.findById(user_id); 
+		User usrs = obj.get();
+
+		usrs.setFirst_name(first_name);
+		usrs.setLast_name(last_name);
+		usrs.setCompany(company);
+		//usrs.setEmail(email);
+		
+		userRepository.save(usrs);
+		
+		mv.addObject("users", usrs);
+		mv.addObject("msg", "Info have been updated");
+		
+		//mv.setViewName("/my_account/user/loginDetails");
+		
+		return new ModelAndView("redirect:/my/account");
+	}
+	//------------------------------------------------------updating user general info-------------------ENDS---------------------
 	
 /*	@RequestMapping(value = "/account/details/{id}", method= RequestMethod.GET)
 	public ModelAndView showDetails(@PathVariable("id") Integer user_id) {
@@ -209,7 +313,6 @@ public class My_AccountController {
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
       
-      
         BillingAddress billingAddressInfo = new BillingAddress();
         
         mv.addObject("billingAddressInfo", billingAddressInfo);
@@ -220,21 +323,38 @@ public class My_AccountController {
 
 	}
 	
-
 	
+	@RequestMapping(value = "/account/edit/billing/address/{billing_add_id}",method=RequestMethod.GET)
+	public ModelAndView editBillingAddress(@PathVariable int billing_add_id) {
+	
+		ModelAndView mv = new ModelAndView();
+		
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //********************************************************************************************
+      
+        Optional<BillingAddress> obj = billingAddressRepository.findById(billing_add_id);
+        BillingAddress billAdd = obj.get();
+        
+        mv.addObject("billAdd", billAdd);
+		
+        System.out.println("--------------------------------------------------------------------------" + billing_add_id);
+		mv.setViewName("/my_account/user/edit-bill-address");
+		
+		return mv;
+	}
 
 	//************************************************************************************************end of billing address**********************
-	
 	@RequestMapping(value="/account/billing/address/test", method=RequestMethod.POST)
 	public ModelAndView saveAddress(@Valid BillingAddress customerBillingAddressInfo, BindingResult bindingResult) {
 		ModelAndView mv = new ModelAndView();
-		
 		//********************************************************************************************
 				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		        User user = userService.findUserByEmail(auth.getName());
 		        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
-		//********************************************************************************************
-		        
+		//********************************************************************************************        
 		
 		if (bindingResult.hasErrors()) {
 			mv.setViewName("/my_account/user/billing_address");
@@ -295,7 +415,7 @@ public class My_AccountController {
         //********************************************************************************************
 
         ShippingAddress customerShippingAddressInfo = new ShippingAddress();
-        
+      
         mv.addObject("customerShippingAddressInfo", customerShippingAddressInfo);
 		
 		mv.setViewName("/my_account/user/shipping_address");
@@ -303,13 +423,34 @@ public class My_AccountController {
 		return mv;
 
 	}
+	
+	@RequestMapping(value = "/account/edit/shipping/address",method=RequestMethod.GET)
+	public ModelAndView editShipAddress()
+	{
+		ModelAndView mv = new ModelAndView();
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //********************************************************************************************
+
+        int user_id = user.getId();
+        Optional<ShippingAddress> customerShippingAddressInfo = shippingAddressRepository.findById(user_id);
+        
+        //System.out.println("-------------------------------------------------------------------------------------------------" + shipping_add_id);
+        
+        mv.addObject("sa", customerShippingAddressInfo);
+		
+		mv.setViewName("/my_account/user/edit-ship-address");
+		
+		return mv;
+	}
 	//************************************************************************************************end of shipping address**********************
 	
 @RequestMapping(value="/account/shipping/address/test", method=RequestMethod.POST)
 	
 	public ModelAndView saveSHippingAddress(@Valid ShippingAddress customerShippingAddressInfo, BindingResult bindingResult) {
 		ModelAndView mv = new ModelAndView();
-		
 		
 		//********************************************************************************************
 				Authentication auth = SecurityContextHolder.getContext().getAuthentication();

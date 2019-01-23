@@ -42,8 +42,7 @@ public class UserService {
 	  }
 	  
 	  
-	  public User saveUser(User user) {
-	       
+	  public User saveUser(User user) {    
 	      //----------------------------------------------------------------------------------------------------changed
 	       // user.setActive(1);
 	        Role userRole = roleReposirtory.findByRole("USER");  // ADMIN or USER
