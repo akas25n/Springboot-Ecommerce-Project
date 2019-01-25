@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>B2B | My Profile | Address</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>B2B | My Profile | Addresses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -15,23 +15,22 @@
 	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/addressesStyle.css}"> -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
-	
 
-	
+		
 	<style>
 	     .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
           border-top: 4px solid #CBD6D5;
         }
         
 	</style>
-
+	
 </head>
 
 
 <body>
 	<div th:include="header :: copy"></div>
 	
-  <!-- <div class="container" id="field">
+  <div class="container" id="field">
   
     <div class="row">
     <hr>
@@ -39,13 +38,13 @@
     <h5><strong><span th:utext="${userName}"></span></strong></h5>
     
     <hr>
-    
+<!--     
     <ul class="nav nav-tabs">
-      <li><a href="/my/account/details">General Information</a></li>
-      <li><a href="/my/account/shipping/address">Shipping Address</a></li>
-      <li  class="active"><a href="/my/account/billing/address">Billing Address</a></li>
+      
+      <li class="active"><a href="/my/account/shipping/address">Shipping Address</a></li>
+      <li><a href="/my/account/billing/address">Billing Address</a></li>
 
-    </ul>
+    </ul> -->
     </div> <br>
     
     <div class="col-lg-12">
@@ -63,37 +62,11 @@
 
         <hr style="border: 2px solid #5cb85c;">
             <div class="fields">
-              <form action ="#" th:action="@{/my/account/billing/address/test}" th:object="${billingAddressInfo}" method="POST">
-              
-            <div>
-           
-                <label for ="person">Contact Person<span  id="sel1">*</span></label>
-                <input th:field="*{contact_person}" type="text" name="contact_person" class="input" required="required">
-				<hr>
-                <label for ="street">Street & House No.<span  id="sel1">*</span></label>
-                <input th:field="*{street}" type="text" name="street" class="input" required="required">
-				<hr>
-                <label for ="city">City<span  id="sel1">*</span></label>
-                <input th:field="*{city}" type="text" name="city" class="input" required="required">
-                <hr>
-                <label for ="zip">Zip Code<span  id="sel1">*</span></label>
-                <input th:field="*{zip_code}" type="text" name="zip" class="input" required="required">
-                <hr>
-                <label for ="country">Country</label>
-                <input th:field="*{country}" type="text" name="country" class="input" required="required">
-                <hr>
-                <label for ="country">Phone Number</label>
-                <input th:field="*{phone_number}" type="text" name="phoneNumber" class="input" required="required">
-			
-           
-              <hr>
-              <button type="submit" name="save" class="btn btn-success">Save Address</button>
-        
-			 </div> 
-			 
-			 
-			 
-			   <div class="form-group">
+             <form action="/my/account/update/billing/address" th:object="${ba}" method="POST">
+             
+             <!--  <form th:action="@{/my/account/update/billing/address/__${lots.lotId}__}" th:object="${ba}" method="POST"> -->
+
+               <div class="form-group">
 				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
 				    <input th:field="*{contact_person}" type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
 				  </div>
@@ -124,15 +97,13 @@
 				  <hr>
 				  <button type="submit" name="save" class="btn btn-success" style="float:right;">Save Address</button>
 				  
+				     
 		</form>
-
- 
- 					
 		
       </div>
       </div>
     </div>
-
+  
 	</div>
 	</div>
 	<br>
@@ -140,7 +111,7 @@
 	<br>
   </div>
   <hr>
-   <hr> -->
+   <hr>
   <div th:include="footer :: copy"></div>
   <body>
 </html>

@@ -58,11 +58,13 @@
     
          <div class="col-lg-6 col-sm-6">
         <div class="col-md-12">
-        <p><span class="glyphicon glyphicon-star" style="color:green;"></span> Shipping Address</p>
+        <p><span class="glyphicon glyphicon-star" style="color:green;"></span> Billing Address</p>
 
         <hr style="border: 2px solid #5cb85c;">
             <div class="fields">
-             <form action="/my/account/update/shipping/address" th:object="${sa}" method="POST">
+            <!--  <form action="/my/account/update/billing/address" th:object="${ba}" method="POST"> -->
+             
+             <form th:action="@{/my/account/update/billing/address/__${lots.lotId}__}" th:object="${ba}" method="POST">
 
                <div class="form-group">
 				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
