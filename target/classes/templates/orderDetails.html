@@ -19,7 +19,7 @@
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+	<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">  -->
 
 
 	<style type="text/css">
@@ -29,6 +29,10 @@
 		
 	}
 
+	h4{
+	margin-left: 0px;
+	
+	}
 	</style>
 	
 </head>
@@ -38,145 +42,150 @@
 	<div th:include="header :: copy"></div>
 	<hr>
 	
-	<h3 style="color:grey;">CHECK YOUR ORDER</h3>	
+		<h3 style="color:grey;">CHECK YOUR ORDER</h3>	
 	<hr>
-	<div class="row">
-		<div class="col-lg-12">
-		<div th:each="lot:${lots}">
-			<div class="col-md-7">
-
-				<h3 style="color:grey;">Lot Details</h3>
-				<hr>
-
-				<div class="col-sm-12">
-				 <div class="col-sm-4">
-		         	 <!-- <a href = "#" class = "thumbnail">
-		             		<img src="/images/p.jpg" class="image" alt = "Generic placeholder thumbnail" style="width:60px; height: 150px;">
-		               </a> -->
-		         		<a  th:href="@{/lot/details/__${lot.lotId}__}" class="thumbnail">
-		             	<img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="image" style="height:150px;"  alt = "Generic placeholder thumbnail"> 
-		              </a>
-		              <hr>  
-		             </div>
-
-		             <div class="col-sm-8">
-		             
-		             	<h4 th:text="${lot.lotName}" style="color:#337ab7;"></h4>
-		             	<hr>
-		             	<strong>Price:</strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
-		             	<br>
-		             	<strong>Quantity:</strong><strong style="color:#337ab7;"> Ganze Lot </strong><br>
-		             	<strong>Delivery:</strong> <strong style="color:#337ab7;"> Kostenlos Versand </strong>
-		             	<hr>
-		             </div>
-  
-         
-				</div>
-				
-				 <div >   
-						    
-			       <h3 style="color:grey;">Article Details</h3>
-			        <table class="table table-bordered">
-            <thead >
-              <tr>
-				<th>Article Image</th>
-                <th>A_EAN</th>
-                <th>Product Name</th>
-                <th>Brand</th>
-                <th>Gender</th>
-                 <th>Color</th>
-                <th>Size</th>
-                <th>Volume</th>
-              </tr>
-            </thead>
-            
-            <tbody id="tdBackground" style="background-color:white;">
-				     
-				  <tr th:each="product:${products}">
-				  <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
-	              <td th:text="${product.a_ean}"></td>
-	               <td th:text="${product.p_name}"></td>
-	               <td th:text="${product.p_brand}"></td>
-	               <td th:text="${product.p_comp_zielgruppe_}"></td>
-	               <td th:text="${product.a_comp_farbe_}"></td>
-	               <td th:text="${product.a_comp_groesse_}"></td>
-	               <td th:text="${product.a_stock}"></td>
-      
-              </tr>
-			</tbody>
-        </table> 
-			        
-			       
-			        
-			        </div>
-			</div>
-			</div>
-
-			<div class="col-md-5">
-			<div>
-				<h3 style="color:grey;">Lieferadresse  <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
-				<hr>
-				   <div th:each="shipAdd: ${shippAddress}">
-					<strong><div th:text="${shipAdd.contact_person}"></div></strong>
-					<div th:text="${shipAdd.street}"></div>
-					<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
-					<div th:text="${shipAdd.country}"></div>
-					<div th:text="${shipAdd.phone_number}"></div>			
-				</div>
-				<br>
-			</div>
-			<div>
-				<h3 style="color:grey;">Rechnungsadresse <span class="glyphicon glyphicon-pencil" style="float:right;"></span> </h3>
-				<hr>
-				 <div th:each="billAdd: ${billAddress}">
-			
-					<strong><div th:text="${billAdd.contact_person}"></div></strong>
-					<div th:text="${billAdd.street}"></div>
-					<span th:text="${billAdd.city}" ></span> <span th:text="${billAdd.zip_code}"></span>
-					<div th:text="${billAdd.country}"></div>
-					<div th:text="${billAdd.phone_number}"></div>
-								
-				<br>
-				
-				
-			</div>
-					<div>
-				<h3 style="color:grey;">Zahlungsarten  <span class="glyphicon glyphicon-pencil" style="float:right;"></span></h3>
-				<hr>
-				
 	
-			</div>
-		
-				<br>
-				<hr>
-				<div class="col-sm-12">
-					<div class="col-sm-6">
-						<strong>GESUMTSUMME</strong><br>(inkl. MwSt.)
-						
-					</div>
-					<div>
-					<div class="col-sm-6" th:each="lot:${lots}">
-						<strong>EUR</strong> <strong th:text="${lot.lotPrice}"></strong>
-					</div>
-				<br>
-				</div>
-				
-				<div th:each="lot:${lots}">
-				<br>
-				<br>
-			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a>
-				<!-- <a th:href="@{/admin/order/list}" class="btn btn-default"><strong>Confirm your purchase</strong></a> -->
-				</div>
-				</div>
+	<div class="row" >
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			 <h4 style="color:grey;"><u>Lieferadresse</u></h4>
+		      
+		           <div th:each="shipAdd: ${shippAddress}">
+		          <strong><div th:text="${shipAdd.contact_person}"></div></strong>
+		          <div th:text="${shipAdd.street}"></div>
+		          <span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+		          <div th:text="${shipAdd.country}"></div>
+		          <div th:text="${shipAdd.phone_number}"></div>     
+		        </div>
+		        <br>
+			
 			</div>
 		</div>
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			<h4 style="color:grey;"><u>Rechnungsadresse</u></h4>
+		        
+		         <div th:each="billAdd: ${billAddress}">
+		      
+		          <strong><div th:text="${billAdd.contact_person}"></div></strong>
+		          <div th:text="${billAdd.street}"></div>
+		          <span th:text="${billAdd.city}" ></span> <span th:text="${billAdd.zip_code}"></span>
+		          <div th:text="${billAdd.country}"></div>
+		          <div th:text="${billAdd.phone_number}"></div>
+			</div>
+			<br>
+			</div>
+		</div>
+		
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			<h4 style="color:grey;"><u>Zahlungsarten</u></h4>
+			<br>
+		</div>
+		
+		</div>
+		
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			<h4 style="color:grey;"><u>Versandart</u></h4>
+			
+			</div>
+			<br>
+		</div>
+	
+	</div>
+	<br>
+	<div th:each="lot:${lots}">
+	<div class="row" style="text-align: center; background-color: #d3d3d361;">
+		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px;">
+		
+		<div class="col-sm-3">
+			<strong>Lot Details : </strong>
+		</div>
+		
+		<div class="col-sm-3">
+		 <strong>Lot Name: </strong><strong th:text="${lot.lotName}" style="color:#b9211e;"></strong>
+		</div>
+			
+		<div class="col-sm-3">
+			 <strong>Volume: </strong><strong th:text="${lot.volume}" style="color:#b9211e;"></strong>
+		</div>
+		
+		
+		<div class="col-sm-3">
+			 <strong>Price: </strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
+		</div>
+		      
+		</div>
+		</div>
+		</div>
+		<br>
+		
+
+			<div class="row" style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361;">
+			
+			              <table class="table table-bordered">
+	            <thead >
+	              <tr>
+			      
+			                <th>A_EAN</th>
+			                <th>Product Name</th>
+			                <th>Brand</th>
+			                <th>Gender</th>
+			                 <th>Color</th>
+			                <th>Size</th>
+			                <th>Volume</th>
+			              </tr>
+			            </thead>
+			            
+			            <tbody>
+			             
+			          <tr th:each="product:${products}">
+			          
+			                <td th:text="${product.a_ean}"></td>
+			                 <td th:text="${product.p_name}"></td>
+			                 <td th:text="${product.p_brand}"></td>
+			                 <td th:text="${product.p_comp_zielgruppe_}"></td>
+			                 <td th:text="${product.a_comp_farbe_}"></td>
+			                 <td th:text="${product.a_comp_groesse_}"></td>
+			                 <td th:text="${product.a_stock}"></td>
+			      
+			              </tr>
+			      </tbody>
+			        </table>
+		
+
+			</div>
+			<br>
+
+		<div class="row" th:each="lot:${lots}" style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: right;">
+			<div class="col-md-12">
+			
+			<div class="col-md-10">
+			<p>Zwischensumme :</p>
+			<p>Versand & Bearbeitung :</p>
+			<p>Steuer:</p>
+			<p><strong>Gesamtsumme :</strong></p>
+			</div>
+			
+			<div class="col-md-2" >
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
+			<p>0</p>
+			<p>0</p>
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
+			</div>
+			
+			<br>
+			<br>
+			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a>
+			<br>
+			<br>
+		</div>
+		<hr>
 	</div>
 	<br>
 	<hr>
-	</div>
-	<br>
-	<hr>
-	</div> <!-- end of the container --> 
+	</div> <!-- end of the container -->
 	
 	
 	<div th:include="footer :: copy"></div>

@@ -74,10 +74,10 @@
 	</script>
 	<!-- ********************************************************** pagination***************************************************** -->
 	
-	<div th:include="header :: copy"></div>
+	<div th:include="admin-header :: copy"></div>
 	<!-- <div th:include="filter :: copy"></div> -->
 	<div class="container" id="body1"> 
-	
+	<hr>
 	<h2>LOT LIST</h2>
     <hr>
     
@@ -123,7 +123,7 @@
                 <td th:text="${lot.lotPrice}"></td>
                 
                 <td>
-                	<a th:href="@{/lot/details/__${lot.lotId}__}" class="w3-button w3-green" style="color:green;">View</a> |
+                	<a th:href="@{/admin/lot/details/__${lot.lotId}__}" class="w3-button w3-green" style="color:green;">View</a> |
                     <a th:href="@{/admin/delete/lot/__${lot.lotId}__}" class="w3-button w3-green" style="color:red;">Delete</a>
                 
                 </td>
@@ -140,7 +140,7 @@
       </div>
       </div>
       
-      <div th:include="footer :: copy"></div>
+      <div th:include="admin-footer :: copy"></div>
       
       <script>$( "th" ).resizable();</script>
   </body>

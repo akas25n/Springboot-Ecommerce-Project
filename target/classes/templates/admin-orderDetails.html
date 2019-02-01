@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Buy Now | B2B | Motion Fashion</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+ -->
+
+	<style type="text/css">
+	.btn{
+		
+		width: 100%;
+		
+	}
+
+	</style>
+	
+</head>
+<body>
+	
+	<div class="container">
+	<div th:include="admin-header :: copy"></div>
+	<hr>
+	
+		
+			<h3 style="color:grey;">CHECK YOUR ORDER</h3>	
+	<hr>
+	
+	<div class="row" >
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			 <h4 style="color:grey;"><u>Lieferadresse</u></h4>
+		      
+		           <div th:each="shipAdd: ${shippAddress}">
+		          <strong><div th:text="${shipAdd.contact_person}"></div></strong>
+		          <div th:text="${shipAdd.street}"></div>
+		          <span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+		          <div th:text="${shipAdd.country}"></div>
+		          <div th:text="${shipAdd.phone_number}"></div>     
+		        </div>
+		        <br>
+			
+			</div>
+		</div>
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			<h4 style="color:grey;"><u>Rechnungsadresse</u></h4>
+		        
+		         <div th:each="billAdd: ${billAddress}">
+		      
+		          <strong><div th:text="${billAdd.contact_person}"></div></strong>
+		          <div th:text="${billAdd.street}"></div>
+		          <span th:text="${billAdd.city}" ></span> <span th:text="${billAdd.zip_code}"></span>
+		          <div th:text="${billAdd.country}"></div>
+		          <div th:text="${billAdd.phone_number}"></div>
+			</div>
+			<br>
+			</div>
+		</div>
+		
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			<h4 style="color:grey;"><u>Zahlungsarten</u></h4>
+			<br>
+		</div>
+		
+		</div>
+		
+		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
+			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
+			<h4 style="color:grey;"><u>Versandart</u></h4>
+			
+			</div>
+			<br>
+		</div>
+	
+	</div>
+	<br>
+	<div th:each="lot:${lots}">
+	<div class="row" style="text-align: center; background-color: #d3d3d361;">
+		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px;">
+		
+		<div class="col-sm-3">
+			<strong>Lot Details : </strong>
+		</div>
+		
+		<div class="col-sm-3">
+		 <strong>Lot Name: </strong><strong th:text="${lot.lotName}" style="color:#b9211e;"></strong>
+		</div>
+			
+		<div class="col-sm-3">
+			 <strong>Volume: </strong><strong th:text="${lot.volume}" style="color:#b9211e;"></strong>
+		</div>
+		
+		
+		<div class="col-sm-3">
+			 <strong>Price: </strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
+		</div>
+		      
+		</div>
+		</div>
+		</div>
+		<br>
+		
+
+			<div class="row" style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361;">
+			
+			              <table class="table table-bordered">
+	            <thead >
+	              <tr>
+			      
+			                <th>A_EAN</th>
+			                <th>Product Name</th>
+			                <th>Brand</th>
+			                <th>Gender</th>
+			                 <th>Color</th>
+			                <th>Size</th>
+			                <th>Volume</th>
+			              </tr>
+			            </thead>
+			            
+			            <tbody>
+			             
+			          <tr th:each="product:${products}">
+			          
+			                <td th:text="${product.a_ean}"></td>
+			                 <td th:text="${product.p_name}"></td>
+			                 <td th:text="${product.p_brand}"></td>
+			                 <td th:text="${product.p_comp_zielgruppe_}"></td>
+			                 <td th:text="${product.a_comp_farbe_}"></td>
+			                 <td th:text="${product.a_comp_groesse_}"></td>
+			                 <td th:text="${product.a_stock}"></td>
+			      
+			              </tr>
+			      </tbody>
+			        </table>
+		
+
+			</div>
+			<br>
+
+		<div class="row" th:each="lot:${lots}" style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: right;">
+			<div class="col-md-12">
+			
+			<div class="col-md-10">
+			<p>Zwischensumme :</p>
+			<p>Versand & Bearbeitung :</p>
+			<p>Steuer:</p>
+			<p><strong>Gesamtsumme :</strong></p>
+			</div>
+			
+			<div class="col-md-2" >
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
+			<p>0</p>
+			<p>0</p>
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
+			</div>
+			
+			<br>
+			<br>
+			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a>
+			<br>
+			<br>
+		</div>
+		<hr>
+	</div>
+	<br>
+	<hr>
+	</div> <!-- end of the container -->
+	
+	
+	<div th:include="admin-footer :: copy"></div>
+	
+</body>
+</html>

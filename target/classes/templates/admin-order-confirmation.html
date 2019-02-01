@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Buy Now | B2B | Motion Fashion</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
+
+
+	<style type="text/css">
+	.btn-default{
+		background-color: #297b08;
+		width: 100%;
+		color: #f5f5f5;
+	}
+
+	</style>
+	
+</head>
+<body>
+	
+	<div class="container">
+	<div th:include="admin-header :: copy"></div>
+	<hr>
+	
+	<h2>ORDER CONFIRMATION</h2>	
+	<hr>
+	<div class="row">
+		<div class="col-lg-12">
+		<div th:each="lot:${lots}">
+			<div class="col-md-7">
+
+				<h3>Your Order Details</h3>
+				<hr>
+
+				<div class="col-sm-12">
+				 <div class="col-sm-4">
+		         	 <!-- <a href = "#" class = "thumbnail">
+		             		<img src="/images/p.jpg" class="image" alt = "Generic placeholder thumbnail" style="width:60px; height: 150px;">
+		               </a> -->
+		         		<a  th:href="@{/admin/lot/details/__${lot.lotId}__}" class="thumbnail">
+		             	<img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="image" style="height:150px;"  alt = "Generic placeholder thumbnail"> 
+		              </a> 
+		               
+		            
+		             </div>
+
+		             <div class="col-sm-8">
+		             
+		             	<h4 th:text="${lot.lotName}"></h4>
+		             	<hr>
+		             	Price: <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
+		             	<hr>
+		             	Quantity:<strong> Ganze Lot </strong>
+		             	<hr>
+		             </div>
+				</div>
+			</div>
+			</div>
+
+			<div class="col-md-5">
+			<div>
+				<h3>Lot will be delivered to-</h3>
+				<hr>
+				
+				 <div th:each="shipAdd: ${shippAddress}">
+			
+				<strong><div th:text="${shipAdd.contact_person}"></div></strong>
+					<div th:text="${shipAdd.street}"></div>
+					<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+					<div th:text="${shipAdd.country}"></div>
+					<div th:text="${shipAdd.phone_number}"></div>
+							
+				</div>
+				<br>
+			</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<hr>
+	
+	<h1 style="text-align:center; border:1px solid lightgrey; background-color: #dff3df; padding:15px;"><font face="verdana" size= "20" color="green">Thank you for your purchase!</font></h1>
+	
+	<a href="/admin/lot/home"><h3  style="text-align:center; color:red;"><i>Buy More here!</i></h3></a>
+	
+	
+	<hr>
+	
+        	<h3>Bought Article Details</h3>
+        	<hr>
+          <table class="table table-bordered">
+            <thead >
+              <tr>
+				<th>Article Image</th>
+                <th>A_id</th>
+                <th>Article Name</th>
+                <th>Brand</th>
+                <th>Gender</th>
+                <th>Size</th>
+                <th>length</th>
+                
+                <th>Width</th>
+                <th>Volume</th>
+                
+         
+              </tr>
+
+            </thead>
+            
+            <tbody id="tdBackground">
+				     
+					<tr th:each="product:${products}">
+					<td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
+	              <td th:text="${product.a_id}"></td>
+	               <td th:text="${product.p_name}"></td>
+	               <td th:text="${product.p_brand}"></td>
+	               <td th:text="${product.p_comp_zielgruppe_}"></td>
+	               <td th:text="${product.a_comp_groesse_}"></td>
+	               <td th:text="${product.a_length}"></td>
+	               
+	               <td th:text="${product.a_width}"></td>
+	               <td th:text="${product.a_stock}"></td>
+      
+              </tr>
+			</tbody>
+        </table> 
+        
+        <hr>
+        </div> <!-- end of the container --> 
+        
+        
+	<hr>
+	<div th:include="admin-footer :: copy"></div>
+	
+</body>
+</html>

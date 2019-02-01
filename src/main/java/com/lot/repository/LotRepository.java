@@ -11,9 +11,10 @@ import com.lot.model.Lot;
 public interface LotRepository extends JpaRepository<Lot, Long>{
 	
 	
+	@Query(value="SELECT * FROM lot_db.lot l ORDER BY lot_id DESC", nativeQuery = true )
 	public List<Lot> findAll();
 
-	@Query(value="SELECT * FROM lot_db.lot l where l.lot_status = 1",nativeQuery=true)
+	@Query(value="SELECT * FROM lot_db.lot l where l.lot_status = 1 ORDER BY lot_id DESC",nativeQuery=true)
 	public List<Lot> findAllEnabled();
 	
 }

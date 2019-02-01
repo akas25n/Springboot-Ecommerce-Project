@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | Motion Fashion | Lot Sale</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/addressesStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/campaignsStyle.css}">
+	
+	
+	
+</head>
+
+<body>
+
+		<div th:include="admin-header :: copy"></div>
+		
+		
+		<!-- ************************************************************************upload slider images***************************************************************************** -->
+		<div class="container">
+		<hr>
+			<h3 style="color: grey;">UPLOAD SLIDER IMAGES</h3>
+		<hr>
+		
+		<ul class="nav nav-tabs">
+		      <li class="active"><a href="/admin/upload/slider/images">Upload Images</a></li>
+		      <li><a href="/admin/test/slider/images">Test Slider</a></li>
+		      <li><a th:href="@{/admin/update/slider/images}">Update Slider</a></li>
+		</ul>
+		    
+		<br>
+		<form th:action="@{/admin/save/slider/images}" th:object="${img}" method="POST" enctype="multipart/form-data">
+		<div class="row">
+		
+			<div class="col-md-12">
+		
+				<div class="col-md-3"></div>
+					<div class="col-md-9">
+						<div class="form-group">
+							<label for="formGroupExampleInput">Slider Image 1</label>
+							<!-- <input th:field="*{teaserImage}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control" required="required"> -->
+							<input th:field="*{image1}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control">
+						</div>
+						<hr>
+					<div class="form-group">
+						<label for="formGroupExampleInput">Slider Image 2</label>
+						<input th:field="*{image2}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control">
+					</div>
+					<hr>
+					<div class="form-group">
+						<label for="formGroupExampleInput">Slider Image 3</label>
+						<input th:field="*{image3}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control">
+					</div>
+					<br>
+					</div>
+					<br>
+				</div>
+				
+				 <button type="submit" name="save" class="btn btn-success" style="float:right; margin-right: 27px">Save Images</button>
+				 
+			</div>
+			</form>
+			<hr>
+		</div> 
+	<!-- ************************************************************************ end upload slider images***************************************************************************** -->
+
+		
+		<div th:include="admin-footer :: copy"></div>
+
+			<script src="https://code.jquery.com/jquery-git.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	</body>
+</html>

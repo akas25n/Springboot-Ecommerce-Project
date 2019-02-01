@@ -41,7 +41,7 @@ public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		if(hasUserRole) {
 			redirectStrategy.sendRedirect(arg0, arg1, "/lot/home");
 		} else if(hasAdminRole) {
-			redirectStrategy.sendRedirect(arg0, arg1, "/lot/home");
+			redirectStrategy.sendRedirect(arg0, arg1, "/admin/lot/home");
 		} else {
 			throw new IllegalStateException();
 		}

@@ -73,7 +73,7 @@ public class My_AccountController {
         //************************************************************************************
 
         mv.addObject("users", user);
-        mv.setViewName("/my_account/myAccount");
+        mv.setViewName("/my_account/user/user-account");
 		return mv;
 	}
 	

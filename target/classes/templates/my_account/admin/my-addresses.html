@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Addresses | B2B | Motion Fashion</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
+
+
+	<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 50%;
+  
+  padding: 0 10px;
+  
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+.btn-primary{
+	padding-left: 50px;
+	padding-right:50px;
+	float: right;
+}
+</style>
+	
+</head>
+<body>
+	
+	<div class="container">
+	<div th:include="admin-header :: copy"></div>
+	<hr>
+	<h3 style="color:grey;">CHECK YOUR ADDRESSES</h3>
+	<hr>
+	
+		
+<div class="row">
+ 
+  <div class="column">
+ 
+    <div class="card">
+    <div style="background-color: lightgrey; border: 1px solid grey;"> 
+     <h3>Shipping Address</h3>
+     </div>
+  	
+      <div th:each="shipAdd: ${shippAddress}">
+			
+		<strong><div th:text="${shipAdd.contact_person}"></div></strong>
+			<div th:text="${shipAdd.street}"></div>
+				<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+					<div th:text="${shipAdd.country}"></div>
+					<div th:text="${shipAdd.phone_number}"></div>
+					<hr style="border: 2px solid lightgrey;">			
+				</div>
+				
+				
+				
+			<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
+			<div th:if="${shippAddress} !=null">
+				<h4><a th:href="@{/admin/account/edit/shipping/address}"><strong> Edit</strong></a></h4>
+			</div>	
+			<div th:if="${shippAddress} == null">
+				<div th:if="${message1}" 
+					class="alert alert-danger" role="alert" 
+          			th:text=${message1}>          						
+				</div>
+				
+				<h4><a th:href="@{/admin/account/shipping/address}"><strong>Add </strong></a></h4>
+			</div>
+		<!-- ................... if shipping address is empty then add......................... -->
+    </div>
+  </div>
+  
+  <div class="column">
+  	
+     <div class="card">
+    <div style="background-color: lightgrey; border: 1px solid grey;"> 
+     <h3>Billing Address</h3>
+     </div>
+  	
+      <div th:each="billAdd: ${billAddress}">
+			
+		<strong><div th:text="${billAdd.contact_person}"></div></strong>
+			<div th:text="${billAdd.street}"></div>
+				<span th:text="${billAdd.city}" ></span> <span th:text="${billAdd.zip_code}"></span>
+					<div th:text="${billAdd.country}"></div>
+					<div th:text="${billAdd.phone_number}"></div>
+					<hr style="border: 2px solid lightgrey;">			
+				</div>
+				
+				
+				
+			<!-- ................... if shipping address is empty then add......................... -->
+			<div th:if="${billAddress} !=null">
+				<h4><a th:href="@{/admin/account/edit/billing/address}"><strong> Edit</strong></a></h4>
+			</div>	
+			<div th:if="${billAddress} == null">
+				<div th:if="${message2}" 
+					class="alert alert-danger" role="alert" 
+          			th:text=${message2}>
+          						
+				</div>
+				<h4><a th:href="@{/admin/account/billing/address}"><strong>Add </strong></a></h4>
+			</div>
+		<!-- ................... if shipping address is empty then add......................... -->
+    </div>
+ 	</div>
+	</div>
+	
+	<hr>
+ 	
+	</div><!-- end of the container -->
+	<div th:include="admin-footer :: copy"></div>
+	
+</body>
+</html>

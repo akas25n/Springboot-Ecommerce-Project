@@ -212,14 +212,22 @@
             <div class="row">
             
             <div class="row">
-              <div th:each="product:${products}" class="col-sm-4">
+              <!-- <div th:each="product:${products}" class="col-sm-4">
                   
                     <a class="thumbnail"><img th:src="${product.a_media_image_0_}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
                     
                      <a class="thumbnail"><img th:src="${product.a_media_image_1_}" style="width:300px; height: 450px;" alt="W3Schools"></a>
                      <a class="thumbnail"><img th:src="${product.a_media_image_2_}" style="width:300px; height: 450px;" alt="W3Schools"></a>
                  
+              </div> -->
+              
+              
+              <div th:each="image:${images}" class="col-sm-4">
+                  
+                    <a class="thumbnail"><img th:src="${image}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
+                    
               </div>
+              
 				</div>
 				</div>
         <!--   ****************************Contact person starts here**************************************************************  -->

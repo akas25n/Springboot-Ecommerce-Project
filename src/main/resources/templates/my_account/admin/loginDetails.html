@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | My Account | Login Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/addressesStyle.css}"> -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+
+		
+	<style>
+	     .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+        }
+        
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding:5px;
+  border-radius: 5px;
+}
+        
+	</style>
+	
+</head>
+
+
+<body>
+	<div th:include="admin-header :: copy"></div>
+	
+  <div class="container" id="field">
+  
+    <div class="row">
+    <hr>
+    <h3 style="color:grey;">EDIT LOGIN DETAILS</h3>
+    <h5><strong><span th:utext="${userName}"></span></strong></h5>
+    
+    <hr>
+    
+       <ul class="nav nav-tabs">
+	     <li><a th:href="@{/admin/account/edit/general/info/__${users.user_id}__}">Edit General Info</a></li>
+	      <li  class="active"><a th:href="@{/admin/account/edit/login/details/__${users.user_id}__}">Edit Login Details</a></li>       
+    </ul>
+    
+    <hr>
+
+    </div> <br>
+    
+    <div class="col-lg-12">
+    <div class="row">
+    
+  
+	
+		<div class="col-lg-2 col-sm-6"></div>
+    
+         <div class="col-lg-6 col-sm-6">
+        <div class="col-md-12">
+        <hr style="border: 2px solid #5cb85c;">
+            <div class="fields">
+             <form action ="#" th:action="@{my/account/update/login/details/__${users.user_id}__}" th:object="${users}" method = POST>
+			 
+			 <div class="form-group">
+				    <label for="formGroupExampleInput">Email<span  style="color:red;">*</span></label>
+				    <input th:field="*{email}" type="text" id="formGroupExampleInput" name="email" class="form-control" required="required"> 
+				  </div>
+				  
+               <div class="form-group">
+				    <label for="formGroupExampleInput">New Password<span  style="color:red;">*</span></label>
+				    <input th:field="*{password}" type="text" id="formGroupExampleInput" name="password" class="form-control" required="required"> 
+				  </div>
+				  <div class="form-group">
+				    <label for="formGroupExampleInput2">Confirm New Password<span  style="color:red;">*</span></label>
+				    <input th:field="*{password}" type="text" id="formGroupExampleInput" name="password" class="form-control" required="required">
+				  
+				  </div>
+				  
+				  <hr>
+				  <input type="submit">
+				  
+				     
+		</form>
+		
+      </div>
+      </div>
+    </div>
+  
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+  </div>
+  <hr>
+ 
+  <div th:include="admin-footer :: copy"></div>
+  <body>
+</html>

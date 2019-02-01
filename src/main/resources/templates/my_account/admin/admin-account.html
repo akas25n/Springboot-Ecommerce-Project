@@ -28,7 +28,7 @@
 	<div th:include="admin-header :: copy"></div>
 	<hr>
 	
-	<h2>Your Account</h2>	
+	<h3 style="color:grey">Your Account</h3>	
 	
 	<hr>
 		
@@ -36,7 +36,7 @@
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
 					 <div class="thumbnail">
-				      <a href="/order/list">
+				      <a href="/admin/orders/list">
 				        <img src="/images/f.jpg" alt="Lights" style="height: 80px">
 				      </a>
 				    </div>
@@ -50,35 +50,37 @@
 			
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
+				<!-- <div th:each="usr: ${users}"> -->
 					 <div class="thumbnail">
-				      <a href="/my/account/edit">
+				      <a th:href="@{/admin/account/edit/general/info/__${users.user_id}__}">
 				        <img src="/images/b.png" alt="Lights" style="height: 100px">
 				      </a>
+				    <!-- </div> -->
 				    </div>
 				</div>
 				
 				<div class="col-sm-8">
-					<h4>Login & Security</h4>
-					<p>Edit login Id and Password</p>
+					<h4>Edit My General Info</h4>
+					<p>Edit general and login details</p>
 				</div>
 			</div>
 		</div>
 		
-				<div class="row">
+		<div class="row">
 			<div class="col-md-6 col-sm-6">
-				<div class="col-sm-4">
-					 <div class="thumbnail">
-				      <a th:href="@{/my/account/details}">
-				        <img src="/images/c.png" alt="Lights" style="height: 100px">
-				      </a>
-				    </div>
+					<div class="col-sm-4">
+						 <div class="thumbnail">
+					      <a th:href="@{/admin/account/addresses/__${users.user_id}__}">
+					        <img src="/images/c.png" alt="Lights" style="height: 100px">
+					      </a>
+					    </div>
+					</div>
+					
+					<div class="col-sm-8">
+						<h4>My Addresses</h4>
+						<p>Edit Shipping and Billing Addresses</p>
+					</div>
 				</div>
-				
-				<div class="col-sm-8">
-					<h4>My Addresses</h4>
-					<p>Edit Shipping and Billing Addresses</p>
-				</div>
-			</div>
 			
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
@@ -100,14 +102,14 @@
 		
 		<!-- *************************************************************************Bellow contents are only for ADMIN****************************************** -->
 		<div>
-		<h4>Administrator View</h4>
+		<h3 style="color:grey">Administrator View</h3>
 		<hr>
 		
 			<div class="row">
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
 					 <div class="thumbnail">
-				      <a href="/admin/create/new/lot">
+				      <a href="/admin/lot/list">
 				        <img src="/images/g.png" alt="Lights" style="height: 80px">
 				      </a>
 				    </div>
@@ -122,7 +124,7 @@
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
 					 <div class="thumbnail">
-				      <a href="/admin/account/administrators">
+				      <a href="/admin/account/all/list">
 				        <img src="/images/b.png" alt="Lights" style="height: 100px">
 				      </a>
 				    </div>
@@ -140,7 +142,7 @@
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
 					 <div class="thumbnail">
-				      <a href="/admin/upload/product">
+				      <a href="/admin/product/list">
 				        <img src="/images/cat.png" alt="Lights" style="height: 80px">
 				      </a>
 				    </div>
@@ -186,6 +188,43 @@
 					<p>See the customer's order list</p>
 				</div>
 			</div>
+			
+			<div class="col-md-6 col-sm-6">
+				<div class="col-sm-4">
+					 <div class="thumbnail">
+				      <a th:href="@{/admin/upload/slider/images}">
+				        <img src="/images/sll.png" alt="Lights" style="height: 80px">
+				      </a>
+				    </div>
+				</div>
+				
+				<div class="col-sm-8">
+					<h4>Manage Slider</h4>
+					<p>Upload and update slider images</p>
+				</div>
+			</div>
+			
+		</div>
+		<h2>for test</h2>
+		<hr>
+		<div class="row">
+	
+			
+			<div class="col-md-6 col-sm-6">
+				<div class="col-sm-4">
+					 <div class="thumbnail">
+				      <a th:href="@{/admin/update/slider/images}">
+				        <img src="/images/sll.png" alt="Lights" style="height: 80px">
+				      </a>
+				    </div>
+				</div>
+				
+				<div class="col-sm-8">
+					<h4>Update Slider</h4>
+					<p>Upload and update slider images</p>
+				</div>
+			</div>
+			
 		</div>
 		
 		</div>

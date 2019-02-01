@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | My Profile | Addresses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/addressesStyle.css}"> -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+
+		
+	<style>
+	     .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+        }
+        
+	</style>
+	
+</head>
+
+
+<body>
+	<div th:include="admin-header :: copy"></div>
+	
+  <div class="container" id="field">
+  
+    <div class="row">
+    <hr>
+    <h3 style="color:grey;">EDIT ADDRESS</h3>
+    <h5><strong><span th:utext="${userName}"></span></strong></h5>
+    
+    <hr>
+<!--     
+    <ul class="nav nav-tabs">
+      
+      <li class="active"><a href="/my/account/shipping/address">Shipping Address</a></li>
+      <li><a href="/my/account/billing/address">Billing Address</a></li>
+
+    </ul> -->
+    </div> <br>
+    
+    <div class="col-lg-12">
+    <div class="row">
+    
+    <div th:if="${errorMessage != null}"
+		th:utext="${errorMessage}" class="error">
+	</div>
+	
+		<div class="col-lg-2 col-sm-6"></div>
+    
+         <div class="col-lg-6 col-sm-6">
+        <div class="col-md-12">
+        <p><span class="glyphicon glyphicon-star" style="color:green;"></span> Shipping Address</p>
+
+        <hr style="border: 2px solid #5cb85c;">
+            <div class="fields">
+             <form action="/admin/account/update/shipping/address" th:object="${sa}" method="POST">
+
+               <div class="form-group">
+				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
+				    <input th:field="*{contact_person}" type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
+				  </div>
+				  <div class="form-group">
+				    <label for="formGroupExampleInput2">Street & House No.<span  style="color:red;">*</span></label>
+				    <input th:field="*{street}" type="text" class="form-control" id="formGroupExampleInput2" required>
+				  </div>
+				  
+				   <div class="form-group">
+				    <label for="formGroupExampleInput">City<span  style="color:red;">*</span></label>
+				    <input th:field="*{city}" type="text" class="form-control" id="formGroupExampleInput" required>
+				  </div>
+				  <div class="form-group">
+				    <label for="formGroupExampleInput2">Zip Code<span  style="color:red;">*</span></label>
+				    <input th:field="*{zip_code}" type="text" class="form-control" id="formGroupExampleInput2" required>
+				  </div>
+				  
+				   <div class="form-group">
+				    <label for="formGroupExampleInput2">Country<span  style="color:red;">*</span></label>
+				    <input th:field="*{country}" type="text" class="form-control" id="formGroupExampleInput2" required>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="formGroupExampleInput2">Phone Number<span  style="color:red;">*</span></label>
+				    <input th:field="*{phone_number}" type="text" class="form-control" id="formGroupExampleInput2" required>
+				  </div>
+				  
+				  <hr>
+				  <button type="submit" name="save" class="btn btn-success" style="float:right;">Save Address</button>
+				  
+				     
+		</form>
+		
+      </div>
+      </div>
+    </div>
+  
+	</div>
+	</div>
+	<br>
+	<br>
+	<br>
+  </div>
+  <hr>
+   <hr>
+  <div th:include="admin-footer :: copy"></div>
+  <body>
+</html>

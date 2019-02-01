@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,16 +29,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lot.model.BillingAddress;
 import com.lot.model.Lot;
 import com.lot.model.Order;
 import com.lot.model.Product;
+import com.lot.model.ShippingAddress;
+import com.lot.model.SliderImages;
 import com.lot.model.User;
+import com.lot.repository.BillingAddressRepository;
 import com.lot.repository.LotRepository;
 import com.lot.repository.OrderRepository;
 import com.lot.repository.ProductRepository;
+import com.lot.repository.ShippingAddressRepository;
+import com.lot.repository.SliderImagesRepository;
 import com.lot.repository.UserRepository;
+import com.lot.service.BillingAddressService;
 import com.lot.service.LotService;
 import com.lot.service.ProductService;
+import com.lot.service.ShippingAddressService;
 import com.lot.service.UserService;
 
 
@@ -55,8 +66,21 @@ public class Admin_Controller {
 	private UserService userService;
 	
 	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private BillingAddressRepository billingAddressRepository;
+	
+	@Autowired
+	private ShippingAddressRepository shippingAddressRepository;
+	@Autowired
 	private UserRepository userRepo;
 	
+	@Autowired
+	private ShippingAddressService customerShippingAddressInfoService;
+	
+	@Autowired
+	private BillingAddressService customerBillingAddressInfoService;
 
 	@Autowired
 	private ProductService productService;
@@ -69,6 +93,9 @@ public class Admin_Controller {
 	
 	private static String fileLocation;
 	
+	@Autowired
+	private SliderImagesRepository sliderImagesRepoaitory;
+	
 	 
     @RequestMapping(value="/lot/home", method = RequestMethod.GET)
     public ModelAndView home(){
@@ -78,18 +105,890 @@ public class Admin_Controller {
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //**************************************************************************************************
+        List<SliderImages> images = sliderImagesRepoaitory.findAll();
         
         List<Lot> lots =lotService.findByEnabled();
         modelAndView.addObject("lots", lots);
+        modelAndView.addObject("img", images);
         modelAndView.addObject("adminMessage","Only active lot will be displayed");
        // System.out.println("*****************************************************************"+ lots + "**************************************************************************");
         modelAndView.setViewName("admin-index");
         return modelAndView;
     }
     
+	@RequestMapping("/account")
+	public ModelAndView show() {
+		ModelAndView mv = new ModelAndView();
+		
+		//************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************
+
+        mv.addObject("users", user);
+        mv.setViewName("/my_account/admin/admin-account");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="/orders/list", method=RequestMethod.GET)
+	public ModelAndView showOrderList(@RequestParam(defaultValue="0") int page) {
+		ModelAndView mv = new ModelAndView();
+		//**************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		//*************************************************************************
+		
+		int user_id = user.getId();
+		
+		List<Order> oderList = orderRepository.findByUserId(user_id);
+		mv.addObject("orderLists", oderList);
+		
+		
+		mv.setViewName("/my_account/admin/your_orders");
+		
+		return mv;
+		
+	}
 
 	
+	@RequestMapping(value = "/account/edit/general/info/{user_id}", method= RequestMethod.GET)
+	public ModelAndView showInfo(@PathVariable int user_id) {
+		ModelAndView mv = new ModelAndView();
+		//************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************
+        
+        Optional<User> obj = userRepository.findById(user_id);
+        User users = obj.get();
+        
 
+        mv.addObject("users", users);
+		mv.setViewName("/my_account/admin/edit-user-info");
+        
+		return mv;
+	}
+	
+	@RequestMapping(value ="/account/save/changes/{user_id}", method=RequestMethod.POST)
+	public ModelAndView saveChanges(@PathVariable int user_id,
+									@RequestParam String first_name,
+									@RequestParam String last_name,
+									@RequestParam String company
+									//@RequestParam String email
+									){
+			
+			
+		ModelAndView mv = new ModelAndView();
+	
+		Optional<User> obj = userRepository.findById(user_id); 
+		User usrs = obj.get();
+
+		usrs.setFirst_name(first_name);
+		usrs.setLast_name(last_name);
+		usrs.setCompany(company);
+		//usrs.setEmail(email);
+		
+		userRepository.save(usrs);
+		
+		mv.addObject("users", usrs);
+		mv.addObject("msg", "Info have been updated");
+		
+		//mv.setViewName("/my_account/user/loginDetails");
+		
+		return new ModelAndView("redirect:/admin/account");
+	}
+	
+	@RequestMapping(value = "/account/edit/login/details/{user_id}", method= RequestMethod.GET)
+	public ModelAndView showLogin(@PathVariable int user_id) {
+		ModelAndView mv = new ModelAndView();
+		//************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************
+       
+       Optional<User> obj = userRepository.findById(user_id);
+       User users = obj.get();
+       
+       mv.addObject("users", users);
+		mv.setViewName("/my_account/admin/loginDetails");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/account/update/login/details/{user_id}", method= RequestMethod.GET)
+	public ModelAndView updateLogin(@PathVariable int user_id,
+									@RequestParam String password) {
+		ModelAndView mv = new ModelAndView();
+		//************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************
+       
+       Optional<User> obj = userRepository.findById(user_id);
+       User users = obj.get();
+       
+       users.setPassword(password);
+       
+       userRepository.save(users);
+       
+       mv.addObject("users", users);
+       mv.addObject("msg", "Info have been updated");
+       
+       mv.setViewName("/my_account/user/loginDetails");
+       
+       return new ModelAndView("redirect:/lot/login");
+		
+	}
+	
+	
+	@RequestMapping(value = "/account/addresses/{user_id}", method= RequestMethod.GET)
+	public ModelAndView showDetails(@PathVariable int user_id) {
+		
+		ModelAndView mv = new ModelAndView();
+		//************************************************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //************************************************************************************************************************
+        Optional<User> usr = userRepository.findById(user_id);
+        //User users = obj.get();
+        //Note: If i dont use obj.get() then i have do..mv.addObject("user", usr);
+        //if i user like User user= usr.get();---then i dont need mv.addObject();..i have use user directly int the link. 
+        //Otherwise it will show user_id can not be found on null error
+        
+        BillingAddress billAddress= billingAddressRepository.findByUserId(user_id);
+        
+        ShippingAddress shippAddress = shippingAddressRepository.findByUserId(user_id);
+        
+        
+        mv.addObject("users",usr);
+        mv.addObject("billAddress", billAddress);
+		mv.addObject("shippAddress", shippAddress);
+		
+		mv.addObject("message1", "Please add a Shipping address");
+		mv.addObject("message2", "Please add a billing address");
+		
+			mv.setViewName("/my_account/admin/my-addresses");
+      
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/account/billing/address",method=RequestMethod.GET)
+	public ModelAndView billingAddress()
+	{
+		ModelAndView mv = new ModelAndView();
+		
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //********************************************************************************************
+      
+        BillingAddress billingAddressInfo = new BillingAddress();
+        
+        mv.addObject("billingAddressInfo", billingAddressInfo);
+		
+		mv.setViewName("/my_account/admin/billing_address");
+		
+		return mv;
+
+	}
+	
+	@RequestMapping(value = "/account/shipping/address",method=RequestMethod.GET)
+	public ModelAndView showOrderdetails()
+	{
+		ModelAndView mv = new ModelAndView();
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //********************************************************************************************
+
+        ShippingAddress customerShippingAddressInfo = new ShippingAddress();
+      
+        mv.addObject("customerShippingAddressInfo", customerShippingAddressInfo);
+		
+		mv.setViewName("/my_account/admin/shipping_address");
+		
+		return mv;
+
+	}
+	
+	
+
+	@RequestMapping(value = "/account/edit/billing/address",method=RequestMethod.GET)
+	public ModelAndView editBillAddress()
+	{
+		ModelAndView mv = new ModelAndView();
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //********************************************************************************************
+
+        int user_id = user.getId();
+        BillingAddress billAddress = billingAddressRepository.findByUserId(user_id);
+
+        mv.addObject("ba", billAddress);
+		
+		mv.setViewName("/my_account/admin/edit-bill-address");
+		
+		return mv;
+	}
+	
+	//updating billing address...tested..working
+	@RequestMapping(value ="/account/update/billing/address", method=RequestMethod.POST)
+	public ModelAndView saveBillAddChanges(@RequestParam String contact_person,
+									@RequestParam String street,
+									@RequestParam String city,
+									@RequestParam int zip_code,
+									@RequestParam String country,
+									@RequestParam String phone_number
+									){
+			
+			
+		ModelAndView mv = new ModelAndView();
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //******************************************************************************************** 
+		int user_id = user.getId();
+		BillingAddress bAdd = billingAddressRepository.findByUserId(user_id);
+
+		Lot lot = new Lot();
+		
+		bAdd.setContact_person(contact_person);
+		bAdd.setStreet(street);
+		bAdd.setCity(city);
+		bAdd.setZip_code(zip_code);
+		bAdd.setCountry(country);
+		bAdd.setPhone_number(phone_number);
+		
+		billingAddressRepository.save(bAdd);
+		
+		mv.addObject("bAd", bAdd);
+		mv.addObject("msg", "Info have been updated");
+		mv.addObject("lot", lot);
+		//mv.setViewName("/my_account/user/loginDetails");
+		
+		return new ModelAndView("redirect:/admin/account/addresses/" + user_id);
+	}
+	
+	
+	@RequestMapping(value = "/account/billing/address/{lotId}",method=RequestMethod.GET)
+	public ModelAndView billingAddressLot(@PathVariable long lotId)
+	{
+		ModelAndView mv = new ModelAndView();
+		
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //********************************************************************************************
+      
+        Optional<Lot> obj = lotRepository.findById(lotId);
+        Lot lot = obj.get();
+        
+        BillingAddress billingAddressInfo = new BillingAddress();
+        
+        mv.addObject("billingAddressInfo", billingAddressInfo);
+        mv.addObject("lots", lot);
+		
+		mv.setViewName("/my_account/admin/billing-address-lot");
+		
+		return mv;
+
+	}
+	
+	//post method
+		@RequestMapping(value="/account/billing/address/test/{lotId}", method=RequestMethod.POST)
+		public ModelAndView saveAddressLot(@PathVariable long lotId,@Valid BillingAddress customerBillingAddressInfo, BindingResult bindingResult) {
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			        User user = userService.findUserByEmail(auth.getName());
+			        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+			//********************************************************************************************        
+			
+			if (bindingResult.hasErrors()) {
+				mv.setViewName("/my_account/admin/billing_address");
+				
+			}
+			
+			//int user_id = user.getId();
+			
+			Optional<Lot> obj = lotRepository.findById(lotId);
+	        Lot lot = obj.get();
+	        
+			customerBillingAddressInfo.setUser(user);
+			customerBillingAddressInfoService.saveBillInfo(customerBillingAddressInfo);
+			
+			mv.addObject("message", "Address have been successfully saved");
+			mv.addObject("customerBillingAddressInfo", new BillingAddress());
+			mv.addObject("lt", lot);
+			
+			return new ModelAndView("redirect:/admin/account/show/billing/address/" + lotId);
+		}
+		
+		
+		@RequestMapping(value = "/account/edit/billing/address/{lotId}",method=RequestMethod.GET)
+		public ModelAndView upBillAddress(@PathVariable long lotId)
+		{
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //********************************************************************************************
+
+	        int user_id = user.getId();
+	        BillingAddress billAddress = billingAddressRepository.findByUserId(user_id);
+
+	        Optional<Lot> obj = lotRepository.findById(lotId);
+	        Lot lot = obj.get();
+	        mv.addObject("ba", billAddress);
+	        mv.addObject("lots", lot);
+			mv.setViewName("/my_account/admin/edit-bill-add-lot");
+			
+			return mv;
+		}
+		
+		//updating billing address...tested..working
+		@RequestMapping(value ="/account/update/billing/address/{lotId}", method=RequestMethod.POST)
+		public ModelAndView updateBillAddChanges(@RequestParam String contact_person,
+										@RequestParam String street,
+										@RequestParam String city,
+										@RequestParam int zip_code,
+										@RequestParam String country,
+										@RequestParam String phone_number,
+										@PathVariable long lotId
+										){
+				
+				
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //******************************************************************************************** 
+			int user_id = user.getId();
+			BillingAddress bAdd = billingAddressRepository.findByUserId(user_id);
+
+			Optional<Lot> lot = lotRepository.findById(lotId);
+			//Lot lot=obj.get();
+			
+			bAdd.setContact_person(contact_person);
+			bAdd.setStreet(street);
+			bAdd.setCity(city);
+			bAdd.setZip_code(zip_code);
+			bAdd.setCountry(country);
+			bAdd.setPhone_number(phone_number);
+			
+			billingAddressRepository.save(bAdd);
+			
+			mv.addObject("bAd", bAdd);
+			mv.addObject("msg", "Info have been updated");
+			mv.addObject("lot", lot);
+			//mv.setViewName("/my_account/user/loginDetails");
+			
+			return new ModelAndView("redirect:/admin/account/show/billing/address/" + lotId);
+		}
+		
+		@RequestMapping(value="/account/billing/address/test", method=RequestMethod.POST)
+		public ModelAndView saveAddress(@Valid BillingAddress customerBillingAddressInfo, BindingResult bindingResult) {
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			        User user = userService.findUserByEmail(auth.getName());
+			        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+			//********************************************************************************************        
+			
+			if (bindingResult.hasErrors()) {
+				mv.setViewName("/my_account/user/billing_address");
+				
+			}
+			
+			int user_id = user.getId();
+			
+			customerBillingAddressInfo.setUser(user);
+			customerBillingAddressInfoService.saveBillInfo(customerBillingAddressInfo);
+			
+			mv.addObject("message", "Address have been successfully saved");
+			mv.addObject("customerBillingAddressInfo", new BillingAddress());
+			
+			return new ModelAndView("redirect:/admin/account/addresses/" + user_id);
+		}
+		
+		// displaying billing address if exist
+		@SuppressWarnings("unused")
+		@RequestMapping(value="/account/show/billing/address/{lotId}")
+		public ModelAndView showBillAdd(@Valid BillingAddress billingAddress, BindingResult bindingResult, @PathVariable("lotId") long lotId) {
+			
+		
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //********************************************************************************************
+	        
+	        Optional<Lot> newLot = lotRepository.findById(lotId);
+	        Lot lots = newLot.get();
+	        
+	        int user_id=user.getUser_id();
+			
+	        billingAddress = (@Valid BillingAddress) billingAddressRepository.findByUserId(user_id);
+			
+			if (billingAddress != null) {
+				mv.addObject("billAddress", billingAddress);
+			} else {
+				mv.addObject("message", "Please add a billing address");
+			}
+			
+			mv.addObject("lots", lots);
+			mv.setViewName("/my_account/admin/addressBill");
+			
+			return mv;
+			
+		}
+		
+		@RequestMapping(value = "/account/edit/shipping/address",method=RequestMethod.GET)
+		public ModelAndView editShipAddress()
+		{
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //********************************************************************************************
+
+	        int user_id = user.getId();
+	        ShippingAddress customerShippingAddressInfo = shippingAddressRepository.findByUserId(user_id);
+	        
+	        //System.out.println("-------------------------------------------------------------------------------------------------" + shipping_add_id);
+	        
+	        mv.addObject("sa", customerShippingAddressInfo);
+			
+			mv.setViewName("/my_account/admin/edit-ship-address");
+			
+			return mv;
+		}
+
+		//updating shipping address...tested..working
+		@RequestMapping(value ="/account/update/shipping/address", method=RequestMethod.POST)
+		public ModelAndView saveShipAddChanges(@RequestParam String contact_person,
+										@RequestParam String street,
+										@RequestParam String city,
+										@RequestParam int zip_code,
+										@RequestParam String country,
+										@RequestParam String phone_number
+										){
+				
+				
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //******************************************************************************************** 
+			int user_id = user.getId();
+			ShippingAddress sAdd = shippingAddressRepository.findByUserId(user_id);
+
+			sAdd.setContact_person(contact_person);
+			sAdd.setStreet(street);
+			sAdd.setCity(city);
+			sAdd.setZip_code(zip_code);
+			sAdd.setCountry(country);
+			sAdd.setPhone_number(phone_number);
+			
+			shippingAddressRepository.save(sAdd);
+			
+			mv.addObject("sAd", sAdd);
+			mv.addObject("msg", "Info have been updated");
+			//mv.addObject("lotId", lot.getLotId());
+			
+			//mv.setViewName("/my_account/user/loginDetails");
+			
+			return new ModelAndView("redirect:/admin/account/addresses/" + user_id);
+		}
+		
+		@RequestMapping(value="/account/shipping/address/test", method=RequestMethod.POST)
+		public ModelAndView saveSHippingAddress(@Valid ShippingAddress customerShippingAddressInfo, BindingResult bindingResult) {
+			ModelAndView mv = new ModelAndView();
+			
+			//********************************************************************************************
+					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			        User user = userService.findUserByEmail(auth.getName());
+			        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+			        //********************************************************************************************
+			        
+			if (bindingResult.hasErrors()) {
+				mv.setViewName("/my_account/admin/billing_address");
+				
+			}
+			
+			int user_id=user.getId();
+			customerShippingAddressInfo.setUser(user);
+			customerShippingAddressInfoService.saveShipInfo(customerShippingAddressInfo);
+			
+			mv.addObject("message", "Address have been successfully saved");
+			mv.addObject("customerShippingAddressInfo", new ShippingAddress());
+			
+			return new ModelAndView("redirect:/admin/account/addresses/" + user_id);
+		}
+		
+		@RequestMapping(value = "/account/shipping/address/{lotId}",method=RequestMethod.GET)
+		public ModelAndView showOrderdetailsLot(@PathVariable long lotId)
+		{
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    User user = userService.findUserByEmail(auth.getName());
+		    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		    //********************************************************************************************
+
+		    Optional<Lot> obj = lotRepository.findById(lotId);
+		    Lot lot = obj.get();
+		    
+		    ShippingAddress customerShippingAddressInfo = new ShippingAddress();
+		  
+		    mv.addObject("customerShippingAddressInfo", customerShippingAddressInfo);
+			mv.addObject("lots", lot);
+			mv.setViewName("/my_account/admin/shipping-address-lot");
+			
+			return mv;
+
+		}
+
+		
+		@RequestMapping(value = "/account/edit/shipping/address/{lotId}",method=RequestMethod.GET)
+		public ModelAndView editShipAddressLot(@PathVariable long lotId)
+		{
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    User user = userService.findUserByEmail(auth.getName());
+		    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		    //********************************************************************************************
+
+		    Optional<Lot> obj = lotRepository.findById(lotId);
+		    Lot lot = obj.get();
+		    
+		    int user_id = user.getId();
+		    ShippingAddress customerShippingAddressInfo = shippingAddressRepository.findByUserId(user_id);
+		    
+		    //System.out.println("-------------------------------------------------------------------------------------------------" + shipping_add_id);
+		    
+		    mv.addObject("sa", customerShippingAddressInfo);
+			mv.addObject("lots", lot);
+			mv.setViewName("/my_account/admin/edit-ship-add-lot");
+			
+			return mv;
+		}
+		
+		//updating shipping address...tested..working
+		@RequestMapping(value ="/account/update/shipping/address/{lotId}", method=RequestMethod.POST)
+		public ModelAndView saveShipAddChangesLot(@PathVariable long lotId, 
+										@RequestParam String contact_person,
+										@RequestParam String street,
+										@RequestParam String city,
+										@RequestParam int zip_code,
+										@RequestParam String country,
+										@RequestParam String phone_number
+										){
+				
+				
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    User user = userService.findUserByEmail(auth.getName());
+		    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		    //******************************************************************************************** 
+			int user_id = user.getId();
+			ShippingAddress sAdd = shippingAddressRepository.findByUserId(user_id);
+
+
+			Optional<Lot> obj = lotRepository.findById(lotId);
+			Lot lot = obj.get();
+			
+			sAdd.setContact_person(contact_person);
+			sAdd.setStreet(street);
+			sAdd.setCity(city);
+			sAdd.setZip_code(zip_code);
+			sAdd.setCountry(country);
+			sAdd.setPhone_number(phone_number);
+			
+			shippingAddressRepository.save(sAdd);
+			
+			mv.addObject("sAd", sAdd);
+			mv.addObject("lt", lot);
+			mv.addObject("msg", "Info have been updated");
+			//mv.addObject("lotId", lot.getLotId());
+			
+			//mv.setViewName("/my_account/user/loginDetails");
+			
+			return new ModelAndView("redirect:/admin/account/show/shipping/address/" + lotId);
+		}
+		
+		@RequestMapping(value="/account/shipping/address/test/{lotId}", method=RequestMethod.POST)
+		public ModelAndView saveSHippingAddressLot(@PathVariable long lotId, @Valid ShippingAddress customerShippingAddressInfo, BindingResult bindingResult) {
+			ModelAndView mv = new ModelAndView();
+			
+			//********************************************************************************************
+					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			        User user = userService.findUserByEmail(auth.getName());
+			        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+			        //********************************************************************************************
+			        
+			if (bindingResult.hasErrors()) {
+				mv.setViewName("/my_account/admin/billing_address");
+				
+			}
+			
+			  Optional<Lot> obj = lotRepository.findById(lotId);
+			  Lot lot = obj.get();
+			    
+			//int user_id=user.getId();
+			  
+			customerShippingAddressInfo.setUser(user);
+			customerShippingAddressInfoService.saveShipInfo(customerShippingAddressInfo);
+			
+			mv.addObject("message", "Address have been successfully saved");
+			mv.addObject("customerShippingAddressInfo", new ShippingAddress());
+			mv.addObject("lt", lot);
+			return new ModelAndView("redirect:/admin/account/show/shipping/address/" + lotId);
+		}
+		
+		
+		// displaying billing address if exist
+		@SuppressWarnings("unused")
+		@RequestMapping(value="/account/show/shipping/address/{lotId}")
+		public ModelAndView showShipAdd(@Valid ShippingAddress shippingAddress, BindingResult bindingResult, @PathVariable("lotId") long lotId) {
+			
+
+			ModelAndView mv = new ModelAndView();
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    User user = userService.findUserByEmail(auth.getName());
+		    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		    //********************************************************************************************
+		    
+		    Optional<Lot> newLot = lotRepository.findById(lotId);
+		    Lot lots = newLot.get();
+		    
+		    int user_id=user.getUser_id();
+			
+		    shippingAddress = (@Valid ShippingAddress) shippingAddressRepository.findByUserId(user_id);
+			
+			if (shippingAddress != null) {
+				mv.addObject("shippAddress", shippingAddress);
+			} else {
+				mv.addObject("msg", "Please add a shipping address");
+			}
+			
+			mv.addObject("lots", lots);
+			mv.setViewName("/my_account/admin/addressShip");
+			
+			return mv;
+			
+		}
+		
+		
+		@RequestMapping(value = "/lot/details/{lotId}",method=RequestMethod.GET)
+		public ModelAndView showLotdetails(@PathVariable("lotId") long lotId)
+		{
+			ModelAndView mv = new ModelAndView();
+			
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //********************************************************************************************
+	        
+			Optional<Lot> new_obj = lotRepository.findById(lotId);
+			Lot lots= new_obj.get();
+			
+	
+	
+			//List<Product> product = productRepository.findAllByLotId(lotId);
+			List<Product> product = productRepository.findAllByLotId(lotId);
+			
+			//------------------------------------------------------------------------------counting volume
+			int vol= 0;
+			int i=0;
+			product.get(i).getA_stock();
+			
+			for(i = 0; i< product.size(); i++) {
+				
+				String st =product.get(i).getA_stock();
+				
+				vol =vol + (Integer.parseInt(st)); 	
+			}
+			//----------------------------------------------------------------------------------------
+			
+			
+		
+			lots.setVolume(vol); // setiing lot volume
+			
+			//------------------------------------------------------------------------------------
+			Set<Product> set_product = lots.getProductList();
+			
+			
+			List<String> imageList = new ArrayList<String>();
+			
+			for(Product set : set_product) {
+				if(!(set.getA_media_image_0_()).isEmpty()) {
+					imageList.add(set.getA_media_image_0_());
+				}
+				
+				if(!(set.getA_media_image_1_()).isEmpty()) {
+					imageList.add(set.getA_media_image_1_());
+				}
+				
+				if(!(set.getA_media_image_2_()).isEmpty()) {
+					imageList.add(set.getA_media_image_2_());
+				}
+				
+			}
+			
+			
+			
+			lotRepository.save(lots); // updating the lot in the database
+			
+			mv.addObject("lots",lots);
+			mv.addObject("products", product);
+			mv.addObject("images", imageList);
+			
+	
+			mv.setViewName("/my_account/admin/lotDetails");
+			return mv;
+
+		}
+	
+	
+		@RequestMapping(value = "/order/details/{lotId}",method=RequestMethod.GET)
+		public ModelAndView showOrderdetails(@PathVariable("lotId") long lotId)
+		{
+			ModelAndView mv = new ModelAndView();
+			
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //********************************************************************************************
+	        int user_id = user.getId();
+	        
+	        BillingAddress billAddress= billingAddressRepository.findByUserId(user_id);
+	        
+	        ShippingAddress shippAddress = shippingAddressRepository.findByUserId(user_id);
+	        
+			Optional<Lot> new_obj = lotRepository.findById(lotId);
+			Lot lots= new_obj.get();
+			
+			List<Product> product = productRepository.findAllByLotId(lotId);
+			
+			
+			
+
+			mv.addObject("lots",lots);
+			mv.addObject("products", product);
+			mv.addObject("billAddress", billAddress);
+			mv.addObject("shippAddress", shippAddress);
+			
+			mv.addObject("message1", "Please add a Shipping address");
+			mv.addObject("message2", "Please add a billing address");
+			
+			mv.setViewName("admin-orderDetails");
+			return mv;
+
+		}
+		
+		@RequestMapping(value = "/order/confirmation/{lotId}",method=RequestMethod.GET)
+		public ModelAndView shwOrderdetails(@PathVariable("lotId") long lotId)
+		{
+			ModelAndView mv = new ModelAndView();
+			
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //********************************************************************************************
+	        
+	       int user_id = user.getId();
+	       ShippingAddress shippAddress = shippingAddressRepository.findByUserId(user_id);
+	        
+			Optional<Lot> new_obj = lotRepository.findById(lotId);
+			Lot lots= new_obj.get();
+			
+			List<Product> product = productRepository.findAllByLotId(lotId);
+
+			mv.addObject("lots",lots);
+			mv.addObject("products", product);
+			mv.addObject("shippAddress", shippAddress);
+			
+			mv.addObject("msg", "Thank you for your purchase!");
+			
+			mv.setViewName("admin-order-confirmation");
+			return mv;
+
+		}
+	
+		
+		//******************************************************************************Order list according to lotId*****************************************************************
+		@RequestMapping(value="/orders/list/{lotId}", method=RequestMethod.GET)
+		public ModelAndView showAllOrders(@PathVariable("lotId") Long lotId) {
+			ModelAndView mv = new ModelAndView();
+			//**********************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //***********************************************************************
+	        
+	        int user_id = user.getId();
+	        
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = new Date();
+			
+			Optional<Lot> newLot = lotRepository.findById(lotId);
+			Lot lot = newLot.get();
+			
+			
+			Order obj = orderRepository.findByUserAndLot(user_id, lotId);
+			
+			
+			if (obj == null) {
+				
+			
+				Order orderObj = new Order();
+				
+				orderObj.setOrder_status(true);
+				orderObj.setOrderDate(formatter.format(date));
+				orderObj.setLot(lot);
+				orderObj.setUser(user);
+				
+				orderRepository.save(orderObj);
+				
+				orderObj.getLot().setLot_status(0);
+				//lot.setLot_status(0);
+				lotRepository.save(lot);
+				
+			}
+			mv.setViewName("admin-orderDetails");
+			
+			System.out.println("*******************************************************************************" + user_id + "*******************************");
+			return new ModelAndView("redirect:/admin/order/confirmation/" + lotId);
+		}
+		
+		
+	//''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 	@RequestMapping(value="/create/new/lot", method = RequestMethod.GET)
 	public ModelAndView createLot() {
 		ModelAndView mv = new ModelAndView();
@@ -224,7 +1123,7 @@ public class Admin_Controller {
 		
 		
 		
-		return new ModelAndView("redirect:/admin/lot/list");
+		return new ModelAndView("redirect:/admin/lot/details/" + lot_id);
 		
 	} 
 	
@@ -244,130 +1143,7 @@ public class Admin_Controller {
 		
 		return mv;
 	}
-	
-/*
-	@RequestMapping(value = "/edit/lot",method=RequestMethod.POST) // testing  // success
-	public ModelAndView Editlot( 
-									@RequestParam("lotName") String lotName,
-									@RequestParam("lotDescription") String lotDescription,
-									@RequestParam("teaserImage")  MultipartFile teaserImage,
-									@RequestParam("lotPrice") double lotPrice,
-									@RequestParam("lot_status") int lot_status
-									)
-									
-					
-	{
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date(); 
-		ModelAndView mv = new ModelAndView();
-		
-		Lot lot = new Lot();
-		
-		try {
-			
-			byte[] buffer = teaserImage.getBytes();
-			String base64Image = Base64.getEncoder().encodeToString(buffer);
-			lot.setTeaserImage(base64Image);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		//------------------------------------------------------------------end of images test
-		mv.addObject("lot",lot);
-		lot.setLotName(lotName);
-		lot.setLotDescription(lotDescription);
-		lot.setLotPrice(lotPrice);
-		lot.setLot_status(lot_status);
-		
-		lot.setCreatedAt(formatter.format(date));
-		//lot.setTeaserImage(teaserImage);
-		
-		
-		
-		
-		mv.setViewName("/my_account/admin/create_new_lot");
-		
-		lotRepository.save(lot);
-		//imagesRepository.saveAll(images);
-		
-		//return "data saved";
-		return new ModelAndView("redirect:/admin/lot/product/" + lot.getLotId()) ;
-	}
-		
 
-	//working*************************************************************************************************working
-	@RequestMapping(value="/edit/lot/{lotId}")
-	public ModelAndView editLot(@PathVariable("lotId") long lotId) {
-		ModelAndView mv = new ModelAndView();
-		
-		Optional<Lot> newLot = lotRepository.findById(lotId);
-		Lot lots = newLot.get();
-		
-		lots.setProductList(null);
-		lotRepository.deleteById(lotId);
-		
-		mv.addObject("lot", lots);
-
-		mv.setViewName("/my_account/admin/edit-lot");
-		return mv;
-	}
-
-	
-	
-	  @PostMapping("/edit/lot")
-	    public ModelAndView  edit_1(
-	                	@RequestParam Long lotId ,
-	                	@RequestParam("lotName") String lotName,
-	                  @RequestParam("lotDescription") String lotDescription,
-	                  @RequestParam("teaserImage")  MultipartFile teaserImage,
-	                  @RequestParam("lotPrice") double lotPrice,
-	                  @RequestParam("lot_status") int lot_status) throws IOException
-	        
-	    {
-	      
-	      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	      new Date(); 
-	      ModelAndView mv = new ModelAndView();
-	      Optional<Lot> newLot = lotRepository.findById(lotId);
-	      Lot lot = newLot.get();
-	        
-	      mv.addObject("lot",lot);
-	 
-	      if(teaserImage.getBytes()!=null)
-	      {
-	    
-	            try {
-	              
-	              byte[] buffer = teaserImage.getBytes();
-	              Base64.getEncoder().encodeToString(buffer);  
-	            } catch (IOException e) {
-	             
-	              e.printStackTrace();
-	            }
-	      }
-
-	      else
-	      {
-	        lot.getTeaserImage();
-	      }
-	        
-	      lot.setLotName(lotName);
-	      lot.setLotDescription(lotDescription);
-	      lot.setLotPrice(lotPrice);
-	      lot.setLot_status(lot_status);
-	      
-	      mv.addObject("lot",lot);
-	         
-	      lotRepository.save(lot);
-	      
-	      System.out.println("********************************************************test**********************************************************");
-	      mv.setViewName("/my_account/admin/create_new_lot");
-	      
-	      return new ModelAndView("redirect:/admin/lot/list") ;
-	      
-	    }
-	  */
 	  
 	//delete a lot
 	// first need to find the lot to delete by id
@@ -648,8 +1424,147 @@ public class Admin_Controller {
 		
 	}
 	
-	//****************************************************************************************Order*********************************************************
+	//****************************************************************************************Slider images*********************************************************
+	
+	@RequestMapping(value="/upload/slider/images", method=RequestMethod.GET)
+	public ModelAndView uploadSliderImages() {
+		ModelAndView mv = new ModelAndView();
+		//**************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		//*************************************************************************
+		
+		SliderImages images = new SliderImages();
+		
+		
+		mv.addObject("img", images);
+		mv.setViewName("/my_account/admin/slider-images");
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/save/slider/images",method=RequestMethod.POST) // testing  // success
+	public ModelAndView saveImages( 	
+									@RequestParam("image1")  MultipartFile image1,
+									@RequestParam("image2")  MultipartFile image2,
+									@RequestParam("image1")  MultipartFile image3) {
 
+ 
+		ModelAndView mv = new ModelAndView();
+		SliderImages images = new SliderImages();
+		
+		try {
+			
+			byte[] buffer = image1.getBytes();
+			String base64Image = Base64.getEncoder().encodeToString(buffer);
+			images.setImage1(base64Image);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+				
+				byte[] buffer = image2.getBytes();
+				String base64Image = Base64.getEncoder().encodeToString(buffer);
+				images.setImage2(base64Image);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		try {
+			
+			byte[] buffer = image3.getBytes();
+			String base64Image = Base64.getEncoder().encodeToString(buffer);
+			images.setImage3(base64Image);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		sliderImagesRepoaitory.save(images);
+		
+		mv.addObject("image", images);
+		//imagesRepository.saveAll(images);
+		
+		//return "data saved";
+		return new ModelAndView("redirect:/admin/lot/home") ;
+	}
+	
+	
+	@RequestMapping(value="/test/slider/images", method=RequestMethod.GET)
+	public ModelAndView testSliderImages() {
+		ModelAndView mv = new ModelAndView();
+		//**************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		//*************************************************************************
+		
+		List<SliderImages> images = sliderImagesRepoaitory.findAll();
+		
+		
+		mv.addObject("img", images);
+		mv.setViewName("/my_account/admin/slider-test");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/update/slider/images/{id}", method=RequestMethod.GET)
+	public ModelAndView updateSliderImages(@PathVariable(value="id") int id) {
+		ModelAndView mv = new ModelAndView();
+		//**************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		//*************************************************************************
+		
+		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
+		SliderImages imgs = obj.get();
+		
+		
+		mv.addObject("image", imgs);
+		
+		mv.setViewName("/my_account/admin/update-slider");
+		
+		return mv;
+	}
+	
+	
+	
+	//updating billing address...tested..working
+	@RequestMapping(value ="/update/slider/images/{id}", method=RequestMethod.POST)
+	public ModelAndView updateBillAddChanges(@PathVariable int id,
+											@RequestParam String image1,
+											@RequestParam String image2,
+											@RequestParam String image3){
+	
+		ModelAndView mv = new ModelAndView();
+		//********************************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //******************************************************************************************** 
+		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
+		SliderImages images = obj.get();
+
+
+		images.setImage1(image1);
+		images.setImage2(image2);
+		images.setImage3(image3);
+	
+		sliderImagesRepoaitory.save(images);
+	
+		mv.addObject("si", images);
+		mv.addObject("msg", "Info have been updated");
+		
+		//mv.setViewName("/my_account/user/loginDetails");
+		
+		return new ModelAndView("redirect:/admin/lot/home");
+	}
 
 	
 }// end of admin controller

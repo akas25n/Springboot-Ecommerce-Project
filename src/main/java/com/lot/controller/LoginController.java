@@ -23,9 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lot.model.Lot;
 import com.lot.model.Order;
 import com.lot.model.ShippingAddress;
+import com.lot.model.SliderImages;
 import com.lot.model.User;
 import com.lot.repository.LotRepository;
 import com.lot.repository.OrderRepository;
+import com.lot.repository.SliderImagesRepository;
 import com.lot.service.EmailService;
 import com.lot.service.LotService;
 import com.lot.service.ShippingAddressService;
@@ -57,6 +59,9 @@ public class LoginController {
 	
 	@Autowired
 	private ShippingAddressService shippingAddressService;
+	
+	@Autowired
+	private SliderImagesRepository sliderRepo;
 	
 	
     //constructor
@@ -261,25 +266,13 @@ public class LoginController {
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //**************************************************************************************************
-        // Order order=new Order();
-//			long id = order.getOrderId();
-//        Lot lot = lotRepository.findById(id);
-//        lot.setLot_status(0);
-//        lotRepository.save(lot);
-//        
-//      
-//        Order order = new Order();
-//        if (order.isOrder_status()==true) {
-//     	   order.getLot().setLot_status(0);
-//        System.out.println("*****************************************************************"+ order.getLot().getLot_status() + "**************************************************************************");	
-//        }
-//        else {
-
-//        Lot lot = new Lot();
-//        long  lotId = lot.getLotId();
+        
+        List<SliderImages> images= sliderRepo.findAll();
         
         List<Lot> lots =lotService.findByEnabled();
         modelAndView.addObject("lots", lots);
+        modelAndView.addObject("img", images);
+        
         modelAndView.addObject("adminMessage","Only active lot will be displayed");
        // System.out.println("*****************************************************************"+ lots + "**************************************************************************");
         modelAndView.setViewName("index");

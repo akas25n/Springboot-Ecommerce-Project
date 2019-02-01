@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | Header | Lot Sale</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
+	
+	
+</head>
+
+
+<body>
+	<div th:fragment="copy">
+	<div class="container" id="header">
+	
+	<div class="row">
+		<div class="col-md-8 class-sm-9">
+		<a href="/admin/lot/home">
+			<img src="/images/lot.png" class="wholeSaleLogo">
+			<img src="/images/logo.png" class="mainLogo">
+		</a>
+		</div>
+	
+  		<div class="col-md-4 col-sm-3">
+    
+					<div class="logoutdesc">
+						
+					<form th:action="@{/logout}">
+					    
+						<a th:href="@{/admin/account}">My Account </a>
+						|
+						
+						<a th:href="@{/lot/login}" data-action="logout">Logout <span class="glyphicon glyphicon-off" id="glyph"></span></a>
+						</form>
+						<div>
+						Signed in as | <strong><span th:utext="${userName}"></span></strong>
+						</div>
+					</div>
+			</div>
+			
+    </div>
+  </div>
+  </div>
+  
+
+
+
+
+</body>
+</html>

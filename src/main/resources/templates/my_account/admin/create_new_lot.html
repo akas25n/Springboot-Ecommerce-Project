@@ -35,7 +35,7 @@
 		th:utext="${errorMessage}" class="error">
 	</div>
 	
-<div th:include="header :: copy"></div>
+<div th:include="admin-header :: copy"></div>
 	<div class="container" id="body1">
 	<hr>
  	<h2>CREATE NEW LOT</h2>
@@ -94,104 +94,7 @@
 			</div>
 		</div>
   	</div>
-  <!--
-  <div class="form-group">
-      <label class="control-label col-sm-2 selection" for="text">Lot Status</label>
-      <div class="col-sm-10">
-      <select th:field="*{lot_status}">
-      		<option th:value= '1'>Active</option>
-      		<option th:value = '0'>Inactive</option>
-      </select>
-  
-      </div>
-    </div>
-    
-    
-   
-     <div class="form-group">
-      <label class="control-label col-sm-2 selection" for="text">Teaser Image</label>
-      <div class="col-sm-10">
-        <input type="file" name="pic" id="pic" th:field="*{teaserImage}"> 
-    	<img src="https://www.w3schools.com/w3images/nature.jpg" id="thumbnail"><br>
-    	<hr>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label class="control-label col-sm-2 selection" for="formGroupExampleInput">Lot Title</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="formGroupExampleInput" name="text"  th:field="*{lotName}" required>
-      </div>
-    </div>
-     
-     
-    
-     <div class="form-group">
-      <label class="control-label col-sm-2 selection" for="text">Lot Description</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="text" name="text"  th:field="*{lotDescription}">
-      </div>
-    </div>-->
-    
-    <!-- 
-      <div class="form-group">
-      <label class="control-label col-sm-2" for="text">Lot Create Date</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="text" name="text" th:field="*{createAt}">
-      </div>
-    </div>  
-    
-      <div class="form-group">
-      <label class="control-label col-sm-2 selection" for="text">Lot Price</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="text" name="text" th:field=*{lotPrice}>
-      </div>
-    </div>
-    
-    
-     <div class="form-group">
-      <label class="control-label col-sm-2 selection" for="text">Lot Status</label>
-      <div class="col-sm-10">
-      <select th:field="*{lot_status}">
-      		<option th:value= '1'>Active</option>
-      		<option th:value = '0'>Inactive</option>
-      </select>
-  
-      </div>
-    </div>
-    
-
-     <div class="form-group">
-      <label class="control-label col-sm-2 selection" for="text">Teaser Image</label>
-      <div class="col-sm-10">
-        <input type="file" name="pic" id="pic" th:field="*{teaserImage}"> 
-    	<img src="https://www.w3schools.com/w3images/nature.jpg" id="thumbnail"><br>
-    	<hr>
-      </div>
-    </div>
-   <input type="hidden" name ="lotId" th:value="${lot.lotId}"/> 
-    <button type="submit" name="save" class="btn btn-success">Select Products</button>
-    
-    
-    
-    			<div class="form-group">
-				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
-				    <input type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
-				  </div> 
-				  <div class="form-group">
-				    <label for="formGroupExampleInput2">Street & House No.<span  style="color:red;">*</span></label>
-				    <input type="text" class="form-control" id="formGroupExampleInput2" required>
-				  </div>
-				  
-				   <div class="form-group">
-				    <label for="formGroupExampleInput">City<span  style="color:red;">*</span></label>
-				    <input type="text" class="form-control" id="formGroupExampleInput" required>
-				  </div>
-				  <div class="form-group">
-				    <label for="formGroupExampleInput2">Zip Code<span  style="color:red;">*</span></label>
-				    <input type="text" class="form-control" id="formGroupExampleInput2" required>
-				  </div>  -->
-    
  
 
 <!-- Here i have to put the images ##### <div th:include="images :: copy"></div>------------------------------------------------------------------------------------->
@@ -199,6 +102,6 @@
 		</div>
 	<br>
 	
-	<div th:include="footer :: copy"></div>
+	<div th:include="admin-footer :: copy"></div>
 </body>
 </html>

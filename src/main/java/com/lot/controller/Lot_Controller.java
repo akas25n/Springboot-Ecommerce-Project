@@ -1,7 +1,10 @@
 package com.lot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -87,16 +90,41 @@ public class Lot_Controller {
 				
 				vol =vol + (Integer.parseInt(st)); 	
 			}
+			
+			
+			lots.setVolume(vol); // setiing lot volume
 			//----------------------------------------------------------------------------------------
 			
+			//------------------------------------------------------------------------------------
+			Set<Product> set_product = lots.getProductList();
 			
-		
-			lots.setVolume(vol); // setiing lot volume
+			
+			List<String> imageList = new ArrayList<String>();
+			
+			
+
+			
+			for(Product set : set_product) {
+				if(!(set.getA_media_image_0_()).isEmpty()) {
+					imageList.add(set.getA_media_image_0_());
+				}
+				
+				if(!(set.getA_media_image_1_()).isEmpty()) {
+					imageList.add(set.getA_media_image_1_());
+				}
+				
+				if(!(set.getA_media_image_2_()).isEmpty()) {
+					imageList.add(set.getA_media_image_2_());
+				}
+				
+			}
+			
 			
 			lotRepository.save(lots); // updating the lot in the database
 			
 			mv.addObject("lots",lots);
 			mv.addObject("products", product);
+			mv.addObject("images", imageList);
 	
 			mv.setViewName("lotDetails");
 			return mv;
