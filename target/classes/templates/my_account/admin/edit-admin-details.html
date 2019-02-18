@@ -45,7 +45,7 @@ textarea {
   
     <div class="row">
     <hr>
-    <h3 style="color:grey;">EDIT USER DETAILS</h3>
+    <h3 style="color:grey;">EDIT ADMIN DETAILS</h3>
     <h5><strong><span th:utext="${userName}"></span></strong></h5>
     
     <hr>
@@ -63,49 +63,61 @@ textarea {
         <div class="col-md-12">
         <hr style="border: 2px solid #5cb85c;">
             <div class="fields">
-             <form>
+             <form action="#" th:action ="@{/admin/update/adminn/__${user.user_id}__}" th:object="${user}" method="POST">
 				
-				 <div class="form-group">
-				    <label for="formGroupExampleInput">User ID</label>
-				    <input type="text" id="formGroupExampleInput" name="user_id" class="form-control" required="required">
+               <div class="form-group">
+				   	 <label for="formGroupExampleInput">First Name<span  style="color:red;">*</span></label>
+				    <input th:field="*{first_name}" type="text" id="formGroupExampleInput" name="first_name" class="form-control" required="required">
+				    <span th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"></span> 
 				  </div>
 				  
-               <div class="form-group">
-				    <label for="formGroupExampleInput">First Name<span  style="color:red;">*</span></label>
-				    <input type="text" id="formGroupExampleInput" name="first_name" class="form-control" required="required">
-				  </div>
 				  <div class="form-group">
 				    <label for="formGroupExampleInput2">Last Name<span  style="color:red;">*</span></label>
-				    <input type="text" class="form-control" id="formGroupExampleInput2" required>
+				    <input th:field="*{last_name}" type="text" class="form-control" id="formGroupExampleInput2" required>
 				  </div>
 				  
 				   <div class="form-group">
 				    <label for="formGroupExampleInput">Company<span  style="color:red;">*</span></label>
-				    <input  type="text" class="form-control" id="formGroupExampleInput" required>
+				    <input th:field="*{company}"  type="text" class="form-control" id="formGroupExampleInput" required>
 				  </div>
 				 
-				  <hr>
-				  
-				  <div style="border: 1px solid grey; border-radius: 5px; background-color: #add8e685;">
-				  <h4 style="text-align: center;">Change an USER to ADMIN </h4>
-				  <hr>
+				<span style="padding-left: 5px;padding-right: 5px; padding-top: 2px;float: right;">
+				 <input class="btn btn-success" type="submit" value="Save Changes">
+				 
+	  			</span>
+	  			<br>
+	  			<br>
+	  			<hr>
+		</form>
+		<br>
+		
+		<form th:action="@{/admin/update_user_role}" method=POST>				  
+		<div style="border: 1px solid grey; border-radius: 5px; background-color: #add8e685;">
+			<h4 style="text-align: center; color: #6600cc;">Current Role: 
+							<span th:each="role,iterStat : ${user.roles}">
+			               	<span th:text="${role.role}"/>
+			               	</h4>
+			<hr>
+			<h4 style="text-align: center; color: #0059b3;">Change User Role</h4>
+				<hr>
 				  
 				   <div class="form-group" style="padding-left:10px;">
 				    <label for="formGroupExampleInput2"> Role </label>
-				    <select>
-				    	<option>ADMIN</option>
-				    	<option class="default">USER</option>
 				    
-				    </select>
-				   
+				    <select name="attribute_select">
+				    	<option th:value="ADMIN">ADMIN</option>
+				    	<option th:value="USER">USER</option>
+				    </select> 
 				  </div>
-				  </div>
 				  
 				  
-				  <hr>
-				  <button type="submit" name="save" class="btn btn-success" style="float:right;">Save Changes</button>
-				  
-				     
+			 </div>
+			 <br>
+			 <input type="hidden" th:field="${user.user_id}"  class="form-control" id="user_id"  required autofocus>
+			 <span style="padding-left: 5px;padding-right: 5px; padding-top: 2px;float: right;">
+				 <input class="btn btn-success" type="submit" value="Change Role">
+				 
+	  			</span>
 		</form>
 		
       </div>

@@ -19,8 +19,8 @@
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
-	<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">  -->
-
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+ -->
 
 	<style type="text/css">
 	.btn{
@@ -28,11 +28,14 @@
 		width: 100%;
 		
 	}
-
-	h4{
-	margin-left: 0px;
-	
+	input[type=submit] {
+	    background-color: #286090;
+	    color: white;
+	    padding: 12px 20px;
+	    border: none;
+	    cursor: pointer;
 	}
+
 	</style>
 	
 </head>
@@ -42,9 +45,12 @@
 	<div th:include="header :: copy"></div>
 	<hr>
 	
-		<h3 style="color:grey;">CHECK YOUR ORDER</h3>	
+		
+			<h3 style="color:grey;">CHECK YOUR ORDER</h3>	
 	<hr>
 	
+	<!-- <form th:object="${lt}" action="#" th:action="@{/order/list/__${lt.lotId}__}" method=GET> -->
+	<form>
 	<div class="row" >
 		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
 			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
@@ -88,7 +94,7 @@
 		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
 			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
 			<h4 style="color:grey;"><u>Versandart</u></h4>
-			
+				<p>Kostenloser Hinversand</p>
 			</div>
 			<br>
 		</div>
@@ -97,7 +103,7 @@
 	<br>
 	<div th:each="lot:${lots}">
 	<div class="row" style="text-align: center; background-color: #d3d3d361;">
-		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px;">
+		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px; padding:10px;">
 		
 		<div class="col-sm-3">
 			<strong>Lot Details : </strong>
@@ -157,15 +163,21 @@
 
 			</div>
 			<br>
+				
+				<input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme diesen ausdrücklich zu.<a href="/order/AGB"> [Anzeigen]</a><br>
+				<input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Widerrufsbelehrung gelesen.<a href="/order/wiederruf"> [Anzeigen]</a><br>	
+			
+				<br>
+
 
 		<div class="row" th:each="lot:${lots}" style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: right;">
 			<div class="col-md-12">
 			
 			<div class="col-md-10">
-			<p>Zwischensumme :</p>
-			<p>Versand & Bearbeitung :</p>
-			<p>Steuer:</p>
-			<p><strong>Gesamtsumme :</strong></p>
+				<p>Zwischensumme :</p>
+				<p>Versand & Bearbeitung :</p>
+				<p>Steuer:</p>
+				<p><strong>Gesamtsumme :</strong></p>
 			</div>
 			
 			<div class="col-md-2" >
@@ -177,7 +189,14 @@
 			
 			<br>
 			<br>
+			
+			<div th:each="lot:${lots}">
 			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a>
+				<!-- <a th:href="@{/admin/order/list}" class="btn btn-default"><strong>Confirm your purchase</strong></a> -->
+				</div>
+				
+				
+			<!-- <input type="submit" value="Confirm your purchase" th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"></input> -->
 			<br>
 			<br>
 		</div>
@@ -185,10 +204,24 @@
 	</div>
 	<br>
 	<hr>
+	</form> 
+	
 	</div> <!-- end of the container -->
 	
 	
 	<div th:include="footer :: copy"></div>
 	
+	<script>
+	function testcheck()
+	{
+	    if (!jQuery("#myCheck").is(":checked")) {
+	        alert("none checked");
+	        return false;
+	    }
+	    return true;
+	}
+</script>
+
+
 </body>
 </html>

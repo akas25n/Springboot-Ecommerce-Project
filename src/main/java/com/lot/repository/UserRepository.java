@@ -2,7 +2,10 @@ package com.lot.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +28,8 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	public List<User> findAllUser();
 	
 	
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE user u left join user_role ur on u.user_id = ur.user_id SET ur.role_id=?1 WHERE u.user_id = ?2", nativeQuery = true)
+	public void update_user_role(Integer role_status, Integer user_id);
 }

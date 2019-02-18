@@ -147,10 +147,10 @@ public class My_AccountController {
         //************************************************************************************
         
         Optional<User> obj = userRepository.findById(user_id);
-        User users = obj.get();
+       // User users = obj.get();
         
 
-        mv.addObject("users", users);
+        mv.addObject("users", obj);
 		mv.setViewName("/my_account/user/edit-user-info");
         
 		return mv;
@@ -178,7 +178,7 @@ public class My_AccountController {
 		
 		userRepository.save(usrs);
 		
-		mv.addObject("users", usrs);
+		mv.addObject("user", usrs);
 		mv.addObject("msg", "Info have been updated");
 		
 		//mv.setViewName("/my_account/user/loginDetails");

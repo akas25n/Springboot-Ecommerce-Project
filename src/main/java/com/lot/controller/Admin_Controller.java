@@ -7,8 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -31,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lot.model.BillingAddress;
 import com.lot.model.Lot;
+import com.lot.model.MailRequest;
 import com.lot.model.Order;
 import com.lot.model.Product;
 import com.lot.model.ShippingAddress;
@@ -44,6 +47,7 @@ import com.lot.repository.ShippingAddressRepository;
 import com.lot.repository.SliderImagesRepository;
 import com.lot.repository.UserRepository;
 import com.lot.service.BillingAddressService;
+import com.lot.service.EmailService;
 import com.lot.service.LotService;
 import com.lot.service.ProductService;
 import com.lot.service.ShippingAddressService;
@@ -56,6 +60,9 @@ import com.lot.service.UserService;
 @RequestMapping("/admin")
 public class Admin_Controller {
 
+	@Autowired
+	private EmailService emailService;
+	
 	@Autowired
 	private LotRepository lotRepository;
 	
@@ -929,6 +936,22 @@ public class Admin_Controller {
 			Lot lots= new_obj.get();
 			
 			List<Product> product = productRepository.findAllByLotId(lotId);
+			
+			 //----------------------------------------------------------------------------------------------------------------------
+	        Map<String, Object> model = new HashMap<>();
+	        model.put("name", user.getFirst_name() + " " + user.getLast_name());
+	        model.put("message1", "Thank you for your purchage. You can see the current status of your order at any time under " + "http://localhost:8090/admin/orders/list"+ "." + 
+	        						"\nIf you have any questions about your customer account or your order, \nplease send us an e-mail.");
+	        
+	   
+	        MailRequest mailRequest = new MailRequest();
+	        mailRequest.setName(user.getFirst_name());
+	        mailRequest.setFrom("noreply@domain.com");
+	        mailRequest.setTo(user.getEmail());
+	        mailRequest.setSubject("Order confirmation");
+	        
+	        emailService.sendEmail_confirm_order(mailRequest, model);
+	        //----------------------------------------------------------------------------------------------------------------------
 
 			mv.addObject("lots",lots);
 			mv.addObject("products", product);
@@ -1119,10 +1142,6 @@ public class Admin_Controller {
 			
 		}
 		
-		
-		
-		
-		
 		return new ModelAndView("redirect:/admin/lot/details/" + lot_id);
 		
 	} 
@@ -1302,7 +1321,7 @@ public class Admin_Controller {
         Optional<User> obj = userRepo.findById(user_id);
         User users = obj.get();
         
-        mv.addObject("usr", users);
+        mv.addObject("user", users);
 		mv.setViewName("/my_account/admin/edit-user-details");
 		
 		return mv;
@@ -1314,20 +1333,18 @@ public class Admin_Controller {
 										@RequestParam String first_name,
 										@RequestParam String last_name,
 										@RequestParam String company,
-										@RequestParam String email
-										
-				) {
+										@RequestParam String email) {
+	
 			ModelAndView mv = new ModelAndView();
 			
 			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	        User user = userService.findUserByEmail(auth.getName());
 	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());*/
-	      //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	        
 	        Optional<User> obj = userRepo.findById(user_id);
-	        User users = obj.get();
-	        
+	        User users = obj.get(); 
 	        
 	        users.setFirst_name(first_name);
 	        users.setLast_name(last_name);
@@ -1339,20 +1356,77 @@ public class Admin_Controller {
 	        mv.addObject("usr", users);
 			mv.setViewName("/my_account/admin/edit-user-details");
 			
-			return new ModelAndView("redirect:/my/account");
+			return new ModelAndView("redirect:/admin/account//all/list");
 		} // end of method edit
+		
+		
+		//*****************************************************************************************************************
+		
+		@RequestMapping(value="/update_user_role", method=RequestMethod.POST)
+		public ModelAndView userRole(@RequestParam int user_id, @RequestParam String attribute_select) {
+			ModelAndView mv = new ModelAndView();
+			
+			String user_role = "USER";
+			String admin_role = "ADMIN";
+			
+			if (attribute_select.matches(admin_role)) {
+				userRepo.update_user_role(1, user_id);
+			} else if (attribute_select.matches(user_role)) {
+				userRepo.update_user_role(2, user_id);
+			}
+			
+			return new ModelAndView("redirect:/admin/account/all/list");
+		}
 	
 
-	@RequestMapping(value = "/edit/admin", method= RequestMethod.GET)
-	public ModelAndView editAdmin() {
+	@RequestMapping(value = "/edit/adminn/{user_id}", method= RequestMethod.GET)
+	public ModelAndView editAdmin(@PathVariable int user_id) {
 		ModelAndView mv = new ModelAndView();
+		//----------------------------------------------------------------------------------
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
- 
+        //--------------------------------------------------------------------------------
+        
+        Optional<User> obj = userRepo.findById(user_id);
+        User users = obj.get();
+        
+        mv.addObject("user", users);
 		mv.setViewName("/my_account/admin/edit-admin-details");
 		return mv;
 	}
+	
+	// update admin details from admin view//******************************OKAY
+			@RequestMapping(value = "/update/adminn/{user_id}", method= RequestMethod.POST)
+			public ModelAndView editAdmin(@PathVariable (value="user_id") int user_id,
+											@RequestParam String first_name,
+											@RequestParam String last_name,
+											@RequestParam String company) {
+		
+				ModelAndView mv = new ModelAndView();
+				
+				//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+				/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		        User user = userService.findUserByEmail(auth.getName());
+		        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());*/
+				//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		        
+		        Optional<User> obj = userRepo.findById(user_id);
+		        User users = obj.get(); 
+		        
+		        users.setFirst_name(first_name);
+		        users.setLast_name(last_name);
+		        users.setCompany(company);
+		      
+		        
+		        userRepo.save(users);
+		        
+		        mv.addObject("usr", users);
+				mv.setViewName("/my_account/admin/edit-admin-details");
+				
+				return new ModelAndView("redirect:/admin/account/all/list");
+			} // end of method edit
+			
 	
 	@RequestMapping(value = "/account/paid/invoices", method= RequestMethod.GET)
 	public ModelAndView showPaidInvoices() {
@@ -1389,10 +1463,12 @@ public class Admin_Controller {
 		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		//*************************************************************************
 		
-		//int user_id = user.getId();
-		
 		List<Order> oderList = orderRepository.findAll();
 		
+		//int user_id = user.getId();
+		List<Lot> lots = (List<Lot>)lotRepository.findAll();
+	    mv.addObject("lots", lots);
+
 		mv.addObject("orderLists", oderList);
 		
 		mv.setViewName("/my_account/admin/order");
@@ -1449,7 +1525,7 @@ public class Admin_Controller {
 	public ModelAndView saveImages( 	
 									@RequestParam("image1")  MultipartFile image1,
 									@RequestParam("image2")  MultipartFile image2,
-									@RequestParam("image1")  MultipartFile image3) {
+									@RequestParam("image3")  MultipartFile image3) {
 
  
 		ModelAndView mv = new ModelAndView();
@@ -1457,27 +1533,27 @@ public class Admin_Controller {
 		
 		try {
 			
-			byte[] buffer = image1.getBytes();
-			String base64Image = Base64.getEncoder().encodeToString(buffer);
+			byte[] buffer1 = image1.getBytes();
+			String base64Image = Base64.getEncoder().encodeToString(buffer1);
 			images.setImage1(base64Image);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		try {
-				
-				byte[] buffer = image2.getBytes();
-				String base64Image = Base64.getEncoder().encodeToString(buffer);
+		try {	
+				byte[] buffer2 = image2.getBytes();
+				String base64Image = Base64.getEncoder().encodeToString(buffer2);
 				images.setImage2(base64Image);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		
 		try {
 			
-			byte[] buffer = image3.getBytes();
-			String base64Image = Base64.getEncoder().encodeToString(buffer);
+			byte[] buffer3 = image3.getBytes();
+			String base64Image = Base64.getEncoder().encodeToString(buffer3);
 			images.setImage3(base64Image);
 			
 		} catch (IOException e) {
@@ -1513,30 +1589,28 @@ public class Admin_Controller {
 		return mv;
 	}
 	
+	//
 	@RequestMapping(value="/update/slider/images/{id}", method=RequestMethod.GET)
-	public ModelAndView updateSliderImages(@PathVariable(value="id") int id) {
+	public ModelAndView updateSliderImages(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView();
 		//**************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		//*************************************************************************
-		
+
 		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
-		SliderImages imgs = obj.get();
+		SliderImages image = obj.get();
 		
-		
-		mv.addObject("image", imgs);
+		mv.addObject("image", image);
 		
 		mv.setViewName("/my_account/admin/update-slider");
 		
 		return mv;
 	}
 	
-	
-	
 	//updating billing address...tested..working
-	@RequestMapping(value ="/update/slider/images/{id}", method=RequestMethod.POST)
+	@RequestMapping(value ="/update/slider/image", method=RequestMethod.POST)
 	public ModelAndView updateBillAddChanges(@PathVariable int id,
 											@RequestParam String image1,
 											@RequestParam String image2,
@@ -1549,24 +1623,21 @@ public class Admin_Controller {
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //******************************************************************************************** 
 		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
-		SliderImages images = obj.get();
+		SliderImages image = obj.get();
 
-
-		images.setImage1(image1);
-		images.setImage2(image2);
-		images.setImage3(image3);
+		image.setImage1(image1);
+		image.setImage2(image2);
+		image.setImage3(image3);
 	
-		sliderImagesRepoaitory.save(images);
+		sliderImagesRepoaitory.save(image);
 	
-		mv.addObject("si", images);
+		mv.addObject("image", image);
 		mv.addObject("msg", "Info have been updated");
 		
 		//mv.setViewName("/my_account/user/loginDetails");
 		
 		return new ModelAndView("redirect:/admin/lot/home");
-	}
-
-	
+	}	
 }// end of admin controller
 	
 	

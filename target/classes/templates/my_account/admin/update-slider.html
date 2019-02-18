@@ -38,11 +38,11 @@
 		<ul class="nav nav-tabs">
 		      <li class="active"><a href="/admin/upload/slider/images">Upload Images</a></li>
 		      <li><a href="/admin/test/slider/images">Test Slider</a></li>
-		      <li><a href="/admin/test/slider/images">Update Slider</a></li>
+		      <!-- <li><a href="/admin/test/slider/images">Update Slider</a></li> -->
 		</ul>
 		    
 		<br>
-		<form th:action="@{/admin/update/slider/images/__${image.id}__}" th:object="${image}" method="POST" enctype="multipart/form-data">
+		<form action ="#" th:action="@{/admin/update/slider/image}" th:object="${image}" method="POST" enctype="multipart/form-data">
 		<div class="row">
 		
 			<div class="col-md-12">

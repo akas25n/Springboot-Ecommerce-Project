@@ -1,5 +1,6 @@
 package com.lot.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -21,8 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lot.model.Lot;
-import com.lot.model.Order;
-import com.lot.model.ShippingAddress;
+import com.lot.model.MailRequest;
 import com.lot.model.SliderImages;
 import com.lot.model.User;
 import com.lot.repository.LotRepository;
@@ -131,26 +131,21 @@ public class LoginController {
         	//save the user
             userService.saveUser(user);
             
-            // creating the SimpleMailService Object
-            SimpleMailMessage registrationEmail = new SimpleMailMessage();
             
-         // setting the sending email address as no reply
-            registrationEmail.setFrom("noreply@domain.com");
-            
-            //sending the email to the users email
-            registrationEmail.setTo(user.getEmail());
-            
-            // subject of the email
-            registrationEmail.setSubject("Registration confirmation");
-            
-            // setting the email text and the confirmation link
-            registrationEmail.setText("Thank you for your registration. \n\nTo confirm your regitration, please click th elink below:\n"
-            		+ "http://localhost:8090" + "/confirm?token=" + user.getConfirmationToken());
+            Map<String, Object> model = new HashMap<>();
+            model.put("name", user.getFirst_name());
+            model.put("message1", "Thank you for your registration. \n\nTo confirm your regitration, please click the link below:\n"
+            						+ "http://localhost:8090" + "/confirm?token=" + user.getConfirmationToken());
             
             
+            MailRequest mailRequest = new MailRequest();
+            mailRequest.setName(user.getFirst_name());
+            mailRequest.setFrom("noreply@domain.com");
+            mailRequest.setTo(user.getEmail());
+            mailRequest.setSubject("Registration confirmation");
             
-            // sending the email
-            emailService.sendEmail(registrationEmail);
+            emailService.sendEmail_reg(mailRequest, model);
+             
             
             modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " + user.getEmail());
             modelAndView.setViewName("registerPage");
@@ -159,6 +154,8 @@ public class LoginController {
         return modelAndView;
     }// end of create  confirmRegistration
     
+    
+   
     
     // confirming the confirmation link---GET 
     @RequestMapping(value="/confirm", method=RequestMethod.GET)
@@ -225,37 +222,7 @@ public class LoginController {
     }
     
     
-    //***************************************************shipping address********************************************************
     
-/*
-    @RequestMapping(value="/user/shipping/address", method=RequestMethod.GET)
-    public ModelAndView showShipAddr() {
-    	
-    	ModelAndView mv = new ModelAndView();
-    	ShippingAddress shippingAddress = new ShippingAddress();
-    	
-    	mv.addObject("shippingAddress", shippingAddress);
-    	mv.setViewName("shipping_address");
-    	return mv;
-    }
-    @RequestMapping(value="/user/shipping/address", method=RequestMethod.POST)
-    public ModelAndView postShipAddr(@Valid ShippingAddress shippingAddress, BindingResult bindingResult) {
-    	
-    	ModelAndView mv = new ModelAndView();
-    	
-    	if (bindingResult.hasErrors()) {
-			mv.setViewName("shipping_address");
-		}
-    	
-    	shippingAddressService.saveShipInfo(shippingAddress);
-    	mv.addObject("msg", "Address has been saved successfully");
-    	mv.addObject("shippingAddress", new ShippingAddress());
-    	mv.setViewName("loginPage");
-    	return mv;
-    }*/
-    
-    //***************************************************shipping address********************************************************
-   
 
  
     @RequestMapping(value="/lot/home", method = RequestMethod.GET)

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | Lot Sale | Product List</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+	
+	<style>
+		.ui-icon, .ui-widget-content .ui-icon 
+		{
+		background-image: none;
+		}
+		
+		div#body1 {
+	        background-color: white; !important;
+	        }
+	      
+	      #tdBackground{
+	      	
+	      	background-color: white;
+	      }
+		</style>
+	
+	
+</head>
+
+
+<body>
+
+
+	<!-- -------------------------------------------------------table filter------------------------------------------------------------------- -->
+	<div id="jquery-script-menu">
+	<div class="jquery-script-center">
+	<div class="jquery-script-ads"><script type="text/javascript"><!--
+	
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script></div>
+	<div class="jquery-script-clear"></div>
+	</div>
+	</div>
+	<!-- -------------------------------------------------------table filter------------------------------------------------------------------- -->
+	
+	<div th:include="admin-header :: copy"></div>
+	<div class="container" id="body1"> 
+	<hr>
+	<h2>LOT LIST</h2>
+    <hr>
+    
+     <ul class="nav nav-tabs">
+     <li><a href="/admin/lot/list">Lot List</a></li>
+      <li><a href="/admin/create/new/lot">Create New Lot</a></li>
+     <!--  <li class="active"><a href="/admin/lot/products/{lotId}">Products</a></li>
+      
+      -->
+    </ul>
+   
+	<br>
+          
+      <div class="row">
+        <div class="col-md-12  col-sm-6">
+        <form th:action="@{/admin/add/lot/articles}" th:object="${lot}" method="POST">
+        
+             <div class="row" style="float:right;">
+			<input type="hidden" name="lot_id" th:value="${lot.lotId}" /> 
+			<input type="submit" value="Save Lot" style="padding: 5px 20px;">
+			<hr>
+			<br>
+			 
+			</div>
+		
+	       		<table class="table table-bordered" id="table_format">
+	            <thead>
+	              <tr>
+	              	
+	               <th></th>
+	               <th>EAN</th>
+	               <th>A_ProdNr</th>
+	                
+	                <th>Brand</th>
+	                <th>Product Name</th>
+	                <th>Gender</th>
+	                <th>Color</th>
+                	<th>Size</th>
+	                <th>Stock</th>
+	  
+	              </tr>
+	
+	            </thead>
+	            
+	            <tbody id="tdBackground">
+					     
+				<tr th:each="product:${products}">
+					
+					 <td><input type="checkbox" th:name="idChecked" th:value="${product.a_ean}" /></td>
+					 <td th:text="${product.a_ean}">
+					 <td th:text="${product.a_prodnr}">
+	               	
+					<td th:text="${product.p_brand}">
+					<td th:text="${product.p_name}">
+					<td th:text="${product.p_comp_zielgruppe_}">
+					<td th:text="${product.a_comp_farbe_}"></td>
+	               	<td th:text="${product.a_comp_groesse_}"></td>
+		            <td th:text="${product.a_stock}">
+		           
+	              </tr>
+				</tbody>
+	        </table>
+	        
+	    	<hr>
+		
+	      </form>
+	        
+	     
+      </div>
+      </div>
+      <hr>
+      </div>
+  <!-- -------------------------------------------------------------------table filter--------------------------------------------------- -->  
+ <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="/js/ddtf.js"></script>
+<script>
+jQuery('#table_format').ddTableFilter();
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- ------------------------------------------------------------------table filter---------------------------------------------------------------- -->
+
+      <div th:include="admin-footer :: copy"></div>
+      
+      <script>$( "th" ).resizable();</script>
+  </body>
+  </html>
