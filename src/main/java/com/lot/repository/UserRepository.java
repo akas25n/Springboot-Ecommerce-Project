@@ -15,9 +15,8 @@ import com.lot.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 
 	User findByEmail(String email);
+	
 	User findByConfirmationToken(String confirmationToken);
-	
-	
 	
 	public List<User> findAll();
 	

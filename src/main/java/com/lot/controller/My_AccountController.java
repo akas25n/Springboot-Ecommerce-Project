@@ -90,7 +90,7 @@ public class My_AccountController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/account/edit/login/details/{user_id}", method= RequestMethod.GET)
+/*	@RequestMapping(value = "/account/edit/login/details/{user_id}", method= RequestMethod.GET)
 	public ModelAndView showLogin(@PathVariable int user_id) {
 		ModelAndView mv = new ModelAndView();
 		//************************************************************************************
@@ -133,7 +133,7 @@ public class My_AccountController {
        return new ModelAndView("redirect:/lot/login");
 		
 	}
-	
+	*/
 	
 	//------------------------------------------------------updating user general info----------------------STARTS---------------
 	
@@ -147,10 +147,10 @@ public class My_AccountController {
         //************************************************************************************
         
         Optional<User> obj = userRepository.findById(user_id);
-       // User users = obj.get();
+       User users = obj.get();
         
 
-        mv.addObject("users", obj);
+        mv.addObject("users", users);
 		mv.setViewName("/my_account/user/edit-user-info");
         
 		return mv;
@@ -179,7 +179,7 @@ public class My_AccountController {
 		userRepository.save(usrs);
 		
 		mv.addObject("user", usrs);
-		mv.addObject("msg", "Info have been updated");
+		mv.addObject("msg", "Data have been updated");
 		
 		//mv.setViewName("/my_account/user/loginDetails");
 		

@@ -109,4 +109,38 @@ public class EmailService {
 		
 	}
 	
+	//#####################################################################################################
+	public MailResponse sendEmailResetPass(MailRequest request, Map<String, Object> model) {
+		
+		MailResponse mailResponse = new MailResponse();
+		MimeMessage message = mailSender.createMimeMessage();
+		
+		try {
+			
+			MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
+			
+			Template template = config.getTemplate("reset-password-link.ftl");
+			String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+			
+			helper.setTo(request.getTo());
+			helper.setText(html,true);
+			helper.setSubject(request.getSubject());
+			helper.setFrom(request.getFrom());
+			mailSender.send(message);
+			
+			
+			mailResponse.setMessage("Mail sent to : " + request.getTo());
+			mailResponse.setStatus(Boolean.TRUE);
+			
+		} catch (MessagingException | IOException | TemplateException e) {
+			mailResponse.setMessage("Mail sending failure : " + e.getMessage());
+			mailResponse.setStatus(Boolean.FALSE);
+		}
+		
+		
+		return mailResponse;
+			
+		
+	}
+	
 }// end of service

@@ -28,30 +28,21 @@
   <div style="font-size: 48px; color:blue;" >
     <b> B2B Motion Fashion</b>
   </div>
-
 </div>
-
 
 <div class="row" style="padding: 15px;">
   <div style="font-size: 24px; color: #555100;" class="col-sm-4">
     <br>
   </div>
-
 </div>
 
-
-
-<p>Dear ${name}</p>
+<p>Hello ${name}</p>
 <p> ${message1}</p>
 <p>This Email is a activity notification.Please do not replay to this mail </p>
 
 <div class="container">
 
 </br></br></br></br></br>
-
-
-
-
 
 
 

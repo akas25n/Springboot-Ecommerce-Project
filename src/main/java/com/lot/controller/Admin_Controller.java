@@ -1602,15 +1602,18 @@ public class Admin_Controller {
 		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
 		SliderImages image = obj.get();
 		
-		mv.addObject("image", image);
+//		int idd=image.getId();
+//		System.out.println("-----------------------------------------------------------------------" + idd);
 		
+		mv.addObject("image", image);
+		mv.addObject("id", id);
 		mv.setViewName("/my_account/admin/update-slider");
 		
 		return mv;
 	}
 	
 	//updating billing address...tested..working
-	@RequestMapping(value ="/update/slider/image", method=RequestMethod.POST)
+	@RequestMapping(value ="/update/slider/image/{id}", method=RequestMethod.POST)
 	public ModelAndView updateBillAddChanges(@PathVariable int id,
 											@RequestParam String image1,
 											@RequestParam String image2,
@@ -1623,15 +1626,16 @@ public class Admin_Controller {
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //******************************************************************************************** 
 		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
-		SliderImages image = obj.get();
+		SliderImages imagee = obj.get();
 
-		image.setImage1(image1);
-		image.setImage2(image2);
-		image.setImage3(image3);
+		imagee.setImage1(image1);
+		imagee.setImage2(image2);
+		imagee.setImage3(image3);
 	
-		sliderImagesRepoaitory.save(image);
+		sliderImagesRepoaitory.save(imagee);
 	
-		mv.addObject("image", image);
+		mv.addObject("image", imagee);
+		mv.addObject("id", id);
 		mv.addObject("msg", "Info have been updated");
 		
 		//mv.setViewName("/my_account/user/loginDetails");

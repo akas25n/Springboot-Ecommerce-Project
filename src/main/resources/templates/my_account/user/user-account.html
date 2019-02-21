@@ -96,8 +96,15 @@
 				</div>
 			</div>
 		</div>
+		
 	
 		<hr style="border: 2px solid grey;">
+		
+		<div th:if="${message}" 
+					class="alert alert-danger" role="alert" 
+          			th:text=${message}>
+          						
+				</div>
 		
 	</div> <!-- end of the container --> 
 	

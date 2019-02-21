@@ -132,12 +132,14 @@ public class LoginController {
             userService.saveUser(user);
             
             
+            //--------------------------------------------------------------------------------------------------------------------------------
+            
             Map<String, Object> model = new HashMap<>();
-            model.put("name", user.getFirst_name());
+            model.put("name", user.getFirst_name() + " " + user.getLast_name());
             model.put("message1", "Thank you for your registration. \n\nTo confirm your regitration, please click the link below:\n"
             						+ "http://localhost:8090" + "/confirm?token=" + user.getConfirmationToken());
             
-            
+           
             MailRequest mailRequest = new MailRequest();
             mailRequest.setName(user.getFirst_name());
             mailRequest.setFrom("noreply@domain.com");
@@ -148,6 +150,8 @@ public class LoginController {
              
             
             modelAndView.addObject("confirmationMessage", "A confirmation e-mail has been sent to " + user.getEmail());
+            //------------------------------------------------------------------------------------------------------------------------------
+            
             modelAndView.setViewName("registerPage");
 
         }
@@ -221,10 +225,7 @@ public class LoginController {
     	
     }
     
-    
-    
 
- 
     @RequestMapping(value="/lot/home", method = RequestMethod.GET)
     public ModelAndView home(){
         ModelAndView modelAndView = new ModelAndView();

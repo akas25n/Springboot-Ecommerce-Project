@@ -34,7 +34,7 @@
 				th:utext = "${errorMessage}" class="error">
 			</div>
 
-                <form th:action="@{/lot/login}" method="post">
+                <form th:action="@{/lot/login}" th:object="${user}" method="post">
                 
                 	<div align="center" th:if="${param.error}">
 			            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
@@ -50,16 +50,19 @@
          			class="form-control" placeholder="Password" required/> <br>
          			</div>
          			<div class="form-group">
-         			 <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="window.location='/my/account/shipping/address'">Sign in</button>
-					</div>
+         			 <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+					</div>								
+				</form>
+				
+					<form th:action="@{/lot/registration}" method="get">
+      					<div Class="text-center">Forgot Password? <a th:href="@{/reset/password}"><span style="color:#5cb85c;"><strong>Reset Here!</strong></span></a></div>
+					
 					</form>
 					
 					<form th:action="@{/lot/registration}" method="get">
       					<div Class="text-center">Don't have an account yet? <a th:href="@{/lot/registration}"><span style="color:#5cb85c;"><strong>Register Here!</strong></span></a></div>
 					</form>
-      				
-
-</div>
+		</div>
 
 	<div th:include="footer :: copy"></div>
 </body>

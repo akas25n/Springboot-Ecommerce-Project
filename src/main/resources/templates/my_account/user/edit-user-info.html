@@ -49,13 +49,13 @@ textarea {
     <h5><strong><span th:utext="${userName}"></span></strong></h5>
     
     <hr>
-    
+<!--     
        <ul class="nav nav-tabs">
 	     <li class="active"><a th:href="@{/my/account/edit/general/info/__${users.user_id}__}">Edit General Info</a></li>
 	      <li><a th:href="@{/my/account/edit/login/details/__${users.user_id}__}">Edit Login Details</a></li>       
     </ul>
     
-    <hr>
+    <hr> -->
 
 	<div th:if="${errorMessage != null}"
 		th:utext="${errorMessage}" class="error">
@@ -100,7 +100,7 @@ textarea {
 				    <label for="formGroupExampleInput2">Email<span  style="color:red;">*</span></label>
 				    <input th:field="*{email}" type="email" class="form-control" id="formGroupExampleInput2" required>
 				  </div> -->
-				  <hr>
+			
 				  
 				  <hr>
 				  <input type="submit" style="float:right;">
@@ -117,6 +117,7 @@ textarea {
 	<br>
 	<br>
 	<br>
+				
   </div>
   <hr>
  

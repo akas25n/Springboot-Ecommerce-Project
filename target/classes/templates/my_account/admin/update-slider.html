@@ -42,7 +42,7 @@
 		</ul>
 		    
 		<br>
-		<form action ="#" th:action="@{/admin/update/slider/image}" th:object="${image}" method="POST" enctype="multipart/form-data">
+		<form action ="#" th:action="@{/admin/update/slider/image/__${image.id}__}" th:object="${image}" method="POST" enctype="multipart/form-data">
 		<div class="row">
 		
 			<div class="col-md-12">
