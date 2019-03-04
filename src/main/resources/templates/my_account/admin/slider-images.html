@@ -32,12 +32,15 @@
 		<!-- ************************************************************************upload slider images***************************************************************************** -->
 		<div class="container">
 		<hr>
-			<h3 style="color: grey;">UPLOAD SLIDER IMAGES</h3>
+			<h3 style="color: grey;">UPLOAD CAROUSEL IMAGES</h3>
 		<hr>
 		
 		<ul class="nav nav-tabs">
 		      <li class="active"><a href="/admin/upload/slider/images">Upload Images</a></li>
-		      <li><a href="/admin/test/slider/images">Test Slider</a></li>
+		      
+		      <li><a href="/admin/slider/image/list">Carousel Image Table</a></li>
+		      <li><a href="/admin/test/slider/images">Test Carousel</a></li>
+		       
 		     <!--  <li><a th:href="@{/admin/update/slider/images/__${image.id}__}">Update Slider</a></li> -->
 		</ul>
 		    
@@ -52,22 +55,34 @@
 						<div class="form-group">
 							<label for="formGroupExampleInput">Slider Image 1</label>
 							<!-- <input th:field="*{teaserImage}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control" required="required"> -->
-							<input th:field="*{image1}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control">
+							<input th:field="*{image1}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
 						</div>
 						<hr>
 					<div class="form-group">
 						<label for="formGroupExampleInput">Slider Image 2</label>
-						<input th:field="*{image2}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control">
+						<input th:field="*{image2}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
 					</div>
 					<hr>
 					<div class="form-group">
 						<label for="formGroupExampleInput">Slider Image 3</label>
-						<input th:field="*{image3}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control">
+						<input th:field="*{image3}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
 					</div>
+						<hr>
+					
+					
+					
+					<div class="form-group">
+						<input type="checkbox" required>
+						<label style="color:red;">Did you delete the carousel table first??</label>
+					</div>
+					
+					</div>
+										
 					<br>
-					</div>
 					<br>
 				</div>
+				<br>
+				<br>
 				
 				 <button type="submit" name="save" class="btn btn-success" style="float:right; margin-right: 27px">Save Images</button>
 				 

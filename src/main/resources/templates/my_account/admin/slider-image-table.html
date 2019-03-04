@@ -78,16 +78,20 @@
 	<!-- <div th:include="filter :: copy"></div> -->
 	<div class="container" id="body1"> 
 	<hr>
-	<h2>LOT LIST</h2>
-    <hr>
+			<h3 style="color: grey;">CAROUSEL IMAGE LIST</h3>
+		<hr>
     
-     
-     <ul class="nav nav-tabs">
-     <li class="active"><a href="/admin/lot/list">Lot List</a></li>
-      <li><a href="/admin/create/new/lot">Create New Lot</a></li>
-      <!-- <li><a href="/admin/lot/products">Products</a></li> -->   
-    </ul>
-    <hr>
+    <ul class="nav nav-tabs">
+		      <li><a href="/admin/upload/slider/images">Upload Images</a></li>
+		     
+		      <li class="active"><a href="/admin/slider/image/list">Carousel Image Table</a></li>
+		      
+		       <li><a href="/admin/test/slider/images">Test Carousel</a></li>
+		     
+		</ul>
+		
+		<hr>
+    
 	
           
       <div class="row">
@@ -96,13 +100,12 @@
             <thead>
               <tr>
               	
-               <th>Teaser Image</th>
-                <th>Lot Id</th>
-                <th>Lot Title</th>
+               <th>ID</th>
+                <th>Image 1</th>
+                <th>Image 2</th>
                
-                <th>Lot Status</th>
-                <th>Lot Description</th>
-                <th>Lot Price</th>
+                <th>Image 3</th>
+                
                
                 <th>Action</th>
               </tr>
@@ -111,20 +114,17 @@
             
             <tbody id="tdBackground">
 				     
-			<tr th:each="lot:${lots}">
+			<tr th:each="sld:${slider}">
 				
-               
-              <td><img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" width="50" height="40" class="image"></td>
-              <td th:text="${lot.lotId}"></td>
-                <td th:text="${lot.lotName}"></td>
-                
-                <td th:text="${lot.lot_status}"></td>
-                <td th:text="${lot.lotDescription}"></td>
-                <td th:text="${lot.lotPrice}"></td>
+               <td th:text="${sld.id}"></td>
+              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image1}}" width="50" height="40" class="image"></td>
+              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image2}}" width="50" height="40" class="image"></td>
+              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image3}}" width="50" height="40" class="image"></td>
+              
                 
                 <td>
-                	<a th:href="@{/admin/lot/details/__${lot.lotId}__}" class="w3-button w3-green" style="color:green;">View</a> |
-                    <a th:href="@{/admin/delete/lot/__${lot.lotId}__}" class="w3-button w3-green" style="color:red;">Delete</a>
+                	<!-- <a th:href="@{/admin/test/slider/images}" class="w3-button w3-green" style="color:red;">Delete</a> -->
+                   <a th:href="@{/admin/slider/delete/__${sld.id}__}" class="w3-button w3-green" style="color:red;">Delete</a> 
                 
                 </td>
               </tr>
@@ -133,6 +133,7 @@
         </table>
  
  	<hr>
+ 	<h4 style="color:red; text-align:center;">TO UPDATE CAROUSEL IMAGES; PLEASE DELETE THE CAROUSEL TABLE FIRST!!</h4>
  	<br>
  	<hr>
  

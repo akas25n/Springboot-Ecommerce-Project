@@ -36,7 +36,7 @@ public class PassController {
 	@Autowired
 	EmailService emailService;
 	
-	
+	//display reset password form
 	@RequestMapping(value="/reset/password", method=RequestMethod.GET)
 	public ModelAndView showForm() {
 		

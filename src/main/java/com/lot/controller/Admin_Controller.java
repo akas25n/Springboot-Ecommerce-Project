@@ -1172,12 +1172,18 @@ public class Admin_Controller {
 	public ModelAndView deleteLot(@PathVariable("lotId") long lotId) {
 		ModelAndView mv = new ModelAndView();
 		
+		//Order obj = orderRepository.findByLotId(lotId);
 		Optional<Lot> newLot = lotRepository.findById(lotId);
 		Lot lots = newLot.get();
 		
+		
+		//obj.setLot(null);
 		lots.setProductList(null);
 		lotRepository.deleteById(lotId);
 		
+		
+//		orderRepository.save(obj);
+//		lotRepository.save(lots);
 		mv.addObject("lot", lots);
 
 		return new ModelAndView("redirect:/admin/lot/list");
@@ -1567,7 +1573,7 @@ public class Admin_Controller {
 		//imagesRepository.saveAll(images);
 		
 		//return "data saved";
-		return new ModelAndView("redirect:/admin/lot/home") ;
+		return new ModelAndView("redirect:/admin/test/slider/images") ;
 	}
 	
 	
@@ -1589,59 +1595,48 @@ public class Admin_Controller {
 		return mv;
 	}
 	
-	//
-	@RequestMapping(value="/update/slider/images/{id}", method=RequestMethod.GET)
-	public ModelAndView updateSliderImages(@PathVariable int id) {
+	@RequestMapping(value="/slider/image/list", method = RequestMethod.GET)
+	public ModelAndView sliderImg(@RequestParam(defaultValue="0") int page) {
 		ModelAndView mv = new ModelAndView();
-		//**************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
-		//*************************************************************************
-
-		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
-		SliderImages image = obj.get();
-		
-//		int idd=image.getId();
-//		System.out.println("-----------------------------------------------------------------------" + idd);
-		
-		mv.addObject("image", image);
-		mv.addObject("id", id);
-		mv.setViewName("/my_account/admin/update-slider");
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        
+    
+       
+       List<SliderImages> slider = sliderImagesRepoaitory.findAll();
+       
+       mv.addObject("slider", slider);
+//        mv.addObject("lots", lotRepository.findAll(new PageRequest(page, 25)));
+//        mv.addObject("currentPage", page);
+		mv.setViewName("/my_account/admin/slider-image-table");
 		
 		return mv;
 	}
 	
-	//updating billing address...tested..working
-	@RequestMapping(value ="/update/slider/image/{id}", method=RequestMethod.POST)
-	public ModelAndView updateBillAddChanges(@PathVariable int id,
-											@RequestParam String image1,
-											@RequestParam String image2,
-											@RequestParam String image3){
 	
+	
+	//delete a lot
+	// first need to find the lot to delete by id
+	//we need to set the productList null in the lot
+	// then delete the lot from the lotRepository
+	@RequestMapping(value="/slider/delete/{id}", method= RequestMethod.GET)
+	public ModelAndView deleteSliderIm(@PathVariable(value="id") int id) {
+		
 		ModelAndView mv = new ModelAndView();
-		//********************************************************************************************
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
-        //******************************************************************************************** 
+		
 		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
-		SliderImages imagee = obj.get();
+		SliderImages slider = obj.get();
+		
+		System.out.println("###############################################################################################" + id);
+		sliderImagesRepoaitory.deleteById(id);
+		
+		mv.addObject("slid", slider);
+		//mv.setViewName("/my_account/admin/slider-image-table");
+		return new ModelAndView("redirect:/admin/upload/slider/images");
+	}
+	
 
-		imagee.setImage1(image1);
-		imagee.setImage2(image2);
-		imagee.setImage3(image3);
-	
-		sliderImagesRepoaitory.save(imagee);
-	
-		mv.addObject("image", imagee);
-		mv.addObject("id", id);
-		mv.addObject("msg", "Info have been updated");
-		
-		//mv.setViewName("/my_account/user/loginDetails");
-		
-		return new ModelAndView("redirect:/admin/lot/home");
-	}	
 }// end of admin controller
 	
 	
