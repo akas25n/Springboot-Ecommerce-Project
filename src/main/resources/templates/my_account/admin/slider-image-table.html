@@ -18,7 +18,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
 	<!-- ********************************************************** pagination***************************************************** -->
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css"> -->
 	<!-- ********************************************************** pagination***************************************************** -->
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
@@ -62,7 +62,7 @@
 <body>
 
 <!-- ********************************************************** pagination***************************************************** -->
-	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- 	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 	 <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
 	    
@@ -71,7 +71,7 @@
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
 	} );
-	</script>
+	</script> -->
 	<!-- ********************************************************** pagination***************************************************** -->
 	
 	<div th:include="admin-header :: copy"></div>
@@ -82,7 +82,7 @@
 		<hr>
     
     <ul class="nav nav-tabs">
-		      <li><a href="/admin/upload/slider/images">Upload Images</a></li>
+		     <!--  <li><a href="/admin/upload/slider/images">Upload Images</a></li> -->
 		     
 		      <li class="active"><a href="/admin/slider/image/list">Carousel Image Table</a></li>
 		      
@@ -117,14 +117,14 @@
 			<tr th:each="sld:${slider}">
 				
                <td th:text="${sld.id}"></td>
-              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image1}}" width="50" height="40" class="image"></td>
-              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image2}}" width="50" height="40" class="image"></td>
-              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image3}}" width="50" height="40" class="image"></td>
+              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image1}}" width="100" height="40" class="image"></td>
+              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image2}}" width="100" height="40" class="image"></td>
+              <td><img th:src="@{'data:image/jpg;base64,'+${sld.image3}}" width="100" height="40" class="image"></td>
               
                 
                 <td>
                 	<!-- <a th:href="@{/admin/test/slider/images}" class="w3-button w3-green" style="color:red;">Delete</a> -->
-                   <a th:href="@{/admin/slider/delete/__${sld.id}__}" class="w3-button w3-green" style="color:red;">Delete</a> 
+                   <a th:href="@{/admin/slider/delete/__${sld.id}__}" class="w3-button w3-green"><strong style="color:red; text-align:center;">Delete</strong></a> 
                 
                 </td>
               </tr>
@@ -136,11 +136,14 @@
  	<h4 style="color:red; text-align:center;">TO UPDATE CAROUSEL IMAGES; PLEASE DELETE THE CAROUSEL TABLE FIRST!!</h4>
  	<br>
  	<hr>
- 
+ 	
+ 	<a th:href="@{/admin/upload/slider/images}"><h3 style="color:green; text-align:center;">Upload Carousel Images Here!</h3></a>	
+ 	<hr>
       </div>
       </div>
       </div>
-      
+      <br>
+      <br>
       <div th:include="admin-footer :: copy"></div>
       
       <script>$( "th" ).resizable();</script>

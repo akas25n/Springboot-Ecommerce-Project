@@ -18,7 +18,7 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
    <link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/campaignDetailsStyle.css}">
+ <!--  <link rel="stylesheet" type="text/css" th:href="@{/css/campaignDetailsStyle.css}"> -->
   <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
 	
   
@@ -40,6 +40,8 @@
          
         #tdBackground{
 	        background-color: white; !important;
+	        text-align: center;
+	        
 	        }
 	
 	.btn-default{
@@ -77,7 +79,7 @@
       <div class="col-md-9 col-sm-6">
         
         <div class="row">
-          <h2>Lot Details</h2>
+          <h2 style="color:grey;">Lot Details</h2>
            <span class="glyphicon glyphicon-home"></span>
           </div>
           <div class="row" id="lotDescHeader">
@@ -161,57 +163,109 @@
 		<!-- *********************************************************************************Modal******************************************************************************* -->
 		</div>
     <hr>
-    
-     
-        <div >
-        
-       
-        	<h2>Article Details</h2>
+  
+     	
+       <div>
+        	<h2 style="color:grey;">Article Details</h2>
+        	<!-- *********************************************************************************Testing******************************************************************************* -->
+			<hr>
+        <div class="col-md-12">
         	
-        	<hr>
-         <table class="table table-bordered">
-            <thead >
-              <tr>
-				<th>Article Image</th>
-                <th>A_EAN</th>
-                <th>Product Name</th>
-                <th>Brand</th>
-                <th>Gender</th>
-                 <th>Color</th>
-                <th>Size</th>
-                <th>Volume</th>
-                
-         
-              </tr>
-
-            </thead>
-            
-            <tbody id="tdBackground">
-				     
-				  <tr th:each="product:${products}">
-				  <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
-	              <td th:text="${product.a_ean}"></td>
-	               <td th:text="${product.p_name}"></td>
-	               <td th:text="${product.p_brand}"></td>
-	               <td th:text="${product.p_comp_zielgruppe_}"></td>
-	               <td th:text="${product.a_comp_farbe_}"></td>
-	               <td th:text="${product.a_comp_groesse_}"></td>
-	               <td th:text="${product.a_stock}"></td>
-      
-              </tr>
-			</tbody>
-        </table> 
+        	<div class="row">
+        	<div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
+         	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+	  			<div class="col-md-8">
+	  				Marke : <strong th:text="${product.p_brand}" style="padding-left:20px;"></strong>
+	        	</div>
+	        	<div class="col-md-4">
+	  				ArtikelNr : <strong th:text="${product.a_prodnr}" style="padding-left:20px;"></strong>
+	        	</div>
+        	</div>
+        	
+        	<div class="col-md-6">
+        	</div>
+        	</div>
+        	</div><!-- end of 1st row -->
+        	<br>
+        		<div class="row"> <!-- 2nd row -->
+        			<div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
+        		
+        			<div class="col-md-4">
+        				<img th:src="${product.a_media_image_0_}" style="width: 170px; height:200px;">
+        			</div>
+        			
+        			
+        			
+        			</div> <!-- end of for each -->
+        			<div class="col-md-8">
+        			<table class="table table-bordered">
+			            <thead >
+			              <tr>
+							
+			                <!-- <th>Gender</th> -->
+			                 <th>Color</th>
+			                <th>Size</th>
+			                <th>Volume</th>
+			              </tr>
+			
+			            </thead>
+			            
+			            <tbody id="tdBackground" >
+							     
+							  <tr th:each="product:${products}">
+							 
+				              <!--  <td th:text="${product.p_comp_zielgruppe_}"></td> -->
+				               <td th:text="${product.a_comp_farbe_}"  style="height:20px;"></td>
+				               <td th:text="${product.a_comp_groesse_}"></td>
+				               <td th:text="${product.a_stock}"></td>
+			              </tr>
+			              <tr th:each="lot : ${lots}">
+			              	<td><h4>GESAMT</h4></td>
+			              	<td><h4>-</h4></td>
+			              	<td><h4 th:text="${lot.volume}"></h4></td>
+			              </tr>
+						</tbody>
+			        </table> 
+        			</div>
+        		
+        		
+        		</div><!-- end of 2nd row -->
+        		
+        		<div class="row">
+        			<div class="col-md-4">
+        				<div th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
+        				        			
+		        			<div style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+		        				Material : <span th:text="${product.p_comp_material_} style="padding-left:20px;""></span>
+		        			</div>
+        				</div>
+        			
+        			</div>
+        			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+        			
+        				<div th:each="lot : ${lots}">
+        					
+        					<strong style="padding-left:10px;">Angebotspreis:</strong> <strong th:text="${lot.lotPrice}" style="float:right; padding-right:20px;"></strong> <span class="glyphicon glyphicon-euro"></span>
+        				</div>
+        			
+        			</div>
+        		
+        		</div>
+        		<hr>
+        		<br>
+        	</div><!-- end of for each -->
+        	</div>
         
+        <!-- *********************************************************************************ENd of Testing***************************************************************************** -->	
         <hr>
-        
-        </div>
-        
-        
-
+      <br>
+    <br>
      <div class="imageDownload">
 
-            <h2>Article Images</h2>
+          
              <hr>
+               <h2 style="color:grey;">Article Images</h2>
+               <hr>
             </div>
 
 
@@ -228,18 +282,30 @@
               </div> -->
               
               
-              <div th:each="image:${images}" class="col-sm-4">
+              <div th:each="image, iterStat:${images}" th:if="${iterStat.index} == 0" class="col-sm-4">
                   
                     <a class="thumbnail"><img th:src="${image}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
                     
               </div>
+              <div th:each="image, iterStat:${images}" th:if="${iterStat.index} == 1" class="col-sm-4">
+                  
+                    <a class="thumbnail"><img th:src="${image}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
+                    
+              </div>
+              <div th:each="image, iterStat:${images}" th:if="${iterStat.index} == 2" class="col-sm-4">
+                  
+                    <a class="thumbnail"><img th:src="${image}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
+                    
+              </div>
+              
+              
               
 				</div>
 				</div>
         <!--   ****************************Contact person starts here**************************************************************  -->
         
         <div class="row">
-          <h2>Articles Description</h2>
+          <h2 style="color:grey;">Articles Description</h2>
               <hr>
        
        	 
@@ -256,15 +322,18 @@
 
             </thead>
             
+            <!-- ****************************showing only the first element************************************************************** -->
             <tbody id="tdBackground">
 				     
-					<tr th:each="product:${products}">
+					<tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0">
 					
 	               <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
 	               <td th:text="${product.p_text}"></td>
       
               </tr>
 			</tbody>
+			<!-- ****************************showing only the first element************************************************************** -->
+			
         </table> 
        
 		

@@ -94,7 +94,6 @@ public class EmailService {
 			helper.setFrom(request.getFrom());
 			mailSender.send(message);
 			
-			
 			mailResponse.setMessage("Mail sent to : " + request.getTo());
 			mailResponse.setStatus(Boolean.TRUE);
 			

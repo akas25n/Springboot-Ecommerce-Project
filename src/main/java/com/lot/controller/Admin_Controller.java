@@ -1508,6 +1508,7 @@ public class Admin_Controller {
 	
 	//****************************************************************************************Slider images*********************************************************
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/upload/slider/images", method=RequestMethod.GET)
 	public ModelAndView uploadSliderImages() {
 		ModelAndView mv = new ModelAndView();
@@ -1518,11 +1519,9 @@ public class Admin_Controller {
 		//*************************************************************************
 		
 		SliderImages images = new SliderImages();
-		
-		
+
 		mv.addObject("img", images);
 		mv.setViewName("/my_account/admin/slider-images");
-		
 		return mv;
 	}
 	
