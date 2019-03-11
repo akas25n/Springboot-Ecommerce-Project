@@ -57,7 +57,7 @@ public class ShippingAddress {
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
-	private User user;
+	private User_Lot user_Lot;
 
 	public ShippingAddress() {
 		super();
@@ -65,7 +65,7 @@ public class ShippingAddress {
 
 	public ShippingAddress(@NotNull int shipping_add_id, @NotNull String contact_person, @NotNull String street,
 			@NotNull String city, @NotNull int zip_code, @NotNull String country, @NotNull String phone_number,
-			User user) {
+			User_Lot user_Lot) {
 		super();
 		this.shipping_add_id = shipping_add_id;
 		this.contact_person = contact_person;
@@ -74,7 +74,7 @@ public class ShippingAddress {
 		this.zip_code = zip_code;
 		this.country = country;
 		this.phone_number = phone_number;
-		this.user = user;
+		this.user_Lot = user_Lot;
 	}
 
 	public int getShipping_add_id() {
@@ -133,14 +133,14 @@ public class ShippingAddress {
 		this.phone_number = phone_number;
 	}
 
-	public User getUser() {
-		return user;
+	public User_Lot getUser() {
+		return user_Lot;
 	}
 
 
 
-	public void setUser(User user2) {
-		this.user=user2;
+	public void setUser(User_Lot user2) {
+		this.user_Lot=user2;
 		
 	}
 	

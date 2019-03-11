@@ -9,22 +9,22 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.lot.model.User;
+import com.lot.model.User_Lot;
 
 @Repository("userRepository")
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User_Lot, Integer>{
 
-	User findByEmail(String email);
+	User_Lot findByEmail(String email);
 	
-	User findByConfirmationToken(String confirmationToken);
+	User_Lot findByConfirmationToken(String confirmationToken);
 	
-	public List<User> findAll();
+	public List<User_Lot> findAll();
 	
 	@Query(value="SELECT * FROM lot_db.user u left join lot_db.user_role ur on u.user_id = ur.user_id left join lot_db.role r on ur.role_id = r.role_id WHere r.role_id = '1'", nativeQuery=true)
-	public List<User> findAllAdmin();
+	public List<User_Lot> findAllAdmin();
 	
 	@Query(value="SELECT * FROM lot_db.user u left join lot_db.user_role ur on u.user_id = ur.user_id left join lot_db.role r on ur.role_id = r.role_id WHere r.role_id = '2'", nativeQuery=true)
-	public List<User> findAllUser();
+	public List<User_Lot> findAllUser();
 	
 	
 	@Transactional

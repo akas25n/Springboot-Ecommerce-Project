@@ -42,7 +42,9 @@ public class Lot {
 	@Column(name="Lot_Price")
 	private double lotPrice;
 	
-
+	@NotNull
+	@Column(name="actual_Price")
+	private double actualPrice;
 
 	@NotNull
 	@Column(name = "lot_status")
@@ -79,7 +81,7 @@ public class Lot {
 	}
 
 
-	public Lot(@NotNull long lotId, @NotNull String lotName, @NotNull String lotDescription, @NotNull double lotPrice,
+	public Lot(@NotNull long lotId, @NotNull String lotName, @NotNull String lotDescription, @NotNull double lotPrice,@NotNull double actualPrice, 
 			@NotNull int lot_status, String createdAt, String teaserImage, Set<Product> productList) {
 		super();
 		this.lotId = lotId;
@@ -90,8 +92,19 @@ public class Lot {
 		this.createdAt = createdAt;
 		this.teaserImage = teaserImage;
 		this.productList = productList;
+		this.actualPrice= actualPrice;
 		volume = 0;
 		
+	}
+
+
+	public double getActualPrice() {
+		return actualPrice;
+	}
+
+
+	public void setActualPrice(double actualPrice) {
+		this.actualPrice = actualPrice;
 	}
 
 

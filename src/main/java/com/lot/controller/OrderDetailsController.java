@@ -22,13 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lot.model.BillingAddress;
+import com.lot.model.DeliveryStatus;
 import com.lot.model.Lot;
 import com.lot.model.MailRequest;
 import com.lot.model.Order;
 import com.lot.model.Product;
 import com.lot.model.ShippingAddress;
-import com.lot.model.User;
+import com.lot.model.User_Lot;
 import com.lot.repository.BillingAddressRepository;
+import com.lot.repository.DeliveryStatusRepository;
 import com.lot.repository.LotRepository;
 import com.lot.repository.OrderRepository;
 import com.lot.repository.ProductRepository;
@@ -60,6 +62,9 @@ public class OrderDetailsController {
 	@Autowired
 	ShippingAddressRepository shippingAddressRepository;
 	
+	@Autowired
+	DeliveryStatusRepository deliveryStatusRepository;
+	
 	//******************************************************************************Order details*****************************************************************
 	@RequestMapping(value = "/details/{lotId}",method=RequestMethod.GET)
 	public ModelAndView showOrderdetails(@PathVariable("lotId") long lotId)
@@ -68,10 +73,10 @@ public class OrderDetailsController {
 		
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
         //********************************************************************************************
-        int user_id = user.getId();
+        int user_id = user_Lot.getId();
         
         BillingAddress billAddress= billRepo.findByUserId(user_id);
         
@@ -98,7 +103,7 @@ public class OrderDetailsController {
 
 	}
 	
-	@RequestMapping(value="AGB", method=RequestMethod.GET)
+	@RequestMapping(value="/AGB", method=RequestMethod.GET)
 	public ModelAndView showAGB() {
 		ModelAndView mv = new ModelAndView();
 		
@@ -107,7 +112,7 @@ public class OrderDetailsController {
 		return mv;
 	}
 	
-	@RequestMapping(value="wiederruf", method=RequestMethod.GET)
+	@RequestMapping(value="/wiederruf", method=RequestMethod.GET)
 	public ModelAndView showWiederruf() {
 		ModelAndView mv = new ModelAndView();
 		
@@ -126,11 +131,11 @@ public class OrderDetailsController {
 		
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
         //********************************************************************************************
         
-       int user_id = user.getId();
+       int user_id = user_Lot.getId();
        ShippingAddress shippAddress = shippingAddressRepository.findByUserId(user_id);
         
 		Optional<Lot> new_obj = lotRepository.findById(lotId);
@@ -142,15 +147,15 @@ public class OrderDetailsController {
 
         //----------------------------------------------------------------------------------------------------------------------
         Map<String, Object> model = new HashMap<>();
-        model.put("name", user.getFirst_name() + user.getLast_name());
+        model.put("name", user_Lot.getFirst_name() + user_Lot.getLast_name());
         model.put("message1", "Thank you for your purchase. You can see the current status of your order at any time under " + "http://localhost:8090/order/list"+ "." + 
         						"\nIf you have any questions about your customer account or your order, \nplease send us an e-mail.");
         
    
         MailRequest mailRequest = new MailRequest();
-        mailRequest.setName(user.getFirst_name());
+        mailRequest.setName(user_Lot.getFirst_name());
         mailRequest.setFrom("noreply@domain.com");
-        mailRequest.setTo(user.getEmail());
+        mailRequest.setTo(user_Lot.getEmail());
         mailRequest.setSubject("Order confirmation");
         
         emailService.sendEmail_confirm_order(mailRequest, model);
@@ -175,18 +180,20 @@ public class OrderDetailsController {
 		ModelAndView mv = new ModelAndView();
 		//**********************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
         //***********************************************************************
         
-        int user_id = user.getId();
-        
+        int user_id = user_Lot.getId();
+      //----------------------------------------------------------------------------------------  
+        ShippingAddress shipAdd = shippingAddressRepository.findByUserId(user_id);
+        BillingAddress billAdd= billRepo.findByUserId(user_id);
+      //--------------------------------------------------------------------------------------  
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		
 		Optional<Lot> newLot = lotRepository.findById(lotId);
 		Lot lot = newLot.get();
-		
 		
 		Order obj = orderRepository.findByUserAndLot(user_id, lotId);
 		
@@ -199,7 +206,9 @@ public class OrderDetailsController {
 			orderObj.setOrder_status(true);
 			orderObj.setOrderDate(formatter.format(date));
 			orderObj.setLot(lot);
-			orderObj.setUser(user);
+			orderObj.setUser(user_Lot);
+			orderObj.setShippingAddress(shipAdd);
+			orderObj.setBillingAddress(billAdd);
 			
 			orderRepository.save(orderObj);
 			
@@ -223,11 +232,11 @@ public class OrderDetailsController {
 		ModelAndView mv = new ModelAndView();
 		//**************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByEmail(auth.getName());
-		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		User_Lot user_Lot = userService.findUserByEmail(auth.getName());
+		mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
 		//*************************************************************************
 		
-		int user_id = user.getId();
+		int user_id = user_Lot.getId();
 		
 		List<Order> oderList = orderRepository.findByUserId(user_id);
 		mv.addObject("orderLists", oderList);

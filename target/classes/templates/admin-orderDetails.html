@@ -102,7 +102,7 @@
 	<br>
 	<div th:each="lot:${lots}">
 	<div class="row" style="text-align: center; background-color: #d3d3d361; padding:10px;">
-		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px;">
+		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px; padding:7px;">
 		
 		<div class="col-sm-3">
 			<strong>Lot Details : </strong>
@@ -160,9 +160,17 @@
 			        </table>
 			</div>
 			<br>
+			<div class="row" style="text-align: center; background-color: #d3d3d361; padding:10px;">
+			<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px; padding:7px;">
 			
-			<input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme diesen ausdrücklich zu.<a href="/admin/order/AGB"> [Anzeigen]</a><br>
-			<input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Widerrufsbelehrung gelesen.<a href="#"> [Anzeigen]</a><br>	
+			<p style="color:red;">Please read the AGB and Wiederruf before you confirm your purchase! <a href="/admin/order/AGB">AGB</a> and <a href="/admin/order/wiederruf">Wiederruf</a></p>
+			      
+			</div>
+			</div>
+		
+			
+			<!-- <input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme diesen ausdrücklich zu.<a href="/admin/order/AGB"> [Anzeigen]</a><br>
+			<input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Widerrufsbelehrung gelesen.<a href="#"> [Anzeigen]</a><br>	 -->
 			
 			<br>
 
@@ -196,6 +204,7 @@
 		</div>
 		<hr>
 	</div>
+	<br>
 	<br>
 	<hr>
 	<!-- </form> -->

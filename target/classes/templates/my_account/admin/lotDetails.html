@@ -52,6 +52,10 @@
 		th{
 	text-align:center;
 	}
+	
+	#contactPersonImage{
+		height: 120px;
+	}
 	</style>
 </head>
 <body>
@@ -61,8 +65,12 @@
 
 <div th:include="admin-header :: copy"></div>
 		
-	<div th:include="filter :: copy"></div>
-
+	<!-- <div th:include="filter :: copy"></div> -->
+	
+	
+	<hr>
+	<hr>
+	
 	<div class="container">
 	<div th:each="lot : ${lots}">
 	<div class="row">
@@ -145,8 +153,8 @@
 			                        
 			                        <div class="col-sm-6">
 			                          <p> <span class="glyphicon glyphicon-user"></span> Motion Fashion</p>
-			                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 22 33 55 33</p>
-			                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:rayhan@example.com">  rayhan@example.com</a>
+			                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 40 55 2 880</p>
+			                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:info@motion-fashion.de">  info@motion-fashion.de</a>
 			                    </div>
 			                    
 			                   
@@ -173,9 +181,10 @@
         	
         	<div class="row">
         	<div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
-         	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+         	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
 	  			<div class="col-md-8">
-	  				Marke : <strong th:text="${product.p_brand}" style="padding-left:20px;"></strong>
+	  				Marke : <strong th:text="${product.p_brand}" style="padding-left:20px;"> </strong>
+	  				(<strong th:text="${product.p_comp_zielgruppe_}"></strong>)
 	        	</div>
 	        	<div class="col-md-4">
 	  				ArtikelNr : <strong th:text="${product.a_prodnr}" style="padding-left:20px;"></strong>
@@ -205,7 +214,7 @@
 			                <!-- <th>Gender</th> -->
 			                 <th>Color</th>
 			                <th>Size</th>
-			                <th>Volume</th>
+			                <th style="border-left: 2px solid black;">Volume</th>
 			              </tr>
 			
 			            </thead>
@@ -217,12 +226,12 @@
 				              <!--  <td th:text="${product.p_comp_zielgruppe_}"></td> -->
 				               <td th:text="${product.a_comp_farbe_}"  style="height:20px;"></td>
 				               <td th:text="${product.a_comp_groesse_}"></td>
-				               <td th:text="${product.a_stock}"></td>
+				               <td th:text="${product.a_stock}" style="border-left: 2px solid black;"></td>
 			              </tr>
-			              <tr th:each="lot : ${lots}">
+			              <tr th:each="lot : ${lots}" style="border-top: 2px solid black;">
 			              	<td><h4>GESAMT</h4></td>
 			              	<td><h4>-</h4></td>
-			              	<td><h4 th:text="${lot.volume}"></h4></td>
+			              	<td th:text="${lot.volume}" style="border: 2px solid black; font-size: 20px;"></td>
 			              </tr>
 						</tbody>
 			        </table> 
@@ -235,17 +244,17 @@
         			<div class="col-md-4">
         				<div th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
         				        			
-		        			<div style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+		        			<div style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
 		        				Material : <span th:text="${product.p_comp_material_}" style="padding-left:20px;"></span>
 		        			</div>
         				</div>
         			
         			</div>
-        			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+        			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
         			
         				<div th:each="lot : ${lots}">
-        					
-        					<strong style="padding-left:10px;">Angebotspreis:</strong> <strong th:text="${lot.lotPrice}" style="float:right; padding-right:20px;"></strong> <span class="glyphicon glyphicon-euro"></span>
+        					<p><span style="padding-left:10px;">Unverbindliche Preisempfehlung:</span> <span th:text="${lot.actualPrice}" style="float:right; color: red;"></span> <span class="glyphicon glyphicon-euro"></span></p> 
+        					<strong style="padding-left:10px;">Angebotspreis:</strong> <strong th:text="${lot.lotPrice}" style="float:right;"></strong> <span class="glyphicon glyphicon-euro"></span>
         				</div>
         			
         			</div>
@@ -339,18 +348,18 @@
 		
 			<hr>
           <div id="contactPerson">
-                  <h2 style="text-align:center;">Your Contact Person</h2>
+                  <h2 style="text-align:center; color:grey;">Your Contact Person</h2>
                   <hr>
                       <div class="row">
-                      <div class="col-sm-3"></div>
-                        <div class="col-sm-3">
+                      <div class="col-sm-4"></div>
+                        <div class="col-sm-2">
                         <img src="/images/contact.jpg" class="thumbnail" id="contactPersonImage">
                         </div>
                         
                         <div class="col-sm-3">
-                          <p> <span class="glyphicon glyphicon-user"></span> Rayhanur Rahman</p>
-                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 22 33 55 33</p>
-                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:rayhan@example.com">  rayhan@example.com</a>
+                          <p> <span class="glyphicon glyphicon-user"></span> Motion Fashion</p>
+                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 40 55 2 880</p>
+                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:info@motion-fashion.de">  info@motion-fashion.de</a>
                     </div>
                     
                     <div class="col-sm-3"></div>

@@ -77,7 +77,7 @@
 	
 	<div th:include="admin-header :: copy"></div>
 	<!-- <div th:include="filter :: copy"></div> -->
-	<div class="container-fluid" id="body1"> 
+	<div class="container" id="body1"> 
 	<hr>
 	<h2>ORDER DETAILS</h2>
     <hr>
@@ -91,27 +91,20 @@
                 	<th>Order Id</th>
 			      	<th>Order Date</th>
 			      
-			 		<th>User First Name</th>
-			 		<th>User Last Name</th>
-			 		<th>User Email Address</th>
-			 		<th>Company</th>
+			 		<th>User Id</th>
+			 
 			 		
 			 		<th>Lot Id</th>
-			 		<th>Lot Name</th>
-			 		<th>Lot Price</th>
-			 		
+			 
 			 		<!-- Shipping Address -->
-			 		<th>Contact Person</th>
-			 		<th>Street & House No.</th>
-			 		<th>City</th>
-			 		<th>Zip Code</th>
-			 		<th>Country</th>
-			 		<th>Phone Number</th>
+			 		<th>Shipping Address Id</th>
 			 		
+	
 			 		<!-- Billing address -->
 			 		<th>Billing Address Id</th>
 			 		
-                <th>Action</th>
+			 		<th>Current Delivery Status</th>
+                	<th>Delivery Status</th>
               </tr>
 
             </thead>
@@ -123,28 +116,23 @@
 			      <td th:text="${orderList.orderId}"></td>
 			      <td th:text="${orderList.orderDate}"></td>
 			      
-			      <td th:text="${orderList.getUser().getFirst_name()}"></td>
-			      <td th:text="${orderList.getUser().getLast_name()}"></td>
-			      <td th:text="${orderList.getUser().getEmail()}"></td>
-			      <td th:text="${orderList.getUser().getCompany()}"></td>
-			      
+			      <td th:text="${orderList.getUser().getUser_id()}"></td>
+			  
 			      <td th:text="${orderList.getLot().getLotId()}"></td>
-			      <td th:text="${orderList.getLot().getLotName()}"></td>
-			      <td th:text="${orderList.getLot().getLotPrice()}"></td>
 			      
-			     <td></td>
-			     <td></td>
-			     <td></td>
-			     <td></td>
-			     <td></td>
-			     <td></td>
+			     <td th:text="${orderList.getShippingAddress().getShipping_add_id()}"></td>
+			     <td th:text="${orderList.getBillingAddress().getBilling_add_id()}"></td>
+			  
 			     
-			     <td></td>
+			     <td th:text="${orderList.delivery_status}"></td>
+			     <td>
+			     	
+			     	<a href="/admin/order/delivery/status" style="color:green;">Update Status</a>
+			     
+			     </td>
 			     
 			     
-                <td>
-                	<a href="#" class="w3-button w3-green" style="color:green;">View</a>
-                </td>
+                
               </tr>
 			</tbody>
         </table>

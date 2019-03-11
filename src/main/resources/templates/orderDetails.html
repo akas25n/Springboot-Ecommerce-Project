@@ -50,7 +50,7 @@
 	<hr>
 	
 	<!-- <form th:object="${lt}" action="#" th:action="@{/order/list/__${lt.lotId}__}" method=GET> -->
-	<form>
+	<!-- <form> -->
 	<div class="row" >
 		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
 			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
@@ -163,9 +163,18 @@
 
 			</div>
 			<br>
-				
-				<input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme diesen ausdrücklich zu.<a href="/order/AGB"> [Anzeigen]</a><br>
-				<input type="checkbox" id="myCheck" name="vehicle" value="Bike" required> Ich habe die Widerrufsbelehrung gelesen.<a href="/order/wiederruf"> [Anzeigen]</a><br>	
+		
+			
+		<div class="row" style="text-align: center; background-color: #d3d3d361;">
+		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px; padding:10px;">
+			
+			<p style="color:red;">Please read the AGB and Wiederruf before you confirm your purchase! <a href="/order/AGB">AGB</a> and <a href="/order/wiederruf">Wiederruf</a></p>
+		    
+		</div>
+		</div>
+		
+				<!-- <input type="checkbox" id="mycheckbox" name="vehicle" value="Bike" required> Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme diesen ausdrücklich zu.<a href="/order/AGB"> [Anzeigen]</a><br>
+				<input type="checkbox" id="mycheckbox" name="vehicle" value="Bike" required> Ich habe die Widerrufsbelehrung gelesen.<a href="/order/wiederruf"> [Anzeigen]</a><br>	 -->
 			
 				<br>
 
@@ -191,12 +200,12 @@
 			<br>
 			
 			<div th:each="lot:${lots}">
-			<a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a>
+			 <a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a> 
 				<!-- <a th:href="@{/admin/order/list}" class="btn btn-default"><strong>Confirm your purchase</strong></a> -->
 				</div>
 				
 				
-			<!-- <input type="submit" value="Confirm your purchase" th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"></input> -->
+			<!--  <input type="submit" value="Confirm your purchase" th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"></input>  -->
 			<br>
 			<br>
 		</div>
@@ -204,7 +213,7 @@
 	</div>
 	<br>
 	<hr>
-	</form> 
+<!-- 	</form>  -->
 	
 	</div> <!-- end of the container -->
 	

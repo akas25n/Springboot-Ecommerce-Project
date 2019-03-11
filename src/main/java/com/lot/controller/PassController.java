@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lot.model.MailRequest;
-import com.lot.model.User;
+import com.lot.model.User_Lot;
 import com.lot.service.EmailService;
 import com.lot.service.UserService;
 import com.nulabinc.zxcvbn.Strength;
@@ -54,36 +54,36 @@ public class PassController {
     public ModelAndView processForm(@RequestParam ("email") String email, HttpServletRequest request) {
     	ModelAndView mv = new ModelAndView();
     	
-    	User user = userService.findUserByEmail(email);
+    	User_Lot user_Lot = userService.findUserByEmail(email);
     	
-    	if (user == null){
+    	if (user_Lot == null){
     		mv.addObject("message", "Oops, we did not find an account for this email address.");	
 		}else {
-			user.getClass();
+			user_Lot.getClass();
 			
 			// generate random number token
-			user.setConfirmationToken(UUID.randomUUID().toString());
+			user_Lot.setConfirmationToken(UUID.randomUUID().toString());
 			
 			// set token to database
-			userService.saveUser(user);
+			userService.saveUser(user_Lot);
 			
 			//String appUrl = request.getScheme() + "://" + request.getServerName();
 
 		     //--------------------------------------------------------------------------------------------------------------------------------
             Map<String, Object> model = new HashMap<>();
-            model.put("name", user.getFirst_name() + " " + user.getLast_name());
+            model.put("name", user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
             model.put("message1", "To reset your password, please click the link below:\n"
-            						+ "http://localhost:8090" + "/confirm?token=" + user.getConfirmationToken());
+            						+ "http://localhost:8090" + "/confirm?token=" + user_Lot.getConfirmationToken());
             
             MailRequest mailRequest = new MailRequest();
-            mailRequest.setName(user.getFirst_name());
+            mailRequest.setName(user_Lot.getFirst_name());
             mailRequest.setFrom("noreply@domain.com");
-            mailRequest.setTo(user.getEmail());
+            mailRequest.setTo(user_Lot.getEmail());
             mailRequest.setSubject("Reset Password");
             
             emailService.sendEmailResetPass(mailRequest, model);
              
-            mv.addObject("confirmationMessage", "A password reset link has been sent to " + user.getEmail());
+            mv.addObject("confirmationMessage", "A password reset link has been sent to " + user_Lot.getEmail());
             //------------------------------------------------------------------------------------------------------------------------------
             mv.setViewName("reset-password");
 		}
@@ -101,12 +101,12 @@ public class PassController {
     public ModelAndView confirPass(@RequestParam("token") String token) {
     	
     	ModelAndView modelAndView = new ModelAndView();
-    	User user = userService.findByConfirmationToken(token);
+    	User_Lot user_Lot = userService.findByConfirmationToken(token);
     	
-    	if(user == null) { // if no token found in database
+    	if(user_Lot == null) { // if no token found in database
     		modelAndView.addObject("invalidToken", "Oops! This is an invalid confirmaion link.");
     	}else {// token found
-    		modelAndView.addObject("confirmationToken", user.getConfirmationToken());
+    		modelAndView.addObject("confirmationToken", user_Lot.getConfirmationToken());
     	}
     	
     	modelAndView.setViewName("confirm-password");
@@ -141,16 +141,16 @@ public class PassController {
 		}
     	
     	//find the user associated with the reset token
-    	User user = userService.findByConfirmationToken(requestParams.get("token"));
+    	User_Lot user_Lot = userService.findByConfirmationToken(requestParams.get("token"));
     	
     	//set new password
-    	user.setPassword(bCryptPasswordEncoder.encode(requestParams.get("password")));
+    	user_Lot.setPassword(bCryptPasswordEncoder.encode(requestParams.get("password")));
     	
     	//set user to enabled
-    	user.setEnabled(true);
+    	user_Lot.setEnabled(true);
     	
     	//save the user
-    	userService.saveUser(user);
+    	userService.saveUser(user_Lot);
     	
     	modelAndView.addObject("successMessage", "Your password has been changed!");
 //      ----------------------------------------------------------------------------------------------------testing---	 	

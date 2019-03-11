@@ -97,17 +97,17 @@ textarea {
 		<br>
 		
 		<form th:action="@{/admin/update_user_role}" method=POST>				  
-		<div style="border: 1px solid grey; border-radius: 5px; background-color: #add8e685;">
-			<h4 style="text-align: center; color: #6600cc;">Current Role: 
+		<div style="border: 1px solid grey; border-radius: 5px; background-color: #587774;">
+			<h4 style="text-align: center; color: #a1e50d;">Current Role: 
 							<span th:each="role,iterStat : ${user.roles}">
 			               	<span th:text="${role.role}"/>
 			               	</h4>
 			<hr>
-			<h4 style="text-align: center; color: #0059b3;">Change User Role</h4>
+			<h4 style="text-align: center; color: white;">Change User Role</h4>
 				<hr>
 				  
 				   <div class="form-group" style="padding-left:10px;">
-				    <label for="formGroupExampleInput2"> Role </label>
+				    <label for="formGroupExampleInput2" style="color: #a1e50d;"> Role </label>
 				    
 				    <select name="attribute_select">
 				    	<option th:value="ADMIN">ADMIN</option>
