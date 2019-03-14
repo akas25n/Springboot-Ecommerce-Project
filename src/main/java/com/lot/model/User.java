@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
-public class User_Lot {
+public class User {
 
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,7 +62,7 @@ public class User_Lot {
 	    
 	    @ManyToMany(cascade = CascadeType.ALL)
 	    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	    private Set<Role_User> role_Users;
+	    private Set<Role> roles;
 	    
 
 		public int getUser_id() {
@@ -157,13 +157,13 @@ public class User_Lot {
 		}
 
 
-		public Set<Role_User> getRoles() {
-			return role_Users;
+		public Set<Role> getRoles() {
+			return roles;
 		}
 
 
-		public void setRoles(Set<Role_User> role_Users) {
-			this.role_Users = role_Users;
+		public void setRoles(Set<Role> roles) {
+			this.roles = roles;
 		}
     
 }

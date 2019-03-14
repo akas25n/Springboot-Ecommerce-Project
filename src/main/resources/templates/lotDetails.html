@@ -52,6 +52,10 @@
 		th{
 	text-align:center;
 	}
+	
+	#contactPersonImage{
+		height: 120px;
+	}
 	</style>
 </head>
 <body>
@@ -61,8 +65,12 @@
 
 <div th:include="header :: copy"></div>
 		
-	<div th:include="filter :: copy"></div>
-
+	<!-- <div th:include="filter :: copy"></div> -->
+	
+	
+	<hr>
+	<hr>
+	
 	<div class="container">
 	<div th:each="lot : ${lots}">
 	<div class="row">
@@ -120,7 +128,7 @@
             
           </div>
           <hr>
-          <a th:href="@{/my/account/show/shipping/address/__${lot.lotId}__}" class="btn btn-default">Proceed to Buy</a>   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Your Contact Person</a>
+          <a th:href="@{/admin/account/show/shipping/address/__${lot.lotId}__}" class="btn btn-default">Proceed to Buy</a>   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Your Contact Person</a>
 
       </div>
 			</div>
@@ -145,8 +153,8 @@
 			                        
 			                        <div class="col-sm-6">
 			                          <p> <span class="glyphicon glyphicon-user"></span> Motion Fashion</p>
-			                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 22 33 55 33</p>
-			                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:rayhan@example.com">  rayhan@example.com</a>
+			                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 40 55 2 880</p>
+			                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:info@motion-fashion.de">  info@motion-fashion.de</a>
 			                    </div>
 			                    
 			                   
@@ -175,7 +183,8 @@
         	<div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
          	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
 	  			<div class="col-md-8">
-	  				Marke : <strong th:text="${product.p_brand}" style="padding-left:20px;"></strong>
+	  				Marke : <strong th:text="${product.p_brand}" style="padding-left:20px;"> </strong>
+	  				(<strong th:text="${product.p_comp_zielgruppe_}"></strong>)
 	        	</div>
 	        	<div class="col-md-4">
 	  				ArtikelNr : <strong th:text="${product.a_prodnr}" style="padding-left:20px;"></strong>
@@ -244,7 +253,7 @@
         			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
         			
         				<div th:each="lot : ${lots}">
-        					<p><span style="padding-left:10px;">Unverbindliche Preisempfehlung:</span> <span th:text="${lot.actualPrice}" style="float:right; color: red;"></span> <span class="glyphicon glyphicon-euro"></span></p>
+        					<p><span style="padding-left:10px;">Unverbindliche Preisempfehlung:</span> <span th:text="${lot.actualPrice}" style="float:right; color: red;"></span> <span class="glyphicon glyphicon-euro"></span></p> 
         					<strong style="padding-left:10px;">Angebotspreis:</strong> <strong th:text="${lot.lotPrice}" style="float:right;"></strong> <span class="glyphicon glyphicon-euro"></span>
         				</div>
         			
@@ -339,7 +348,7 @@
 		
 			<hr>
           <div id="contactPerson">
-                  <h2 style="text-align:center;">Your Contact Person</h2>
+                  <h2 style="text-align:center; color:grey;">Your Contact Person</h2>
                   <hr>
                       <div class="row">
                       <div class="col-sm-4"></div>
@@ -348,9 +357,9 @@
                         </div>
                         
                         <div class="col-sm-3">
-                          <p> <span class="glyphicon glyphicon-user"></span> Rayhanur Rahman</p>
-                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 22 33 55 33</p>
-                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:rayhan@example.com">  rayhan@example.com</a>
+                          <p> <span class="glyphicon glyphicon-user"></span> Motion Fashion</p>
+                          <p> <span class="glyphicon glyphicon-phone-alt"></span> (+49) 40 55 2 880</p>
+                        <span class="glyphicon glyphicon-envelope"></span><a href="mailto:info@motion-fashion.de">  info@motion-fashion.de</a>
                     </div>
                     
                     <div class="col-sm-3"></div>

@@ -43,7 +43,7 @@ public class Order {
 
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable=false)
-	private User_Lot user_Lot;
+	private User user;
 	
 
 	@OneToOne(fetch=FetchType.LAZY)
@@ -65,14 +65,14 @@ public class Order {
 		
 	}
 
-	public Order(@NotNull long orderId, String orderDate, boolean order_status, String delivery_status, Lot lot, User_Lot user_Lot,
+	public Order(@NotNull long orderId, String orderDate, boolean order_status, String delivery_status, Lot lot, User user,
 			ShippingAddress shippingAddress, BillingAddress billingAddress) {
 		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
 		this.order_status = order_status;
 		this.lot = lot;
-		this.user_Lot = user_Lot;
+		this.user = user;
 		this.shippingAddress = shippingAddress;
 		this.billingAddress = billingAddress;
 		this.delivery_status = delivery_status;
@@ -135,14 +135,14 @@ public class Order {
 
 
 
-	public User_Lot getUser() {
-		return user_Lot;
+	public User getUser() {
+		return user;
 	}
 
 
 
-	public void setUser(User_Lot user_Lot) {
-		this.user_Lot = user_Lot;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	

@@ -27,7 +27,7 @@ import com.lot.model.Lot;
 import com.lot.model.Order;
 import com.lot.model.ResourceNotFoundException;
 import com.lot.model.ShippingAddress;
-import com.lot.model.User_Lot;
+import com.lot.model.User;
 import com.lot.repository.BillingAddressRepository;
 import com.lot.repository.LotRepository;
 import com.lot.repository.ShippingAddressRepository;
@@ -68,11 +68,11 @@ public class My_AccountController {
 		
 		//************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //************************************************************************************
 
-        mv.addObject("users", user_Lot);
+        mv.addObject("users", user);
         mv.setViewName("/my_account/user/user-account");
 		return mv;
 	}
@@ -82,8 +82,8 @@ public class My_AccountController {
 	public ModelAndView showOders() {
 		ModelAndView mv = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         
         // user can see his order list
 		mv.setViewName("/my_account/user/your_orders");
@@ -142,15 +142,15 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //************************************************************************************
         
-        Optional<User_Lot> obj = userRepository.findById(user_id);
-       User_Lot user_Lots = obj.get();
+        Optional<User> obj = userRepository.findById(user_id);
+       User users = obj.get();
         
 
-        mv.addObject("users", user_Lots);
+        mv.addObject("users", users);
 		mv.setViewName("/my_account/user/edit-user-info");
         
 		return mv;
@@ -168,8 +168,8 @@ public class My_AccountController {
 			
 		ModelAndView mv = new ModelAndView();
 	
-		Optional<User_Lot> obj = userRepository.findById(user_id); 
-		User_Lot usrs = obj.get();
+		Optional<User> obj = userRepository.findById(user_id); 
+		User usrs = obj.get();
 
 		usrs.setFirst_name(first_name);
 		usrs.setLast_name(last_name);
@@ -238,10 +238,10 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//************************************************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //************************************************************************************************************************
-        Optional<User_Lot> usr = userRepository.findById(user_id);
+        Optional<User> usr = userRepository.findById(user_id);
         //User users = obj.get();
         //Note: If i dont use obj.get() then i have do..mv.addObject("user", usr);
         //if i user like User user= usr.get();---then i dont need mv.addObject();..i have use user directly int the link. 
@@ -300,8 +300,8 @@ public class My_AccountController {
 		
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
       
         BillingAddress billingAddressInfo = new BillingAddress();
@@ -320,11 +320,11 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
 
-        int user_id = user_Lot.getId();
+        int user_id = user.getId();
         BillingAddress billAddress = billingAddressRepository.findByUserId(user_id);
 
         mv.addObject("ba", billAddress);
@@ -348,10 +348,10 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //******************************************************************************************** 
-		int user_id = user_Lot.getId();
+		int user_id = user.getId();
 		BillingAddress bAdd = billingAddressRepository.findByUserId(user_id);
 
 		Lot lot = new Lot();
@@ -385,8 +385,8 @@ public class My_AccountController {
 		
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
       
         Optional<Lot> obj = lotRepository.findById(lotId);
@@ -410,8 +410,8 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-		        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+		        User user = userService.findUserByEmail(auth.getName());
+		        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		//********************************************************************************************        
 		
 		if (bindingResult.hasErrors()) {
@@ -424,7 +424,7 @@ public class My_AccountController {
 		Optional<Lot> obj = lotRepository.findById(lotId);
         Lot lot = obj.get();
         
-		customerBillingAddressInfo.setUser(user_Lot);
+		customerBillingAddressInfo.setUser(user);
 		customerBillingAddressInfoService.saveBillInfo(customerBillingAddressInfo);
 		
 		mv.addObject("message", "Address have been successfully saved");
@@ -441,11 +441,11 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
 
-        int user_id = user_Lot.getId();
+        int user_id = user.getId();
         BillingAddress billAddress = billingAddressRepository.findByUserId(user_id);
 
         Optional<Lot> obj = lotRepository.findById(lotId);
@@ -472,10 +472,10 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //******************************************************************************************** 
-		int user_id = user_Lot.getId();
+		int user_id = user.getId();
 		BillingAddress bAdd = billingAddressRepository.findByUserId(user_id);
 
 		Optional<Lot> lot = lotRepository.findById(lotId);
@@ -504,8 +504,8 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-		        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+		        User user = userService.findUserByEmail(auth.getName());
+		        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		//********************************************************************************************        
 		
 		if (bindingResult.hasErrors()) {
@@ -513,9 +513,9 @@ public class My_AccountController {
 			
 		}
 		
-		int user_id = user_Lot.getId();
+		int user_id = user.getId();
 		
-		customerBillingAddressInfo.setUser(user_Lot);
+		customerBillingAddressInfo.setUser(user);
 		customerBillingAddressInfoService.saveBillInfo(customerBillingAddressInfo);
 		
 		mv.addObject("message", "Address have been successfully saved");
@@ -533,14 +533,14 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
         
         Optional<Lot> newLot = lotRepository.findById(lotId);
         Lot lots = newLot.get();
         
-        int user_id=user_Lot.getUser_id();
+        int user_id=user.getUser_id();
 		
         billingAddress = (@Valid BillingAddress) billingAddressRepository.findByUserId(user_id);
 		
@@ -564,8 +564,8 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
 
         ShippingAddress customerShippingAddressInfo = new ShippingAddress();
@@ -584,11 +584,11 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //********************************************************************************************
 
-        int user_id = user_Lot.getId();
+        int user_id = user.getId();
         ShippingAddress customerShippingAddressInfo = shippingAddressRepository.findByUserId(user_id);
         
         //System.out.println("-------------------------------------------------------------------------------------------------" + shipping_add_id);
@@ -615,10 +615,10 @@ public class My_AccountController {
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //******************************************************************************************** 
-		int user_id = user_Lot.getId();
+		int user_id = user.getId();
 		ShippingAddress sAdd = shippingAddressRepository.findByUserId(user_id);
 
 	
@@ -650,8 +650,8 @@ public class My_AccountController {
 		
 		//********************************************************************************************
 				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-		        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+		        User user = userService.findUserByEmail(auth.getName());
+		        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		        //********************************************************************************************
 		        
 		if (bindingResult.hasErrors()) {
@@ -659,8 +659,8 @@ public class My_AccountController {
 			
 		}
 		
-		int user_id=user_Lot.getId();
-		customerShippingAddressInfo.setUser(user_Lot);
+		int user_id=user.getId();
+		customerShippingAddressInfo.setUser(user);
 		customerShippingAddressInfoService.saveShipInfo(customerShippingAddressInfo);
 		
 		mv.addObject("message", "Address have been successfully saved");
@@ -676,8 +676,8 @@ public ModelAndView showOrderdetailsLot(@PathVariable long lotId)
 	ModelAndView mv = new ModelAndView();
 	//********************************************************************************************
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-    mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+    User user = userService.findUserByEmail(auth.getName());
+    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
     //********************************************************************************************
 
     Optional<Lot> obj = lotRepository.findById(lotId);
@@ -699,13 +699,13 @@ public ModelAndView editShipAddressLot(@PathVariable long lotId)
 	ModelAndView mv = new ModelAndView();
 	//********************************************************************************************
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-    mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+    User user = userService.findUserByEmail(auth.getName());
+    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
     //********************************************************************************************
 
     Optional<Lot> obj = lotRepository.findById(lotId);
     Lot lot = obj.get();
-    int user_id = user_Lot.getId();
+    int user_id = user.getId();
     ShippingAddress customerShippingAddressInfo = shippingAddressRepository.findByUserId(user_id);
     
     //System.out.println("-------------------------------------------------------------------------------------------------" + shipping_add_id);
@@ -733,10 +733,10 @@ public ModelAndView saveShipAddChangesLot(@PathVariable long lotId,
 	ModelAndView mv = new ModelAndView();
 	//********************************************************************************************
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-    mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+    User user = userService.findUserByEmail(auth.getName());
+    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
     //******************************************************************************************** 
-	int user_id = user_Lot.getId();
+	int user_id = user.getId();
 	ShippingAddress sAdd = shippingAddressRepository.findByUserId(user_id);
 
 
@@ -771,8 +771,8 @@ public ModelAndView saveSHippingAddressLot(@PathVariable long lotId, @Valid Ship
 	
 	//********************************************************************************************
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-	        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 	        //********************************************************************************************
 	        
 	if (bindingResult.hasErrors()) {
@@ -785,7 +785,7 @@ public ModelAndView saveSHippingAddressLot(@PathVariable long lotId, @Valid Ship
 	    
 	//int user_id=user.getId();
 	  
-	customerShippingAddressInfo.setUser(user_Lot);
+	customerShippingAddressInfo.setUser(user);
 	customerShippingAddressInfoService.saveShipInfo(customerShippingAddressInfo);
 	
 	mv.addObject("message", "Address have been successfully saved");
@@ -805,14 +805,14 @@ public ModelAndView showShipAdd(@Valid ShippingAddress shippingAddress, BindingR
 	ModelAndView mv = new ModelAndView();
 	//********************************************************************************************
 	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-    mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+    User user = userService.findUserByEmail(auth.getName());
+    mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
     //********************************************************************************************
     
     Optional<Lot> newLot = lotRepository.findById(lotId);
     Lot lots = newLot.get();
     
-    int user_id=user_Lot.getUser_id();
+    int user_id=user.getUser_id();
 	
     shippingAddress = (@Valid ShippingAddress) shippingAddressRepository.findByUserId(user_id);
 	

@@ -51,7 +51,7 @@ public class BillingAddress {
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
-	private User_Lot user_Lot;
+	private User user;
 
 	public BillingAddress() {
 		super();
@@ -59,7 +59,7 @@ public class BillingAddress {
 
 	public BillingAddress(@NotNull int billing_add_id, @NotNull String contact_person, @NotNull String street,
 			@NotNull String city, @NotNull int zip_code, @NotNull String country, @NotNull String phone_number,
-			User_Lot user_Lot) {
+			User user) {
 		super();
 		this.billing_add_id = billing_add_id;
 		this.contact_person = contact_person;
@@ -68,7 +68,7 @@ public class BillingAddress {
 		this.zip_code = zip_code;
 		this.country = country;
 		this.phone_number = phone_number;
-		this.user_Lot = user_Lot;
+		this.user = user;
 	}
 
 	public int getBilling_add_id() {
@@ -127,12 +127,12 @@ public class BillingAddress {
 		this.phone_number = phone_number;
 	}
 
-	public User_Lot getUser() {
-		return user_Lot;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser(User_Lot user_Lot) {
-		this.user_Lot = user_Lot;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 

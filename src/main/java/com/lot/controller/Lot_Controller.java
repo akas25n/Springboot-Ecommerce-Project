@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lot.model.Lot;
 import com.lot.model.Product;
-import com.lot.model.User_Lot;
+import com.lot.model.User;
 import com.lot.repository.LotRepository;
 import com.lot.repository.ProductRepository;
 import com.lot.service.UserService;
@@ -67,8 +67,8 @@ public class Lot_Controller {
 			
 			//********************************************************************************************
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        User_Lot user_Lot = userService.findUserByEmail(auth.getName());
-	        mv.addObject("userName",user_Lot.getFirst_name() + " " + user_Lot.getLast_name());
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 	        //********************************************************************************************
 	        
 			Optional<Lot> new_obj = lotRepository.findById(lotId);
