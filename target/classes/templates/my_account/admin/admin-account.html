@@ -22,7 +22,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
 	
 </head>
-<body>
+<body style="background-color: #f7f7f7!important;">
 	
 	<div class="container">
 	<div th:include="admin-header :: copy"></div>
@@ -155,21 +155,21 @@
 			</div>
 		
 			
-			
-			<div class="col-md-6 col-sm-6">
+				<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
 					 <div class="thumbnail">
-				      <a href="/admin/account/paid/invoices">
-				        <img src="/images/e.jpg" alt="Lights" style="height: 80px">
+				      <a th:href="@{/admin/lager/lot/list}">
+				        <img src="/images/hjk.png" alt="Lights" style="height: 80px">
 				      </a>
 				    </div>
 				</div>
 				
 				<div class="col-sm-8">
-					<h4>Payment & Invoices</h4>
-					<p>See the paid & Unpaid invoices</p>
+					<h4>Lot Lager</h4>
+					<p>Upload Lot Lager and see the list</p>
 				</div>
 			</div>
+			
 						
 		</div>
 		
@@ -206,12 +206,58 @@
 			
 		</div>
 		
+		<div class="row">
+		
+			<div class="col-md-6 col-sm-6">
+				<div class="col-sm-4">
+					 <div class="thumbnail">
+				      <a href="/admin/account/paid/invoices">
+				        <img src="/images/e.jpg" alt="Lights" style="height: 80px">
+				      </a>
+				    </div>
+				</div>
+				
+				<div class="col-sm-8">
+					<h4>Payment & Invoices</h4>
+					<p>See the paid & Unpaid invoices</p>
+				</div>
+			</div>
+		
+		</div>
+		<hr style="border: 2px solid grey;">
+		
+		<!-- *************************************************************************Bellow contents are only for ADMIN****************************************** -->
+		<div>
+		<h3 style="color:grey">For Test</h3>
+		<hr style="border: 2px solid grey;">
+		
+			<div class="row">
+		
+			<div class="col-md-6 col-sm-6">
+				<div class="col-sm-4">
+					 <div class="thumbnail">
+				      <a href="/admin/lager/product/list">
+				        <img src="/images/e.jpg" alt="Lights" style="height: 80px">
+				      </a>
+				    </div>
+				</div>
+				
+				<div class="col-sm-8">
+					<h4>Lager Product List</h4>
+					<p>See the paid & Unpaid invoices</p>
+				</div>
+			</div>
+		
+		</div>
+		
 		<!-- *************************************************************************************** -->
 		<hr style="border: 2px solid grey;">
 		<br>
 		<br>
 		<hr>
-	</div> <!-- end of the container --> 
+	</div>
+	</div>
+	<!-- end of the container --> 
 	
 	
 	<div th:include="admin-footer :: copy"></div>

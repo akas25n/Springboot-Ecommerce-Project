@@ -58,10 +58,7 @@
 	}
 	</style>
 </head>
-<body>
-
-
-                
+<body style="background-color: #f7f7f7!important;">
 
 <div th:include="header :: copy"></div>
 		
@@ -128,7 +125,7 @@
             
           </div>
           <hr>
-          <a th:href="@{/admin/account/show/shipping/address/__${lot.lotId}__}" class="btn btn-default">Proceed to Buy</a>   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Your Contact Person</a>
+          <a th:href="@{/my/account/show/shipping/address/__${lot.lotId}__}" class="btn btn-default">Proceed to Buy</a>   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Your Contact Person</a>
 
       </div>
 			</div>
@@ -180,6 +177,7 @@
         <div class="col-md-12">
         	
         	<div class="row">
+        	<!-- <div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0"> -->
         	<div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
          	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
 	  			<div class="col-md-8">
@@ -269,7 +267,7 @@
         <hr>
       <br>
     <br>
-     <div class="imageDownload">
+          <div class="imageDownload">
 
           
              <hr>
@@ -281,17 +279,17 @@
             <div class="row">
             
             <div class="row">
-              <!-- <div th:each="product:${products}" class="col-sm-4">
+               <div th:each="product:${products}" class="col-sm-4">
                   
                     <a class="thumbnail"><img th:src="${product.a_media_image_0_}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
                     
-                     <a class="thumbnail"><img th:src="${product.a_media_image_1_}" style="width:300px; height: 450px;" alt="W3Schools"></a>
-                     <a class="thumbnail"><img th:src="${product.a_media_image_2_}" style="width:300px; height: 450px;" alt="W3Schools"></a>
+                     <!-- <a class="thumbnail"><img th:src="${product.a_media_image_1_}" style="width:300px; height: 450px;" alt="W3Schools"></a>
+                     <a class="thumbnail"><img th:src="${product.a_media_image_2_}" style="width:300px; height: 450px;" alt="W3Schools"></a> -->
                  
-              </div> -->
+              </div>
               
               
-              <div th:each="image, iterStat:${images}" th:if="${iterStat.index} == 0" class="col-sm-4">
+          <!--     <div th:each="image, iterStat:${images}" th:if="${iterStat.index} == 0" class="col-sm-4">
                   
                     <a class="thumbnail"><img th:src="${image}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
                     
@@ -305,7 +303,7 @@
                   
                     <a class="thumbnail"><img th:src="${image}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
                     
-              </div>
+              </div> -->
               
               
               
@@ -334,8 +332,8 @@
             <!-- ****************************showing only the first element************************************************************** -->
             <tbody id="tdBackground">
 				     
-					<tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0">
-					
+					<!-- <tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0"> -->
+					<tr th:each="product:${products}">
 	               <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
 	               <td th:text="${product.p_text}"></td>
       
@@ -343,7 +341,7 @@
 			</tbody>
 			<!-- ****************************showing only the first element************************************************************** -->
 			
-        </table> 
+        </table>
        
 		
 			<hr>

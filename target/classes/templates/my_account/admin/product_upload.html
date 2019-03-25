@@ -58,10 +58,14 @@
 	<br>
       <form id = "uploadbanner" th:action="@{/admin/product/process}" enctype= "multipart/form-data"  method = "POST">
       
+      <div th:if="${message}" class="alert alert-success"
+          role="alert" th:text=${message}></div>
+      
         <input type="file" name="multi_file" />
         <br>
         <br>
         <input type = "submit" value = "submit" id = "submit"/>
+       
       </form>
       
       </div>

@@ -17,13 +17,10 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lot.model.BillingAddress;
+import com.lot.model.Lager_Product;
 import com.lot.model.Lot;
+import com.lot.model.Lot_Lager;
 import com.lot.model.MailRequest;
 import com.lot.model.Order;
 import com.lot.model.Product;
@@ -40,7 +39,9 @@ import com.lot.model.ShippingAddress;
 import com.lot.model.SliderImages;
 import com.lot.model.User;
 import com.lot.repository.BillingAddressRepository;
+import com.lot.repository.Lager_ProductRepository;
 import com.lot.repository.LotRepository;
+import com.lot.repository.Lot_LagerRepository;
 import com.lot.repository.OrderRepository;
 import com.lot.repository.ProductRepository;
 import com.lot.repository.ShippingAddressRepository;
@@ -48,7 +49,9 @@ import com.lot.repository.SliderImagesRepository;
 import com.lot.repository.UserRepository;
 import com.lot.service.BillingAddressService;
 import com.lot.service.EmailService;
+import com.lot.service.Lager_ProductService;
 import com.lot.service.LotService;
+import com.lot.service.Lot_LagerService;
 import com.lot.service.ProductService;
 import com.lot.service.ShippingAddressService;
 import com.lot.service.UserService;
@@ -99,6 +102,18 @@ public class Admin_Controller {
 	private OrderRepository orderRepository;
 	
 	private static String fileLocation;
+	
+	@Autowired
+	private Lot_LagerService lot_LagerService;
+	
+	@Autowired
+	private Lot_LagerRepository lot_LagerRepository;
+	
+	@Autowired
+	Lager_ProductRepository lager_ProductRepository;
+	
+	@Autowired
+	Lager_ProductService lager_ProductService;
 	
 	@Autowired
 	private SliderImagesRepository sliderImagesRepoaitory;
@@ -983,6 +998,9 @@ public class Admin_Controller {
 			Optional<Lot> newLot = lotRepository.findById(lotId);
 			Lot lot = newLot.get();
 			
+			//Product prod = (Product) productRepository.findAllByLotId(lotId);
+			
+			
 			//----------------------------------------------------------------------------------------  
 	        ShippingAddress shipAdd = shippingAddressRepository.findByUserId(user_id);
 	        BillingAddress billAdd= billingAddressRepository.findByUserId(user_id);
@@ -1002,9 +1020,11 @@ public class Admin_Controller {
 				orderObj.setUser(user);
 				orderObj.setBillingAddress(billAdd);
 				orderObj.setShippingAddress(shipAdd);
+				
 				orderRepository.save(orderObj);
 				
 				orderObj.getLot().setLot_status(0);
+				//((Product) orderObj.getLot().getProductList()).setA_stock(null);
 				//lot.setLot_status(0);
 				lotRepository.save(lot);
 				
@@ -1041,8 +1061,7 @@ public class Admin_Controller {
 									@RequestParam("actualPrice") double actualPrice,
 									@RequestParam("lot_status") int lot_status
 									)
-									
-					
+													
 	{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date(); 
@@ -1211,13 +1230,13 @@ public class Admin_Controller {
 	
 	
 	@RequestMapping(value = "/product/process", method= RequestMethod.POST)
-	public String processUploadProduct(MultipartFile multi_file) throws IOException {
+	public ModelAndView processUploadProduct(MultipartFile multi_file) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
+		//----------------------------------------------------------------------------------------------------------
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
-        
+        //------------------------------------------------------------------------------------------------------------
         try {
         	
         	
@@ -1232,17 +1251,102 @@ public class Admin_Controller {
 			productService.save_product();
 			System.out.println("stop save_product");
 			
-			return "Data have been saved";
+			mv.addObject("message","*****************************Data have been uploaded****************************");
+			mv.setViewName("/my_account/admin/product_upload");
 		} catch (IOException e) {
 			
-			return "Data not saved";
-			
+			mv.addObject("failureMessage","*****************************Data have not been uploaded****************************");
+			mv.setViewName("/my_account/admin/product_upload");
 			
 		}
-        
-   
-		
+       
+        return mv;
 	}
+	
+	
+	
+	//####################################################################################### Lot_lager ###########################
+	@RequestMapping(value = "/upload/lager", method= RequestMethod.GET)
+	public ModelAndView uploadLager() {
+		ModelAndView mv = new ModelAndView();
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        
+		mv.setViewName("/my_account/admin/lager-upload");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/lager/process", method= RequestMethod.POST)
+	public ModelAndView processUploadLager(MultipartFile multi_file) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		//----------------------------------------------------------------------------------------------------------
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //------------------------------------------------------------------------------------------------------------
+        
+        //Lager_Product lProduct = new Lager_Product();
+        try {
+
+			fileLocation = lot_LagerService.upload_file(multi_file);
+			System.out.println("start set_index");
+			lot_LagerService.set_index();
+			System.out.println("stop set_index");
+			
+			System.out.println("start save_product");
+			lot_LagerService.save_lager();
+			//lager_ProductRepository.saveLager(lProduct);
+			System.out.println("stop save_product");
+			
+			mv.addObject("message","*****************************Data have been uploaded****************************");
+			mv.setViewName("/my_account/admin/lager-upload");
+			
+		} catch (IOException e) {
+			
+			mv.addObject("alertMessage","Data have not been saved");
+			mv.setViewName("/my_account/admin/lager-upload");
+			
+		}	
+        
+        return mv;
+	}
+	
+	@RequestMapping(value = "/lager/lot/list", method= RequestMethod.GET)
+	public ModelAndView lagerList(@RequestParam(defaultValue="0") int page) {
+		ModelAndView mv = new ModelAndView();
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+      
+        List<Lot_Lager> lager = lot_LagerRepository.findAll();
+        mv.addObject("lotLager", lager);
+        
+        
+//        mv.addObject("products", productRepository.findAll(new PageRequest(page, 50)));
+//        mv.addObject("currentPage", page);
+		mv.setViewName("/my_account/admin/lager-list");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/lager/product/list", method= RequestMethod.GET)
+	public ModelAndView lagerProductList() {
+		ModelAndView mv = new ModelAndView();
+		//-------------------------------------------------------------------------------------------
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        //-------------------------------------------------------------------------------------------
+     
+ 
+		mv.setViewName("/my_account/admin/test-selection");
+		return mv;
+	}
+	
 	
 	
 	@RequestMapping(value = "/product/list", method= RequestMethod.GET)
@@ -1377,7 +1481,7 @@ public class Admin_Controller {
 		
 		@RequestMapping(value="/update_user_role", method=RequestMethod.POST)
 		public ModelAndView userRole(@RequestParam int user_id, @RequestParam String attribute_select) {
-			ModelAndView mv = new ModelAndView();
+			new ModelAndView();
 			
 			String user_role = "USER";
 			String admin_role = "ADMIN";
@@ -1447,6 +1551,9 @@ public class Admin_Controller {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+        
+       
+        
 		mv.setViewName("/my_account/admin/paid_invoice");
 		return mv;
 	}

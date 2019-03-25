@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-@Data
 @Entity
 @Table(name ="product")
 public class Product {
@@ -24,209 +23,400 @@ public class Product {
 	private long a_id;
 	private long p_id;
 	private String p_nr=null;
-	private String p_prefix=null;
+	
 	private String p_name=null;
-	private String p_name_proper=null;
-	private String p_name_keyword=null;
-	private String p_supplement=null;
 	
 	@Column(columnDefinition="LONGTEXT")
 	private String p_text=null;
-	private String p_feature=null;
-	private String p_comp_absatzart_=null;
-	private String p_comp_absatzhöhe=null;
-	private String p_comp_altersgruppe_=null;
-	private String p_comp_anzahl_schichten_=null;
-	private String p_comp_aermelart_=null;
-	private String p_comp_aermellaenge_=null;
-	private String p_comp_Artikelnummer_=null;
-	private String p_comp_atmungsaktivitaet_=null;
-	private String p_comp_Ausschnitt_=null;
-	private String p_comp_beininnenlaenge_=null;
-	private String p_comp_Beinlänge_=null;
-	private String p_comp_bh_bügel_=null;
-	private String p_comp_bh_schale_=null;
-	private String p_comp_bh_style_=null;
-	private String p_comp_bh_traegerart_=null;
-	private String p_comp_breite_=null;
-	private String p_comp_buegellaenge_=null;
-	private String p_comp_cluster_=null;
-	private String p_comp_decksohle_=null;
-	private String p_comp_decksohle_schuhe_=null;
-	private String p_comp_details_=null;
-	private String p_comp_durchmesser_=null;
-	private String p_comp_farbe_=null;
-	private String p_comp_form_=null;
-	private String p_comp_fransen_=null;
-	private String p_comp_funktionen_=null;
-	private String p_comp_futter_=null;
-	private String p_comp_gesamtlaenge_=null;
-	private String p_comp_gesamtlaengexxl_=null;
-	private String p_comp_glasbreite_=null;
-	private String p_comp_glashoehe_=null;
-	private String p_comp_groesse_=null;
-	private String p_comp_groessenflag_=null;
-	private String p_comp_strap_length_=null;
-	private String p_comp_hemdkragen_=null;
-	private String p_comp_Herstellungsland_und_region_=null;
-	private String p_comp_hoehe_=null;
-	private String p_comp_jeans_waschung_=null;
-	private String p_comp_kapuze_=null;
-	private String p_comp_koerbchengroesse_=null;
-	private String p_comp_kragen_=null;
-	private String p_comp_lagen_=null;
-	private String p_comp_länge_=null;
-	private String p_comp_laenge_=null;
-	private String p_comp_laufsohle_schuhe_=null;
-	private String p_comp_leibhoehe_=null;
-	private String p_comp_Linsentechnik_=null;
-	private String p_comp_Marke_=null;
-	private String p_comp_material_=null;
-	private String p_comp_material_aermelfutter_=null;
-	private String p_comp_material_aermeloberstoff_=null;
-	private String p_comp_material_fuellung_=null;
-	private String p_comp_material_innenjacke_=null;
-	private String p_comp_material_kontrast_=null;
-	private String p_comp_material_oberstoff_=null;
-	private String p_comp_material_rippe_=null;
-	private String p_comp_material_webpelz_=null;
-	private String p_comp_material_eigenschaft_=null;
-	private String p_comp_muster_=null;
-	private String p_comp_obermaterial_schuhe_=null;
-	private String p_comp_oberteillänge_=null;
-	private String p_comp_ohrring_stil_=null;
-	private String p_comp_passform_=null;
-	private String p_comp_pflegehinweise_=null;
-	private String p_comp_plateauhoehe_=null;
-	private String p_comp_produkttyp_=null;
-	private String p_comp_Rahmenmaterial_=null;
-	private String p_comp_rock_stil_=null;
-	private String p_comp_bag_size_=null;
-	private String p_comp_saison_=null;
-	private String p_comp_saum_=null;
-	private String p_comp_schichten_=null;
-	private String p_comp_schnitt_=null;
-	private String p_comp_schuhspitze_=null;
-	private String p_comp_Schutz_=null;
-	private String p_comp_sohle_=null;
-	private String p_comp_sportart_=null;
-	private String p_comp_stegbreite_=null;
-	private String p_comp_Stil_=null;
-	private String p_comp_Stil_Hose_=null;
-	private String p_comp_Stil_Jacken_Mäntel_=null;
-	private String p_comp_stil_jeans_=null;
-	private String p_comp_stil_srtick_=null;
-	private String p_comp_Stil_Strick_=null;
-	private String p_comp_taschen_=null;
-	private String p_comp_thema_=null;
-	private String p_comp_tiefe_=null;
-	private String p_comp_traeger_=null;
-	private String p_comp_trägerart_=null;
-	private String p_comp_umfang_=null;
-	private String p_comp_unterteillaenge_=null;
-	private String p_comp_ursprungsland_=null;
-	private String p_comp_vek_=null;
-	private String p_comp_vek_online_=null;
-	private String p_comp_verschluss_=null;
-	private String p_comp_volumen_=null;
-	private String p_comp_waisthoehe_=null;
-	private String p_comp_Wasserdichtigkeit_=null;
-	private String p_comp_wassersaeule_=null;
-	private String p_comp_Winddichtigkeit_=null;
-	private String p_comp_zielgruppe_=null;
-	private String p_brand=null;
-	private String p_active_lade_=null;
-	private String p_active_cuglago1_=null;
-	private String p_catpri_cuglago1_=null;
-	private String p_catsec_cuglago1_0_=null;
-	private String p_bullet_0_=null;
-	private String p_bullet_1_=null;
-	private String p_bullet_2_=null;
-	private String p_bullet_3_=null;
-	private String p_bullet_4_=null;
-	private String p_bullet_5_=null;
-	private String p_bullet_6_=null;
-	private String p_bullet_7_=null;
-	private String p_bullet_8_=null;
-	private String p_bullet_9_=null;
-	private String p_bullet_10_=null;
-	private String p_bullet_11_=null;
-	private String p_bullet_12_=null;
-	private String p_bullet_13_=null;
-	private String p_bullet_14_=null;
-	private String p_bullet_15_=null;
-	private String p_bullet_16_=null;
-	private String p_bullet_17_=null;
-	private String p_bullet_18_=null;
-	private String p_bullet_19_=null;
-	private String p_bullet_20_=null;
-	private String p_bullet_21_=null;
-	private String p_bullet_22_=null;
-	private String p_bullet_23_=null;
-	private String p_bullet_24_=null;
-	private String p_bullet_25_=null;
-	private String p_bullet_26_=null;
-	private String p_bullet_27_=null;
-	private String p_bullet_28_=null;
-	private String p_bullet_29_=null;
-	private String p_bullet_30_=null;
-	private String p_bullet_31_=null;
-	private String p_bullet_32_=null;
-	private String a_nr=null;
 	private String a_active=null;
-	private String a_nr2=null;
 	
+	
+	private String p_brand=null;
+	private String a_nr=null;
 	private String a_prodnr=null;
-	private String Artikelbezeichnung=null;
 	private String a_comp_farbe_=null;
 	private String a_comp_groesse_=null;
-	private String a_comp_koerbchengroesse_=null;
-	private String a_comp_laenge_=null;
-	private String a_comp_otto_weite_=null;
-	private String ap_comp_ebay_produkt_name_=null;
-	private String ap_comp_ursprungsland_=null;
 	private String a_media_image_0_=null;
 	private String a_media_image_1_=null;
 	private String a_media_image_2_=null;
 	private String a_media_image_3_=null;
 	private String a_media_image_4_=null;
 	private String a_media_image_5_=null;
-	private String a_media_image_6_=null;
-	private String a_media_image_7_=null;
-	private String a_media_image_8_=null;
-	private String a_media_image_9_=null;
-	private String a_media_image_10_=null;
-	private String a_media_image_11_=null;
-	private String a_media_image_12_=null;
-	private String a_media_image_13_=null;
-	private String a_media_image_14_=null;
-	private String a_media_image_15_=null;
-	private String a_media_image_16_=null;
-	private String a_media_image_17_=null;
-	private String a_media_image_18_=null;
-	private String a_media_image_19_=null;
-	private String a_media_image_20_=null;
-	private String a_media_image_21_=null;
-	private String a_media_image_22_=null;
-	private String a_media_image_23_=null;
-	private String a_media_image_24_=null;
-	private String a_media_image_25_=null;
-	private String a_ek=null;
 	private String a_stock=null;
-	private String a_separate=null;
-	private String a_maxsep=null;
-	private String a_shipping_type=null;
-	private String a_width=null;
-	private String a_height=null;
-	private String a_weight=null;
-	private String a_length=null;
-	private String a_intrastat=null;
-	private String a_org_country=null;
+	private String p_comp_material_=null;
+	
+	private String p_comp_zielgruppe_=null;
 	
 	//@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
-	@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
-	@JsonIgnore
-	private Set<Lot> lot;
+		@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
+		@JsonIgnore
+		private Set<Lot> lot;
+
+		public String getA_nr() {
+			return a_nr;
+		}
+
+		public void setA_nr(String a_nr) {
+			this.a_nr = a_nr;
+		}
+
+		public long getA_ean() {
+			return a_ean;
+		}
+
+		public void setA_ean(long a_ean) {
+			this.a_ean = a_ean;
+		}
+
+		public long getA_id() {
+			return a_id;
+		}
+
+		public void setA_id(long a_id) {
+			this.a_id = a_id;
+		}
+
+		public long getP_id() {
+			return p_id;
+		}
+
+		public void setP_id(long p_id) {
+			this.p_id = p_id;
+		}
+
+		public String getP_nr() {
+			return p_nr;
+		}
+
+		public void setP_nr(String p_nr) {
+			this.p_nr = p_nr;
+		}
+
+		public String getP_name() {
+			return p_name;
+		}
+
+		public void setP_name(String p_name) {
+			this.p_name = p_name;
+		}
+
+		public String getP_text() {
+			return p_text;
+		}
+
+		public void setP_text(String p_text) {
+			this.p_text = p_text;
+		}
+
+		public String getA_active() {
+			return a_active;
+		}
+
+		public void setA_active(String a_active) {
+			this.a_active = a_active;
+		}
+
+		public String getP_brand() {
+			return p_brand;
+		}
+
+		public void setP_brand(String p_brand) {
+			this.p_brand = p_brand;
+		}
+
+		public String getA_prodnr() {
+			return a_prodnr;
+		}
+
+		public void setA_prodnr(String a_prodnr) {
+			this.a_prodnr = a_prodnr;
+		}
+
+		public String getA_comp_farbe_() {
+			return a_comp_farbe_;
+		}
+
+		public void setA_comp_farbe_(String a_comp_farbe_) {
+			this.a_comp_farbe_ = a_comp_farbe_;
+		}
+
+		public String getA_comp_groesse_() {
+			return a_comp_groesse_;
+		}
+
+		public void setA_comp_groesse_(String a_comp_groesse_) {
+			this.a_comp_groesse_ = a_comp_groesse_;
+		}
+
+		public String getA_media_image_0_() {
+			return a_media_image_0_;
+		}
+
+		public void setA_media_image_0_(String a_media_image_0_) {
+			this.a_media_image_0_ = a_media_image_0_;
+		}
+
+		public String getA_media_image_1_() {
+			return a_media_image_1_;
+		}
+
+		public void setA_media_image_1_(String a_media_image_1_) {
+			this.a_media_image_1_ = a_media_image_1_;
+		}
+
+		public String getA_media_image_2_() {
+			return a_media_image_2_;
+		}
+
+		public void setA_media_image_2_(String a_media_image_2_) {
+			this.a_media_image_2_ = a_media_image_2_;
+		}
+
+		public String getA_media_image_3_() {
+			return a_media_image_3_;
+		}
+
+		public void setA_media_image_3_(String a_media_image_3_) {
+			this.a_media_image_3_ = a_media_image_3_;
+		}
+
+		public String getA_media_image_4_() {
+			return a_media_image_4_;
+		}
+
+		public void setA_media_image_4_(String a_media_image_4_) {
+			this.a_media_image_4_ = a_media_image_4_;
+		}
+
+		public String getA_media_image_5_() {
+			return a_media_image_5_;
+		}
+
+		public void setA_media_image_5_(String a_media_image_5_) {
+			this.a_media_image_5_ = a_media_image_5_;
+		}
+
+		public String getA_stock() {
+			return a_stock;
+		}
+
+		public void setA_stock(String a_stock) {
+			this.a_stock = a_stock;
+		}
+
+		public String getP_comp_material_() {
+			return p_comp_material_;
+		}
+
+		public void setP_comp_material_(String p_comp_material_) {
+			this.p_comp_material_ = p_comp_material_;
+		}
+
+		public String getP_comp_zielgruppe_() {
+			return p_comp_zielgruppe_;
+		}
+
+		public void setP_comp_zielgruppe_(String p_comp_zielgruppe_) {
+			this.p_comp_zielgruppe_ = p_comp_zielgruppe_;
+		}
+
+		public Set<Lot> getLot() {
+			return lot;
+		}
+
+		public void setLot(Set<Lot> lot) {
+			this.lot = lot;
+		}
+		
+		
+		
+		
+// private String a_nr2=null;
+//private String p_prefix=null;	
+//	private String p_name_proper=null;
+//	private String p_name_keyword=null;
+//	private String p_supplement=null;	
+//	private String p_feature=null;
+//	private String p_comp_absatzart_=null;
+//	private String p_comp_absatzhöhe=null;
+//	private String p_comp_altersgruppe_=null;
+//	private String p_comp_anzahl_schichten_=null;
+//	private String p_comp_aermelart_=null;
+//	private String p_comp_aermellaenge_=null;
+//	private String p_comp_Artikelnummer_=null;
+//	private String p_comp_atmungsaktivitaet_=null;
+//	private String p_comp_Ausschnitt_=null;
+//	private String p_comp_beininnenlaenge_=null;
+//	private String p_comp_Beinlänge_=null;
+//	private String p_comp_bh_bügel_=null;
+//	private String p_comp_bh_schale_=null;
+//	private String p_comp_bh_style_=null;
+//	private String p_comp_bh_traegerart_=null;
+//	private String p_comp_breite_=null;
+//	private String p_comp_buegellaenge_=null;
+//	private String p_comp_cluster_=null;
+//	private String p_comp_decksohle_=null;
+//	private String p_comp_decksohle_schuhe_=null;
+//	private String p_comp_details_=null;
+//	private String p_comp_durchmesser_=null;
+//	private String p_comp_farbe_=null;
+//	private String p_comp_form_=null;
+//	private String p_comp_fransen_=null;
+//	private String p_comp_funktionen_=null;
+//	private String p_comp_futter_=null;
+//	private String p_comp_gesamtlaenge_=null;
+//	private String p_comp_gesamtlaengexxl_=null;
+//	private String p_comp_glasbreite_=null;
+//	private String p_comp_glashoehe_=null;
+//	private String p_comp_groesse_=null;
+//	private String p_comp_groessenflag_=null;
+//	private String p_comp_strap_length_=null;
+//	private String p_comp_hemdkragen_=null;
+//	private String p_comp_Herstellungsland_und_region_=null;
+//	private String p_comp_hoehe_=null;
+//	private String p_comp_jeans_waschung_=null;
+//	private String p_comp_kapuze_=null;
+//	private String p_comp_koerbchengroesse_=null;
+//	private String p_comp_kragen_=null;
+//	private String p_comp_lagen_=null;
+//	private String p_comp_länge_=null;
+//	private String p_comp_laenge_=null;
+//	private String p_comp_laufsohle_schuhe_=null;
+//	private String p_comp_leibhoehe_=null;
+//	private String p_comp_Linsentechnik_=null;
+//	private String p_comp_Marke_=null;	
+//	private String p_comp_material_aermelfutter_=null;
+//	private String p_comp_material_aermeloberstoff_=null;
+//	private String p_comp_material_fuellung_=null;
+//	private String p_comp_material_innenjacke_=null;
+//	private String p_comp_material_kontrast_=null;
+//	private String p_comp_material_oberstoff_=null;
+//	private String p_comp_material_rippe_=null;
+//	private String p_comp_material_webpelz_=null;
+//	private String p_comp_material_eigenschaft_=null;
+//	private String p_comp_muster_=null;
+//	private String p_comp_obermaterial_schuhe_=null;
+//	private String p_comp_oberteillänge_=null;
+//	private String p_comp_ohrring_stil_=null;
+//	private String p_comp_passform_=null;
+//	private String p_comp_pflegehinweise_=null;
+//	private String p_comp_plateauhoehe_=null;
+//	private String p_comp_produkttyp_=null;
+//	private String p_comp_Rahmenmaterial_=null;
+//	private String p_comp_rock_stil_=null;
+//	private String p_comp_bag_size_=null;
+//	private String p_comp_saison_=null;
+//	private String p_comp_saum_=null;
+//	private String p_comp_schichten_=null;
+//	private String p_comp_schnitt_=null;
+//	private String p_comp_schuhspitze_=null;
+//	private String p_comp_Schutz_=null;
+//	private String p_comp_sohle_=null;
+//	private String p_comp_sportart_=null;
+//	private String p_comp_stegbreite_=null;
+//	private String p_comp_Stil_=null;
+//	private String p_comp_Stil_Hose_=null;
+//	private String p_comp_Stil_Jacken_Mäntel_=null;
+//	private String p_comp_stil_jeans_=null;
+//	private String p_comp_stil_srtick_=null;
+//	private String p_comp_Stil_Strick_=null;
+//	private String p_comp_taschen_=null;
+//	private String p_comp_thema_=null;
+//	private String p_comp_tiefe_=null;
+//	private String p_comp_traeger_=null;
+//	private String p_comp_trägerart_=null;
+//	private String p_comp_umfang_=null;
+//	private String p_comp_unterteillaenge_=null;
+//	private String p_comp_ursprungsland_=null;
+//	private String p_comp_vek_=null;
+//	private String p_comp_vek_online_=null;
+//	private String p_comp_verschluss_=null;
+//	private String p_comp_volumen_=null;
+//	private String p_comp_waisthoehe_=null;
+//	private String p_comp_Wasserdichtigkeit_=null;
+//	private String p_comp_wassersaeule_=null;
+//	private String p_comp_Winddichtigkeit_=null;
+
+
+//	private String p_active_lade_=null;
+//	private String p_active_cuglago1_=null;
+//	private String p_catpri_cuglago1_=null;
+//	private String p_catsec_cuglago1_0_=null;
+//	private String p_bullet_0_=null;
+//	private String p_bullet_1_=null;
+//	private String p_bullet_2_=null;
+//	private String p_bullet_3_=null;
+//	private String p_bullet_4_=null;
+//	private String p_bullet_5_=null;
+//	private String p_bullet_6_=null;
+//	private String p_bullet_7_=null;
+//	private String p_bullet_8_=null;
+//	private String p_bullet_9_=null;
+//	private String p_bullet_10_=null;
+//	private String p_bullet_11_=null;
+//	private String p_bullet_12_=null;
+//	private String p_bullet_13_=null;
+//	private String p_bullet_14_=null;
+//	private String p_bullet_15_=null;
+//	private String p_bullet_16_=null;
+//	private String p_bullet_17_=null;
+//	private String p_bullet_18_=null;
+//	private String p_bullet_19_=null;
+//	private String p_bullet_20_=null;
+//	private String p_bullet_21_=null;
+//	private String p_bullet_22_=null;
+//	private String p_bullet_23_=null;
+//	private String p_bullet_24_=null;
+//	private String p_bullet_25_=null;
+//	private String p_bullet_26_=null;
+//	private String p_bullet_27_=null;
+//	private String p_bullet_28_=null;
+//	private String p_bullet_29_=null;
+//	private String p_bullet_30_=null;
+//	private String p_bullet_31_=null;
+//	private String p_bullet_32_=null;
+//	private String a_nr=null;	
+//	private String Artikelbezeichnung=null;
+//	private String a_comp_koerbchengroesse_=null;
+//	private String a_comp_laenge_=null;
+//	private String a_comp_otto_weite_=null;
+//	private String ap_comp_ebay_produkt_name_=null;
+//	private String ap_comp_ursprungsland_=null;
+//	private String a_media_image_6_=null;
+//	private String a_media_image_7_=null;
+//	private String a_media_image_8_=null;
+//	private String a_media_image_9_=null;
+//	private String a_media_image_10_=null;
+//	private String a_media_image_11_=null;
+//	private String a_media_image_12_=null;
+//	private String a_media_image_13_=null;
+//	private String a_media_image_14_=null;
+//	private String a_media_image_15_=null;
+//	private String a_media_image_16_=null;
+//	private String a_media_image_17_=null;
+//	private String a_media_image_18_=null;
+//	private String a_media_image_19_=null;
+//	private String a_media_image_20_=null;
+//	private String a_media_image_21_=null;
+//	private String a_media_image_22_=null;
+//	private String a_media_image_23_=null;
+//	private String a_media_image_24_=null;
+//	private String a_media_image_25_=null;
+//	private String a_ek=null;
+//	
+//	private String a_separate=null;
+//	private String a_maxsep=null;
+//	private String a_shipping_type=null;
+//	private String a_width=null;
+//	private String a_height=null;
+//	private String a_weight=null;
+//	private String a_length=null;
+//	private String a_intrastat=null;
+//	private String a_org_country=null;
+	/*
+	
+	
+	
 
 	public long getA_ean() {
 		return a_ean;
@@ -1826,7 +2016,7 @@ public class Product {
 
 	public void setLot(Set<Lot> lot) {
 		this.lot = lot;
-	}
+	}*/
 	
 	
 
