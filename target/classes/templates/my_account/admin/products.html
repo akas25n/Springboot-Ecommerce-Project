@@ -110,7 +110,7 @@ $(document).ready( function () {
 	              	
 	               <th></th>
 	               <th>EAN</th>
-	               <th>A_ProdNr</th>
+	               <th>Article Number</th>
 	                
 	                <th>Brand</th>
 	                <th>Product Name</th>
@@ -127,16 +127,16 @@ $(document).ready( function () {
 					     
 				<tr th:each="product:${products}">
 					
-					 <td><input type="checkbox" th:name="idChecked" th:value="${product.a_ean}" /></td>
-					 <td th:text="${product.a_ean}">
-					 <td th:text="${product.a_prodnr}">
+					 <td><input type="checkbox" th:name="idChecked" th:value="${product.ean}" /></td>
+					 <td th:text="${product.ean}">
+					 <td th:text="${product.articleNumber}">
 	               	
-					<td th:text="${product.p_brand}">
-					<td th:text="${product.p_name}">
-					<td th:text="${product.p_comp_zielgruppe_}">
-					<td th:text="${product.a_comp_farbe_}"></td>
-	               	<td th:text="${product.a_comp_groesse_}"></td>
-		            <td th:text="${product.a_stock}">
+					<td th:text="${product.brand}">
+					<td th:text="${product.productName}">
+					<td th:text="${product.targetGroup}">
+					<td th:text="${product.color}"></td>
+	               	<td th:text="${product.size}"></td>
+		            <td th:text="${product.quantity}"></td>
 		           
 	              </tr>
 				</tbody>

@@ -42,7 +42,7 @@ public class Lot {
 	@Column(name="Lot_Price")
 	private double lotPrice;
 	
-	@NotNull
+	
 	@Column(name="actual_Price")
 	private double actualPrice;
 
@@ -70,9 +70,9 @@ public class Lot {
 	//@JoinTbale..is the owning entity side in many to many association..so Lot entity is the owning side of the relationship
 	//@mappedBy is the inverse side...so product is the inverse side
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)  
-	@JoinTable(name = "lot_product", joinColumns=@JoinColumn(name ="lot_id_fk", referencedColumnName="lot_id"), inverseJoinColumns=@JoinColumn(name ="product_a_ean_fk", referencedColumnName="a_ean"))
+	@JoinTable(name = "lot_product", joinColumns=@JoinColumn(name ="lot_id_fk", referencedColumnName="lot_id"), inverseJoinColumns=@JoinColumn(name ="product_a_ean_fk", referencedColumnName="ean"))
 	@JsonIgnore
-	private Set<Product> productList;
+	private Set<Lager_Product> productList;
 	
 
 
@@ -82,7 +82,7 @@ public class Lot {
 
 
 	public Lot(@NotNull long lotId, @NotNull String lotName, @NotNull String lotDescription, @NotNull double lotPrice,@NotNull double actualPrice, 
-			@NotNull int lot_status, String createdAt, String teaserImage, Set<Product> productList) {
+			@NotNull int lot_status, String createdAt, String teaserImage, Set<Lager_Product> productList) {
 		super();
 		this.lotId = lotId;
 		this.lotName = lotName;
@@ -178,12 +178,12 @@ public class Lot {
 	}
 
 
-	public Set<Product> getProductList() {
+	public Set<Lager_Product> getProductList() {
 		return productList;
 	}
 
 
-	public void setProductList(Set<Product> productList) {
+	public void setProductList(Set<Lager_Product> productList) {
 		this.productList = productList;
 	}
 

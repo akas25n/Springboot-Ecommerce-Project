@@ -8,12 +8,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.lot.model.Lager_Product;
+import com.lot.model.Product;
 
 @Repository
 public interface Lager_ProductRepository extends JpaRepository<Lager_Product, Long>{
 	
 	@Query(value="select * from lot_db.lager_product p where p.ean=?1", nativeQuery=true)
 	public Lager_Product find_BY_ean(long id);
+	
+	@Query(value = "SELECT * FROM lager_product p LEFT JOIN lot_product cup on p.ean = cup.product_a_ean_fk LEFT JOIN lot l on l.lot_id = cup.lot_id_fk WHERE l.lot_id =?1", nativeQuery=true)
+	public List<Lager_Product> findAllByLotId(long id);
 	
 	/*@Query(value="Insert into lager_product(ean,articleNumber,color,size,quantity,productName,brand,targetGroup,productText,productMaterial,articleImage1,"
 			+ "articleImage2,articleImage3,articleImage4,articleImage5)"
@@ -33,8 +37,8 @@ public interface Lager_ProductRepository extends JpaRepository<Lager_Product, Lo
 	
 	
 	//public Lager_Product testSelection(Lager_Product lg);
-	@Query(value="select lot_lager.EAN, product.p_name from lot_lager join product on lot_lager.EAN = product.a_ean", nativeQuery=true)
-	public Optional<Lager_Product> testSelection();
+	//@Query(value="select lot_lager.EAN, product.p_name from lot_lager join product on lot_lager.EAN = product.a_ean", nativeQuery=true)
+	//public Optional<Lager_Product> testSelection();
 
 	
 }

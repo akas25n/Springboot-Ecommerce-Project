@@ -20,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
 	
 </head>
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	
 	<div class="container">
 	<div th:include="header :: copy"></div>
@@ -42,7 +42,7 @@
 				
 				<div class="col-sm-8">
 					<h4>My Orders</h4>
-					<p>See your order history and invoices</p>
+					<p style="color:grey;">See your order history and invoices</p>
 				</div>
 			</div>
 			
@@ -51,7 +51,7 @@
 				<!-- <div th:each="usr: ${users}"> -->
 					 <div class="thumbnail">
 				      <a th:href="@{/my/account/edit/general/info/__${users.user_id}__}">
-				        <img src="/images/b.png" alt="Lights" style="height: 100px">
+				        <img src="/images/user.jpg" alt="Lights" style="height: 100px">
 				      </a>
 				    <!-- </div> -->
 				    </div>
@@ -59,7 +59,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Edit My General Info</h4>
-					<p>Edit general and login details</p>
+					<p style="color:grey;">Edit general and login details</p>
 				</div>
 			</div>
 		</div>
@@ -76,7 +76,7 @@
 				
 				<div class="col-sm-8">
 					<h4>My Addresses</h4>
-					<p>Edit Shipping and Billing Addresses</p>
+					<p style="color:grey;">Edit Shipping and Billing Addresses</p>
 				</div>
 			</div>
 			
@@ -91,7 +91,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Payment Options</h4>
-					<p>Edit or add payment method</p>
+					<p style="color:grey;">Edit or add payment method</p>
 				</div>
 			</div>
 		</div>

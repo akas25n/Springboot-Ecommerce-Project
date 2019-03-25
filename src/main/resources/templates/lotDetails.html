@@ -58,7 +58,7 @@
 	}
 	</style>
 </head>
-<body style="background-color: #f7f7f7!important;">
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <div th:include="header :: copy"></div>
 		
@@ -131,7 +131,6 @@
 			</div>
 		</div>
 		
-		
 		<!-- *********************************************************************************Modal******************************************************************************* -->
 			  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="myModal">
 			    <div class="modal-dialog">
@@ -171,41 +170,44 @@
   
      	
        <div>
-        	<h2 style="color:grey;">Article Details</h2>
+<h2 style="color:grey;">Article Details</h2>
         	<!-- *********************************************************************************Testing******************************************************************************* -->
 	<hr>
-        <div class="col-md-12">
+	
+	<!-- *************************************************************************** Test ********************************************************************************************** -->
+			<div  th:each="product:${products}">
+	        <div class="col-md-12">
         	
         	<div class="row">
-        	<!-- <div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0"> -->
-        	<div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
+        	
          	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
-	  			<div class="col-md-8">
-	  				Marke : <strong th:text="${product.p_brand}" style="padding-left:20px;"> </strong>
-	  				(<strong th:text="${product.p_comp_zielgruppe_}"></strong>)
+	  			<div class="col-md-7">
+	  				Marke : <strong th:text="${product.brand}" style="padding-left:10px;"> </strong>
+	  				(<strong th:text="${product.targetGroup}"></strong>)
 	        	</div>
-	        	<div class="col-md-4">
-	  				ArtikelNr : <strong th:text="${product.a_prodnr}" style="padding-left:20px;"></strong>
+	        	<div class="col-md-5">
+	  				ArtikelNr : <strong th:text="${product.articleNumber}" style="padding-left:10px;"></strong>
 	        	</div>
         	</div>
         	
         	<div class="col-md-6">
+        		<!-- Empty Space -->
         	</div>
         	</div>
+        	<br>
         	</div><!-- end of 1st row -->
         	<br>
+        	
         		<div class="row"> <!-- 2nd row -->
-        			<div  th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
+        			
         		
         			<div class="col-md-4">
-        				<img th:src="${product.a_media_image_0_}" style="width: 170px; height:200px;">
+        				<div class="col-md-4">
+        					<img th:src="${product.articleImage1}" style="width: 130px; height:160px; padding-top: 5px; padding-bottom: 5px;">
+        				</div>
         			</div>
-        			
-        			
-        			
-        			</div> <!-- end of for each -->
         			<div class="col-md-8">
-        			<table class="table table-bordered">
+     					<table class="table table-bordered">
 			            <thead >
 			              <tr>
 							
@@ -219,55 +221,50 @@
 			            
 			            <tbody id="tdBackground" >
 							     
-							  <tr th:each="product:${products}">
+							  <tr>
 							 
 				              <!--  <td th:text="${product.p_comp_zielgruppe_}"></td> -->
-				               <td th:text="${product.a_comp_farbe_}"  style="height:20px;"></td>
-				               <td th:text="${product.a_comp_groesse_}"></td>
-				               <td th:text="${product.a_stock}" style="border-left: 2px solid black;"></td>
+				               <td th:text="${product.color}"  style="height:20px;"></td>
+				               <td th:text="${product.size}"></td>
+				               <td th:text="${product.quantity}" style="border-left: 2px solid black;"></td>
 			              </tr>
-			              <tr th:each="lot : ${lots}" style="border-top: 2px solid black;">
+			              <tr style="border-top: 2px solid black;">
 			              	<td><h4>GESAMT</h4></td>
 			              	<td><h4>-</h4></td>
-			              	<td th:text="${lot.volume}" style="border: 2px solid black; font-size: 20px;"></td>
+			              	<td style="border: 2px solid black; font-size: 20px;" th:text="${product.quantity}"></td>
 			              </tr>
 						</tbody>
 			        </table> 
         			</div>
-        		
-        		
         		</div><!-- end of 2nd row -->
         		
         		<div class="row">
         			<div class="col-md-4">
-        				<div th:each="product, iterStat:${products}" th:if ="${iterStat.index} == 0">
-        				        			
-		        			<div style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
-		        				Material : <span th:text="${product.p_comp_material_}" style="padding-left:20px;"></span>
-		        			</div>
-        				</div>
-        			
+        				<div style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+		        			Material : <span th:text="${product.productMaterial}" style="padding-left:5px;"></span>
+		        		</div>
         			</div>
-        			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
-        			
-        				<div th:each="lot : ${lots}">
-        					<p><span style="padding-left:10px;">Unverbindliche Preisempfehlung:</span> <span th:text="${lot.actualPrice}" style="float:right; color: red;"></span> <span class="glyphicon glyphicon-euro"></span></p> 
-        					<strong style="padding-left:10px;">Angebotspreis:</strong> <strong th:text="${lot.lotPrice}" style="float:right;"></strong> <span class="glyphicon glyphicon-euro"></span>
+        			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+						<div>
+        					<p><span style="padding-left:10px;">Retail Price:</span> <span style="float:right; color: red;"></span> <span class="glyphicon glyphicon-euro"></span></p> 
+        					<strong style="padding-left:10px;">Offer Price:</strong> <strong  style="float:right; padding-right:20px;" th:text="${product.price}"></strong> <span class="glyphicon glyphicon-euro"></span>
         				</div>
-        			
         			</div>
         		
         		</div>
         		<hr>
         		<br>
+        		
         	</div><!-- end of for each -->
         	</div>
+        	
+        	<!-- ************************************************************************************************************************************************************************* -->
+
         
         <!-- *********************************************************************************ENd of Testing***************************************************************************** -->	
-        <hr>
-      <br>
-    <br>
-          <div class="imageDownload">
+    
+        
+   <!--  <div class="imageDownload">
 
           
              <hr>
@@ -303,12 +300,12 @@
                   
                     <a class="thumbnail"><img th:src="${image}" style="width:300px; height: 450px;" alt="W3Schools"> </a>
                     
-              </div> -->
+              </div> 
               
               
               
 				</div>
-				</div>
+				</div>  --> 
         <!--   ****************************Contact person starts here**************************************************************  -->
         
         <div class="row">
@@ -334,8 +331,8 @@
 				     
 					<!-- <tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0"> -->
 					<tr th:each="product:${products}">
-	               <td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
-	               <td th:text="${product.p_text}"></td>
+	               <td><img th:src="${product.articleImage1}" style="width: 70px; height:60px;"></td>
+	               <td th:text="${product.productText}"></td>
       
               </tr>
 			</tbody>

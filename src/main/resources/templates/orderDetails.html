@@ -148,13 +148,13 @@
 			             
 			          <tr th:each="product:${products}">
 			          
-			                <td th:text="${product.a_ean}"></td>
-			                 <td th:text="${product.p_name}"></td>
-			                 <td th:text="${product.p_brand}"></td>
-			                 <td th:text="${product.p_comp_zielgruppe_}"></td>
-			                 <td th:text="${product.a_comp_farbe_}"></td>
-			                 <td th:text="${product.a_comp_groesse_}"></td>
-			                 <td th:text="${product.a_stock}"></td>
+			                <td th:text="${product.ean}"></td>
+			                 <td th:text="${product.productName}"></td>
+			                 <td th:text="${product.brand}"></td>
+			                 <td th:text="${product.targetGroup}"></td>
+			                 <td th:text="${product.color}"></td>
+			                 <td th:text="${product.size}"></td>
+			                 <td th:text="${product.quantity}"></td>
 			      
 			              </tr>
 			      </tbody>

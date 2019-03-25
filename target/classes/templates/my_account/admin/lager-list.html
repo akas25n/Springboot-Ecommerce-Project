@@ -85,8 +85,8 @@ $(document).ready( function () {
     
      <ul class="nav nav-tabs">
       
-      <li class="active"><a href="/admin/lager/lot/list">Product List</a></li>
-      <li><a href="/admin/upload/lager">Upload Product</a></li>
+      <li class="active"><a href="/admin/lager/lot/list">Lager Product List</a></li>
+      <li><a href="/admin/upload/lager">Upload Lot Lager</a></li>
      
     </ul>
     <hr>
@@ -106,7 +106,7 @@ $(document).ready( function () {
                 <th>Lager Platz</th>
                 <th>Quantity</th>
                 <th>Reserved</th>
-               
+               <th>Price</th>
                 
                 
                 
@@ -125,6 +125,7 @@ $(document).ready( function () {
 	               <td th:text="${lager.LAGERPLATZ}">
 	               <td th:text="${lager.BESTAND}"></td>
 	               <td th:text="${lager.RESERVIERT}"></td> 
+	               <td th:text="${lager.PREIS}"></td>
               </tr>
 			</tbody>
         </table>

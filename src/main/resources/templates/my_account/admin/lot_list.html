@@ -102,7 +102,7 @@
                
                 <th>Lot Status</th>
                 <th>Lot Description</th>
-                <th>Lot Price</th>
+               <th>Lot Price</th> 
                
                 <th>Action</th>
               </tr>
@@ -120,7 +120,7 @@
                 
                 <td th:text="${lot.lot_status}"></td>
                 <td th:text="${lot.lotDescription}"></td>
-                <td th:text="${lot.lotPrice}"></td>
+                 <td th:text="${lot.lotPrice}"></td> 
                 
                 <td>
                 	<a th:href="@{/admin/lot/details/__${lot.lotId}__}" class="w3-button w3-green" style="color:green;">View</a> |

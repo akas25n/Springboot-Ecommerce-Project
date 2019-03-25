@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lot.model.BillingAddress;
 import com.lot.model.DeliveryStatus;
+import com.lot.model.Lager_Product;
 import com.lot.model.Lot;
 import com.lot.model.MailRequest;
 import com.lot.model.Order;
@@ -31,6 +32,7 @@ import com.lot.model.ShippingAddress;
 import com.lot.model.User;
 import com.lot.repository.BillingAddressRepository;
 import com.lot.repository.DeliveryStatusRepository;
+import com.lot.repository.Lager_ProductRepository;
 import com.lot.repository.LotRepository;
 import com.lot.repository.OrderRepository;
 import com.lot.repository.ProductRepository;
@@ -65,6 +67,9 @@ public class OrderDetailsController {
 	@Autowired
 	DeliveryStatusRepository deliveryStatusRepository;
 	
+	@Autowired
+	private Lager_ProductRepository lager_ProductRepository;
+	
 	//******************************************************************************Order details*****************************************************************
 	@RequestMapping(value = "/details/{lotId}",method=RequestMethod.GET)
 	public ModelAndView showOrderdetails(@PathVariable("lotId") long lotId)
@@ -85,7 +90,7 @@ public class OrderDetailsController {
 		Optional<Lot> new_obj = lotRepository.findById(lotId);
 		Lot lots= new_obj.get();
 		
-		List<Product> product = productRepository.findAllByLotId(lotId);
+		List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
 		
 		
 		
@@ -141,7 +146,7 @@ public class OrderDetailsController {
 		Optional<Lot> new_obj = lotRepository.findById(lotId);
 		Lot lots= new_obj.get();
 		
-		List<Product> product = productRepository.findAllByLotId(lotId);
+		List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
 		
 		
 

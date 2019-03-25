@@ -22,7 +22,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
 	
 </head>
-<body style="background-color: #f7f7f7!important;">
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	
 	<div class="container">
 	<div th:include="admin-header :: copy"></div>
@@ -44,7 +44,7 @@
 				
 				<div class="col-sm-8">
 					<h4>My Orders</h4>
-					<p>See your order history and invoices</p>
+					<p style="color:grey;">See your order history and invoices</p>
 				</div>
 			</div>
 			
@@ -53,7 +53,7 @@
 				<!-- <div th:each="usr: ${users}"> -->
 					 <div class="thumbnail">
 				      <a th:href="@{/admin/account/edit/general/info/__${users.user_id}__}">
-				        <img src="/images/b.png" alt="Lights" style="height: 100px">
+				        <img src="/images/user.jpg" alt="Lights" style="height: 100px">
 				      </a>
 				    <!-- </div> -->
 				    </div>
@@ -61,7 +61,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Edit My General Info</h4>
-					<p>Edit general and login details</p>
+					<p style="color:grey;">Edit general and login details</p>
 				</div>
 			</div>
 		</div>
@@ -78,7 +78,7 @@
 					
 					<div class="col-sm-8">
 						<h4>My Addresses</h4>
-						<p>Edit Shipping and Billing Addresses</p>
+						<p style="color:grey;">Edit Shipping and Billing Addresses</p>
 					</div>
 				</div>
 			
@@ -93,7 +93,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Payment Options</h4>
-					<p>Edit or add payment method</p>
+					<p style="color:grey;">Edit or add payment method</p>
 				</div>
 			</div>
 		</div>
@@ -117,7 +117,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Lot Management</h4>
-					<p>Create new lot, update and see lot list</p>
+					<p style="color:grey;">Create new lot, update and see lot list</p>
 				</div>
 			</div>
 			
@@ -125,14 +125,14 @@
 				<div class="col-sm-4">
 					 <div class="thumbnail">
 				      <a href="/admin/account/all/list">
-				        <img src="/images/b.png" alt="Lights" style="height: 100px">
+				        <img src="/images/userss.png" alt="Lights" style="height: 100px">
 				      </a>
 				    </div>
 				</div>
 				
 				<div class="col-sm-8">
 					<h4>User & Staff</h4>
-					<p>Edit, create new users & assign the roles</p>
+					<p style="color:grey;">Edit, create new users & assign the roles</p>
 				</div>
 			</div>
 		</div>
@@ -150,7 +150,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Product Catalog</h4>
-					<p>Create, edit, delete product and show the list</p>
+					<p style="color:grey;">Create, edit, delete product and show the list</p>
 				</div>
 			</div>
 		
@@ -166,7 +166,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Lot Lager</h4>
-					<p>Upload Lot Lager and see the list</p>
+					<p style="color:grey;">Upload Lot Lager and see the list</p>
 				</div>
 			</div>
 			
@@ -185,7 +185,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Orders</h4>
-					<p>See the customer's order list</p>
+					<p style="color:grey;">See the customer's order list</p>
 				</div>
 			</div>
 			
@@ -200,13 +200,28 @@
 				
 				<div class="col-sm-8">
 					<h4>Manage Slider</h4>
-					<p>Upload and update slider images</p>
+					<p style="color:grey;">Upload and update slider images</p>
 				</div>
 			</div>
 			
 		</div>
 		
 		<div class="row">
+		
+				<div class="col-md-6 col-sm-6">
+				<div class="col-sm-4">
+					 <div class="thumbnail">
+				      <a href="/admin/lager/product/list">
+				        <img src="/images/lager.png" alt="Lights" style="height: 80px">
+				      </a>
+				    </div>
+				</div>
+				
+				<div class="col-sm-8">
+					<h4>Lager Product List</h4>
+					<p style="color:grey;">See the Lager Product List</p>
+				</div>
+			</div>
 		
 			<div class="col-md-6 col-sm-6">
 				<div class="col-sm-4">
@@ -219,7 +234,7 @@
 				
 				<div class="col-sm-8">
 					<h4>Payment & Invoices</h4>
-					<p>See the paid & Unpaid invoices</p>
+					<p style="color:grey;">See the paid & Unpaid invoices</p>
 				</div>
 			</div>
 		
@@ -233,20 +248,7 @@
 		
 			<div class="row">
 		
-			<div class="col-md-6 col-sm-6">
-				<div class="col-sm-4">
-					 <div class="thumbnail">
-				      <a href="/admin/lager/product/list">
-				        <img src="/images/e.jpg" alt="Lights" style="height: 80px">
-				      </a>
-				    </div>
-				</div>
-				
-				<div class="col-sm-8">
-					<h4>Lager Product List</h4>
-					<p>See the paid & Unpaid invoices</p>
-				</div>
-			</div>
+	
 		
 		</div>
 		

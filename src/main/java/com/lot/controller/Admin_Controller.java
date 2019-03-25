@@ -841,42 +841,54 @@ public class Admin_Controller {
 	
 	
 			//List<Product> product = productRepository.findAllByLotId(lotId);
-			List<Product> product = productRepository.findAllByLotId(lotId);
+			List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
 			
 			//------------------------------------------------------------------------------counting volume
 			int vol= 0;
 			int i=0;
-			product.get(i).getA_stock();
+			product.get(i).getQuantity();
 			
 			for(i = 0; i< product.size(); i++) {
 				
-				String st =product.get(i).getA_stock();
+				String st =product.get(i).getQuantity();
 				
 				vol =vol + (Integer.parseInt(st)); 	
 			}
 			//----------------------------------------------------------------------------------------
 			
+			//------------------------------------------------------------------------------counting volume
+			long price= 0;
+			int in=0;
+			product.get(in).getPrice();
 			
-		
+			for(in = 0; in< product.size(); in++) {
+				
+				Long st =product.get(in).getPrice();
+				
+				price = price + (st); 	
+			}
+			//----------------------------------------------------------------------------------------
+			
+			lots.setLotPrice(price);
 			lots.setVolume(vol); // setiing lot volume
 			
 			//------------------------------------------------------------------------------------
-			Set<Product> set_product = lots.getProductList();
+			Set<Lager_Product> prod = lots.getProductList();
 			
 			
 			List<String> imageList = new ArrayList<String>();
 			
-			for(Product set : set_product) {
-				if(!(set.getA_media_image_0_()).isEmpty()) {
-					imageList.add(set.getA_media_image_0_());
+			for(Lager_Product set : prod) {
+				if(!(set.getArticleImage1()).isEmpty()) {
+					imageList.add(set.getArticleImage1());
 				}
 				
-				if(!(set.getA_media_image_1_()).isEmpty()) {
-					imageList.add(set.getA_media_image_1_());
+				if(!(set.getArticleImage2()).isEmpty()) {
+					imageList.add(set.getArticleImage2());
 				}
 				
-				if(!(set.getA_media_image_2_()).isEmpty()) {
-					imageList.add(set.getA_media_image_2_());
+				if(!(set.getArticleImage3()).isEmpty()) {
+					imageList.add(set.getArticleImage3());
 				}
 				
 			}
@@ -915,7 +927,7 @@ public class Admin_Controller {
 			Optional<Lot> new_obj = lotRepository.findById(lotId);
 			Lot lots= new_obj.get();
 			
-			List<Product> product = productRepository.findAllByLotId(lotId);
+			List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
 			
 			
 			
@@ -950,7 +962,7 @@ public class Admin_Controller {
 			Optional<Lot> new_obj = lotRepository.findById(lotId);
 			Lot lots= new_obj.get();
 			
-			List<Product> product = productRepository.findAllByLotId(lotId);
+			List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
 			
 			 //----------------------------------------------------------------------------------------------------------------------
 	        Map<String, Object> model = new HashMap<>();
@@ -1057,8 +1069,8 @@ public class Admin_Controller {
 									@RequestParam("lotName") String lotName,
 									@RequestParam("lotDescription") String lotDescription,
 									@RequestParam("teaserImage")  MultipartFile teaserImage,
-									@RequestParam("lotPrice") double lotPrice,
-									@RequestParam("actualPrice") double actualPrice,
+									//@RequestParam("lotPrice") double lotPrice,
+									//@RequestParam("actualPrice") double actualPrice,
 									@RequestParam("lot_status") int lot_status
 									)
 													
@@ -1083,8 +1095,8 @@ public class Admin_Controller {
 		mv.addObject("lot",lot);
 		lot.setLotName(lotName);
 		lot.setLotDescription(lotDescription);
-		lot.setActualPrice(actualPrice);
-		lot.setLotPrice(lotPrice);
+//		lot.setActualPrice(actualPrice);
+		//lot.setLotPrice(lotPrice);
 		lot.setLot_status(lot_status);
 		
 		lot.setCreatedAt(formatter.format(date));
@@ -1113,10 +1125,11 @@ public class Admin_Controller {
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		//*****************************************************************************************************
         
-		List<Product> products = productRepository.findAll();
+		List<Lager_Product> products = lager_ProductRepository.findAll();
 		Optional<Lot> newLot = lotRepository.findById(lotId);
 		
 		Lot lot=newLot.get();
+		
 		mv.addObject("products", products);
 		mv.addObject("lot", lot);
 		
@@ -1140,20 +1153,20 @@ public class Admin_Controller {
 		Optional<Lot> newLot = lotRepository.findById(lot_id);
 		Lot lot = newLot.get();
 		
-		new Product();
+		new Lager_Product();
 		
 		ArrayList<Long> al = new ArrayList<Long>();
 		
 
 		if (idrates !=null) {
-			Set<Product> productList = new HashSet<>();
+			Set<Lager_Product> productList = new HashSet<>();
 			productList = lot.getProductList();
 			
 			for(String idrateStr: idrates) {
 				Long idrate = Long.parseLong(idrateStr);
 				al.add(idrate);
 				
-				Product newProduct = productRepository.find_BY_EAN(idrate);
+				Lager_Product newProduct = lager_ProductRepository.find_BY_ean(idrate);
 				
 				if (newProduct.equals(null)) {
 					return null;
@@ -1341,9 +1354,12 @@ public class Admin_Controller {
         User user = userService.findUserByEmail(auth.getName());
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //-------------------------------------------------------------------------------------------
+     List<Lager_Product> lagers = lager_ProductRepository.findAll();
      
- 
-		mv.setViewName("/my_account/admin/test-selection");
+     	System.out.println("----------------------------------------------------------------------------------------------------------"+ lagers);
+     	
+     	mv.addObject("lgr", lagers);
+		mv.setViewName("/my_account/admin/lager-product-list");
 		return mv;
 	}
 	

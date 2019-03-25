@@ -36,6 +36,7 @@ public class Lot_LagerService {
 	int index_LAGERPLATZ;
 	int index_BESTAND;
 	int index_RESERVIERT;
+	int index_PREIS;
 	
 	int temp;
 	//-----------------------------------------------------------------index---------------------------------------------------
@@ -102,6 +103,7 @@ public class Lot_LagerService {
 		lager.setLAGERPLATZ(data[index_LAGERPLATZ]);
 		lager.setBESTAND(data[index_BESTAND]);
 		lager.setRESERVIERT(data[index_RESERVIERT]);
+		lager.setPREIS(Long.parseLong(data[index_PREIS]));
 		
 		lot_LagerRepository.save(lager);
 		 
@@ -126,7 +128,7 @@ public class Lot_LagerService {
 		lager.setLAGERPLATZ(data[index_LAGERPLATZ]);
 		lager.setBESTAND(data[index_BESTAND]);
 		lager.setRESERVIERT(data[index_RESERVIERT]);
-		
+		lager.setPREIS(Long.parseLong(data[index_PREIS]));
 		
 		return "Products have been created";
 		
@@ -186,6 +188,10 @@ public class Lot_LagerService {
 					 index_RESERVIERT=i;
 				 }
 				
+				 else if(dta.equals("PREIS"))
+				 {
+					 index_PREIS=i;
+				 }
 				
 				 else
 					 temp = i;

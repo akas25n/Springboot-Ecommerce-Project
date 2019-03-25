@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lot.model.Lager_Product;
 import com.lot.model.Lot;
 import com.lot.model.Product;
 import com.lot.model.User;
+import com.lot.repository.Lager_ProductRepository;
 import com.lot.repository.LotRepository;
 import com.lot.repository.ProductRepository;
 import com.lot.service.UserService;
@@ -36,6 +38,9 @@ public class Lot_Controller {
 		
 		@Autowired
 		private ProductRepository productRepository;
+		
+		@Autowired
+		private Lager_ProductRepository  lager_ProductRepository;
 		
 		
 		
@@ -77,47 +82,58 @@ public class Lot_Controller {
 	
 	
 			//List<Product> product = productRepository.findAllByLotId(lotId);
-			List<Product> product = productRepository.findAllByLotId(lotId);
+			List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
 			
 			//------------------------------------------------------------------------------counting volume
 			int vol= 0;
 			int i=0;
-			product.get(i).getA_stock();
+			product.get(i).getQuantity();
 			
 			for(i = 0; i< product.size(); i++) {
 				
-				String st =product.get(i).getA_stock();
+				String st =product.get(i).getQuantity();
 				
 				vol =vol + (Integer.parseInt(st)); 	
 			}
-			
-			
-			lots.setVolume(vol); // setiing lot volume
 			//----------------------------------------------------------------------------------------
 			
+			//------------------------------------------------------------------------------counting volume
+			long price= 0;
+			int in=0;
+			product.get(in).getPrice();
+			
+			for(in = 0; in< product.size(); in++) {
+				
+				Long st =product.get(in).getPrice();
+				
+				price = price + (st); 	
+			}
+			//----------------------------------------------------------------------------------------
+			
+			lots.setLotPrice(price);
+			lots.setVolume(vol); // setiing lot volume
+			
 			//------------------------------------------------------------------------------------
-			Set<Product> set_product = lots.getProductList();
+			Set<Lager_Product> prod = lots.getProductList();
 			
 			
 			List<String> imageList = new ArrayList<String>();
 			
-			
-
-			
-			for(Product set : set_product) {
-				if(!(set.getA_media_image_0_()).isEmpty()) {
-					imageList.add(set.getA_media_image_0_());
+			for(Lager_Product set : prod) {
+				if(!(set.getArticleImage1()).isEmpty()) {
+					imageList.add(set.getArticleImage1());
 				}
 				
-				if(!(set.getA_media_image_1_()).isEmpty()) {
-					imageList.add(set.getA_media_image_1_());
+				if(!(set.getArticleImage2()).isEmpty()) {
+					imageList.add(set.getArticleImage2());
 				}
 				
-				if(!(set.getA_media_image_2_()).isEmpty()) {
-					imageList.add(set.getA_media_image_2_());
+				if(!(set.getArticleImage3()).isEmpty()) {
+					imageList.add(set.getArticleImage3());
 				}
 				
 			}
+			
 			
 			
 			lotRepository.save(lots); // updating the lot in the database

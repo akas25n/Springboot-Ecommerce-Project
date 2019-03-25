@@ -88,7 +88,7 @@
        <table class="table table-bordered" id="table_idd">
             <thead>
               <tr>
-              	
+              	<th></th>
                <th>EAN</th>
                 <th>Art Nr</th>
                  <th>Prod Name</th>
@@ -104,8 +104,8 @@
             
             <tbody id="tdBackground">
 				     
-			<tr th:each="lager:${lagerProdduct}">
-			
+			<tr th:each="lager:${lgr}">
+				<td><input type="checkbox" th:name="idChecked" th:value="${lager.ean}" /></td>
               	<td th:text="${lager.ean}"></td>
                 <td th:text="${lager.articleNumber}"></td>
                 

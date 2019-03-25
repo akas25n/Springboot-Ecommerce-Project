@@ -61,11 +61,11 @@
 		             <div class="col-sm-8">
 		             
 		             	<h4 th:text="${lot.lotName}"></h4>
-		             	<hr>
+		             
 		             	Price: <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
-		             	<hr>
-		             	Quantity:<strong> Ganze Lot </strong>
-		             	<hr>
+		             	
+		             	Quantity:<strong th:text="${lot.volume}"></strong>
+		             	
 		             </div>
 				</div>
 			</div>
@@ -106,14 +106,12 @@
             <thead >
               <tr>
 				<th>Article Image</th>
-                <th>A_id</th>
+                <th>Article Number</th>
                 <th>Article Name</th>
                 <th>Brand</th>
                 <th>Gender</th>
                 <th>Size</th>
-                <th>length</th>
                 
-                <th>Width</th>
                 <th>Volume</th>
                 
          
@@ -124,16 +122,13 @@
             <tbody id="tdBackground">
 				     
 					<tr th:each="product:${products}">
-					<td><img th:src="${product.a_media_image_0_}" style="width: 70px; height:60px;"></td>
-	              <td th:text="${product.a_id}"></td>
-	               <td th:text="${product.p_name}"></td>
-	               <td th:text="${product.p_brand}"></td>
-	               <td th:text="${product.p_comp_zielgruppe_}"></td>
-	               <td th:text="${product.a_comp_groesse_}"></td>
-	               <td th:text="${product.a_length}"></td>
-	               
-	               <td th:text="${product.a_width}"></td>
-	               <td th:text="${product.a_stock}"></td>
+					<td><img th:src="${product.articleImage1}" style="width: 70px; height:60px;"></td>
+	              <td th:text="${product.articleNumber}"></td>
+	               <td th:text="${product.productName}"></td>
+	               <td th:text="${product.brand}"></td>
+	               <td th:text="${product.targetGroup}"></td>
+	               <td th:text="${product.size}"></td>
+	               <td th:text="${product.quantity}"></td>
       
               </tr>
 			</tbody>

@@ -46,11 +46,11 @@ public class Product {
 	private String p_comp_material_=null;
 	
 	private String p_comp_zielgruppe_=null;
-	
-	//@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
+	/*
+		//@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
 		@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
 		@JsonIgnore
-		private Set<Lot> lot;
+		private Set<Lot> lot;*/
 
 		public String getA_nr() {
 			return a_nr;
@@ -220,13 +220,13 @@ public class Product {
 			this.p_comp_zielgruppe_ = p_comp_zielgruppe_;
 		}
 
-		public Set<Lot> getLot() {
+		/*public Set<Lot> getLot() {
 			return lot;
 		}
 
 		public void setLot(Set<Lot> lot) {
 			this.lot = lot;
-		}
+		}*/
 		
 		
 		

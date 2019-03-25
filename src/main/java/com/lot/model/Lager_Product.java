@@ -1,9 +1,15 @@
 package com.lot.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="lager_product")
@@ -16,7 +22,7 @@ public class Lager_Product {
 	String color;
 	String size;
 	String quantity;
-	
+	Long price;
 	//these will come from product table
 	
 	String productName;
@@ -32,6 +38,24 @@ public class Lager_Product {
 	String articleImage3;
 	String articleImage4;
 	String articleImage5;
+	
+	@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
+	@JsonIgnore
+	private Set<Lot> lot;
+	
+	
+	public Long getPrice() {
+		return price;
+	}
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+	public Set<Lot> getLot() {
+		return lot;
+	}
+	public void setLot(Set<Lot> lot) {
+		this.lot = lot;
+	}
 	public long getEan() {
 		return ean;
 	}
