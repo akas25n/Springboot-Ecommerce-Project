@@ -20,13 +20,12 @@
 
   <style type="text/css">
   
-        .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
-          border-top: 4px solid #CBD6D5;
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+      border-top: 4px solid #CBD6D5;
     }
   
     #uploadbanner{
       margin-left: 10px;
-
     }
 
     h3{
@@ -44,29 +43,32 @@
 	<div class="container">
 	<hr>
     <h3>UPLOAD PRODUCTS</h3>
-
     <hr>
-
     <ul class="nav nav-tabs">
       
-     
       <li><a href="/admin/product/list">Product List</a></li>
        <li class="active"><a href="/admin/upload/product">Upload Products</a></li>
       
     </ul>
     <br>
 	<br>
+	
+		
       <form id = "uploadbanner" th:action="@{/admin/product/process}" enctype= "multipart/form-data"  method = "POST">
       
-      <div th:if="${message}" class="alert alert-success"
+         <div th:if="${message}" class="alert alert-success"
           role="alert" th:text=${message}></div>
       
         <input type="file" name="multi_file" />
         <br>
         <br>
         <input type = "submit" value = "submit" id = "submit"/>
-       
       </form>
+      <hr>
+      <hr style="border:2px solid grey;">
+      	<h4 style="color:blue;"><span style="color:red;">IMPORTANT!!</span> Before uploading the CSV file Please make sure that there is no <span style="color:red;">"NULL & STRING"</span> value in the a_ean column.</h4>
+      <hr style="border:2px solid grey;">
+
       
       </div>
 

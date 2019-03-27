@@ -23,8 +23,4 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	@Query(value = "SELECT * FROM product p LEFT JOIN lot_product cup on p.a_ean = cup.product_a_ean_fk LEFT JOIN lot l on l.lot_id = cup.lot_id_fk WHERE l.lot_id =?1", nativeQuery=true)
 	public List<Product> findAllByLotId(long id);
 	
-	/*
-	 @Query(value="SELECT * FROM campaigns c  left join campaign_user_private cup on c.campaign_id = cup.campaign_Foreign_k_id left join user u on u.user_id = cup.user_Foreign_k_id where u.user_id=?1",nativeQuery = true)
-	public List<Campaign> findAllPrivate_ById(int id);//client
-	 */
 }

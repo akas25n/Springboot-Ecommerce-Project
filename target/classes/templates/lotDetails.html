@@ -62,10 +62,9 @@
 
 <div th:include="header :: copy"></div>
 		
-	<!-- <div th:include="filter :: copy"></div> -->
+	<div th:include="filter :: copy"></div>
 	
 	
-	<hr>
 	<hr>
 	
 	<div class="container">
@@ -214,7 +213,7 @@
 			                <!-- <th>Gender</th> -->
 			                 <th>Color</th>
 			                <th>Size</th>
-			                <th style="border-left: 2px solid black;">Volume</th>
+			                <th style="border-left: 2px solid grey;">Volume</th>
 			              </tr>
 			
 			            </thead>
@@ -226,12 +225,12 @@
 				              <!--  <td th:text="${product.p_comp_zielgruppe_}"></td> -->
 				               <td th:text="${product.color}"  style="height:20px;"></td>
 				               <td th:text="${product.size}"></td>
-				               <td th:text="${product.quantity}" style="border-left: 2px solid black;"></td>
+				               <td th:text="${product.quantity}" style="border-left: 2px solid grey;"></td>
 			              </tr>
-			              <tr style="border-top: 2px solid black;">
+			              <tr style="border-top: 2px solid grey;">
 			              	<td><h4>GESAMT</h4></td>
 			              	<td><h4>-</h4></td>
-			              	<td style="border: 2px solid black; font-size: 20px;" th:text="${product.quantity}"></td>
+			              	<td style="border: 2px solid grey; font-size: 20px;" th:text="${product.quantity}"></td>
 			              </tr>
 						</tbody>
 			        </table> 
@@ -246,8 +245,8 @@
         			</div>
         			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
 						<div>
-        					<p><span style="padding-left:10px;">Retail Price:</span> <span style="float:right; color: red;"></span> <span class="glyphicon glyphicon-euro"></span></p> 
-        					<strong style="padding-left:10px;">Offer Price:</strong> <strong  style="float:right; padding-right:20px;" th:text="${product.price}"></strong> <span class="glyphicon glyphicon-euro"></span>
+        					<p><span style="padding-left:10px;">Retail Price:</span> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:22px; color: red;"></span><span style="float:right; color: red; padding-right:16px;">0.0</span></p> 
+        					<strong style="padding-left:10px;">Offer Price:</strong> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:18px;"></span> <strong  style="float:right; padding-right:10px;" th:text="${product.price}"> </strong> 
         				</div>
         			</div>
         		

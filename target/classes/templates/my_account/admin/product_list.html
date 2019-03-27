@@ -60,7 +60,7 @@
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <!-- ********************************************************** pagination***************************************************** -->
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -99,13 +99,15 @@ $(document).ready( function () {
               <tr>
               	
                <th>EAN</th>
-                <th>A_ProdNr</th>
-                <th>Product Name</th>
+               <!--  <th>A_ProdNr</th> -->
+                
                 <th>Brand</th>
+                <th>Product Name</th>
                 <th>Gender</th>
-                <th>Color</th>
-                <th>Size</th>
-                <th>Stock</th>
+                <!-- <th>Color</th>
+                <th>Size</th> -->
+                <th>Retail Price</th>
+               <th>Product Material</th>
                 
                 
                 
@@ -118,13 +120,15 @@ $(document).ready( function () {
 					<tr th:each="product:${products}">
 
                	<td th:text="${product.a_ean}">
-	              <td th:text="${product.a_prodnr}">
-	               <td th:text="${product.p_name}">
+	             <!--  <td th:text="${product.a_prodnr}"> -->
+	               
 	               <td th:text="${product.p_brand}">
+	               <td th:text="${product.p_name}">
 	               <td th:text="${product.p_comp_zielgruppe_}">
-	               <td th:text="${product.a_comp_farbe_}"></td>
-	               <td th:text="${product.a_comp_groesse_}"></td>
-	               <td th:text="${product.a_stock}">
+	               <!-- <td th:text="${product.a_comp_farbe_}"></td>
+	               <td th:text="${product.a_comp_groesse_}"></td> -->
+	               <td th:text="${product.a_uvp_cuglago_1_}">
+	             <td th:text="${product.p_comp_material_}">
                 
                 
               </tr>

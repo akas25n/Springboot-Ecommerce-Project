@@ -24,13 +24,13 @@
 	
 </head>
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 		<div th:include="header :: copy"></div>
 		
-		<!--  <div th:include="filter :: copy"></div> -->
-		<hr>
-		<hr>
+	<div th:include="filter :: copy"></div>
+		
+		
 		<!-- ************************************************************************sliders***************************************************************************** -->
 		<div class="container" th:each="imgs: ${img}">
 		  <div id="myCarousel" class="carousel slide" data-ride="carousel">

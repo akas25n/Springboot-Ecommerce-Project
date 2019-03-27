@@ -98,13 +98,13 @@ public class Lot_Controller {
 			//----------------------------------------------------------------------------------------
 			
 			//------------------------------------------------------------------------------counting volume
-			long price= 0;
+			double price= 0;
 			int in=0;
 			product.get(in).getPrice();
 			
 			for(in = 0; in< product.size(); in++) {
 				
-				Long st =product.get(in).getPrice();
+				double st =product.get(in).getPrice();
 				
 				price = price + (st); 	
 			}

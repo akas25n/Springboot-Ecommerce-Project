@@ -829,6 +829,14 @@ public ModelAndView showShipAdd(@Valid ShippingAddress shippingAddress, BindingR
 	
 }
 
+@RequestMapping(value="/payment/option")
+public ModelAndView showpayment() {
+	ModelAndView mv = new ModelAndView();
+	
+	mv.setViewName("/my_account/user/payment");
+	return mv;
+}
+
 }// end of the MyAccountController 
 
 	

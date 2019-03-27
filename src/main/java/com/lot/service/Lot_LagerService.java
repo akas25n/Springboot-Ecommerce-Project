@@ -103,7 +103,7 @@ public class Lot_LagerService {
 		lager.setLAGERPLATZ(data[index_LAGERPLATZ]);
 		lager.setBESTAND(data[index_BESTAND]);
 		lager.setRESERVIERT(data[index_RESERVIERT]);
-		lager.setPREIS(Long.parseLong(data[index_PREIS]));
+		lager.setPREIS(Double.parseDouble(data[index_PREIS]));
 		
 		lot_LagerRepository.save(lager);
 		 
@@ -128,7 +128,7 @@ public class Lot_LagerService {
 		lager.setLAGERPLATZ(data[index_LAGERPLATZ]);
 		lager.setBESTAND(data[index_BESTAND]);
 		lager.setRESERVIERT(data[index_RESERVIERT]);
-		lager.setPREIS(Long.parseLong(data[index_PREIS]));
+		lager.setPREIS(Double.parseDouble(data[index_PREIS]));
 		
 		return "Products have been created";
 		

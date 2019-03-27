@@ -79,77 +79,49 @@ body {
 	<div class="container">
 	<div th:include="header :: copy"></div>
 	<hr>
-	<h3 style="color:grey;">CHECK YOUR ADDRESSES</h3>
+	<h3 style="color:grey;">YOUR PAYMENT OPTIONS</h3>
 	<hr>
 	
 		
 <div class="row">
  
   <div class="column">
- 
-    <div class="card">
-    <div style="background-color: #dbe1df; border: 1px solid grey;"> 
-     <h3>Payment Details</h3>
-     </div>
+    <div class="card" style="height:150px;">
+   
   	
-      <div th:each="billAdd: ${billAddress}">
-			
-		<strong><div th:text="${billAdd.contact_person}"></div></strong>
-			<div th:text="${billAdd.street}"></div>
-				<span th:text="${billAdd.city}" ></span> <span th:text="${billAdd.zip_code}"></span>
-					<div th:text="${billAdd.country}"></div>
-					<div th:text="${billAdd.phone_number}"></div>
-					<hr style="border: 2px solid lightgrey;">			
-				</div>
-				
-				<div th:if="${message}" 
-					class="alert alert-danger" role="alert" 
-          			th:text=${message}>
-          						
-				</div>
-				
-				<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
-			<div th:if="${billAddress} !=null">
-				<h4><a th:href="@{/my/account/billing/address}"><strong> Edit</strong></a></h4>
-			</div>	
-			<div th:if="${billAddress} == null">
-				<h4><a th:href="@{/my/account/billing/address}"><strong>Add </strong></a></h4>
-			</div>
 		
     </div>
   </div>
   
   <div class="column">
-  	
-    <div class="card">
-    <div style="background-color: #dbe1df; border: 1px solid grey; color: black;"> 
-     <h3>Order Summary</h3>
-     </div>
-     	
-     	<div th:each="lot : ${lots}">
-     	 <div class="row" id="lotDescDetails">
-            
-           	<h5 style="color: black;"><strong>Lot Name:</strong> <span th:text="${lot.lotName}"></span></h5>
-            <h5 style="color: black;"><strong >Volume:</strong> <span th:text="${lot.volume}"></span></h5>
-          
-          <hr style="border: 2px solid lightgrey; margin-top: 70px;">
-           
-              <h4 style="margin-left: -30px; color: #337ab7;"><strong>Total Price: <span th:text="${lot.lotPrice}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
-            
-          </div>
-     	
-    </div>
-  	</div>	
+    <div class="card" style="height:150px;">
+
+   		</div>
+  	</div>
+  		<!-- ---------------------------------------------------------------- -->
  	</div>
-	</div>
+ 	
+ 	<div class="row" style="height:150px;">
+ 
+  <div class="column">
+    <div class="card" style="height:150px;">
+   
+  	
+		
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card" style="height:150px;">
+
+   		</div>
+  	</div>
+  		<!-- ---------------------------------------------------------------- -->
+ 	</div>
+	
 	
 	<hr>
- 	
-     	   <!-- ................... if shipping address is empty then add...if not emty then edit...................... -->	
-	<div th:if="${billAddress} !=null">
-		<div th:each="lot : ${lots}">
-		    <a th:href="@{/order/details/__${lot.lotId}__}" class="btn btn-primary">Next</a></div>
-		 </div>
+
 	
 	</div><!-- end of the container -->
 	<div th:include="footer :: copy"></div>

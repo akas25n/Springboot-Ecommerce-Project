@@ -110,14 +110,14 @@ $(document).ready( function () {
 	              	
 	               <th></th>
 	               <th>EAN</th>
-	               <th>Article Number</th>
+	              <!--  <th>Article Number</th> -->
 	                
 	                <th>Brand</th>
 	                <th>Product Name</th>
 	                <th>Gender</th>
-	                <th>Color</th>
+	               <!--  <th>Color</th>
                 	<th>Size</th>
-	                <th>Stock</th>
+	                <th>Stock</th> -->
 	  
 	              </tr>
 	
@@ -129,14 +129,14 @@ $(document).ready( function () {
 					
 					 <td><input type="checkbox" th:name="idChecked" th:value="${product.ean}" /></td>
 					 <td th:text="${product.ean}">
-					 <td th:text="${product.articleNumber}">
+					 <!-- <td th:text="${product.articleNumber}"> -->
 	               	
 					<td th:text="${product.brand}">
 					<td th:text="${product.productName}">
 					<td th:text="${product.targetGroup}">
-					<td th:text="${product.color}"></td>
-	               	<td th:text="${product.size}"></td>
-		            <td th:text="${product.quantity}"></td>
+					<!-- <td th:text="${product.color}"></td>
+	               	<td th:text="${product.size}"></td> -->
+		           <!--  <td th:text="${product.quantity}"></td> -->
 		           
 	              </tr>
 				</tbody>

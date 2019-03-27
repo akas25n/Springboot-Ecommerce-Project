@@ -22,7 +22,9 @@ public class Lager_Product {
 	String color;
 	String size;
 	String quantity;
-	Long price;
+	double price;
+	double retialPrice; // retail price
+	
 	//these will come from product table
 	
 	String productName;
@@ -44,10 +46,16 @@ public class Lager_Product {
 	private Set<Lot> lot;
 	
 	
-	public Long getPrice() {
+	public double getRetialPrice() {
+		return retialPrice;
+	}
+	public void setRetialPrice(double retialPrice) {
+		this.retialPrice = retialPrice;
+	}
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(Long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public Set<Lot> getLot() {

@@ -69,20 +69,20 @@
       </form>
       <hr>
       <hr style="border:2px solid grey;">
-      	<h4 style="color:#6600cc;"><span style="color:red;">IMPORTANT!!</span> After Uploading The Lot Lager Please Implement The Below SQL Query:-</h4>
+      	<h4 style="color:blue;"><span style="color:red;">IMPORTANT!!</span> After Uploading The Lot Lager Please Implement The Below SQL Query:-</h4>
       <hr style="border:2px solid grey;">
-	  <p style="color:blue;">  Insert into lager_product(ean,articleNumber,color,size,quantity,price,productName,brand,targetGroup,productText,productMaterial,articleImage1,
-		articleImage2,articleImage3,articleImage4,articleImage5)
-	            
-		select lot_lager.EAN, lot_lager.ART_NR, lot_lager.FARBE, lot_lager.GROESSE, lot_lager.BESTAND,lot_lager.PREIS, product.p_name, product.p_brand, product.p_comp_zielgruppe_, 
-		product.p_text, product.p_comp_material_, product.a_media_image_0_, product.a_media_image_1_, product.a_media_image_2_, product.a_media_image_3_,product.a_media_image_4_ 
-				
-	     from lot_lager
-	            
-		join product on lot_lager.EAN = product.a_ean
+	  <h5 style="color:blue;">  Insert into lager_product(ean,articleNumber,color,size,quantity,price,productName,brand,targetGroup,productText,productMaterial,retialPrice,articleImage1,
+								articleImage2,articleImage3,articleImage4,articleImage5)
+            
+								select lot_lager.EAN, lot_lager.ART_NR, lot_lager.FARBE, lot_lager.GROESSE, lot_lager.BESTAND,lot_lager.PREIS, product.p_name, product.p_brand, product.p_comp_zielgruppe_, 
+								product.p_text, product.p_comp_material_,product.a_uvp_cuglago_1_, product.a_media_image_0_, product.a_media_image_1_, product.a_media_image_2_, product.a_media_image_3_,product.a_media_image_4_ 
+			
+   								from lot_lager
+            
+								join product on lot_lager.EAN = product.a_ean
       
-      </p>
-      
+      </h5>
+      <hr style="border:2px solid grey;">
       
       </div>
 

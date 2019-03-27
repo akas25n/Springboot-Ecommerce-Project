@@ -16,12 +16,12 @@ public class Lot_Lager {
 	private String LAGERPLATZ = null;
 	private String BESTAND = null;
 	private String RESERVIERT = null;
-	private long PREIS;
+	private double PREIS;
 	
-	public long getPREIS() {
+	public double getPREIS() {
 		return PREIS;
 	}
-	public void setPREIS(long pREIS) {
+	public void setPREIS(double pREIS) {
 		PREIS = pREIS;
 	}
 	public long getEAN() {

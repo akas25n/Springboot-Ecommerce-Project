@@ -202,8 +202,6 @@ public class Admin_Controller {
 									@RequestParam String company
 									//@RequestParam String email
 									){
-			
-			
 		ModelAndView mv = new ModelAndView();
 	
 		Optional<User> obj = userRepository.findById(user_id); 
@@ -857,13 +855,13 @@ public class Admin_Controller {
 			//----------------------------------------------------------------------------------------
 			
 			//------------------------------------------------------------------------------counting volume
-			long price= 0;
+			double price= 0;
 			int in=0;
 			product.get(in).getPrice();
 			
 			for(in = 0; in< product.size(); in++) {
 				
-				Long st =product.get(in).getPrice();
+				double st =product.get(in).getPrice();
 				
 				price = price + (st); 	
 			}
@@ -1180,6 +1178,8 @@ public class Admin_Controller {
 			lotRepository.save(lot);
 			
 		}
+		
+		
 		
 		return new ModelAndView("redirect:/admin/lot/details/" + lot_id);
 		
@@ -1569,7 +1569,7 @@ public class Admin_Controller {
         mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         
        
-        
+        //lot_LagerRepository.intsert();
 		mv.setViewName("/my_account/admin/paid_invoice");
 		return mv;
 	}
@@ -1802,6 +1802,21 @@ public class Admin_Controller {
 		
 		return mv;
 		
+	}
+	
+	@RequestMapping(value="/payment/option")
+	public ModelAndView showPayment() {
+		ModelAndView mv = new ModelAndView();
+		
+		//**************************************************************************
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByEmail(auth.getName());
+		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+		//*************************************************************************
+		
+		mv.setViewName("/my_account/admin/payment");
+		
+		return mv;
 	}
 
 }// end of admin controller

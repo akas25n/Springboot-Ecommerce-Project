@@ -46,17 +46,24 @@
         <a  th:href="@{/lot/details/__${lot.lotId}__}" class="d-block mb-4 h-100">
           <img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="img-fluid img-thumbnail" alt=" " style="height:255px;"> </a>
             
-             <div class="col-sm-12">
+                <div class="col-sm-12">
+                <div class="row"  style="padding-top: 3px;">
+              		 <div class="col-sm-6"  style="background-color:#dbe1df; color: #5d7973!important;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;">Name</strong></div>
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;"><span th:utext="${lot.lotName}"></span></strong></div>
+              		 </div>
+              		 
+              		  <div class="col-sm-3"  style="background-color:#c8d1cf; color: #5d7973!important;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;">Volume</strong></div>
+              		 	<div class="row"><strong style="padding-left: 17px; float:left;"><span th:utext="${lot.volume}"></span></strong></div>
+              		 </div>
+              		 
+              		   <div class="col-sm-3" style="background-color:#dbe1df; color: #5d7973!important;">
+              		 	<div class="row"><strong style="padding-right: 25px; float:right;">Price</strong></div>
+              		 	<div class="row"><strong style="padding-right: 12px; float:right;"><span th:utext="${lot.lotPrice}"></span> <span class="glyphicon glyphicon-euro"></span></strong></div>
+              		 </div>
+                </div>
                 
-                <div class="row" id="imagDet" style="background-color:#dbe1df; color: #5d7973!important; padding-top: 3px;">
-              
-                <strong> Name: <span th:utext="${lot.lotName}"></span></strong>
-                </div>
-                 <div class="row" id="price" style="background-color:#c8d1cf; color: #5d7973!important; text-align:center; padding-top: 3px;">
-                  <div id="priceRange"> <strong>Volume: <span th:utext="${lot.volume}"style="padding-right:20px;"></span></strong><strong>    Price: <span class="price"
-                     th:utext="${lot.lotPrice}"> 
-                  </span><span class="glyphicon glyphicon-euro"></span> </strong></div> 
-                </div>
                <br>
          
         </div>

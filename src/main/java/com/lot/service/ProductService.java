@@ -28,26 +28,33 @@ public class ProductService {
 	private String msg;
 	
 	//----------------------------------------------------------index----------------------------------------------
-	int index_a_ean;
-	int index_a_id;
+
+	
+	/*int index_a_id;
 	int index_p_id;
 	int index_p_nr;
-	int index_p_name;
-	int index_p_text;
+	int index_a_stock;
 	int index_a_nr;
-	int index_a_active;
-	int index_p_brand;
-	int index_a_prodnr;
-	int index_p_comp_material_;
 	int index_a_comp_farbe_;
 	int index_a_comp_groesse_;
+	int index_a_prodnr;
+	int index_a_prodnr;
+	int index_a_prodnr;
+	int index_a_media_image_5_;
+	*/
+	
+	int index_a_ean;
+	int index_p_name;
+	int index_p_text;
+	int index_p_brand;
+	int index_p_comp_material_;
 	int index_a_media_image_0_;
 	int index_a_media_image_1_;
 	int index_a_media_image_2_;
 	int index_a_media_image_3_;
 	int index_a_media_image_4_;
-	int index_a_media_image_5_;
-	int index_a_stock;
+	int index_a_uvp_cuglago_1_;
+	
 	int index_p_comp_zielgruppe_;
 	
 	/*int index_p_prefix;
@@ -295,25 +302,32 @@ public class ProductService {
 	public String product_create(String[] data) {
 		Product new_product = new Product();
 		
-		new_product.setA_ean(Long.parseLong(data[index_a_ean]));//315
-		new_product.setA_id(Long.parseLong(data[index_a_id]));//311
+		
+		
+	/*	new_product.setA_id(Long.parseLong(data[index_a_id]));//311
 		new_product.setP_id(Long.parseLong(data[index_p_id]));
 		new_product.setP_nr(data[index_p_nr]);
+		 new_product.setA_stock(data[index_a_stock]);//602
+		 new_product.setA_active(data[index_a_active]);//313
+		  //new_product.setA_nr(data[index_a_nr]);//312
+		// new_product.setA_prodnr(data[index_a_prodnr]);//316
+		// new_product.setA_comp_farbe_(data[index_a_comp_farbe_]);//318
+		// new_product.setA_comp_groesse_(data[index_a_comp_groesse_]);//319
+		 * 	// new_product.setA_media_image_5_(data[index_a_media_image_5_]);//550
+*/		
+		
+		new_product.setA_ean(Long.parseLong(data[index_a_ean]));//315 
 		 new_product.setP_name(data[index_p_name]);
 		 new_product.setP_text(data[index_p_text]);
-		 new_product.setA_active(data[index_a_active]);//313
 		 new_product.setP_brand(data[index_p_brand]);
-		 new_product.setA_nr(data[index_a_nr]);//312
-		 new_product.setA_prodnr(data[index_a_prodnr]);//316
-		 new_product.setA_comp_farbe_(data[index_a_comp_farbe_]);//318
-		 new_product.setA_comp_groesse_(data[index_a_comp_groesse_]);//319
+		 
 		 new_product.setA_media_image_0_(data[index_a_media_image_0_]);//545
 		 new_product.setA_media_image_1_(data[index_a_media_image_1_]);//546
 		 new_product.setA_media_image_2_(data[index_a_media_image_2_]);//547
 		 new_product.setA_media_image_3_(data[index_a_media_image_3_]);//548
 		 new_product.setA_media_image_4_(data[index_a_media_image_4_]);//549
-		 new_product.setA_media_image_5_(data[index_a_media_image_5_]);//550
-		 new_product.setA_stock(data[index_a_stock]);//602
+		 new_product.setA_uvp_cuglago_1_(Double.parseDouble(data[index_a_uvp_cuglago_1_]));
+		
 		 new_product.setP_comp_material_(data[index_p_comp_material_]);
 		 new_product.setP_comp_zielgruppe_(data[index_p_comp_zielgruppe_]);
 		 
@@ -514,24 +528,27 @@ public class ProductService {
 		Optional<Product> product_obj = productRepository.findById(check_ean);
 		Product new_product = product_obj.get();
 		
-		new_product.setA_id(Long.parseLong(data[index_a_id]));//311
+		/*new_product.setA_id(Long.parseLong(data[index_a_id]));//311
 		 new_product.setP_id(Long.parseLong(data[index_p_id]));
 		 new_product.setP_nr(data[index_p_nr]);
-		 new_product.setP_name(data[index_p_name]);
-		 new_product.setP_text(data[index_p_text]);
-		 new_product.setA_active(data[index_a_active]);//313
-		 new_product.setP_brand(data[index_p_brand]);
-		 new_product.setA_nr(data[index_a_nr]);//312
-		 new_product.setA_prodnr(data[index_a_prodnr]);//316
+		 new_product.setA_stock(data[index_a_stock]);//602
+		  new_product.setA_prodnr(data[index_a_prodnr]);//316
 		 new_product.setA_comp_farbe_(data[index_a_comp_farbe_]);//318
 		 new_product.setA_comp_groesse_(data[index_a_comp_groesse_]);//319
+		 new_product.setA_nr(data[index_a_nr]);//312
+		 new_product.setA_active(data[index_a_active]);//313
+		  new_product.setA_media_image_5_(data[index_a_media_image_5_]);//550
+*/		 
+		 new_product.setP_name(data[index_p_name]);
+		 new_product.setP_text(data[index_p_text]); 
+		 new_product.setP_brand(data[index_p_brand]);
 		 new_product.setA_media_image_0_(data[index_a_media_image_0_]);//545
 		 new_product.setA_media_image_1_(data[index_a_media_image_1_]);//546
 		 new_product.setA_media_image_2_(data[index_a_media_image_2_]);//547
 		 new_product.setA_media_image_3_(data[index_a_media_image_3_]);//548
 		 new_product.setA_media_image_4_(data[index_a_media_image_4_]);//549
-		 new_product.setA_media_image_5_(data[index_a_media_image_5_]);//550
-		 new_product.setA_stock(data[index_a_stock]);//602
+		 new_product.setA_uvp_cuglago_1_(Double.parseDouble(data[index_a_uvp_cuglago_1_]));
+		 
 		 new_product.setP_comp_material_(data[index_p_comp_material_]);
 		 new_product.setP_comp_zielgruppe_(data[index_p_comp_zielgruppe_]);
 		 
@@ -748,18 +765,7 @@ public class ProductService {
 					 index_a_ean=i; 
 				 }
 				
-				 else if(dta.equals("a_id"))
-				 {
-					 index_a_id=i;
-				 } 
-				 else if(dta.equals("p_id"))
-				 {
-					 index_p_id=i; 
-				 }
-				 else if(dta.equals("p_nr"))
-				 {
-					 index_p_nr=i;
-				 }
+
 				 
 				 else if(dta.equals("p_name"))
 				 {
@@ -781,8 +787,51 @@ public class ProductService {
 				 {
 					 index_p_brand=i;
 				 }
+				  else if(dta.equals("a_media[image]{0}"))
+					 {
+						  index_a_media_image_0_=i;
+					 }
+					 else if(dta.equals("a_media[image]{1}"))
+					 {
+						 index_a_media_image_1_=i;
+					 }
+					  else if(dta.equals("a_media[image]{2}"))
+					 {
+						  index_a_media_image_2_=i;
+					 }
+					 else if(dta.equals("a_media[image]{3}"))
+					 {
+						 index_a_media_image_3_=i;
+					 }
+					  else if(dta.equals("a_media[image]{4}"))
+					 {
+						  index_a_media_image_4_=i;
+					 }
+				 
+					  else if(dta.equals("a_uvp[cuglago1]"))
+						 {
+							  index_a_uvp_cuglago_1_=i;
+						 }
+				 
+					/*		 else if(dta.equals("a_id"))
+				 {
+					 index_a_id=i;
+				 } 
+				 else if(dta.equals("p_id"))
+				 {
+					 index_p_id=i; 
+				 }
+				 else if(dta.equals("p_nr"))
+				 {
+					 index_p_nr=i;
+				 }
+				 
+				 else if(dta.equals("a_stock"))
+				 {
+					 index_a_stock=i;
+				 }*/
 					
-					  else if(dta.equals("a_nr"))
+				/*	  else if(dta.equals("a_nr"))
 					 {
 						  index_a_nr=i;
 					 }
@@ -790,11 +839,7 @@ public class ProductService {
 					 {
 						 index_a_active=i;
 					 }
-					 else if(dta.equals("a_stock"))
-					 {
-						 index_a_stock=i;
-					 }
-					 else if(dta.equals("a_prodnr"))
+					  else if(dta.equals("a_prodnr"))
 					 {
 						 index_a_prodnr=i;
 					 }
@@ -806,30 +851,15 @@ public class ProductService {
 				 {
 					  index_a_comp_groesse_=i;
 				 }
-				  else if(dta.equals("a_media[image]{0}"))
-				 {
-					  index_a_media_image_0_=i;
-				 }
-				 else if(dta.equals("a_media[image]{1}"))
-				 {
-					 index_a_media_image_1_=i;
-				 }
-				  else if(dta.equals("a_media[image]{2}"))
-				 {
-					  index_a_media_image_2_=i;
-				 }
-				 else if(dta.equals("a_media[image]{3}"))
-				 {
-					 index_a_media_image_3_=i;
-				 }
-				  else if(dta.equals("a_media[image]{4}"))
-				 {
-					  index_a_media_image_4_=i;
-				 }
-				 else if(dta.equals("a_media[image]{5}"))
+				  else if(dta.equals("a_media[image]{5}"))
 				 {
 					 index_a_media_image_5_=i;
 				 }
+				 */
+					
+					
+			
+				
 				 
 				 //-------------------------------------------------------------------------
 				 

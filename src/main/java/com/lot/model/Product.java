@@ -17,32 +17,37 @@ import lombok.Data;
 @Table(name ="product")
 public class Product {
 	
-	@Id
-	private long a_ean;
 	
-	private long a_id;
+	
+	/*private long a_id;
 	private long p_id;
 	private String p_nr=null;
+	private String a_stock=null;
+	private String a_nr=null;
+	private String a_comp_farbe_=null;
+	private String a_comp_groesse_=null;
+	private String a_prodnr=null;
+	private String a_active=null;
+	private String a_media_image_5_=null;
+	*/
 	
+	@Id
+	private long a_ean;
 	private String p_name=null;
 	
 	@Column(columnDefinition="LONGTEXT")
 	private String p_text=null;
-	private String a_active=null;
-	
 	
 	private String p_brand=null;
-	private String a_nr=null;
-	private String a_prodnr=null;
-	private String a_comp_farbe_=null;
-	private String a_comp_groesse_=null;
+	
 	private String a_media_image_0_=null;
 	private String a_media_image_1_=null;
 	private String a_media_image_2_=null;
 	private String a_media_image_3_=null;
 	private String a_media_image_4_=null;
-	private String a_media_image_5_=null;
-	private String a_stock=null;
+	private double a_uvp_cuglago_1_;//retail price
+	
+	
 	private String p_comp_material_=null;
 	
 	private String p_comp_zielgruppe_=null;
@@ -50,7 +55,7 @@ public class Product {
 		//@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
 		@ManyToMany(mappedBy="productList", fetch= FetchType.EAGER)
 		@JsonIgnore
-		private Set<Lot> lot;*/
+		private Set<Lot> lot;
 
 		public String getA_nr() {
 			return a_nr;
@@ -58,7 +63,7 @@ public class Product {
 
 		public void setA_nr(String a_nr) {
 			this.a_nr = a_nr;
-		}
+		}*/
 
 		public long getA_ean() {
 			return a_ean;
@@ -67,8 +72,9 @@ public class Product {
 		public void setA_ean(long a_ean) {
 			this.a_ean = a_ean;
 		}
-
-		public long getA_id() {
+		
+		
+/*		public long getA_id() {
 			return a_id;
 		}
 
@@ -90,6 +96,14 @@ public class Product {
 
 		public void setP_nr(String p_nr) {
 			this.p_nr = p_nr;
+		}*/
+
+		public Double getA_uvp_cuglago_1_() {
+			return a_uvp_cuglago_1_;
+		}
+
+		public void setA_uvp_cuglago_1_(Double a_uvp_cuglago_1_) {
+			this.a_uvp_cuglago_1_ = a_uvp_cuglago_1_;
 		}
 
 		public String getP_name() {
@@ -108,13 +122,13 @@ public class Product {
 			this.p_text = p_text;
 		}
 
-		public String getA_active() {
+	/*public String getA_active() {
 			return a_active;
 		}
 
 		public void setA_active(String a_active) {
 			this.a_active = a_active;
-		}
+		}*/
 
 		public String getP_brand() {
 			return p_brand;
@@ -124,7 +138,7 @@ public class Product {
 			this.p_brand = p_brand;
 		}
 
-		public String getA_prodnr() {
+		/*public String getA_prodnr() {
 			return a_prodnr;
 		}
 
@@ -146,7 +160,7 @@ public class Product {
 
 		public void setA_comp_groesse_(String a_comp_groesse_) {
 			this.a_comp_groesse_ = a_comp_groesse_;
-		}
+		}*/
 
 		public String getA_media_image_0_() {
 			return a_media_image_0_;
@@ -187,7 +201,8 @@ public class Product {
 		public void setA_media_image_4_(String a_media_image_4_) {
 			this.a_media_image_4_ = a_media_image_4_;
 		}
-
+		
+		/*
 		public String getA_media_image_5_() {
 			return a_media_image_5_;
 		}
@@ -203,7 +218,7 @@ public class Product {
 		public void setA_stock(String a_stock) {
 			this.a_stock = a_stock;
 		}
-
+*/
 		public String getP_comp_material_() {
 			return p_comp_material_;
 		}
