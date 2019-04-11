@@ -35,26 +35,21 @@ public class Order {
 	@Column(name="delivery_status")
 	private String delivery_status;
 	
-	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="lotId", nullable=false)
 	private Lot lot;
 	
-
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable=false)
 	private User user;
 	
-
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "shipping_add_id", nullable=false)
 	private ShippingAddress shippingAddress;
 	
-	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "billing_add_id", nullable=false)
 	private BillingAddress billingAddress;
-	
 	
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "order_delivery_staus", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "status_id"))
@@ -77,8 +72,6 @@ public class Order {
 		this.billingAddress = billingAddress;
 		this.delivery_status = delivery_status;
 	}
-
-
 
 	public long getOrderId() {
 		return orderId;

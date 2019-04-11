@@ -38,7 +38,7 @@ textarea {
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	<div th:include="admin-header :: copy"></div>
 	
   <div class="container" id="field">
@@ -81,10 +81,18 @@ textarea {
 				    <input th:field="*{company}"  type="text" class="form-control" id="formGroupExampleInput" required>
 				  </div>
 				  
-				  <div class="form-group">
-				    <label for="formGroupExampleInput">Email<span  style="color:red;">*</span></label>
-				    <input th:field="*{email}"  type="text" class="form-control" id="formGroupExampleInput" required>
+				    <div class="form-group">
+				    <label for="formGroupExampleInput2">Email<span  style="color:red;">*</span></label>
+				    <input th:field="*{email}" type="text" class="form-control" id="formGroupExampleInput2" required>
 				  </div>
+				  
+				   <div class="form-group">
+				    <label for="formGroupExampleInput">Status<span  style="color:red;">*</span></label>
+				    <!-- <input th:field="*{enabled}"  type="text" class="form-control" id="formGroupExampleInput" required> -->
+				  <input th:field="*{enabled}"  type="text" class="form-control" id="formGroupExampleInput" required>
+				  </div>
+				  
+				 
 				 
 				<span style="padding-left: 5px;padding-right: 5px; padding-top: 2px;float: right;">
 				 <input class="btn btn-success" type="submit" value="Save Changes">
@@ -100,7 +108,7 @@ textarea {
 		<div style="border: 1px solid grey; border-radius: 5px; background-color: #587774;">
 			<h4 style="text-align: center; color: #a1e50d;">Current Role: 
 							<span th:each="role,iterStat : ${user.roles}">
-			               	<span th:text="${role.role}"/>
+			               	<span style="color:#0bea66;" th:text="${role.role}"/>
 			               	</h4>
 			<hr>
 			<h4 style="text-align: center; color: white;">Change User Role</h4>
@@ -123,10 +131,8 @@ textarea {
 				 <input class="btn btn-success" type="submit" value="Change Role">
 				 
 	  			</span>
-	  			<br>
 		</form>
-		<br>
-		<hr>
+		
       </div>
       </div>
     </div>
@@ -138,7 +144,8 @@ textarea {
 	<br>
   </div>
   <hr>
- 
+ 	<br>
+ 	 <hr>
   <div th:include="admin-footer :: copy"></div>
   <body>
 </html>

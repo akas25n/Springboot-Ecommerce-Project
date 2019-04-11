@@ -13,16 +13,23 @@ public class Lot_Lager {
 	private String ART_NR = null;
 	private String GROESSE = null;
 	private String FARBE = null;
-	private String LAGERPLATZ = null;
-	private String BESTAND = null;
-	private String RESERVIERT = null;
+	private int BESTAND;
+	
+	private double UVP;
 	private double PREIS;
 	
+	
+	public double getUVP() {
+		return UVP;
+	}
+	public void setUVP(double uVP) {
+		UVP = uVP * BESTAND;
+	}
 	public double getPREIS() {
 		return PREIS;
 	}
 	public void setPREIS(double pREIS) {
-		PREIS = pREIS;
+		PREIS = pREIS * BESTAND;
 	}
 	public long getEAN() {
 		return EAN;
@@ -48,25 +55,14 @@ public class Lot_Lager {
 	public void setFARBE(String fARBE) {
 		FARBE = fARBE;
 	}
-	public String getLAGERPLATZ() {
-		return LAGERPLATZ;
-	}
-	public void setLAGERPLATZ(String lAGERPLATZ) {
-		LAGERPLATZ = lAGERPLATZ;
-	}
-	public String getBESTAND() {
+
+	public int getBESTAND() {
 		return BESTAND;
 	}
-	public void setBESTAND(String bESTAND) {
+	public void setBESTAND(int bESTAND) {
 		BESTAND = bESTAND;
 	}
-	public String getRESERVIERT() {
-		return RESERVIERT;
-	}
-	public void setRESERVIERT(String rESERVIERT) {
-		RESERVIERT = rESERVIERT;
-	}
-	
+
 	
 
 }

@@ -60,7 +60,7 @@
 </head>
 
 
-<body style="background-color:#f7f7f7!important;">
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <!-- ********************************************************** pagination***************************************************** -->
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -103,10 +103,12 @@ $(document).ready( function () {
                 <th>A_Nr</th>
                 <th>Color</th>
                 <th>Size</th>
-                <th>Lager Platz</th>
+               
                 <th>Quantity</th>
-                <th>Reserved</th>
+             
                <th>Price</th>
+               
+                  <th>Retail Price</th>
                 
                 
                 
@@ -122,10 +124,11 @@ $(document).ready( function () {
 	              <td th:text="${lager.ART_NR}">
 	               <td th:text="${lager.FARBE}">
 	               <td th:text="${lager.GROESSE}">
-	               <td th:text="${lager.LAGERPLATZ}">
+	               
 	               <td th:text="${lager.BESTAND}"></td>
-	               <td th:text="${lager.RESERVIERT}"></td> 
+	               
 	               <td th:text="${lager.PREIS}"></td>
+	               <td th:text="${lager.UVP}"></td> 
               </tr>
 			</tbody>
         </table>

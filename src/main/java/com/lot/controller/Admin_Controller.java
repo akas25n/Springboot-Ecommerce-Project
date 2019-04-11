@@ -35,6 +35,7 @@ import com.lot.model.Lot_Lager;
 import com.lot.model.MailRequest;
 import com.lot.model.Order;
 import com.lot.model.Product;
+import com.lot.model.ProductNotFoundException;
 import com.lot.model.ShippingAddress;
 import com.lot.model.SliderImages;
 import com.lot.model.User;
@@ -116,7 +117,7 @@ public class Admin_Controller {
 	Lager_ProductService lager_ProductService;
 	
 	@Autowired
-	private SliderImagesRepository sliderImagesRepoaitory;
+	private SliderImagesRepository sliderImageRepository;
 	
 	 
     @RequestMapping(value="/lot/home", method = RequestMethod.GET)
@@ -127,7 +128,7 @@ public class Admin_Controller {
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
         //**************************************************************************************************
-        List<SliderImages> images = sliderImagesRepoaitory.findAll();
+        List<SliderImages> images = sliderImageRepository.findAll();
         
         List<Lot> lots =lotService.findByEnabled();
         modelAndView.addObject("lots", lots);
@@ -371,9 +372,7 @@ public class Admin_Controller {
 									@RequestParam int zip_code,
 									@RequestParam String country,
 									@RequestParam String phone_number
-									){
-			
-			
+									){	
 		ModelAndView mv = new ModelAndView();
 		//********************************************************************************************
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -818,7 +817,6 @@ public class Admin_Controller {
 			mv.setViewName("/my_account/admin/addressShip");
 			
 			return mv;
-			
 		}
 		
 		
@@ -836,7 +834,9 @@ public class Admin_Controller {
 			Optional<Lot> new_obj = lotRepository.findById(lotId);
 			Lot lots= new_obj.get();
 			
-	
+			if(lots == null) {
+				throw new ProductNotFoundException("testing"); 
+			}
 	
 			//List<Product> product = productRepository.findAllByLotId(lotId);
 			List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
@@ -848,9 +848,9 @@ public class Admin_Controller {
 			
 			for(i = 0; i< product.size(); i++) {
 				
-				String st =product.get(i).getQuantity();
+				int st =product.get(i).getQuantity();
 				
-				vol =vol + (Integer.parseInt(st)); 	
+				vol =vol + (st); 	
 			}
 			//----------------------------------------------------------------------------------------
 			
@@ -867,7 +867,21 @@ public class Admin_Controller {
 			}
 			//----------------------------------------------------------------------------------------
 			
+			//------------------------------------------------------------------------------counting volume
+			/*double retailPrice= 0;
+			int inn=0;
+			product.get(in).getPrice();
+			
+			for(inn = 0; inn< product.size(); inn++) {
+				
+				double stt =product.get(inn).getRetialPrice();
+				
+				retailPrice = retailPrice + (stt); 	
+			}*/
+			//----------------------------------------------------------------------------------------
+			//double pr = price * vol;
 			lots.setLotPrice(price);
+			//lots.setActualPrice(retailPrice);
 			lots.setVolume(vol); // setiing lot volume
 			
 			//------------------------------------------------------------------------------------
@@ -1172,12 +1186,12 @@ public class Admin_Controller {
 				else {
 					productList.add(newProduct);
 				}
-				
 			}
 			lot.setProductList(productList);
 			lotRepository.save(lot);
-			
 		}
+		
+		
 		
 		
 		
@@ -1264,12 +1278,12 @@ public class Admin_Controller {
 			productService.save_product();
 			System.out.println("stop save_product");
 			
-			mv.addObject("message","*****************************Data have been uploaded****************************");
+			mv.addObject("successMessage","*****************************Data have been uploaded****************************");
 			mv.setViewName("/my_account/admin/product_upload");
 		} catch (IOException e) {
 			
-			mv.addObject("failureMessage","*****************************Data have not been uploaded****************************");
-			mv.setViewName("/my_account/admin/product_upload");
+			mv.addObject("message","*****************************Product data failed to upload****************************");
+			mv.setViewName("exceptions/product-not-found");
 			
 		}
        
@@ -1314,13 +1328,13 @@ public class Admin_Controller {
 			//lager_ProductRepository.saveLager(lProduct);
 			System.out.println("stop save_product");
 			
-			mv.addObject("message","*****************************Data have been uploaded****************************");
+			mv.addObject("successMessage","*****************************Data have been uploaded****************************");
 			mv.setViewName("/my_account/admin/lager-upload");
 			
 		} catch (IOException e) {
 			
-			mv.addObject("alertMessage","Data have not been saved");
-			mv.setViewName("/my_account/admin/lager-upload");
+			mv.addObject("message","Data have not been saved");
+			mv.setViewName("exceptions/product-not-found");
 			
 		}	
         
@@ -1466,7 +1480,8 @@ public class Admin_Controller {
 										@RequestParam String first_name,
 										@RequestParam String last_name,
 										@RequestParam String company,
-										@RequestParam String email) {
+										@RequestParam String email,
+										@RequestParam boolean enabled) {
 	
 			ModelAndView mv = new ModelAndView();
 			
@@ -1483,13 +1498,14 @@ public class Admin_Controller {
 	        users.setLast_name(last_name);
 	        users.setCompany(company);
 	        users.setEmail(email);
+	        users.setEnabled(enabled);
 	        
 	        userRepo.save(users);
 	        
 	        mv.addObject("usr", users);
 			mv.setViewName("/my_account/admin/edit-user-details");
 			
-			return new ModelAndView("redirect:/admin/account//all/list");
+			return new ModelAndView("redirect:/admin/account/all/list");
 		} // end of method edit
 		
 		
@@ -1694,7 +1710,7 @@ public class Admin_Controller {
 		}
 		
 		
-		sliderImagesRepoaitory.save(images);
+		sliderImageRepository.save(images);
 		
 		mv.addObject("image", images);
 		//imagesRepository.saveAll(images);
@@ -1713,7 +1729,7 @@ public class Admin_Controller {
 		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		//*************************************************************************
 		
-		List<SliderImages> images = sliderImagesRepoaitory.findAll();
+		List<SliderImages> images = sliderImageRepository.findAll();
 		
 		
 		mv.addObject("img", images);
@@ -1731,7 +1747,7 @@ public class Admin_Controller {
         
     
        
-       List<SliderImages> slider = sliderImagesRepoaitory.findAll();
+       List<SliderImages> slider = sliderImageRepository.findAll();
        
        mv.addObject("slider", slider);
 //        mv.addObject("lots", lotRepository.findAll(new PageRequest(page, 25)));
@@ -1752,11 +1768,11 @@ public class Admin_Controller {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		Optional<SliderImages> obj = sliderImagesRepoaitory.findById(id);
+		Optional<SliderImages> obj = sliderImageRepository.findById(id);
 		SliderImages slider = obj.get();
 		
 		System.out.println("###############################################################################################" + id);
-		sliderImagesRepoaitory.deleteById(id);
+		sliderImageRepository.deleteById(id);
 		
 		mv.addObject("slid", slider);
 		//mv.setViewName("/my_account/admin/slider-image-table");
@@ -1813,6 +1829,8 @@ public class Admin_Controller {
 		User user = userService.findUserByEmail(auth.getName());
 		mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
 		//*************************************************************************
+		
+		//lot_LagerRepository.intsert();
 		
 		mv.setViewName("/my_account/admin/payment");
 		

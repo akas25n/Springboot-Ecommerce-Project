@@ -78,7 +78,7 @@ public class LoginController {
 	@RequestMapping("/")
     public ModelAndView showWelcome() {
     	ModelAndView mv = new ModelAndView();
-    	mv.setViewName("welcomePage");
+    	mv.setViewName("welcome-page");
     	return mv;
     }
 
@@ -88,7 +88,6 @@ public class LoginController {
         modelAndView.setViewName("loginPage");
         return modelAndView;
     }
-
 
     // return register form
     @RequestMapping(value="/lot/registration", method = RequestMethod.GET)
@@ -131,15 +130,12 @@ public class LoginController {
         	//save the user
             userService.saveUser(user);
             
-            
             //--------------------------------------------------------------------------------------------------------------------------------
             
             Map<String, Object> model = new HashMap<>();
             model.put("name", user.getFirst_name() + " " + user.getLast_name());
             model.put("message1", "Thank you for your registration. \n\nTo confirm your regitration, please click the link below:\n"
             						+ "http://localhost:8090" + "/confirm?token=" + user.getConfirmationToken());
-            
-           
             MailRequest mailRequest = new MailRequest();
             mailRequest.setName(user.getFirst_name());
             mailRequest.setFrom("noreply@domain.com");
@@ -212,7 +208,7 @@ public class LoginController {
     	user.setPassword(bCryptPasswordEncoder.encode(requestParams.get("password")));
     	
     	//set user to enabled
-    	user.setEnabled(true);
+    	//user.setEnabled(true);
     	
     	//save the user
     	userService.saveUser(user);

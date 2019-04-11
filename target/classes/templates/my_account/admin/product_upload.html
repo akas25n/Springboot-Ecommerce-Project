@@ -37,7 +37,7 @@
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	<div th:include="admin-header :: copy"></div>
 	
 	<div class="container">
@@ -56,8 +56,8 @@
 		
       <form id = "uploadbanner" th:action="@{/admin/product/process}" enctype= "multipart/form-data"  method = "POST">
       
-         <div th:if="${message}" class="alert alert-success"
-          role="alert" th:text=${message}></div>
+         <div th:if="${successMessage}" class="alert alert-success"
+          role="alert" th:text=${successMessage}></div>
       
         <input type="file" name="multi_file" />
         <br>

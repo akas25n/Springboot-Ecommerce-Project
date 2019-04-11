@@ -21,7 +21,7 @@ public class Lager_Product {
 	String articleNumber;
 	String color;
 	String size;
-	String quantity;
+	int quantity;
 	double price;
 	double retialPrice; // retail price
 	
@@ -88,10 +88,10 @@ public class Lager_Product {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	public String getProductName() {

@@ -91,9 +91,9 @@ public class Lot_Controller {
 			
 			for(i = 0; i< product.size(); i++) {
 				
-				String st =product.get(i).getQuantity();
+				int st =product.get(i).getQuantity();
 				
-				vol =vol + (Integer.parseInt(st)); 	
+				vol =vol + (st); 	
 			}
 			//----------------------------------------------------------------------------------------
 			

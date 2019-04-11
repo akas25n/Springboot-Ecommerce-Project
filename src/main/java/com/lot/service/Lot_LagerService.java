@@ -33,9 +33,9 @@ public class Lot_LagerService {
 	int index_ART_NR;
 	int index_GROESSE;
 	int index_FARBE;
-	int index_LAGERPLATZ;
+	int index_UVP;
 	int index_BESTAND;
-	int index_RESERVIERT;
+	//int index_RESERVIERT;
 	int index_PREIS;
 	
 	int temp;
@@ -100,11 +100,11 @@ public class Lot_LagerService {
 		lager.setART_NR(data[index_ART_NR]);
 		lager.setGROESSE(data[index_GROESSE]);
 		lager.setFARBE(data[index_FARBE]);
-		lager.setLAGERPLATZ(data[index_LAGERPLATZ]);
-		lager.setBESTAND(data[index_BESTAND]);
-		lager.setRESERVIERT(data[index_RESERVIERT]);
-		lager.setPREIS(Double.parseDouble(data[index_PREIS]));
 		
+		lager.setBESTAND(Integer.parseInt(data[index_BESTAND]));
+		//lager.setRESERVIERT(data[index_RESERVIERT]);
+		lager.setPREIS(Double.parseDouble(data[index_PREIS]));
+		lager.setUVP(Double.parseDouble(data[index_UVP]));
 		lot_LagerRepository.save(lager);
 		 
 		
@@ -125,9 +125,10 @@ public class Lot_LagerService {
 		lager.setART_NR(data[index_ART_NR]);
 		lager.setGROESSE(data[index_GROESSE]);
 		lager.setFARBE(data[index_FARBE]);
-		lager.setLAGERPLATZ(data[index_LAGERPLATZ]);
-		lager.setBESTAND(data[index_BESTAND]);
-		lager.setRESERVIERT(data[index_RESERVIERT]);
+		
+		lager.setBESTAND(Integer.parseInt(data[index_BESTAND]));
+		//lager.setRESERVIERT(data[index_RESERVIERT]);
+		lager.setUVP(Double.parseDouble(data[index_UVP]));
 		lager.setPREIS(Double.parseDouble(data[index_PREIS]));
 		
 		return "Products have been created";
@@ -174,19 +175,19 @@ public class Lot_LagerService {
 					 index_FARBE=i;
 				 }
 				 
-				 else if(dta.equals("LAGERPLATZ"))
+				 else if(dta.equals("UVP"))
 				 {
-					 index_LAGERPLATZ=i;
+					 index_UVP=i;
 				 }
 				 else if(dta.equals("BESTAND"))
 				 {
 					 index_BESTAND=i;
 				 }
 				 
-				 else if(dta.equals("RESERVIERT"))
-				 {
-					 index_RESERVIERT=i;
-				 }
+//				 else if(dta.equals("RESERVIERT"))
+//				 {
+//					 index_RESERVIERT=i;
+//				 }
 				
 				 else if(dta.equals("PREIS"))
 				 {
