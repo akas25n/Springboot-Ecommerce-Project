@@ -14,18 +14,22 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 
 @Entity
 @Table(name="shipping_address")
+@XmlRootElement(name="ship_to")
 public class ShippingAddress {
 
 	@Id
 	@Column(name="shipping_add_id", length=11)
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonIgnore //------------------------------to ignore this field in the XML file 
 	private int shipping_add_id;
 
 	@NotNull
@@ -46,7 +50,7 @@ public class ShippingAddress {
 	@Column(name="zip_code", length=11)
 	private int zip_code;
 	
-	
+
 	@NotNull
 	@Column(name="country", length=255)
 	private String country;
@@ -57,6 +61,8 @@ public class ShippingAddress {
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
+	
+	@JsonIgnore //------------------------------to ignore this field in the XML file 
 	private User user;
 
 	public ShippingAddress() {
@@ -81,6 +87,7 @@ public class ShippingAddress {
 		return shipping_add_id;
 	}
 
+	
 	public void setShipping_add_id(int shipping_add_id) {
 		this.shipping_add_id = shipping_add_id;
 	}

@@ -94,14 +94,13 @@ body {
   	
       <div th:each="shipAdd: ${shippAddress}">
 			
-		<strong><div th:text="${shipAdd.contact_person}"></div></strong>
+		<div th:text="${shipAdd.contact_person}" style="font-weight: bold"></div>
 			<div th:text="${shipAdd.street}"></div>
-				<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+				<span th:text="${shipAdd.zip_code}"></span> <span th:text="${shipAdd.city}" ></span> 
 					<div th:text="${shipAdd.country}"></div>
-					<div th:text="${shipAdd.phone_number}"></div>
-					<hr style="border: 2px solid lightgrey;">			
-				</div>
-				
+				<div th:text="${shipAdd.phone_number}"></div>
+			<hr style="border: 2px solid lightgrey;">			
+			</div>
 				
 				
 			<!-- ................... if shipping address is empty then add...if not emty then edit...................... -->
@@ -129,9 +128,9 @@ body {
   	
       <div th:each="billAdd: ${billAddress}">
 			
-		<strong><div th:text="${billAdd.contact_person}"></div></strong>
+		<div th:text="${billAdd.contact_person}" style="font-weight: bold"></div>
 			<div th:text="${billAdd.street}"></div>
-				<span th:text="${billAdd.city}" ></span> <span th:text="${billAdd.zip_code}"></span>
+				<span th:text="${billAdd.zip_code}"></span> <span th:text="${billAdd.city}" ></span> 
 					<div th:text="${billAdd.country}"></div>
 					<div th:text="${billAdd.phone_number}"></div>
 					<hr style="border: 2px solid lightgrey;">			

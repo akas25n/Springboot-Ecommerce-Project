@@ -1,5 +1,7 @@
 package com.lot.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,47 +12,61 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 @Table(name="billing_address")
-public class BillingAddress {
+@XmlRootElement(name="sell_to")
+public class BillingAddress implements Serializable {
 
+	private static final long serialVersionUID = 22L;
+	
 	@Id
 	@Column(name="billing_add_id", length=11)
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonIgnore //------------------------------to ignore this field in the XML file 
 	private int billing_add_id;
 	
 	@NotNull
 	@Column(name="contact_person", length=255)
+
 	private String contact_person;
 	
 	@NotNull
 	@Column(name="street", length=255)
+	
 	private String street;
 	
 	
 	@NotNull
 	@Column(name="city", length=255)
+	
 	private String city;
 	
 	
 	@NotNull
 	@Column(name="zip_code", length=11)
+	
 	private int zip_code;
 	
 	
 	@NotNull
 	@Column(name="country", length=255)
+
 	private String country;
 	
 	@NotNull
 	@Column(name="phone_number", length=20)
+	
 	private String phone_number;
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
+	@JsonIgnore //------------------------------to ignore this field in the XML file 
 	private User user;
 
 	public BillingAddress() {

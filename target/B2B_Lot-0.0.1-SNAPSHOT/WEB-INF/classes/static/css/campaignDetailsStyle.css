@@ -1,0 +1,335 @@
+@charset "ISO-8859-1";
+
+    .moodHeading{
+      margin-left: 40px;
+    }
+
+    .endDate{
+      float: right;
+    }
+    
+    .modal{
+    	background: #f5f5f591;
+    }
+
+    .modalButton{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    outline: 0;
+    }
+   /* #filter{
+      margin-left: 475px;
+    } */
+
+    #menuBar{
+      margin-right: 0;
+      margin-left: 90px;
+
+    }
+
+
+
+    #campaignImage{
+      max-width: 100%;
+      text-align: center;
+      margin-bottom: 1px;
+
+    }
+
+    #campaign_details{
+      background-color: #e6ecef;
+    }
+
+   
+
+       /* #campaignDetailsTable {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #campaignDetailsTable td, #campaignDetailsTable campaignDetailsTable th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #campaignDetailsTable tr:nth-child(even){background-color: #f2f2f2;}
+
+        #campaignDetailsTable tr:hover {background-color: #ddd;}
+
+        #campaignDetailsTable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        } */
+
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+
+        }
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    /* ********************images***********************/
+    #campaigns{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .image {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: .5s ease;
+      backface-visibility: hidden;
+      
+    }
+    .container:hover .image {
+      opacity: 10;
+    }
+
+    .container:hover .middle {
+      opacity: 1;
+    }
+
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .text {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+
+    #imagDet{
+      height:100%;
+      text-align: center;
+    }
+
+
+    #contactPersonImage{
+      
+      max-width: 100%;
+    }
+
+   img#contactPersonImage {
+    border-left: 4px solid;
+    height:120px;
+}
+
+
+    /* ********************images***********************/
+
+
+
+/* ******************************************Calendar************************************/
+
+  /*html, body {
+        margin: 0;
+        padding: 0;
+    } */
+
+    table {
+        border-collapse: collapse;
+        font-family: Georgia, Times, serif;
+    }
+
+    th {
+        border: 1px solid #A8A8A8;
+        vertical-align: top;
+    }
+
+    /* td {
+        height: 100px;
+        width: 150px;
+        padding: 10px;
+        border: 1px solid #A8A8A8;
+        vertical-align: top;
+        text-align: center;
+    } */
+
+    .divcalendar {
+        padding: 15px;
+        float: left;
+        /*background-color: #FFCC00;*/
+    }
+
+    /* Wrapper div. That makes the inner div into an inline element that can be centered with text-align.*/
+    #calendaroverallcontrols {
+        text-align: center;
+    }
+
+    /* This is a fluid div as width will be changing */
+    #calendarmonthcontrols {
+        display: inline-block;
+        /*background-color: #FF0000;*/
+    }
+
+    #calendarmonthcontrols > div, #calendarmonthcontrols > a {
+        display: inline-block;
+    }
+
+    #btnPrevYr {
+        text-decoration: none;
+        font-size: 35px;
+        vertical-align: middle;
+        /*background: #00FFCC;*/
+    }
+
+    #btnPrev {
+        text-decoration: none;
+        font-size: 35px;
+        margin-left: 20px;
+        vertical-align: middle;
+        /*background: #00FFCC;*/
+    }
+
+    /*.yearspan {
+      font-size: 20px;
+      font-weight: bold;
+      float: left;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    .monthspan {
+      font-size: 20px;
+      font-weight: bold;
+      float: left;
+      margin-left: 5px;
+      margin-right: 5px;
+    }*/
+
+    #monthandyearspan {
+        width: 50px;
+        font-size: 25px;
+        font-weight: bold;
+        margin-left: 20px;
+        margin-right: 20px;
+        vertical-align: middle;
+        /*background: #00FFCC;*/
+    }
+
+    #monthandyear {
+        vertical-align: middle;
+    }
+
+    #btnNext {
+        text-decoration: none;
+        font-size: 35px;
+        margin-right: 20px;
+        vertical-align: middle;
+        /*background: #00FFCC;*/
+    }
+
+    #btnNextYr {
+        text-decoration: none;
+        font-size: 35px;
+        vertical-align: middle;
+        /*background: #00FFCC;*/
+    }
+
+    #divcalendartable {
+        clear: both;
+    }
+
+    .daysheader {
+        background: #C0C0C0;
+        height: auto;
+        text-align: center;
+    }
+
+    #prevmonthdates {
+        background-color: #E0E0E0;
+    }
+
+    #nextmonthdates {
+        background-color: #E0E0E0;
+    }
+
+    #currentmonthdates {
+        background-color: #FFFFFF;
+    }
+
+    #cellvaluespan {
+        background: #E0E0E0;
+    }
+
+    #cellvaluelist {
+        background: #FFCC00;
+    }
+
+    .swim {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 80%;
+        text-align: center;
+        background: #445511;
+        color: #F5F5F5;
+        margin-bottom: 5px;
+        padding: 5px;
+    }
+
+    .chrono {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 80%;
+        text-align: center;
+        background: #778899;
+        color: #F5F5F5;
+        margin-bottom: 5px;
+        padding: 5px;
+    }
+    .currentDay {
+
+         background-color: #0080007d !important;
+    }
+/* ******************************************Calendar css ends here************************************/
+
+.btn-info{
+  color: green;
+  background-color: #f7f9f8;
+  border-color: #c4d2d6;
+  
+}
+
+.imageDownload{
+  margin-left: 40px;
+}
+

@@ -43,7 +43,7 @@
 
 <p>Hello ${name}</p>
 <p> ${message1}</p>
-<p>This Email is a activity notification.Please do not replay to this mail </p>
+<p>This Email is a activity notification.Please do not replay to this mail.</p>
 
 <div class="container">
 

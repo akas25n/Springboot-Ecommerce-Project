@@ -51,7 +51,7 @@
 </head>
 
 
-<body style="background-color: #f7f7f7!important;">
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <!-- ********************************************************** pagination***************************************************** -->
 	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -72,9 +72,12 @@
         <h3 style="color:grey;">SHOW ALL</h3>   
         <hr>
       <ul class="nav nav-tabs">
-      	<li class="active"><a href="/admin/account/all/list">All User List</a></li>
-		<li><a href="/admin/account/administrators">Admin List</a></li>
-	    <li><a href="/admin/account/user/list">User List</a></li> 
+      	<li class="active"><a href="/admin/account/all/list"  style="color:green;">All User List</a></li>
+		<li><a href="/admin/account/administrators" style="color:blue;">Admin List</a></li>
+	    <li><a href="/admin/account/user/list" style="color:blue;">User List</a></li>
+	    <li><a href="/admin/account/inactive/users" style="color:red;">Inactive User List</a></li>
+	    <li><a href="/admin/account/shipping/address/list"  style="color:blue;">User Shipping Address</a></li>
+		<li><a href="/admin/account/billing/address/list" style="color:blue;">User Billing Address</a></li> 
     </ul>     
         <hr>
             <br>    
@@ -92,9 +95,13 @@
 	                        <th>Company</th>   
 	
 	                        <th>Email</th>
+	                         
+	           
 	                           
 	                        <th>Role</th>
-	                             
+	                          
+	                        <th>User Status</th>
+	                           
 	                        <th>Actions </th>
                       </tr>
 
@@ -108,13 +115,16 @@
 				        <td th:text = "${user.company}"></td>
 				        <td th:text = "${user.email}"></td>
 				        
-				        
+				    
 				       <td>
 			               	<span th:each="role,iterStat : ${user.roles}">
 			               	<span th:text="${role.role}"/>
-			               </td>
+			            </td>
+			               
+			            <td th:text = "${user.enabled}"></td>
+			            
 				        <td>
-                    		<a href="#" class="w3-button w3-green" style="color:red;">Delete</a>
+                    		<a href=" " class="w3-button w3-green" style="color:red;">Delete</a>
 				        </td>
 				      </tr>
 				    </tbody>

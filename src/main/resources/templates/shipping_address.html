@@ -26,7 +26,7 @@
   
     <div class="row">
     <hr>
-    <h3>EDIT ADDRESS</h3>
+    <h3>ADD SHIPPING ADDRESS</h3>
     <h5><strong><span th:utext="${userName}"></span></strong></h5>
     
     <hr>
@@ -54,7 +54,7 @@
 
         <hr style="border: 2px solid #5cb85c;">
             <div class="fields">
-             <form th:action="/user/shipping/address" th:object="${shippingAddress}" method="POST">
+             <form th:action="/user/shipping/address" th:object="${user}" method="POST">
               
                	<div class="form-group">
 				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
@@ -85,6 +85,9 @@
 				    <label for="formGroupExampleInput2">Phone Number<span  style="color:red;">*</span></label>
 				    <input th:field="*{phone_number}" type="email" class="form-control" id="formGroupExampleInput2" required>
 				  </div>
+				  
+				  <div th:if="${confirmationMessage}" class="alert alert-success"
+          				role="alert" th:text=${confirmationMessage}></div>
 				  
 				  <hr>
 				  <button type="submit" name="save" class="btn btn-success" style="float:right;">Save Address</button>  

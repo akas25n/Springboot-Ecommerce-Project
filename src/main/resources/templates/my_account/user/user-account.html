@@ -19,14 +19,18 @@
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}"/>
 	
 </head>
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+	
+	<div th:include="header :: copy"></div>
+	
+	<div th:include="filter :: copy"></div>
 	
 	<div class="container">
-	<div th:include="header :: copy"></div>
-	<hr style="border: 2px solid grey;">
 	
+	<hr>
 	<h2 style="color:grey;">Your Account</h2>	
 	
 	<hr style="border: 2px solid grey;">
@@ -36,7 +40,7 @@
 				<div class="col-sm-4">
 					 <div class="thumbnail">
 				      <a href="/order/list">
-				        <img src="/images/f.jpg" alt="Lights" style="height: 80px">
+				        <img src="/images/new-images/my orders.png" alt="Lights" style="height: 80px">
 				      </a>
 				    </div>
 				</div>
@@ -52,7 +56,7 @@
 				<!-- <div th:each="usr: ${users}"> -->
 					 <div class="thumbnail">
 				      <a th:href="@{/my/account/edit/general/info/__${users.user_id}__}">
-				        <img src="/images/b.png" alt="Lights" style="height: 100px">
+				        <img src="/images/new-images/general info.png" alt="Lights" style="height: 100px">
 				      </a>
 				    <!-- </div> -->
 				    </div>
@@ -70,7 +74,7 @@
 				<div class="col-sm-4">
 					 <div class="thumbnail">
 				      <a th:href="@{/my/account/addresses/__${users.user_id}__}">
-				        <img src="/images/c.png" alt="Lights" style="height: 100px">
+				        <img src="/images/new-images/my addresses.png" alt="Lights" style="height: 100px">
 				      </a>
 				    </div>
 				</div>
@@ -85,7 +89,7 @@
 				<div class="col-sm-4">
 					 <div class="thumbnail">
 				    	<a th:href="@{/my/payment/option}">
-				        <img src="/images/d.png" alt="Lights" style="height: 100px">
+				        <img src="/images/new-images/payment options.png" alt="Lights" style="height: 100px">
 				      </a>
 				    </div>
 				</div>

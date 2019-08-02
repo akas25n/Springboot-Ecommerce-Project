@@ -19,6 +19,7 @@
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}"/>
 	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
  -->
 
@@ -39,12 +40,15 @@
 	</style>
 	
 </head>
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+	
+	<div th:include="header :: copy"></div>
+
+	<div th:include="filter :: copy"></div>
 	
 	<div class="container">
-	<div th:include="header :: copy"></div>
-	<hr>
 	
+	<hr>
 		
 			<h3 style="color:grey;">CHECK YOUR ORDER</h3>	
 	<hr>
@@ -54,7 +58,7 @@
 	<div class="row" >
 		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
 			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
-			 <h4 style="color:grey;"><u>Lieferadresse</u></h4>
+			 <h4 style="color:grey;"><u>Shipping Address</u></h4>
 		      
 		           <div th:each="shipAdd: ${shippAddress}">
 		          <strong><div th:text="${shipAdd.contact_person}"></div></strong>
@@ -69,7 +73,7 @@
 		</div>
 		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
 			<div class="col-sm-12"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
-			<h4 style="color:grey;"><u>Rechnungsadresse</u></h4>
+			<h4 style="color:grey;"><u>Billing Address</u></h4>
 		        
 		         <div th:each="billAdd: ${billAddress}">
 		      
@@ -85,7 +89,7 @@
 		
 		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
 			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
-			<h4 style="color:grey;"><u>Zahlungsarten</u></h4>
+			<h4 style="color:grey;"><u>Payment Method</u></h4>
 			<br>
 		</div>
 		
@@ -93,8 +97,8 @@
 		
 		<div class="col-md-3"   style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center; height: 170px;">
 			<div class="col-sm-12"  style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: center;">
-			<h4 style="color:grey;"><u>Versandart</u></h4>
-				<p>Kostenloser Hinversand</p>
+			<h4 style="color:grey;"><u>Delivery</u></h4>
+				<p>Free Delivery</p>
 			</div>
 			<br>
 		</div>
@@ -105,27 +109,56 @@
 	<div class="row" style="text-align: center; background-color: #d3d3d361;">
 		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px; padding:10px;">
 		
-		<div class="col-sm-3">
-			<strong>Lot Details : </strong>
-		</div>
-		
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 		 <strong>Lot Name: </strong><strong th:text="${lot.lotName}" style="color:#b9211e;"></strong>
 		</div>
 			
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 			 <strong>Volume: </strong><strong th:text="${lot.volume}" style="color:#b9211e;"></strong>
 		</div>
 		
 		
-		<div class="col-sm-3">
-			 <strong>Price: </strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
+		<div class="col-sm-4">
+			 <strong>Price: </strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}" style="color:#b9211e;"></strong>
 		</div>
 		      
 		</div>
 		</div>
 		</div>
 		<br>
+		<div class="row" th:each="lot:${lots}" style="border: 1px solid lightgrey; border-radius: 8px; background-color: rgba(0, 0, 0, 0.25); text-align: right;">
+			<div class="col-md-12">
+			
+			<div class="col-md-10">
+				<p>Zwischensumme :</p>
+				<p>Versand & Bearbeitung :</p>
+				<p>Steuer:</p>
+				<p><strong>Gesamtsumme :</strong></p>
+			</div>
+			
+			<div class="col-md-2" >
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}" style="color:#b9211e;"></strong></p>
+			<p>0</p>
+			<p>0</p>
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}" style="color:#b9211e;"></strong></p>
+			</div>
+			
+			<br>
+			<br>
+			
+			<div th:each="lot:${lots}">
+			 <a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a> 
+				<!-- <a th:href="@{/admin/order/list}" class="btn btn-default"><strong>Confirm your purchase</strong></a> -->
+				</div>
+				
+				
+			<!--  <input type="submit" value="Confirm your purchase" th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"></input>  -->
+			<br>
+			<br>
+		</div>
+		<hr>
+	</div>
+	<br>
 		
 
 			<div class="row" style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361;">
@@ -148,13 +181,13 @@
 			             
 			          <tr th:each="product:${products}">
 			          
-			                <td th:text="${product.ean}"></td>
-			                 <td th:text="${product.productName}"></td>
-			                 <td th:text="${product.brand}"></td>
-			                 <td th:text="${product.targetGroup}"></td>
-			                 <td th:text="${product.color}"></td>
-			                 <td th:text="${product.size}"></td>
-			                 <td th:text="${product.quantity}"></td>
+			                <td th:text="${product.EAN}"></td>
+			                 <td th:text="${product.PROD_NAME}"></td>
+			                 <td th:text="${product.BRAND}"></td>
+			                 <td th:text="${product.GENDER}"></td>
+			                 <td th:text="${product.FARBE}"></td>
+			                 <td th:text="${product.GROESSE}"></td>
+			                 <td th:text="${product.BESTAND}"></td>
 			      
 			              </tr>
 			      </tbody>
@@ -162,55 +195,21 @@
 		
 
 			</div>
-			<br>
 		
-			
-		<div class="row" style="text-align: center; background-color: #d3d3d361;">
-		<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px; padding:10px;">
-			
-			<p style="color:red;">Please read the AGB and Wiederruf before you confirm your purchase! <a href="/order/AGB">AGB</a> and <a href="/order/wiederruf">Wiederruf</a></p>
-		    
-		</div>
-		</div>
+			<!-- <div class="row" style="text-align: center; background-color: #d3d3d361;">
+				<div class="col-md-12" style="border: 1px solid lightgrey; border-radius: 8px; padding:10px;">
+					
+					<p style="color:red;">Please read the AGB and Wiederruf before you confirm your purchase! <a href="/order/AGB">AGB</a> and <a href="/order/wiederruf">Wiederruf</a></p>
+				    
+				</div>
+				</div>  -->
 		
 				<!-- <input type="checkbox" id="mycheckbox" name="vehicle" value="Bike" required> Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme diesen ausdrücklich zu.<a href="/order/AGB"> [Anzeigen]</a><br>
 				<input type="checkbox" id="mycheckbox" name="vehicle" value="Bike" required> Ich habe die Widerrufsbelehrung gelesen.<a href="/order/wiederruf"> [Anzeigen]</a><br>	 -->
 			
 				<br>
 
-
-		<div class="row" th:each="lot:${lots}" style="border: 1px solid lightgrey; border-radius: 8px; background-color: #d3d3d361; text-align: right;">
-			<div class="col-md-12">
-			
-			<div class="col-md-10">
-				<p>Zwischensumme :</p>
-				<p>Versand & Bearbeitung :</p>
-				<p>Steuer:</p>
-				<p><strong>Gesamtsumme :</strong></p>
-			</div>
-			
-			<div class="col-md-2" >
-			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
-			<p>0</p>
-			<p>0</p>
-			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
-			</div>
-			
-			<br>
-			<br>
-			
-			<div th:each="lot:${lots}">
-			 <a th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"><strong>Confirm your purchase</strong></a> 
-				<!-- <a th:href="@{/admin/order/list}" class="btn btn-default"><strong>Confirm your purchase</strong></a> -->
-				</div>
-				
-				
-			<!--  <input type="submit" value="Confirm your purchase" th:href="@{/order/list/__${lot.lotId}__}" class="btn btn-primary"></input>  -->
-			<br>
-			<br>
-		</div>
-		<hr>
-	</div>
+	<hr>
 	<br>
 	<hr>
 <!-- 	</form>  -->

@@ -38,7 +38,7 @@ textarea {
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	<div th:include="admin-header :: copy"></div>
 	
   <div class="container" id="field">
@@ -59,9 +59,11 @@ textarea {
 			<div class="col-md-6">
 		
 		<!-- <form th:action="@{/admin/update_user_role}" method=POST>		 -->
-		<form>		  
+		<form th:action="@{/admin/update/order/delivery/status/__${order.orderId}__}" th:object="${order}" method="POST">		  
 		<div style="border: 1px solid grey; border-radius: 5px; background-color: #587774;">
-			<h4 style="text-align: center; color: #a1e50d;">Current Status: </h4>
+			<h4 style="text-align: center; color: #a1e50d;">Current Status: 
+							<span th:text="${order.delivery_status}"></span></h4> 
+			
 							
 			               	
 			<hr>
@@ -71,11 +73,11 @@ textarea {
 				   <div class="form-group" style="padding-left:10px; ">
 				    <label for="formGroupExampleInput2" style="color: #a1e50d;">Status</label>
 				    
-				    <select name="attribute_select">
-				    	<option th:value="working">Working on Your Order</option>
-				    	<option th:value="ready">Ready to Send</option>
-				    	<option th:value="sent">Handed Over to the Courier Service</option>
-				    	<option th:value="delivered">Delivered</option>
+				    <select th:field="*{delivery_status}">
+				    	<option th:value="Working_on_your_order">Working on Your Order</option>
+				    	<option th:value="Ready_to_send">Ready to Send</option>
+				    	<option th:value="Handed_over_to_the_courier_service">Handed Over to the Courier Service</option>
+				    	<option th:value="Delivered">Delivered</option>
 				    </select> 
 				  </div>
 			 </div>

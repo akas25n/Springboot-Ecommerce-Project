@@ -1,169 +1,79 @@
 package com.lot.model;
 
-import java.util.Set;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-@Entity
-@Table(name="order_table")
+@XmlRootElement(name = "order")
+@XmlType(propOrder = {"order_data", "sell_To", "ship_To", "shipment", "payment", "items"})
 public class Order {
 	
-	@Id
-	@NotNull
-	@Column(name="order_id", length= 20)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long orderId;
-	
-	@Column(name="order_date")
-	private String orderDate;
-	
-	@Column(name= "oder_status")
-	private boolean order_status = false;
-	
-	@Column(name="delivery_status")
-	private String delivery_status;
-	
-	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="lotId", nullable=false)
-	private Lot lot;
-	
-
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable=false)
-	private User user;
-	
-
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "shipping_add_id", nullable=false)
-	private ShippingAddress shippingAddress;
-	
-	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "billing_add_id", nullable=false)
-	private BillingAddress billingAddress;
-	
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "order_delivery_staus", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "status_id"))
-    private Set<DeliveryStatus> status;
-	
-
+	Order_data order_data;
+	Sell_To sell_To;
+	Ship_To ship_To;
+	Shipment shipment;
+	Payment payment;
+	Items items;
+	/**
+	 * 
+	 */
 	public Order() {
-		
-	}
-
-	public Order(@NotNull long orderId, String orderDate, boolean order_status, String delivery_status, Lot lot, User user,
-			ShippingAddress shippingAddress, BillingAddress billingAddress) {
 		super();
-		this.orderId = orderId;
-		this.orderDate = orderDate;
-		this.order_status = order_status;
-		this.lot = lot;
-		this.user = user;
-		this.shippingAddress = shippingAddress;
-		this.billingAddress = billingAddress;
-		this.delivery_status = delivery_status;
+		// TODO Auto-generated constructor stub
 	}
-
-
-
-	public long getOrderId() {
-		return orderId;
+	/**
+	 * @param order_data
+	 * @param sell_To
+	 * @param ship_To
+	 * @param shipment
+	 * @param payment
+	 * @param items
+	 */
+	public Order(Order_data order_data, Sell_To sell_To, Ship_To ship_To, Shipment shipment, Payment payment,
+			Items items) {
+		super();
+		this.order_data = order_data;
+		this.sell_To = sell_To;
+		this.ship_To = ship_To;
+		this.shipment = shipment;
+		this.payment = payment;
+		this.items = items;
 	}
-
-
-	public String getDelivery_status() {
-		return delivery_status;
+	public Order_data getOrder_data() {
+		return order_data;
 	}
-
-	public void setDelivery_status(String delivery_status) {
-		this.delivery_status = delivery_status;
+	public void setOrder_data(Order_data order_data) {
+		this.order_data = order_data;
 	}
-
-	public void setOrderId(long orderId) {
-		this.orderId = orderId;
+	public Sell_To getSell_To() {
+		return sell_To;
 	}
-
-
-
-	public String getOrderDate() {
-		return orderDate;
+	public void setSell_To(Sell_To sell_To) {
+		this.sell_To = sell_To;
 	}
-
-
-
-	public void setOrderDate(String orderDate) {
-		this.orderDate = orderDate;
+	public Ship_To getShip_To() {
+		return ship_To;
 	}
-
-
-
-	public boolean isOrder_status() {
-		return order_status;
+	public void setShip_To(Ship_To ship_To) {
+		this.ship_To = ship_To;
 	}
-
-
-
-	public void setOrder_status(boolean order_status) {
-		this.order_status = order_status;
+	public Shipment getShipment() {
+		return shipment;
 	}
-
-
-
-	public Lot getLot() {
-		return lot;
+	public void setShipment(Shipment shipment) {
+		this.shipment = shipment;
 	}
-
-
-
-	public void setLot(Lot lot) {
-		this.lot = lot;
+	public Payment getPayment() {
+		return payment;
 	}
-
-
-
-	public User getUser() {
-		return user;
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
-
-
-
-	public void setUser(User user) {
-		this.user = user;
+	public Items getItems() {
+		return items;
 	}
-
+	public void setItems(Items items) {
+		this.items = items;
+	}
 	
-	public ShippingAddress getShippingAddress() {
-		return shippingAddress;
-	}
-
-
-	public void setShippingAddress(ShippingAddress shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
-
-
-	public BillingAddress getBillingAddress() {
-		return billingAddress;
-	}
-
-
-	public void setBillingAddress(BillingAddress billingAddress) {
-		this.billingAddress = billingAddress;
-	}
-
 	
 }

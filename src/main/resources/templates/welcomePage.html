@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Welcome | Motion Fashion | Lot Sale</title>
+	<title>Welcome to Motion Fashion B2B Network</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"/>
@@ -17,71 +17,73 @@
   	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/welcomePage.css}"/>
 	
-	<script type="text/javascript">
-	$(document).ready(function(){
-    // add/remove checked class
-    $(".image-radio").each(function(){
-        if($(this).find('input[type="radio"]').first().attr("checked")){
-            $(this).addClass('image-radio-checked');
-        }else{
-            $(this).removeClass('image-radio-checked');
-        }
-    });
-
-    // sync the input state
-    $(".image-radio").on("click", function(e){
-        $(".image-radio").removeClass('image-radio-checked');
-        $(this).addClass('image-radio-checked');
-        var $radio = $(this).find('input[type="radio"]');
-        $radio.prop("checked",!$radio.prop("checked"));
-
-        e.preventDefault();
-    });
-});
-
-	</script>
 
 </head>
-<body>
+<body style="background-repeat: no-repeat;
+				background-position: center center;
+				background-attachment: fixed;
+				background-size: cover;">
 
 
 	<div class="container">
 		<div class="jumbotron">
-		<h1 id="message">Welcome to <br>B2B Motion Fashion Network</h1>
+		<h1 id="message" style="color: black;">Welcome to <br>B2B Motion Fashion Network</h1>
 		
 		</div>
-		<h3 class="message2">Please select the option you are interested in</h3>
+		<h3 class="message2">Please select the market you are interested in</h3>
 
 		<br>
 		<br>
 		<br>
+		<div class="col-md-12">
 		<div class="row">
+			<div class="col-md-4">
+			<div class="col-sm-12">
+			<a href="http://b2b.motion-e-commerce.de">
+				<label class="image-radio"><strong style="font-size: 25px; color: black;"> Großhandel</strong> <br><br>
+					<img src="/images/new-images/wholesale-icon.png" class="img-responsive" alt="Avatar" style="width:250px;">
+				</label>
+			</a>
+			</div>
+		</div>
 		
-	<div class="col-lg-4">
-    <label class="image-radio"><strong> Whole Sale</strong> <br>
-       <img th:src="@{/images/1.jpg}" class="img-responsive" alt="Avatar" style="width:200px" onclick="window.location='/whole/sale/login'"/>
-    </label>
-	</div>
-
-	<div class="col-lg-4">
-	    <label class="image-radio"><strong> Shopping Club</strong> <br>
-	        <img th:src="@{/images/2.png}" class="img-responsive" alt="Avatar" style="width:200px" onclick="window.location='/https://www.google.de/'"/>
-	    </label>
-	</div>
-
-	<div class="col-lg-4">
-	    <label class="image-radio"><strong> Lot</strong> <br>
-	        <img th:src="@{/images/3.jpg}" class="img-responsive" alt="Avatar" style="width:200px" onclick="window.location='/lot/login'"/>
-	    </label>
-	</div>
+		<div class="col-md-4">
+		<div class="col-sm-12">
+			<a href="http://flashsale.motion-fashion.de">
+				<label class="image-radio"><strong style="font-size: 25px; color: black;"> Flashsale</strong> <br><br>
+				<img src="/images/new-images/flashsale-icon-schwarz.png" class="img-responsive" alt="Avatar" style="width:250px;">
+				</label>
+			</a>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+		<div class="col-sm-12">
+			<a href="http://stocklots.motion-fashion.de">
+				<label class="image-radio"><strong style="font-size: 25px; color: black;"> Stocklots</strong> <br><br>
+					<img src="/images/new-images/stocklots-icon.png" class="img-responsive" alt="Avatar" style="width:250px;">
+				</label>
+			</a>
+			</div>
+		</div>
 
 	</div>
 	<br>
 	<br>
 	<br>
-
-	<h1 style="text-align:center; color: red;">Smart People, <span style="color:green;">Smart choice!!</span></h1>
+	<br>
+	<br>
+	<br>
+	
+	
 	</div>
+	<br>
+	<br>
+	<br>
 
+	<h1 style="text-align:center; color: grey;">SMART PEOPLE, <span style="color:black;">SMART CHOICE.</span></h1>
+	<hr>
+	</div>
+	
 </body>
 </html>

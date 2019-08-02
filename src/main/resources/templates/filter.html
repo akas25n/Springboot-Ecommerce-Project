@@ -22,7 +22,7 @@
 	<!-- cusing container class to place the navbar contents-->	
 	<div class="container-fluid" id="filter">
 	<!-- initializing a navbar-->
-	<nav class="navbar navbar-default" style="background-color: #dbe1dfb8;">
+	<nav class="navbar navbar-default" style="background-color: #dbe1dfb8; padding-left:10px; border: lightgrey 1px solid;">
 	<ul class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
 	        <span class="sr-only">Toggle navigation</span>
@@ -37,173 +37,254 @@
 
 					<ul class="nav navbar-nav">
 			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MARKEN <span class="caret"></span></a>
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">BRAND <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="#">DREIMASTER</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">MYMO</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">SUPERFLY</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">MO</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">USHA</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">HOMEBASE</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">SCHMUDDELWEDER</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">PLUS EIGHTEEN</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">SOULSTAR</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">ICEBOUND</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">DRY LAUNDRY</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">ROOSEVELT</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">BLONDA</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">FAINA</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">NOLIE</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">TALENCE</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">PETROL INDUSTRIES</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">TUFFSKULL</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">BRANDALISED BY HOMEBASE</a></li>		          
-			          </ul>
-			        </li>
-			      </ul>
-
-			      <ul class="nav navbar-nav">
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DAMEN <span class="caret"></span></a>
-			          <ul class="dropdown-menu">
-			          	<li><a href="#" style="color:blue;">BEKLEIDUNG</a></li>
-			          	 <li role="separator" class="divider"></li>
-			             <li><a href="#">Blusen</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Hosen</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Kleider</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Mäntel</a></li>
-			            <li role="separator" class="divider"></li>
-			             <li><a href="#">Sweat & Strick</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Röcke</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Shirts & Tops</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Strümpe</a></li>
-			            <li role="separator" class="divider"></li>
-			             <li><a href="#">Wäsche</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Poncho</a></li>
-			             <li role="separator" class="divider"></li>
-			          
-			            <li><a href="#" style="color:blue;">ACCESSORIES</a></li>
-			             <li role="separator" class="divider"></li>
-			             <li><a href="#">Gürtel</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Mützen, Hüte & Caps</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Sonnenbrillen</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Taschen</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Tücher / Schals</a></li>
+			          	
+			          	<li><a href="/lot/mixed/brands" style="color:blue;">Mixed</a></li>	
+			            <li role="separator" class="divider"></li>	          
+			          	 
+			            <li id="dreimaster" th:name="dreimaster"><a href="/lot/dreimaster">DreiMaster</a></li>
 			            <li role="separator" class="divider"></li>
 			            
-			            <li><a href="#" style="color:blue;">SCHUHE</a></li>
-			             <li role="separator" class="divider"></li>
-			             <li><a href="#">Sneaker</a></li>
-			          </ul>
-			        </li>
-			      </ul>
-
-			      <ul class="nav navbar-nav">
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HERREN <span class="caret"></span></a>
-			          <ul class="dropdown-menu">
-			            <li><a href="#" style="color:blue;">BEKLEIDUNG</a></li>
-			          	 <li role="separator" class="divider"></li>
-			          
-			            <li><a href="#">Hemden</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Hosen</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Mäntel</a></li>
-			            <li role="separator" class="divider"></li>
-			             <li><a href="#">Jacken</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Jeans</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Shirts & Tops</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Sweat & Strick</a></li>
+			            <li><a href="/lot/schmuddelwedda">Schmuddelwedda</a></li>
 			            <li role="separator" class="divider"></li>
 			            
-			            <li><a href="#" style="color:blue;">ACCESSORIES</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Mützen, Hüte & Caps</a></li>
-			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Tücher / Schals</a></li>
-			            
-			            
-			          </ul>
-			        </li>
-			      </ul>
-
-			      <ul class="nav navbar-nav">
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">KINDER <span class="caret"></span></a>
-			          <ul class="dropdown-menu">
-			  
-			             <li><a href="#" style="color:blue;">BEKLEIDUNG</a></li>
-			          	 <li role="separator" class="divider"></li>
-			          
-			            <li><a href="#">Hemden</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Hosen</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Mäntel</a></li>
-			            <li role="separator" class="divider"></li>
-			             <li><a href="#">Jacken</a></li>
+			            <li><a href="/lot/homebase">Homebase</a></li>
 			             <li role="separator" class="divider"></li>
 			             
-			            <li><a href="#">Kleider</a></li>
+			            <li><a href="/lot/mymo">myMo</a></li>
 			             <li role="separator" class="divider"></li>
-			            <li><a href="#">Shirts & Tops</a></li>
-			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Sweat & Strick</a></li>
+			             
+			             <li><a href="/lot/mo">Mo</a></li>
 			            <li role="separator" class="divider"></li>
 			            
-			            <li><a href="#">Bluse & Tubika</a></li>
+			            <li><a href="/lot/brandalised">Branlised By Homebase</a></li>
 			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Pullover</a></li>
+			            
+			            <li><a href="/lot/icebound">Icebound</a></li>
 			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Shirt & Longsleeve</a></li>
+			            
+			            <li><a href="/lot/izia">Izia</a></li>
 			            <li role="separator" class="divider"></li>
-			            <li><a href="#">Sweat Shirt & Hoddie</a></li>
+			            
+			            <li><a href="/lot/hawke">Hawke and Co</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/menuEsTorrent">Menu es Torrent</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			             <li><a href="/lot/mumAndCo">Mum and Co</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            
+			            <li><a href="/lot/superfly">Superfly</a></li>
+			            <li role="separator" class="divider"></li>
 			           
+			            <li><a href="/lot/usha">Usha</a></li>
+			            <li role="separator" class="divider"></li>
 
+			            
+			            <li><a href="/lot/plusEighteen">Plus Eighteen</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/soulstar">SoulStar</a></li>
+			            <li role="separator" class="divider"></li>
+			         
+			            <li><a href="/lot/dryLaundry">Dry Laundry</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/roosevelt">Roosevelt</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/petrolIndustries">Petrol Industries</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/tuffskull">Tuffskull</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/oldskull">Oldskull</a></li>
+			            <li role="separator" class="divider"></li>
+	
+			            <li><a href="/lot/nolie">Nolie</a></li>
+			             <li role="separator" class="divider"></li>
+			                  
+			            <li><a href="/lot/risa">Risa</a></li>
+			            <li role="separator" class="divider"></li>
+
+			            <li><a href="/lot/blonda">Blonda</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/faina">Faina</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a href="/lot/talence">Talence</a></li>
+			            <li role="separator" class="divider"></li>
+			           
+			             <li><a href="/lot/taddy">Taddy</a></li>
+			            <li role="separator" class="divider"></li>
+			           
+			           <li><a href="/lot/felipa">Felipa</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			           
 			          </ul>
 			        </li>
 			      </ul>
 
-			<!-- content on the right side od the navbar-->
-				<form class="navbar-form navbar-right">
-			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Search">
-			        </div>
+			       <ul class="nav navbar-nav">
+			        <li class="dropdown">
+			          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SEASONS <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			          
+			          	 <li><a href="/lot/mixed/seasons" style="color:blue;">Mixed</a></li>
+			          	 <li role="separator" class="divider"></li>
+			         	
+			         	 <li><a href="/lot/men/ss">Men Spring / Summer</a></li>
+			          	 <li role="separator" class="divider"></li>
+			          
+			            <li><a href="/lot/men/fw">Men Fall / Winter</a></li>
+			            <li role="separator" class="divider"></li>
 			        
-			      </form>
+			         	
+			         	 <li><a href="/lot/women/ss">Women Spring / Summer</a></li>
+			          	 <li role="separator" class="divider"></li>
+			          
+			            <li><a href="/lot/women/fw">Women Fall / Winter</a></li>
+			            <li role="separator" class="divider"></li>
+			          
+			         	 <li><a href="/lot/kid/ss">Kids Spring / Summer</a></li>
+			          	 <li role="separator" class="divider"></li>
+			          
+			            <li><a href="/lot/kid/fw">Kids Fall / Winter</a></li>
+			            <li role="separator" class="divider"></li>
+			          </ul>
+			        </li>
+			      </ul>
+			      
+			        <ul class="nav navbar-nav">
+			        <li class="dropdown">
+			          <a href="/lot/men" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MEN <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			         	
+			         	 <li><a href="/lot/men" style="color:blue;">All</a></li>
+			          	 <li role="separator" class="divider"></li>
+			          
+			            <li><a href="/lot/men/shirt">Shirt</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/men/jeans">Jeans</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/men/jacket">Jacket</a></li>
+			          	 <li role="separator" class="divider"></li>
+			          	 
+			          	 <li><a href="/lot/men/trousers">Trousers</a></li>
+			          	 <li role="separator" class="divider"></li>
+			          
+			            <li><a href="/lot/men/sweat/shirt">Sweat Shirt</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/men/pullover">Pullover</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/men/accessoires">Accessories</a></li>
+			            <li role="separator" class="divider"></li>
+			           
+			           	 <li><a href="/lot/men/mixed" style="color:blue;">Mixed</a></li>
+			            <li role="separator" class="divider"></li>
+			           
+			            
+			          </ul>
+			        </li>
+			      </ul>
+			      
+			       <ul class="nav navbar-nav">
+			        <li class="dropdown">
+			          <a href="/lot/women" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WOMEN <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			          
+			          <li><a href="/lot/women" style="color:blue">All</a></li>
+			          	<li role="separator" class="divider"></li>
+			         
+			          	<li><a href="/lot/women/shirt">Shirt</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			              <li><a href="/lot/women/jeans">Jeans</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			             <li><a href="/lot/women/jacket">Jacket</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/women/blouse">Blouse</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			             <li><a href="/lot/women/trousers">Trousers</a></li>
+			             <li role="separator" class="divider"></li>
+			           
+			           <li><a href="/lot/women/sweat/shirt">Sweat Shirt</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/women/pullover">Pullover</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/women/tops">Tops</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			             <li><a href="/lot/women/shoes">Shoes</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			             <li><a href="/lot/women/accessoires">Accessories</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/women/mixed" style="color:blue;">Mixed</a></li>
+			             <li role="separator" class="divider"></li>
+
+			          </ul>
+			        </li>
+			      </ul>
+			      
+			      <ul class="nav navbar-nav">
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">KIDS <span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			         
+			          	 <li><a href="/lot/kids" style="color:blue">All</a></li>
+			          	<li role="separator" class="divider"></li>
+			         
+			          	<li><a href="/lot/kid/shirt">Shirt</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			              <li><a href="/lot/kid/jeans">Jeans</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			             <li><a href="/lot/kid/jacket">Jacket</a></li>
+			             <li role="separator" class="divider"></li>
+	
+			             <li><a href="/lot/kid/trousers">Trousers</a></li>
+			             <li role="separator" class="divider"></li>
+			           
+			           <li><a href="/lot/kid/sweat/shirt">Sweat Shirt</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/kid/pullover">Pullover</a></li>
+			            <li role="separator" class="divider"></li>
+			            
+			            <li><a href="/lot/kid/jumper">Jumper</a></li>
+			             <li role="separator" class="divider"></li>
+			             
+			            <li><a href="/lot/kid/mixed" style="color:blue;">Mixed</a></li>
+			             <li role="separator" class="divider"></li>
+
+			          </ul>
+			        </li>
+			      </ul>
+			       
+
+			<!-- content on the right side od the navbar-->
+				<form th:action="@{/lot/search}" class="navbar-form navbar-right">
+			        <div class="form-group">
+			          <input type="text" name ="searchTerm" th:value="${param.searchTerm}" class="form-control" placeholder="Search">
+			        </div>  
+			   </form>
 		</div> <!-- end of class="collapse navbar-collapse"-->
 		</nav>
 		</div>

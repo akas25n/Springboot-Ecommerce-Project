@@ -36,7 +36,7 @@
 	<div th:include="admin-header :: copy"></div>
 	<hr>
 	
-	<h2>ORDER CONFIRMATION</h2>	
+	<h3 style="color:grey;">ORDER CONFIRMATION</h3>	
 	<hr>
 	<div class="row">
 		<div class="col-lg-12">
@@ -62,7 +62,7 @@
 		             
 		             	<h4 th:text="${lot.lotName}"></h4>
 		             	
-		             	Price: <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong><br>
+		             	Price: <strong style="color:#b9211e;">EUR</strong> <strong th:text="${#numbers.formatDecimal(lot.lotPrice,0,2)}" style="color:#b9211e;"></strong><br>
 		             	
 		             	Quantity: <strong th:text="${lot.volume}"></strong>
 		             
@@ -121,14 +121,14 @@
             
             <tbody id="tdBackground">
 				     
-					<tr th:each="product:${products}">
-					<td><img th:src="${product.articleImage1}" style="width: 70px; height:60px;"></td>
-	              <td th:text="${product.articleNumber}"></td>
-	               <td th:text="${product.productName}"></td>
-	               <td th:text="${product.brand}"></td>
-	               <td th:text="${product.targetGroup}"></td>
-	               <td th:text="${product.size}"></td>
-	               <td th:text="${product.quantity}"></td>
+				<tr th:each="product:${products}">
+				   <td><img th:src="${product.IMAGE_1}" style="width: 70px; height:60px;"></td>
+	               <td th:text="${product.ART_NR}"></td>
+	               <td th:text="${product.PROD_NAME}"></td>
+	               <td th:text="${product.BRAND}"></td>
+	               <td th:text="${product.GENDER}"></td>
+	               <td th:text="${product.GROESSE}"></td>
+	               <td th:text="${product.BESTAND}"></td>
       
               </tr>
 			</tbody>

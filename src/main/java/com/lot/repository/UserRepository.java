@@ -20,11 +20,19 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	public List<User> findAll();
 	
-	@Query(value="SELECT * FROM lot_db.user u left join lot_db.user_role ur on u.user_id = ur.user_id left join lot_db.role r on ur.role_id = r.role_id WHere r.role_id = '1'", nativeQuery=true)
+	@Query(value="SELECT * FROM db_a2000_1.user u left join db_a2000_1.user_role ur on u.user_id = ur.user_id left join db_a2000_1.role r on ur.role_id = r.role_id WHere r.role_id = '1' and u.enabled='1'", nativeQuery=true)
 	public List<User> findAllAdmin();
 	
-	@Query(value="SELECT * FROM lot_db.user u left join lot_db.user_role ur on u.user_id = ur.user_id left join lot_db.role r on ur.role_id = r.role_id WHere r.role_id = '2'", nativeQuery=true)
+	@Query(value="SELECT * FROM db_a2000_1.user u left join db_a2000_1.user_role ur on u.user_id = ur.user_id left join db_a2000_1.role r on ur.role_id = r.role_id WHere r.role_id = '2' and u.enabled='1'", nativeQuery=true)
 	public List<User> findAllUser();
+	
+	@Query(value="SELECT * FROM db_a2000_1.user u  WHere u.enabled='0'", nativeQuery=true)
+	public List<User> findInactiveUser();
+	
+//	@Modifying
+//	@Transactional
+//	@Query(value="delete FROM user where user_id = ?1", nativeQuery = true)
+//	void deleteUser(int user_id);
 	
 	
 	@Transactional

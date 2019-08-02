@@ -1,4 +1,4 @@
-package com.lot.model;
+ package com.lot.model;
 
 import java.util.Set;
 
@@ -21,7 +21,7 @@ public class Product {
 	
 	/*private long a_id;
 	private long p_id;
-	private String p_nr=null;
+	private String p_nr=null;S 
 	private String a_stock=null;
 	private String a_nr=null;
 	private String a_comp_farbe_=null;

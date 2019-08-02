@@ -4,7 +4,7 @@
 <head>
   <title>B2B | Motion Fashion | Lot Details</title>
   
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,7 +18,6 @@
   <link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
    <link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
   <link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
- <!--  <link rel="stylesheet" type="text/css" th:href="@{/css/campaignDetailsStyle.css}"> -->
   <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
 	
   
@@ -60,14 +59,14 @@
 </head>
 <body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
-<div th:include="header :: copy"></div>
-		
+	<div th:include="header :: copy"></div>
+	
 	<div th:include="filter :: copy"></div>
 	
+	<div class="container">
 	
 	<hr>
 	
-	<div class="container">
 	<div th:each="lot : ${lots}">
 	<div class="row">
       <div class="col-md-12">
@@ -119,12 +118,15 @@
 
             
             <div class="col-sm-2">
-              <h5 th:text="${lot.lotPrice}" style="padding-left:10px;"></h5>
+              <h5 th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}" style="padding-left:10px;"></h5> 
+         
+              
             </div>
             
           </div>
           <hr>
-          <a th:href="@{/my/account/show/shipping/address/__${lot.lotId}__}" class="btn btn-default">Proceed to Buy</a>   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Your Contact Person</a>
+          <a th:href="@{/my/account/show/shipping/address/__${lot.lotId}__}" class="btn btn-default">Proceed to Buy</a>   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Your Contact Person</a> 
+          <a th:href="@{/lot/download/csv/__${lot.lotId}__}" class="btn btn-default">Download Product List</a>
 
       </div>
 			</div>
@@ -143,7 +145,7 @@
 			                      <div class="col-sm-12">
 			                     	 <div class="row">
 			                        <div class="col-sm-6">
-			                        <img src="/images/contact.jpg" class="thumbnail" id="contactPersonImage">
+			                        <img src="/images/new-images/user and stuff.png" class="thumbnail" id="contactPersonImage">
 			                        </div>
 			                        
 			                        <div class="col-sm-6">
@@ -163,8 +165,8 @@
 			      </div><!-- End of modal-content-->
 			    </div><!-- End of modal-dialog-->
 			  </div> <!-- End of modal-->
-		<!-- *********************************************************************************Modal******************************************************************************* -->
 		</div>
+		<!-- *********************************************************************************Modal******************************************************************************* -->
     <hr>
   
      	
@@ -173,19 +175,22 @@
         	<!-- *********************************************************************************Testing******************************************************************************* -->
 	<hr>
 	
+	
 	<!-- *************************************************************************** Test ********************************************************************************************** -->
-			<div  th:each="product:${products}">
+			<div   th:each="lot:${lg}">
+			
 	        <div class="col-md-12">
         	
         	<div class="row">
         	
          	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
-	  			<div class="col-md-7">
-	  				Marke : <strong th:text="${product.brand}" style="padding-left:10px;"> </strong>
-	  				(<strong th:text="${product.targetGroup}"></strong>)
+         		<div class="col-md-7">
+	  				Brand : <strong th:text="${lot.BRAND}" style="padding-left:10px;"></strong>
+	        		(<strong th:text="${lot.GENDER}"></strong>)
 	        	</div>
 	        	<div class="col-md-5">
-	  				ArtikelNr : <strong th:text="${product.articleNumber}" style="padding-left:10px;"></strong>
+	  				Article Nr : <strong th:text="${lot.article_number}" style="padding-left:10px;"></strong>
+	        	
 	        	</div>
         	</div>
         	
@@ -200,16 +205,15 @@
         		<div class="row"> <!-- 2nd row -->
         			
         		
-        			<div class="col-md-4">
+        		  	<div class="col-md-4">
         				<div class="col-md-4">
-        					<img th:src="${product.articleImage1}" style="width: 130px; height:160px; padding-top: 5px; padding-bottom: 5px;">
+        					<img th:src="${lot.IMAGE}" style="width:85px; height:130px; padding-bottom: 5px;">
         				</div>
-        			</div>
+        			</div> 
         			<div class="col-md-8">
      					<table class="table table-bordered">
 			            <thead >
 			              <tr>
-							
 			                <!-- <th>Gender</th> -->
 			                 <th>Color</th>
 			                <th>Size</th>
@@ -218,19 +222,18 @@
 			
 			            </thead>
 			            
-			            <tbody id="tdBackground" >
+			            <tbody id="tdBackground">
 							     
-							  <tr>
-							 
+						<tr th:each="article:${lot.product}">
 				              <!--  <td th:text="${product.p_comp_zielgruppe_}"></td> -->
-				               <td th:text="${product.color}"  style="height:20px;"></td>
-				               <td th:text="${product.size}"></td>
-				               <td th:text="${product.quantity}" style="border-left: 2px solid grey;"></td>
+				               <td th:text="${article.FARBE}"  style="height:20px;"></td>
+				               <td th:text="${article.GROESSE}"></td>
+				               <td th:text="${article.BESTAND}" style="border-left: 2px solid grey;"></td>
 			              </tr>
 			              <tr style="border-top: 2px solid grey;">
-			              	<td><h4>GESAMT</h4></td>
+			              	<!-- <td><h4>TOTAL</h4></td>
 			              	<td><h4>-</h4></td>
-			              	<td style="border: 2px solid grey; font-size: 20px;" th:text="${product.quantity}"></td>
+			              	<td style="border: 2px solid grey; font-size: 20px;" th:text="${lot.BESTAND}"></td> -->
 			              </tr>
 						</tbody>
 			        </table> 
@@ -240,13 +243,33 @@
         		<div class="row">
         			<div class="col-md-4">
         				<div style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
-		        			Material : <span th:text="${product.productMaterial}" style="padding-left:5px;"></span>
+		        			Material : <span th:text="${lot.PROD_MATERIAL}" style="padding-left:5px;"></span>
 		        		</div>
         			</div>
-        			<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+        			
+        			<!-- <div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
 						<div>
-        					<p><span style="padding-left:10px;">Retail Price:</span> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:22px; color: red;"></span><span style="float:right; color: red; padding-right:16px;">0.0</span></p> 
-        					<strong style="padding-left:10px;">Offer Price:</strong> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:18px;"></span> <strong  style="float:right; padding-right:10px;" th:text="${product.price}"> </strong> 
+        					<p><span style="padding-left:10px;">Retail Price:</span> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:22px; color: red;"></span>
+        					<span style="float:right; color: red; padding-right:6px;" th:text="${product.retialPrice}"></span></p> 
+        					<span th:with="result=${product.retialPrice * product.quantity}"></span><span th:text="${result}"></span>
+        					
+        					<strong style="padding-left:10px;">Offer Price:</strong> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:18px;">
+        					</span> <strong  style="float:right; padding-right:10px;" th:text="${product.price}"> </strong> 
+        				</div>
+        			</div> -->
+        			
+        			
+        				<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+						  <div>
+        					<p><span style="padding-left:10px;">Retail Price:</span> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:22px;"></span>
+        					<span style="float:right; padding-right:6px;" th:text="${#numbers.formatDecimal(lot.UVP,0, 'POINT', 2, 'COMMA')}"></span></p>
+        					<!-- <span th:with="result=${product.retialPrice * product.quantity}"></span><span th:text="${result}"></span> -->
+        					
+        				
+
+        					<strong style="padding-left:10px;">Offer Price:</strong><span class="glyphicon glyphicon-euro" style="float:right; padding-right:22px; color: red;"></span> 
+        					<strong  style="float:right; padding-right:6px; color: red;" th:text="${#numbers.formatDecimal(lot.PRICE, 0, 'POINT', 2, 'COMMA')}"> </strong> 
+        						
         				</div>
         			</div>
         		
@@ -328,13 +351,13 @@
             <!-- ****************************showing only the first element************************************************************** -->
             <tbody id="tdBackground">
 				     
-					<!-- <tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0"> -->
-					<tr th:each="product:${products}">
-	               <td><img th:src="${product.articleImage1}" style="width: 70px; height:60px;"></td>
-	               <td th:text="${product.productText}"></td>
+					<!--  <tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0"> -->
+					<tr th:each="lot:${lg}">
+	               <td><img th:src="${lot.IMAGE}" style="width: 40px; height:60px;"></td>
+	               <td th:text="${lot.PROD_TEXT}"></td>
       
               </tr>
-			</tbody>
+			</tbody> 
 			<!-- ****************************showing only the first element************************************************************** -->
 			
         </table>
@@ -347,7 +370,7 @@
                       <div class="row">
                       <div class="col-sm-4"></div>
                         <div class="col-sm-2">
-                        <img src="/images/contact.jpg" class="thumbnail" id="contactPersonImage">
+                        <img src="/images/new-images/user and stuff.png" class="thumbnail" id="contactPersonImage">
                         </div>
                         
                         <div class="col-sm-3">
@@ -359,8 +382,7 @@
                     <div class="col-sm-3"></div>
                   </div>
               </div>
-         
-       
+              <hr>
 						
 			</div>
         </div>

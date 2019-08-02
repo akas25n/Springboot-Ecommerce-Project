@@ -51,7 +51,7 @@
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <!-- ********************************************************** pagination***************************************************** -->
 	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -73,9 +73,12 @@
         
         <hr>
     <ul class="nav nav-tabs">
-      	<li ><a href="/admin/account/all/list">All User List</a></li>
-		<li  class="active"><a href="/admin/account/administrators">Admin List</a></li>
-	    <li><a href="/admin/account/user/list">User List</a></li> 
+      	<li><a href="/admin/account/all/list" style="color:blue;">All User List</a></li>
+		<li  class="active"><a href="/admin/account/administrators" style="color:green;">Admin List</a></li>
+	    <li><a href="/admin/account/user/list" style="color:blue;">User List</a></li>
+	    <li><a href="/admin/account/inactive/users" style="color:red;">Inactive User List</a></li>
+	     <li><a href="/admin/account/shipping/address/list"  style="color:blue;">User Shipping Address</a></li>
+		<li><a href="/admin/account/billing/address/list" style="color:blue;">User Billing Address</a></li> 
     </ul> 
       
         <hr>
@@ -99,6 +102,8 @@
 	                        <th>Email</th>
 	                           
 	                        <th>Role</th>
+	                        
+	                        <th>User Status</th>
 	                             
 	                        <th>Actions </th>
                       </tr>
@@ -119,9 +124,11 @@
 			               	<span th:text="${role.role}"/>
 			            </td>
 			            
+			            <td th:text = "${user.enabled}"></td>
+			            
 				         <td>
 							<a th:href="@{/admin/edit/adminn/__${user.user_id}__}" class="w3-button w3-green" style="color:green;">Edit</a> |
-                    		<a href="#" class="w3-button w3-green" style="color:red;">Delete</a>
+                    		<a href=" " class="w3-button w3-green" style="color:red;">Delete</a>
 				        </td>
 				      </tr>
 				    </tbody>

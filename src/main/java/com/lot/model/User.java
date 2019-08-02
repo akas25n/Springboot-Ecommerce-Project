@@ -51,7 +51,7 @@ public class User {
 		private String last_name;
 	  //------------------------------------------------------------------------------------------------------------------changed  
 	    @Column(name = "enabled")
-	    private boolean enabled;
+	    private int enabled;
 	    
 	    
 	    @Column(name = "confirmation_token")
@@ -136,13 +136,12 @@ public class User {
 			this.last_name = last_name;
 		}
 
-
-		public boolean isEnabled() {
+		public int getEnabled() {
 			return enabled;
 		}
 
 
-		public void setEnabled(boolean enabled) {
+		public void setEnabled(int enabled) {
 			this.enabled = enabled;
 		}
 

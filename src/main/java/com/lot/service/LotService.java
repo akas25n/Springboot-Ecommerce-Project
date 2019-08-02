@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lot.model.Lot;
-import com.lot.model.Order;
+import com.lot.model.Lot_Order;
 import com.lot.repository.LotRepository;
-import com.lot.repository.OrderRepository;
+import com.lot.repository.LotOrderRepository;
 
 @Service
 public class LotService {
@@ -18,7 +18,7 @@ public class LotService {
 	private LotRepository lotRepository;
 	
 	@Autowired
-	private OrderRepository orderRepository;
+	private LotOrderRepository orderRepository;
 	
 	public Lot update(Lot lot) {
 		return lotRepository.save(lot);

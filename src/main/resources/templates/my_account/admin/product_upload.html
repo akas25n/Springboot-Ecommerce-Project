@@ -37,7 +37,7 @@
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	<div th:include="admin-header :: copy"></div>
 	
 	<div class="container">
@@ -46,8 +46,8 @@
     <hr>
     <ul class="nav nav-tabs">
       
-      <li><a href="/admin/product/list">Product List</a></li>
-       <li class="active"><a href="/admin/upload/product">Upload Products</a></li>
+      <li><a href="/admin/product/list" style="color:blue;">Product List</a></li>
+       <li class="active"><a href="/admin/upload/product"  style="color:green;">Upload Products</a></li>
       
     </ul>
     <br>
@@ -58,6 +58,9 @@
       
          <div th:if="${message}" class="alert alert-success"
           role="alert" th:text=${message}></div>
+          
+          <div th:if="${failureMessage}" class="alert alert-danger"
+          role="alert" th:text=${failureMessage}></div>
       
         <input type="file" name="multi_file" />
         <br>

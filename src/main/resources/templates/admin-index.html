@@ -2,17 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>B2B | Motion Fashion | Lot Sale</title>
+	<title>B2B | Motion Fashion | Stocklots</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
+	<!--   carousel--need to maintain the position of the below two plugins-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">$("#myCarousel").carousel();</script>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
@@ -28,11 +33,12 @@
 
 		<div th:include="admin-header :: copy"></div>
 		
-	 <div th:include="admin-filter :: copy"></div>
 		
-		
-		<!-- ************************************************************************sliders***************************************************************************** -->
+		<div th:include="admin-filter :: copy"></div>
+
+	<!-- ************************************************************************sliders***************************************************************************** -->
 		<div class="container" th:each="imgs: ${img}">
+	
 		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
 		    <!-- Indicators -->
 		    <ol class="carousel-indicators">
@@ -77,8 +83,7 @@
 		<hr>
 		<div th:include="admin-footer :: copy"></div>
 
-			<script src="https://code.jquery.com/jquery-git.js"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+			
+			
 	</body>
 </html>

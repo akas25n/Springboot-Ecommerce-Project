@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <div th:if="${errorMessage != null}"
 		th:utext="${errorMessage}" class="error">
@@ -42,8 +42,8 @@
    
     <hr>
     <ul class="nav nav-tabs">
-    <li><a href="/admin/lot/list">Lot List</a></li>
-      <li class="active"><a href="/admin/create/new/lot">Create New Lot</a></li>
+    <li><a href="/admin/lot/list" style="color:blue;">Lot List</a></li>
+      <li class="active"><a href="/admin/create/new/lot" style="color:green;">Create New Lot</a></li>
      <!--  <li><a href="/admin/lot/products">Products</a></li> -->
       
      
@@ -58,7 +58,8 @@
 			  
 			  <div class="form-group">
 				<label for="formGroupExampleInput">Lot Title<span  style="color:red;">*</span></label>
-				<input th:field="*{lotName}"  type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
+				<input th:field="*{lotName}" placeholder="......................Maximum 30 letters....................." type="text" 
+				id="formGroupExampleInput" th:maxlength= "30" name="contact_person" class="form-control" required="required">
 			</div>
 			
 			<div class="form-group">
@@ -66,30 +67,150 @@
 				<input th:field="*{lotDescription}"  type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
 			</div>
 			
-			<!-- <div class="form-group">
-				<label for="formGroupExampleInput">Actual Lot Price<span  style="color:red;">*</span></label>
-				<input th:field=*{actualPrice} type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
-			</div> -->
-			
-			<!-- <div class="form-group">
-				<label for="formGroupExampleInput">Lot Offer Price<span  style="color:red;">*</span></label>
-				<input th:field=*{lotPrice} type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
-			</div> -->
-			
 			<div class="form-group">
 				<label for="formGroupExampleInput">Teaser Image<span  style="color:red;">*</span></label>
 				<input th:field="*{teaserImage}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
+				<hr>
 			</div>
 			
 			<div class="form-group">
+			<div class="row">
+			<div class="col-sm-4">
+				<label for="formGroupExampleInput">Select Brand<span  style="color:red;">*</span></label>
+			</div>
+			
+			<div class="col-sm-8" >
+				<select th:field="*{brand}" style="width: 190px; height: 30px; border-radius: 5px;">
+						
+			      		<option th:value= 'dreimaster'>DreiMaster</option>
+			      		<option th:value = 'schmuddelwedda'>Schmuddelwedda</option>
+			      		<option th:value = 'homebase'>Homebase</option>
+			      		<option th:value= 'mymo'>MyMo</option>
+			      		<option th:value = 'mo'>Mo</option>
+			      		<option th:value= 'brandalisedHomebase'>Brandalised By Homebase</option>
+			      		<option th:value = 'iceBound'>IceBound</option>
+			      		<option th:value= 'izia'>Izia</option>
+			      		<option th:value = 'hawkeAndco'>Hawke and Co</option>
+			      		<option th:value= 'menuEsTorrent'>Menu es Torrent</option>
+			      		<option th:value = 'mumAndco'>Mum and Co</option>
+			      		<option th:value = 'superfly'>Superfly</option>
+			      		<option th:value = 'usha'>Usha</option>
+			      		<option th:value = 'plus-eighteen'>Plus Eighteen</option>
+			      		<option th:value= 'soulstar'>Soulstar</option>
+			      		<option th:value= 'dryLaundry'>Dry Laundry</option>
+			      		<option th:value = 'roosevelt'>Roosevelt</option>
+			      		<option th:value= 'petrolIndustries'>Petrol Industries</option>
+			      		<option th:value= 'tuffskull'>Tuffskull</option>
+			      		<option th:value = 'oldskull'>Oldskull</option>
+			      		<option th:value= 'nolie'>Nolie</option>
+			      		<option th:value= 'risa'>Risa</option>
+			      		<option th:value= 'blonda'>Blonda</option>
+			      		<option th:value = 'faina'>Faina</option>
+			      		<option th:value = 'talence'>Talence</option>
+			      		<option th:value= 'taddy'>Taddy</option>
+			      		<option th:value= 'felipa'>Felipa</option>
+			      		<option th:value= 'mixed'>Mixed</option>
+			      </select>
+			</div>
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<div class="row">
+			<div class="col-sm-4">
+				<label for="formGroupExampleInput">Select Gender<span  style="color:red;">*</span></label>
+			</div>
+			
+			<div class="col-sm-8">
+				<select th:field="*{gender}" style="width: 190px; height: 30px; border-radius: 5px;">
+			      		<option th:value= 'men'>Men</option>
+			      		<option th:value = 'women' style="color:blue;">Women</option>
+			      		<option th:value = 'kids' style="color:brown;">Kids</option>
+			      </select>
+			</div>
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<div class="row">
+			<div class="col-sm-4">
+				<label for="formGroupExampleInput">Product Type<span  style="color:red;">*</span></label>
+			</div>
+			
+			<div class="col-sm-8">
+				<select th:field="*{category}" style="width: 190px; height: 30px; border-radius: 5px;">
+						
+			      		<option th:value= 'men_shirt'>Men Shirt</option>
+			      		<option th:value= 'men_jeans'>Men Jeans</option>
+			      		<option th:value = 'men_jacket'>Men Jacket</option>
+			      		<option th:value= 'men_trousers'>Men Trousers</option>
+			      		<option th:value= 'men_sweat_shirt'>Men Sweat Shirt</option>
+			      		<option th:value = 'men_pullover'>Men Pullover</option>
+			      		<option th:value = 'men_accessoires'>Men Accessoires</option>
+			      		<option th:value= 'men_mixed'>Men Mixed</option>
+			      		
+			      		<option th:value= 'women_shirt' style="color:blue;">Women Shirt</option>
+			      		<option th:value= 'women_jeans' style="color:blue;">Women Jeans</option>
+			      		<option th:value = 'women_jacket' style="color:blue;">Women Jacket</option>
+			      		<option th:value= 'women_blouse' style="color:blue;">Women Blouse</option>
+			      		<option th:value= 'women_trousers' style="color:blue;">Women Trousers</option>
+			      		<option th:value= 'women_sweat_shirt' style="color:blue;">Women Sweat Shirt</option>
+			      		<option th:value = 'women_pullover' style="color:blue;">Women Pullover</option>
+			      		<option th:value = 'women_tops' style="color:blue;">Women Tops</option>
+			      		<option th:value = 'women_accessoires' style="color:blue;">Women Accessoires</option>
+			      		<option th:value = 'women_shoes' style="color:blue;">Women Shoes</option>
+						<option th:value= 'women_mixed' style="color:blue;">Women Mixed</option>
+			      		
+			      		<option th:value= 'kid_shirt' style="color:brown;">Kids Shirt</option>
+			      		<option th:value= 'kid_jeans' style="color:brown;">Kids Jeans</option>
+			      		<option th:value = 'kid_jacket' style="color:brown;">Kids Jacket</option>
+			      		<option th:value= 'kid_trousers' style="color:brown;">Kids Trousers</option>
+			      		<option th:value= 'kid_sweat_shirt' style="color:brown;">Kids Sweat Shirt</option>
+			      		<option th:value = 'kid_pullover' style="color:brown;">Kids Pullover</option>
+			      		<option th:value = 'kid_jumper' style="color:brown;">Kids Jumper</option>
+			      		<option th:value= 'kid_mixed' style="color:brown;">Kids Mixed</option>
+			      </select>
+			</div>
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<div class="row">
+			<div class="col-sm-4">
+				<label for="formGroupExampleInput">Season<span  style="color:red;">*</span></label>
+			</div>
+			
+			<div class="col-sm-8">
+				<select th:field="*{seasons}" style="width: 190px; height: 30px; border-radius: 5px;">
+						<option th:value= 'men-ss'>Men Spring/Summer</option>
+			      		<option th:value= 'men-fw'>Men Fall/Winter</option>
+			      		
+			      		<option th:value= 'women-ss' style="color:blue;">Women Spring/Summer</option>
+			      		<option th:value= 'women-fw' style="color:blue;">Women Fall/Winter</option>
+			      		
+			      		<option th:value= 'kid-ss' style="color:brown;">Kids Spring/Summer</option>
+			      		<option th:value= 'kid-fw' style="color:brown;">Kids Fall/Winter</option>
+			      		
+			      		<option th:value= 'men-ss'>Mixed</option>
+			      </select>
+			</div>
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<div class="row">
+			<div class="col-sm-4">
 				<label for="formGroupExampleInput">Lot Status<span  style="color:red;">*</span></label>
-				<select th:field="*{lot_status}">
-			      		<option th:value= '1'>Active</option>
+			</div>
+			
+			<div class="col-sm-8">
+				<select th:field="*{lot_status}" style="width: 190px; height: 30px; border-radius: 5px;">
+			      		<option th:value= '1' style="color:blue;">Active</option>
 			      		<option th:value = '0'>Inactive</option>
 			      </select>
-				<!-- <input th:field="*{teaserImage}" type="file" id="formGroupExampleInput" name="contact_person" class="form-control" required="required"> -->
-				
-				<hr>
+			</div>
+			</div>
+			<hr>
 			</div>
 			
 			<!--  <input type="hidden" name ="lotId" th:value="${lot.lotId}"/> -->
@@ -98,14 +219,16 @@
 			</form>
 			</div>
 		</div>
+		<hr>
   	</div>
-
+<hr>
  
 
 <!-- Here i have to put the images ##### <div th:include="images :: copy"></div>------------------------------------------------------------------------------------->
 
 		</div>
 	<br>
+	<hr>
 	
 	<div th:include="admin-footer :: copy"></div>
 </body>

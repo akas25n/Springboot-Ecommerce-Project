@@ -1,0 +1,89 @@
+@charset "ISO-8859-1";
+
+ input[type=search]{
+            float: right;
+            margin-right: 5px;
+            border-radius: 10px;
+            outline: 0;
+            height:30px;
+        }
+        
+        numberOfEntries{
+        width:7%;
+        }
+
+        h2{
+            margin-left: 8px;
+        }
+
+        h4{
+            margin-left: 8px;
+        }
+    
+        button, input, select, textarea{
+            border-radius: 5px;
+            outline: 0;
+            height: 30px;
+        }
+
+        table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          border-radius: 10px;
+          overflow: hidden;
+          background: #CBD6D5;
+          width: 100%;
+        }
+
+    th{
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      border: 1px solid white; 
+    }
+
+        #sort{
+            float: right;
+            border: none;
+            background: #CBD6D5;
+        }
+   
+
+              a{
+          color:black;
+        }
+
+        .pager li>a, .pager li>span{
+          background-color: #CBD6D5;
+          border-radius: 10px;
+        }
+        
+        #body1{
+        background-color: white;
+        }
+        
+        #selectionBox{
+        	width: 100px;
+        	height: 50px;
+        
+        }
+        
+        #options{
+        	height:30px;
+        	padding: 5px;
+        }
+        
+        #searchBox{
+        	float: right;
+        }
+        
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a: focus, nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+    }
+    
+        .hr1{
+    border: 2px solid #5cb85c;
+  }
+     
+        

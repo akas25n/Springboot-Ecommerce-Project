@@ -19,7 +19,7 @@
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}"/>
-
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}"/>
 
 	<style>
 * {
@@ -75,10 +75,14 @@ body {
 </style>
 	
 </head>
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+	
+	<div th:include="header :: copy"></div>
+	
+	<div th:include="filter :: copy"></div>
 	
 	<div class="container">
-	<div th:include="header :: copy"></div>
+	
 	<hr>
 	<h3 style="color:grey;">CHECK YOUR ADDRESSES</h3>
 	<hr>
@@ -89,8 +93,8 @@ body {
   <div class="column">
  
     <div class="card">
-    <div style="background-color: lightgrey; border: 1px solid lightgrey;"> 
-     <h3 style="color:grey;">Shipping Address</h3>
+    <div style="background-color: #99999940; border: 1px solid lightgrey;"> 
+     <h3 style="color:#0e5490;">Shipping Address</h3>
      </div>
   	
       <div th:each="shipAdd: ${shippAddress}">
@@ -121,8 +125,8 @@ body {
   <div class="column">
   	
     <div class="card">
-    <div style="background-color: lightgrey; border: 1px solid lightgrey; color: black;"> 
-     <h3 style="color:grey;">Order Summary</h3>
+    <div style="background-color: #99999940; border: 1px solid lightgrey; color: black;"> 
+     <h3 style="color:#0e5490;">Order Summary</h3>
      </div>
      	
      	<div th:each="lot : ${lots}">
@@ -133,7 +137,7 @@ body {
           
           <hr style="border: 2px solid lightgrey; margin-top: 70px;">
            
-              <h4 style="margin-left: -30px; color: #337ab7;"><strong>Total Price: <span th:text="${lot.lotPrice}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
+              <h4 style="margin-left: -30px; color: #337ab7;"><strong>Total Price: <span th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
             
             
           </div>

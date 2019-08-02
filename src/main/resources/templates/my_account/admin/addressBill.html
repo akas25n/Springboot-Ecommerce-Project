@@ -74,7 +74,7 @@ body {
 </style>
 	
 </head>
-<body style="background-color: #f7f7f7!important;">
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	
 	<div class="container">
 	<div th:include="admin-header :: copy"></div>
@@ -136,7 +136,7 @@ body {
           
           <hr style="border: 2px solid lightgrey; margin-top: 70px;">
            
-              <h4 style="margin-left: -30px; color: #337ab7;"><strong>Total Price: <span th:text="${lot.lotPrice}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
+              <h4 style="margin-left: -30px; color: #337ab7;"><strong>Total Price: <span th:text="${#numbers.formatDecimal(lot.lotPrice,0,2)}" style="padding-left:30px;"></span> <span class="glyphicon glyphicon-euro"></span></strong></h4>
             
           </div>
      	

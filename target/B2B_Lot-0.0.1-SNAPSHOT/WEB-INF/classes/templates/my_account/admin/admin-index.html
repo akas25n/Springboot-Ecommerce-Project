@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | Motion Fashion | Lot Sale</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/slidersStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/campaignsStyle.css}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/slidersStyle.css}"/>
+	
+</head>
+
+<body>
+
+		<div th:include="header :: copy"></div>
+		
+		 <div th:include="filter :: copy"></div>
+		
+		
+		<!-- ************************************************************************sliders***************************************************************************** -->
+		<div class="container">
+ 
+		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		    <!-- Indicators -->
+		    <ol class="carousel-indicators">
+		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		      <li data-target="#myCarousel" data-slide-to="1"></li>
+		      <li data-target="#myCarousel" data-slide-to="2"></li>
+		    </ol>
+		
+		    <!-- Wrapper for slides -->
+		    <div class="carousel-inner">
+		      <div class="item active">
+		        <img th:src="@{/images/sl4.png}" alt="Los Angeles" style="width:100%; height: 240px;"/>
+		        <div class="carousel-caption">
+		        </div>
+		      </div>
+		
+		      <div class="item">
+		        <img th:src="@{/images/11.png}" alt="Chicago" style="width:100%; height: 240px;"/>
+		      </div>
+		    
+		      <div class="item">
+		        <img th:src="@{/images/33.png}" alt="New york" style="width:100%; height: 240px;"/>
+		      </div>
+		    </div>
+		
+		    <!-- Left and right controls -->
+		    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		      <span class="glyphicon glyphicon-chevron-left"></span>
+		      <span class="sr-only">Previous</span>
+		    </a>
+		    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+		      <span class="glyphicon glyphicon-chevron-right"></span>
+		      <span class="sr-only">Next</span>
+		    </a>
+		  </div>
+		</div> 
+<!-- ************************************************************************ end sliders***************************************************************************** -->
+
+		<br>
+		<div th:include="categories :: copy"></div>
+		<br>
+		<hr>
+		<div th:include="admin-footer :: copy"></div>
+
+			<script src="https://code.jquery.com/jquery-git.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	</body>
+</html>

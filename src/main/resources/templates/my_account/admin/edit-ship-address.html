@@ -27,7 +27,7 @@
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 	<div th:include="admin-header :: copy"></div>
 	
   <div class="container" id="field">
@@ -65,6 +65,9 @@
              <form action="/admin/account/update/shipping/address" th:object="${sa}" method="POST">
 
                <div class="form-group">
+				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
+				    <input th:field="*{contact_person}" type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
+				    
 				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
 				    <input th:field="*{contact_person}" type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
 				  </div>

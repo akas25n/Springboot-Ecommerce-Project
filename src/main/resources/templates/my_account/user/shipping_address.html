@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>B2B | My Profile | Addresses</title>
+	<title>B2B | My Profile | Shipping Address</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,13 +28,16 @@
 
 
 <body>
-	<div th:include="header :: copy"></div>
+
 	
+	<hr style="border:2px solid #CBD6D5;">
+	<hr style="border:2px solid #CBD6D5;">
+
   <div class="container" id="field">
   
     <div class="row">
     <hr>
-    <h3 style="color:grey;">EDIT ADDRESS</h3>
+    <h3 style="color:grey;">ADD YOUR SHIPPING ADDRESS</h3>
     <h5><strong><span th:utext="${userName}"></span></strong></h5>
     
     <hr>
@@ -57,6 +60,11 @@
 		<div class="col-lg-2 col-sm-6"></div>
     
          <div class="col-lg-6 col-sm-6">
+         
+         <div th:if="${message}" class="alert alert-success"
+          				role="alert" th:text=${message}></div>
+          				
+          				
         <div class="col-md-12">
         <p><span class="glyphicon glyphicon-star" style="color:green;"></span> Shipping Address</p>
 
@@ -110,6 +118,6 @@
   </div>
   <hr>
    <hr>
-  <div th:include="footer :: copy"></div>
+  <div th:include="footer-login :: copy"></div>
   <body>
 </html>

@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | Home Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/thumbnail-gallery.css" rel="stylesheet">
+    
+    
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+  		integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/campaignsStyle.css}"/>
+	
+	<script type="text/javascript">$("#myCarousel").carousel();</script>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/slidersStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/campaignsStyle.css}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/slidersStyle.css}"/>
+	
+	<style type="text/css">
+	.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	}
+	
+	</style>
+</head>
+
+
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+
+		<div th:include="header :: copy"></div>
+
+	
+	<div th:include="filter :: copy"></div>
+		
+	
+		<!-- ************************************************************************sliders***************************************************************************** -->
+		<div class="container" th:each="imgs: ${img}">
+			
+		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		    <!-- Indicators -->
+		    <ol class="carousel-indicators">
+		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		      <li data-target="#myCarousel" data-slide-to="1"></li>
+		      <li data-target="#myCarousel" data-slide-to="2"></li>
+		    </ol>
+		
+		    <!-- Wrapper for slides -->
+		    <div class="carousel-inner">
+		      <div class="item active">
+		        <img th:src="@{'data:image/jpg;base64,'+${imgs.image1}}" alt="Los Angeles" style="width:100%; height: 240px;"/>
+		        <div class="carousel-caption">
+		        </div>
+		      </div>
+		
+		      <div class="item">
+		        <img th:src="@{'data:image/jpg;base64,'+${imgs.image2}}" alt="Chicago" style="width:100%; height: 240px;"/>
+		      </div>
+		    
+		      <div class="item">
+		        <img th:src="@{'data:image/jpg;base64,'+${imgs.image3}}" alt="New york" style="width:100%; height: 240px;"/>
+		      </div>
+		    </div>
+		
+		    <!-- Left and right controls -->
+		    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		      <span class="glyphicon glyphicon-chevron-left"></span>
+		      <span class="sr-only">Previous</span>
+		    </a>
+		    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+		      <span class="glyphicon glyphicon-chevron-right"></span>
+		      <span class="sr-only">Next</span>
+		    </a>
+		  </div>
+		</div> 
+<!-- ************************************************************************ end sliders***************************************************************************** -->
+<br>
+
+  <!-- *****************************Images starts here*******************-->
+    <div class="container" id="campaigns">
+	<div class="row text-center text-lg-left">
+	 <div th:each="lot : ${talence}"> 
+        <div class="col-lg-6 col-md-6 col-xs-6">
+        <a  th:href="@{/lot/details/__${lot.lotId}__}" class="d-block mb-4 h-100">
+          <img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="img-fluid img-thumbnail" alt=" " style="height:255px;"> </a>
+            
+             <div class="col-sm-12" style="font-family: Lucida sans;">
+                <div class="row"  style="padding-top: 3px;">
+              		 <div class="col-sm-6"  style="background-color:#dbe1df; color: #336699;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;">Name</strong></div>
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;"><span th:utext="${lot.lotName}"></span></strong></div>
+              		 </div>
+              		 
+              		  <div class="col-sm-3"  style="background-color:#c8d1cf; color: #336699;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;">Quantity</strong></div>
+              		 	<div class="row"><strong style="padding-left: 17px; float:left;"><span th:utext="${lot.volume}"></span></strong></div>
+              		 </div>
+              		 
+              		   <div class="col-sm-3" style="background-color:#dbe1df; color: #336699;">
+              		 	<div class="row"><strong style="padding-right: 20px; float:right;">Offer Price</strong></div>
+              		 	<div class="row"><strong style="padding-right: 12px; float:right;"><span th:utext="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}"></span> <span class="glyphicon glyphicon-euro"></span></strong></div>
+              		 </div>
+                </div>
+                
+                 <div class="row"  style="padding-top: 3px;">
+              		 <div class="col-sm-4"  style="background-color:#dbe1df; color: #124b67;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;">Avg. Buying Price</strong></div>
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;"><span th:utext="${#numbers.formatDecimal(lot.averageBuyingPrice, 0, 'POINT', 2, 'COMMA')}"></span> <span class="glyphicon glyphicon-euro"></span></strong></div>
+              		 </div>
+              		 
+              		  <div class="col-sm-4"  style="background-color:#c8d1cf; color: #124b67;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;">Avg. Retail Price</strong></div>
+              		 	<div class="row"><strong style="padding-left: 17px; float:left;"><span th:utext="${#numbers.formatDecimal(lot.averageRetailPrice, 0, 'POINT', 2, 'COMMA')}"></span> <span class="glyphicon glyphicon-euro"></span></strong></div>
+              		 </div>
+              		 
+              		   <div class="col-sm-4" style="background-color:#dbe1df; color: #124b67;">
+              		 	<div class="row"><strong style="padding-right: 25px; float:right;">Retail Price</strong></div>
+              		 	<div class="row"><strong style="padding-right: 12px; float:right;"><span th:utext="${#numbers.formatDecimal(lot.actualPrice, 0, 'POINT', 2, 'COMMA')}"></span> <span class="glyphicon glyphicon-euro"></span></strong></div>
+              		 </div>
+                </div>
+                
+                   <div class="row"  style="padding-top: 3px;">
+              		 <div class="col-sm-6"  style="background-color:#dbe1df;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;  color: red;">Avg. Discount Off RRP</strong> <strong style="padding-left: 17px; float:left;  color: red;">
+              		 	<span th:utext="${#numbers.formatDecimal(lot.percentageOfDiscountOfRetailPrice, 0, 'POINT', 2, 'COMMA')}"></span> <span>%</span></strong></div>
+              		 	<!-- <div class="row"><strong style="padding-left: 17px; float:left;  color: red;"><span th:utext="${#numbers.formatDecimal(lot.percentageOfDiscountOfRetailPrice,0,2)}"></span></strong></div> -->
+              		 </div>
+              		 
+              		  <div class="col-sm-6"  style="background-color:#c8d1cf;">
+              		 	<div class="row"><strong style="padding-left: 7px; float:left;  color: red;">Ttl Discount Off RRP</strong> <strong style="padding-left: 10px; float:left;  color: red;">
+              		 	<span th:utext="${#numbers.formatDecimal(lot.totalDiscount, 0, 'POINT', 2, 'COMMA')}"></span> <span class="glyphicon glyphicon-euro"></span></strong></div>
+              		 	<!-- <div class="row"><strong style="padding-left: 17px; float:left;  color: red;"><span th:utext="${#numbers.formatDecimal(lot.totalDiscount,0,2)}"></span></strong></div> -->
+              		 </div>  
+                </div> 
+             <br> 
+        </div>
+        </div>
+      </div>
+    
+	<br>
+	<hr>
+  </div>
+  </div>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+  <div th:include="footer :: copy"></div>
+</body>
+</html>

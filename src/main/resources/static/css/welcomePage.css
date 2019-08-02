@@ -9,7 +9,7 @@
 		margin-bottom: 0;
 		outline: 0;
 		text-align: center;
-		color: brown;
+		color: black;
 		}
 	
 		img {
@@ -18,9 +18,14 @@
 		
 		#message{
 			text-align: center;
-			color: green;
+			color: black;
 		}	
 		.message2{
 			text-align: center;
-			color: red;
+			color: #333;
+		}
+		
+		body {
+  		background-image: url("/images/new-images/hintergrundbild2.jpg");
+  
 		}

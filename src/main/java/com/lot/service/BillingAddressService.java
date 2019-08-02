@@ -17,7 +17,6 @@ public class BillingAddressService {
 	
 	public Optional<BillingAddress> findByCustomerBillingAddressInfoId(int id) {
 		return customerBillingAddressInfoRepository.findById(id);
-		
 	}
 	
 	

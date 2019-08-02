@@ -59,7 +59,7 @@
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <!-- ********************************************************** pagination***************************************************** -->
 	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -83,8 +83,8 @@
     
      
      <ul class="nav nav-tabs">
-     <li class="active"><a href="/admin/lot/list">Lot List</a></li>
-      <li><a href="/admin/create/new/lot">Create New Lot</a></li>
+     <li class="active"><a href="/admin/lot/list" style="color:green;">Lot List</a></li>
+      <li><a href="/admin/create/new/lot" style="color:blue;">Create New Lot</a></li>
       <!-- <li><a href="/admin/lot/products">Products</a></li> -->   
     </ul>
     <hr>
@@ -113,29 +113,27 @@
 				     
 			<tr th:each="lot:${lots}">
 				
-               
-              <td><img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" width="50" height="40" class="image"></td>
+              <td><img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" width="50" height="25" class="image"></td>
               <td th:text="${lot.lotId}"></td>
                 <td th:text="${lot.lotName}"></td>
                 
                 <td th:text="${lot.lot_status}"></td>
                 <td th:text="${lot.lotDescription}"></td>
-                 <td th:text="${lot.lotPrice}"></td> 
+                 <td th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}"></td>
                 
                 <td>
                 	<a th:href="@{/admin/lot/details/__${lot.lotId}__}" class="w3-button w3-green" style="color:green;">View</a> |
+                	<a th:href="@{/admin/edit/lot/__${lot.lotId}__}" class="w3-button w3-green" style="color:blue;">Edit</a> |
                     <a th:href="@{/admin/delete/lot/__${lot.lotId}__}" class="w3-button w3-green" style="color:red;">Delete</a>
                 
                 </td>
               </tr>
 			</tbody>
-			
         </table>
- 
  	<hr>
  	<br>
  	<hr>
- 
+
       </div>
       </div>
       </div>

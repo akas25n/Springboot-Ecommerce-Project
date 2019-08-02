@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	table.dataTable.select tbody tr,
+	table.dataTable thead th:first-child {
+	  cursor: pointer;
+	}
+
+</style>
+<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/rowSelection.js"></script>
+
+
+
+</head>
+
+
+
+<body>
+
+<div class="container">
+    <form method="post" action="start.html">
+        <h2>Chose what you want to trade</h2>
+        <label>
+            <select th:name="Products" class="selectpicker" multiple="multiple">
+                <!--/*@thymesVar id="first" type="java.lang.String"*/-->
+                <option th:each="users : ${lots}">1</option>
+                <option th:text="${user}">2</option>
+                
+            </select>
+        </label>
+        <button th:type="submit" class="btn btn-info">Send</button>
+    </form>
+</div>
+
+
+
+</body>
+</html>

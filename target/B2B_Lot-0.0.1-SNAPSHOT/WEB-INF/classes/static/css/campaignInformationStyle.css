@@ -1,0 +1,52 @@
+@charset "ISO-8859-1";
+
+	
+	#body1{
+	background-color: white;
+	}
+	
+  	#pic{
+  		margin-left: 17.5%;
+  	}
+
+  	#thumbnail{
+  		width: 220px;
+  		height: 80px;
+  		margin-left: 60%;
+  		margin-top: 0px;
+  		border: 1px solid;
+  	}
+  	
+  	/* Style inputs */
+input[type=text], select {
+
+    border-radius: 5px;
+}
+
+  	#check{
+  		margin-left: 60%;
+  	}
+
+  	.col-lg-4{
+  		margin-left: 0px;
+  		padding-left: 10px;
+  	}
+  	#upload{
+  		margin-left: 10px;
+  	}
+
+  	.col-md-12{
+  		width: 60%;
+  	}
+  	.images{
+  		margin-left: 360px;
+  	}
+  	input[type=file]{
+  		margin-left: 10px;
+  	}
+
+  
+
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+    }

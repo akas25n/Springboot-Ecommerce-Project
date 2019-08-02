@@ -4,6 +4,8 @@
 <head>
 	<title>B2B | Lot Sale | Product List</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,8 +19,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
-	<!-- ********************************************************** pagination***************************************************** -->
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+	<!-- ********************************************************** pagination***************************************************** 
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css"> -->
 	<!-- ********************************************************** pagination***************************************************** -->
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
@@ -41,6 +43,17 @@
 	      }
 		</style>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	
+	<script>
+		function toggle(source) {
+	    	var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+	    	for (var i = 0; i < checkboxes.length; i++) {
+	        if (checkboxes[i] != source)
+	            checkboxes[i].checked = source.checked;
+	   	 	}
+		}
+	</script>
 	
 </head>
 
@@ -48,16 +61,16 @@
 <body>
 
 <!-- ********************************************************** pagination***************************************************** -->
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
  <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
     
-
+ 
 <script>
 $(document).ready( function () {
     $('#table_format').DataTable();
 } );
-</script>
+</script>  -->
 <!-- ********************************************************** pagination***************************************************** -->
 
 
@@ -65,7 +78,7 @@ $(document).ready( function () {
 	<!-- -------------------------------------------------------table filter------------------------------------------------------------------- -->
 	<div id="jquery-script-menu">
 	<div class="jquery-script-center">
-	<div class="jquery-script-ads"><script type="text/javascript"><!--
+	<div class="jquery-script-ads"><script type="text/javascript">
 	
 	</script>
 	<script type="text/javascript"
@@ -108,16 +121,15 @@ $(document).ready( function () {
 	            <thead>
 	              <tr>
 	              	
-	               <th></th>
+	               <th><input type="checkbox" onclick="toggle(this);"></th>
+	                <th>Offer Number</th>
 	               <th>EAN</th>
 	              <!--  <th>Article Number</th> -->
 	                
 	                <th>Brand</th>
 	                <th>Product Name</th>
 	                <th>Gender</th>
-	               <!--  <th>Color</th>
-                	<th>Size</th>
-	                <th>Stock</th> -->
+	             
 	  
 	              </tr>
 	
@@ -127,16 +139,16 @@ $(document).ready( function () {
 					     
 				<tr th:each="product:${products}">
 					
-					 <td><input type="checkbox" th:name="idChecked" th:value="${product.ean}" /></td>
-					 <td th:text="${product.ean}">
+					 <td><input type="checkbox" th:name="idChecked" th:value="${product.EAN}" /></td>
+					 <td th:text="${product.ANGEBOT_NR}">
+					 <td th:text="${product.EAN}">
 					 <!-- <td th:text="${product.articleNumber}"> -->
 	               	
-					<td th:text="${product.brand}">
-					<td th:text="${product.productName}">
-					<td th:text="${product.targetGroup}">
-					<!-- <td th:text="${product.color}"></td>
-	               	<td th:text="${product.size}"></td> -->
-		           <!--  <td th:text="${product.quantity}"></td> -->
+					<td th:text="${product.BRAND}">
+					<td th:text="${product.PROD_NAME}">
+					<td th:text="${product.GENDER}">
+					
+					
 		           
 	              </tr>
 				</tbody>
@@ -175,6 +187,6 @@ jQuery('#table_format').ddTableFilter();
 
       <div th:include="admin-footer :: copy"></div>
       
-      <script>$( "th" ).resizable();</script>
+     
   </body>
   </html>

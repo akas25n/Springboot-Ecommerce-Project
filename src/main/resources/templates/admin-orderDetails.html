@@ -118,7 +118,7 @@
 		
 		
 		<div class="col-sm-3">
-			 <strong>Price: </strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong>
+			 <strong>Price: </strong> <strong style="color:#b9211e;">EUR</strong> <strong th:text="${#numbers.formatDecimal(lot.lotPrice,0,2)}" style="color:#b9211e;"></strong>
 		</div>
 		      
 		</div>
@@ -147,13 +147,13 @@
 			             
 			          <tr th:each="product:${products}">
 			          
-			                <td th:text="${product.ean}"></td>
-			                 <td th:text="${product.productName}"></td>
-			                 <td th:text="${product.brand}"></td>
-			                 <td th:text="${product.targetGroup}"></td>
-			                 <td th:text="${product.color}"></td>
-			                 <td th:text="${product.size}"></td>
-			                 <td th:text="${product.quantity}"></td>
+			                <td th:text="${product.EAN}"></td>
+			                 <td th:text="${product.PROD_NAME}"></td>
+			                 <td th:text="${product.BRAND}"></td>
+			                 <td th:text="${product.GENDER}"></td>
+			                 <td th:text="${product.FARBE}"></td>
+			                 <td th:text="${product.GROESSE}"></td>
+			                 <td th:text="${product.BESTAND}"></td>
 			      
 			              </tr>
 			      </tbody>
@@ -186,10 +186,10 @@
 			</div>
 			
 			<div class="col-md-2" >
-			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${#numbers.formatDecimal(lot.lotPrice,0,2)}" style="color:#b9211e;"></strong></p>
 			<p>0</p>
 			<p>0</p>
-			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${lot.lotPrice}" style="color:#b9211e;"></strong></p>
+			<p><strong style="color:#b9211e;">EUR</strong> <strong th:text="${#numbers.formatDecimal(lot.lotPrice,0,2)}" style="color:#b9211e;"></strong></p>
 			</div>
 			
 			<br>

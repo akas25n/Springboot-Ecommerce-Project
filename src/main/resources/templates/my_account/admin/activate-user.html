@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>B2B | My Profile | Addresses</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-git.js"></script>
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/addressesStyle.css}"> -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+
+		
+	<style>
+	     .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
+          border-top: 4px solid #CBD6D5;
+        }
+        
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding:5px;
+  border-radius: 5px;
+}
+        
+	</style>
+	
+</head>
+
+
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+	<div th:include="admin-header :: copy"></div>
+	
+  <div class="container" id="field">
+  
+    <div class="row">
+    <hr>
+    <h3 style="color:grey;">ACTIVATE USER</h3>
+    <h5><strong><span th:utext="${userName}"></span></strong></h5>
+    
+    <hr>
+
+    </div> <br>
+    
+    <div class="col-lg-12">
+    <div class="row">
+    
+    <div class="col-lg-2 col-sm-6"></div>
+		<div class="col-lg-4 col-sm-6"  style="text-align:center;">
+		<hr style="border: 2px solid #5cb85c;">	
+		<h4 style="color:grey;">USER ADDRESS</h4>
+		<hr style="border: 2px solid lightgrey;">
+		
+		 <div th:each="shipAdd: ${sAdd}">
+			
+			<div th:text="${shipAdd.contact_person}" style="font-weight: bold;"></div>
+			<div th:text="${shipAdd.street}"></div>
+			<span th:text="${shipAdd.city}" ></span> <span th:text="${shipAdd.zip_code}"></span>
+			<div th:text="${shipAdd.country}"></div>
+			<div th:text="${shipAdd.phone_number}"></div>
+			<hr style="border: 2px solid lightgrey;">		
+		</div>
+	
+	
+		
+		</div>
+    
+         <div class="col-lg-6 col-sm-6">
+        <div class="col-md-12">
+        <hr style="border: 2px solid #5cb85c;">
+            <div class="fields">
+             <form action="#" th:action ="@{/admin/activate/user/__${user.user_id}__}" th:object="${user}" method="POST">
+				
+               <div class="form-group">
+				   	 <label for="formGroupExampleInput">First Name<span  style="color:red;">*</span></label>
+				    <input th:field="*{first_name}" type="text" id="formGroupExampleInput" name="first_name" class="form-control" required="required">
+				    <span th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"></span> 
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="formGroupExampleInput2">Last Name<span  style="color:red;">*</span></label>
+				    <input th:field="*{last_name}" type="text" class="form-control" id="formGroupExampleInput2" required>
+				  </div>
+				  
+				   <div class="form-group">
+				    <label for="formGroupExampleInput">Company<span  style="color:red;">*</span></label>
+				    <input th:field="*{company}"  type="text" class="form-control" id="formGroupExampleInput" required>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="formGroupExampleInput">Email<span  style="color:red;">*</span></label>
+				    <input th:field="*{email}"  type="text" class="form-control" id="formGroupExampleInput" required>
+				  </div>
+				  
+				  <div class="form-group" style="background-color:#587774; color: #6be445;">
+				    <label for="formGroupExampleInput">User Status<span  style="color:red;">*</span></label>
+				    <input th:field="*{enabled}"  type="text" class="form-control" id="formGroupExampleInput" required>
+				    
+				    <p style="padding-left:5px;"> Note: Set 1 to Activate and 0 to Deactivate the User</p>
+				  </div>
+				  
+
+				 
+				<span style="padding-left: 5px;padding-right: 5px; padding-top: 2px;float: right;">
+				 <input class="btn btn-success" type="submit" value="Activate User">
+				 
+	  			</span>
+	  			<br>
+	  			<br>
+	  			<hr>
+		</form>
+		
+	
+		<br>
+		
+		<br>
+		<hr>
+      </div>
+      </div>
+    </div>
+  
+	</div>
+	
+
+		
+	</div>
+	<br>
+	<br>
+	<br>
+  </div>
+  <hr>
+ 
+  <div th:include="admin-footer :: copy"></div>
+  <body>
+</html>

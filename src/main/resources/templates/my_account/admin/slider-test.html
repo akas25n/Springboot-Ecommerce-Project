@@ -7,9 +7,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
+	<!-- To make the carousel working...we have to maintain the position of the below two plugins -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -24,7 +25,7 @@
 	
 </head>
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 		<div th:include="admin-header :: copy"></div>
 		
@@ -38,8 +39,8 @@
 		<hr>
 		<ul class="nav nav-tabs">
 		      <!-- <li><a href="/admin/upload/slider/images">Upload Images</a></li> -->
-		      <li><a href="/admin/slider/image/list">Carousel Image Table</a></li>
-		       <li class="active"><a href="/admin/test/slider/images">Test Carousel</a></li>
+		      <li><a href="/admin/slider/image/list"  style="color:blue;">Carousel Image Table</a></li>
+		       <li class="active"><a href="/admin/test/slider/images"  style="color:green;">Test Carousel</a></li>
 		      
 		      
 		     <!--  <li><a href="/admin/test/slider/images">Update Slider</a></li> -->
@@ -87,11 +88,9 @@
 <!-- ************************************************************************ end sliders***************************************************************************** -->
 
 		
-		
 		<div th:include="admin-footer :: copy"></div>
 
 			<script src="https://code.jquery.com/jquery-git.js"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 	</body>
 </html>

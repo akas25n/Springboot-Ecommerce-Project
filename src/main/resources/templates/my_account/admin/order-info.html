@@ -60,7 +60,7 @@
 </head>
 
 
-<body>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 	<!-- ********************************************************** pagination***************************************************** -->
 	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -127,7 +127,7 @@
 			     <td th:text="${orderList.delivery_status}"></td>
 			     <td>
 			     	
-			     	<a href="/admin/order/delivery/status" style="color:green;">Update Status</a>
+			     	<a th:href="@{/admin/order/delivery/status/__${orderList.orderId}__}" style="color:green;">Update Status</a>
 			     
 			     </td>
 			     

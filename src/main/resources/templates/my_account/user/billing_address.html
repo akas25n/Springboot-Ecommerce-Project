@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>B2B | My Profile | Address</title>
+	<title>B2B | My Profile | Billing Address</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,14 +28,17 @@
 </head>
 
 
-<body>
-	<div th:include="header :: copy"></div>
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+
 	
+	<hr style="border:2px solid #CBD6D5;">
+	<hr style="border:2px solid #CBD6D5;">
+
   <div class="container" id="field">
   
     <div class="row">
     <hr>
-    <h3 style="color:grey;">EDIT ADDRESS</h3>
+    <h3 style="color:grey;">ADD YOUR BILLING ADDRESS</h3>
     <h5><strong><span th:utext="${userName}"></span></strong></h5>
     
     <hr>
@@ -60,7 +63,7 @@
               <form action ="#" th:action="@{/my/account/billing/address/test}" th:object="${billingAddressInfo}" method="POST">
 			 
 			   <div class="form-group">
-				    <label for="formGroupExampleInput">Contact Person<span  style="color:red;">*</span></label>
+				    <label for="formGroupExampleInput">Full Name<span  style="color:red;">*</span></label>
 				    <input th:field="*{contact_person}" type="text" id="formGroupExampleInput" name="contact_person" class="form-control" required="required">
 				  </div>
 				  <div class="form-group">
@@ -107,6 +110,6 @@
   </div>
   <hr>
    <hr>
-  <div th:include="footer :: copy"></div>
+  <div th:include="footer-login :: copy"></div>
   <body>
 </html>

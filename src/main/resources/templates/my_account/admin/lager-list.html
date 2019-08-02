@@ -60,7 +60,7 @@
 </head>
 
 
-<body style="background-color:#f7f7f7!important;">
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 <!-- ********************************************************** pagination***************************************************** -->
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -85,9 +85,8 @@ $(document).ready( function () {
     
      <ul class="nav nav-tabs">
       
-      <li class="active"><a href="/admin/lager/lot/list">Lager Product List</a></li>
-      <li><a href="/admin/upload/lager">Upload Lot Lager</a></li>
-     
+      <li class="active"><a href="/admin/lager/lot/list" style="color:green;">StockLots Article List</a></li>
+  
     </ul>
     <hr>
    
@@ -103,11 +102,14 @@ $(document).ready( function () {
                 <th>A_Nr</th>
                 <th>Color</th>
                 <th>Size</th>
-                <th>Lager Platz</th>
+               
                 <th>Quantity</th>
-                <th>Reserved</th>
+             
                <th>Price</th>
-                
+               
+                  <th>Retail Price</th>
+                	
+                	<th>Offer Number</th>
                 
                 
               </tr>
@@ -116,16 +118,18 @@ $(document).ready( function () {
             
             <tbody id="tdBackground">
 				     
-					<tr th:each="lager:${lotLager}">
+			<tr th:each="lager:${lotLager}">
 
                	<td th:text="${lager.EAN}">
 	              <td th:text="${lager.ART_NR}">
 	               <td th:text="${lager.FARBE}">
 	               <td th:text="${lager.GROESSE}">
-	               <td th:text="${lager.LAGERPLATZ}">
+	               
 	               <td th:text="${lager.BESTAND}"></td>
-	               <td th:text="${lager.RESERVIERT}"></td> 
+	               
 	               <td th:text="${lager.PREIS}"></td>
+	               <td th:text="${lager.UVP}"></td>
+	               <td th:text="${lager.ANGEBOT_NR}"></td>  
               </tr>
 			</tbody>
         </table>

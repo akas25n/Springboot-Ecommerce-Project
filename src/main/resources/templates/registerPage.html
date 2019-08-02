@@ -22,7 +22,10 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
 	
 </head>
-<body>
+<body style="background-repeat: no-repeat;
+				background-position: center center;
+				background-attachment: fixed;
+				background-size: cover;">
 	
 	
 	
@@ -33,12 +36,17 @@
           
      <div th:if="${alreadyRegisteredMessage}"
           class="alert alert-danger" role="alert"
-          th:text="${alreadyRegisteredMessage}"></div>
+          th:text="${alreadyRegisteredMessage}" style="color:red;"></div>
           
+          <h1 style="text-align:center; color: grey;">STOCKLOTS</h1> <hr>
           
 		<div>
-			<img th:src="@{/images/logo.png}" alt="logo">
+			<img th:src="@{/images/logo-mf.png}" alt="logo">
 			<hr>
+			
+			 <div th:if="${confirmationMessage}" class="alert alert-success"
+          role="alert" th:text=${confirmationMessage} style="background-color: green; color: white;"></div>
+			
 		</div>
         <div class="form-group">
 			<div class="row">
@@ -67,21 +75,10 @@
          
         <div class="form-group">
         	<input th:field="*{email}" type="email" class="form-control" name="email" placeholder="Email" required="required"/>
-        	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red;"></span>
         </div>
-        
-       <!--
-		<div class="form-group">
-            <input th:field="*{password}" type="password" class="form-control" name="password" placeholder="Password" required="required"/>
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-        </div>
-         
-		<div class="form-group">
-            <input th:field="*{confirmpassword}" type="password" class="form-control" name="confirmpassword" placeholder="Confirm Password" required="required"/>
-            <span th:if="${#fields.hasErrors('confirmpassword')}" th:errors="*{confirmpassword}"></span>
-        </div>  
-         
-          -->    
+
+      
         <div class="form-group">
 			<label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
 		</div>
@@ -89,8 +86,6 @@
             <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
         </div>
         
-        <div th:if="${confirmationMessage}" class="alert alert-success"
-          role="alert" th:text=${confirmationMessage}></div>
           
         <!--  Registration success message 
          <h2><span class="text-success" th:utext="${successMessage}"></span></h2> -->
@@ -113,7 +108,8 @@
   <!-- Bootstrap Validator plugin -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     
-	
+	<hr>
+	<br>
 </div>
 
 <div th:include="footer-login :: copy"></div>
