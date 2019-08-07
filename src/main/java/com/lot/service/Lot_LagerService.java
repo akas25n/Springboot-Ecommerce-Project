@@ -36,6 +36,10 @@ public class Lot_LagerService {
 	int index_FARBE;
 	int index_UVP;
 	int index_BESTAND;
+<<<<<<< HEAD
+=======
+	//int index_RESERVIERT;
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 	int index_PREIS;
 	// ----------------------------
 	int index_BRAND;
@@ -113,6 +117,7 @@ public class Lot_LagerService {
 		lager.setART_NR(data[index_ART_NR]);
 		lager.setGROESSE(data[index_GROESSE]);
 		lager.setFARBE(data[index_FARBE]);
+<<<<<<< HEAD
 		// --------------------------------------------
 		lager.setPROD_NAME(data[index_PROD_NAME]);
 		// --------------------------------------------
@@ -132,6 +137,13 @@ public class Lot_LagerService {
 		// --------------------------------------------
 		lager.setANGEBOT_NR(data[index_ANGEBOT_NR]);
 
+=======
+		
+		lager.setBESTAND(Integer.parseInt(data[index_BESTAND]));
+		//lager.setRESERVIERT(data[index_RESERVIERT]);
+		lager.setPREIS(Double.parseDouble(data[index_PREIS]));
+		lager.setUVP(Double.parseDouble(data[index_UVP]));
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 		lot_LagerRepository.save(lager);
 
 		return "Products have been created";
@@ -149,11 +161,18 @@ public class Lot_LagerService {
 		lager.setART_NR(data[index_ART_NR]);
 		lager.setGROESSE(data[index_GROESSE]);
 		lager.setFARBE(data[index_FARBE]);
+<<<<<<< HEAD
 		// --------------------------------------------
 		lager.setPROD_NAME(data[index_PROD_NAME]);
 		// --------------------------------------------
 		lager.setBESTAND(Integer.parseInt(data[index_BESTAND]));
 		// lager.setRESERVIERT(data[index_RESERVIERT]);
+=======
+		
+		lager.setBESTAND(Integer.parseInt(data[index_BESTAND]));
+		//lager.setRESERVIERT(data[index_RESERVIERT]);
+		lager.setUVP(Double.parseDouble(data[index_UVP]));
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 		lager.setPREIS(Double.parseDouble(data[index_PREIS]));
 		lager.setUVP(Double.parseDouble(data[index_UVP]));
 
@@ -191,6 +210,7 @@ public class Lot_LagerService {
 				int temp;
 
 				String dta = data[i];
+<<<<<<< HEAD
 
 				if (dta.equals("EAN")) {
 					index_EAN = i;
@@ -228,10 +248,42 @@ public class Lot_LagerService {
 					index_IMAGE_3 = i;
 				}
 				// -----------------------------------------
+=======
+				
+				
+				 if(dta.equals("EAN"))
+				 {
+					 index_EAN=i; 
+				 }
+				
+				 else if(dta.equals("ART_NR"))
+				 {
+					 index_ART_NR=i;
+				 } 
+				 else if(dta.equals("GROESSE"))
+				 {
+					 index_GROESSE=i; 
+				 }
+				 else if(dta.equals("FARBE"))
+				 {
+					 index_FARBE=i;
+				 }
+				 
+				 else if(dta.equals("UVP"))
+				 {
+					 index_UVP=i;
+				 }
+				 else if(dta.equals("BESTAND"))
+				 {
+					 index_BESTAND=i;
+				 }
+				 
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 //				 else if(dta.equals("RESERVIERT"))
 //				 {
 //					 index_RESERVIERT=i;
 //				 }
+<<<<<<< HEAD
 
 				else if (dta.equals("PREIS")) {
 					index_PREIS = i;
@@ -243,6 +295,18 @@ public class Lot_LagerService {
 					temp = i;
 				i++;
 
+=======
+				
+				 else if(dta.equals("PREIS"))
+				 {
+					 index_PREIS=i;
+				 }
+				
+				 else
+					 temp = i;
+					i++;
+				
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 			}
 
 		} catch (IOException e) {

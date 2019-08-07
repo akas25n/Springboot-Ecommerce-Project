@@ -45,10 +45,15 @@ h3 {
 </head>
 
 
+<<<<<<< HEAD
 <body style="background-color: #f7f7f7 !important; padding-top: 20px;">
+=======
+<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 	<div th:include="admin-header :: copy"></div>
 
 	<div class="container">
+<<<<<<< HEAD
 		<hr>
 		<h3>UPLOAD PRODUCTS</h3>
 		<hr>
@@ -90,3 +95,39 @@ h3 {
 	<div th:include="admin-footer :: copy"></div>
 </body>
 </html>
+=======
+	<hr>
+    <h3>UPLOAD PRODUCTS</h3>
+    <hr>
+    <ul class="nav nav-tabs">
+      
+      <li><a href="/admin/product/list">Product List</a></li>
+       <li class="active"><a href="/admin/upload/product">Upload Products</a></li>
+      
+    </ul>
+    <br>
+	<br>
+	
+		
+      <form id = "uploadbanner" th:action="@{/admin/product/process}" enctype= "multipart/form-data"  method = "POST">
+      
+         <div th:if="${successMessage}" class="alert alert-success"
+          role="alert" th:text=${successMessage}></div>
+      
+        <input type="file" name="multi_file" />
+        <br>
+        <br>
+        <input type = "submit" value = "submit" id = "submit"/>
+      </form>
+      <hr>
+      <hr style="border:2px solid grey;">
+      	<h4 style="color:blue;"><span style="color:red;">IMPORTANT!!</span> Before uploading the CSV file Please make sure that there is no <span style="color:red;">"NULL & STRING"</span> value in the a_ean column.</h4>
+      <hr style="border:2px solid grey;">
+
+      
+      </div>
+
+      <div th:include="admin-footer :: copy"></div>
+  </body>
+  </html>
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4

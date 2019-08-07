@@ -55,6 +55,7 @@
 					invalid, please verify</p>
 			</div>
 
+<<<<<<< HEAD
 			<div class="form-group">
 				<input type="email" id="email" name="email" class="form-control"
 					placeholder="Email address" required autofocus /><br>
@@ -88,6 +89,39 @@
 
 		<hr>
 	</div>
+=======
+                <form th:action="@{/lot/login}" th:object="${user}" method="post">
+                
+                	<div align="center" th:if="${param.error}">
+			            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+			         </div>
+			         
+					<div class="form-group">
+			         <input type="email" id="email" name="email" class="form-control" 
+			         placeholder="Email address" required autofocus/><br>
+					</div>
+					
+					<div class="form-group">
+         			<input type="password" id="password" name="password" 
+         			class="form-control" placeholder="Password" required/> <br>
+         			</div>
+         			<div class="form-group">
+         			 <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+					</div>								
+				</form>
+				
+					<form th:action="@{/lot/registration}" method="get">
+      					<div Class="text-center">Forgot Password? <a th:href="@{/reset/password}"><span style="color:#5cb85c;"><strong>Reset Your Password Here!</strong></span></a></div>
+					
+					</form>
+					
+					<form th:action="@{/lot/registration}" method="get">
+      					<div Class="text-center">Don't have an account yet? <a th:href="@{/lot/registration}"><span style="color:#5cb85c;"><strong>Register Here!</strong></span></a></div>
+					</form>
+					
+					<hr>
+		</div>
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 
 	<div th:include="footer-login :: copy"></div>
 </body>

@@ -26,6 +26,7 @@ public class Lot_Lager {
 	
 	@Id
 	private long EAN;
+<<<<<<< HEAD
 	private String ART_NR;
 	private String FARBE;
 	private String GROESSE;
@@ -33,9 +34,18 @@ public class Lot_Lager {
 	private String PROD_NAME;
 	//--------------------------------------
 	private int BESTAND;
+=======
+	private String ART_NR = null;
+	private String GROESSE = null;
+	private String FARBE = null;
+	private int BESTAND;
+	
+	private double UVP;
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 	private double PREIS;
 	private double UVP;
 	
+<<<<<<< HEAD
 	//------------------------------------
 	private String BRAND;
 	private String GENDER;
@@ -116,6 +126,20 @@ public class Lot_Lager {
 		IMAGE_3 = iMAGE_3;
 		ANGEBOT_NR = aNGEBOT_NR;
 		this.lot = lot;
+=======
+	
+	public double getUVP() {
+		return UVP;
+	}
+	public void setUVP(double uVP) {
+		UVP = uVP * BESTAND;
+	}
+	public double getPREIS() {
+		return PREIS;
+	}
+	public void setPREIS(double pREIS) {
+		PREIS = pREIS * BESTAND;
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 	}
 
 
@@ -148,6 +172,7 @@ public class Lot_Lager {
 		FARBE = fARBE;
 	}
 
+<<<<<<< HEAD
 
 	public String getGROESSE() {
 		return GROESSE;
@@ -174,10 +199,16 @@ public class Lot_Lager {
 	}
 
 
+=======
+	public int getBESTAND() {
+		return BESTAND;
+	}
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 	public void setBESTAND(int bESTAND) {
 		BESTAND = bESTAND;
 	}
 
+<<<<<<< HEAD
 
 	public double getPREIS() {
 		return PREIS;
@@ -288,6 +319,8 @@ public class Lot_Lager {
 		this.lot = lot;
 	}
 	
+=======
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 	
 	
 }

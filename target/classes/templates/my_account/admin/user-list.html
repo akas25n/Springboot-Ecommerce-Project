@@ -98,6 +98,8 @@
 	                        <th>Company</th>   
 	
 	                        <th>Email</th>
+	                        
+	                        <th>Status</th>
 	                           
 	                        <th>Role</th>
 	                        
@@ -108,7 +110,7 @@
 
                     </thead>
                     
-                    <tbody id="tdBackground">
+                        <tbody id="tdBackground">
 				      <tr th:each="user : ${users}">
 				        <td th:text = "${user.user_id}"></td>
 				        <td th:text = "${user.first_name}"></td>
@@ -116,14 +118,21 @@
 				        <td th:text = "${user.company}"></td>
 				        <td th:text = "${user.email}"></td>
 				        
+				        <td th:text = "${user.enabled}" style="color:red;"></td>
 				        
+				        <!-- <span th:if="${user.enabled}">1</span>
+						    <span th:if="${!user.enabled}">0</span> -->
+						    
 				       <td>
 			               	<span th:each="role,iterStat : ${user.roles}">
 			               	<span th:text="${role.role}"/>
 			            </td>
 			            
+<<<<<<< HEAD
 			            <td th:text = "${user.enabled}"></td>
 			            
+=======
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 				         <td>
 							<a th:href="@{/admin/edit/user/__${user.user_id}__}" class="w3-button w3-green" style="color:green;">Edit</a> |
                     		<a href=" " class="w3-button w3-green" style="color:red;">Delete</a>

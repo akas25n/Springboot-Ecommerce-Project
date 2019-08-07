@@ -62,6 +62,7 @@ div#body1 {
 <body style="background-color: #f7f7f7 !important; padding-top: 20px;">
 
 	<!-- ********************************************************** pagination***************************************************** -->
+<<<<<<< HEAD
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script type="text/javascript" charset="utf8"
 		src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
@@ -69,6 +70,43 @@ div#body1 {
 		src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
 
 
+=======
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+	<!-- ********************************************************** pagination***************************************************** -->
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+	
+	<style>
+		.ui-icon, .ui-widget-content .ui-icon 
+		{
+		background-image: none;
+		}
+		
+		div#body1 {
+	        background-color: white; !important;
+	        }
+	      
+	      #tdBackground{
+	      	
+	      	background-color: white;
+	      }
+	      
+	
+		</style>
+	</head>
+	
+	
+	<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+	
+	<!-- ********************************************************** pagination***************************************************** -->
+	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+	 <script src="https://cdn.datatables.net/plug-ins/1.10.15/api/row().show().js"></script>
+	    
+	
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 	<script>
 		$(document).ready(function() {
 			$('#table_id').DataTable();

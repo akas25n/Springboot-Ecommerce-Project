@@ -91,6 +91,7 @@ public class Lot_Controller {
 
 			vol = vol + (st);
 		}
+<<<<<<< HEAD
 		// ----------------------------------------------------------------------------------------
 
 		// ------------------------------------------------------------------------------counting
@@ -143,6 +144,43 @@ public class Lot_Controller {
 
 			if (!(set.getIMAGE_2()).isEmpty()) {
 				imageList.add(set.getIMAGE_2());
+=======
+		*/
+		
+		
+		
+		
+
+		@RequestMapping(value = "/details/{lotId}",method=RequestMethod.GET)
+		public ModelAndView showLotdetails(@PathVariable("lotId") long lotId)
+		{
+			ModelAndView mv = new ModelAndView();
+			
+			//********************************************************************************************
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        User user = userService.findUserByEmail(auth.getName());
+	        mv.addObject("userName",user.getFirst_name() + " " + user.getLast_name());
+	        //********************************************************************************************
+	        
+			Optional<Lot> new_obj = lotRepository.findById(lotId);
+			Lot lots= new_obj.get();
+			
+	
+	
+			//List<Product> product = productRepository.findAllByLotId(lotId);
+			List<Lager_Product> product = lager_ProductRepository.findAllByLotId(lotId);
+			
+			//------------------------------------------------------------------------------counting volume
+			int vol= 0;
+			int i=0;
+			product.get(i).getQuantity();
+			
+			for(i = 0; i< product.size(); i++) {
+				
+				int st =product.get(i).getQuantity();
+				
+				vol =vol + (st); 	
+>>>>>>> 24fd5d7109fa729315c24432dfff3db1654da8a4
 			}
 
 			if (!(set.getIMAGE_3()).isEmpty()) {
