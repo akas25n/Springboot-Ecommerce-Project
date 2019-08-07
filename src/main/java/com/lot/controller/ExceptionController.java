@@ -20,7 +20,6 @@ public class ExceptionController {
 		return mv;
 	}
 
-	
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ModelAndView resourceNotFound(ResourceNotFoundException ex) {
 		ModelAndView mv = new ModelAndView();

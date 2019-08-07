@@ -146,6 +146,9 @@ public class PassController {
 //      ----------------------------------------------------------------------------------------------------testing---	 	
 		modelAndView.setViewName("loginPage");
 //    ----------------------------------------------------------------------------------------------------testing---	
+		user.setConfirmationToken(" ");
+		userService.saveUser(user);
+
 		return modelAndView;
 
 	}

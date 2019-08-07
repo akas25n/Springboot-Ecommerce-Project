@@ -1,6 +1,5 @@
 package com.lot.config;
 
-
 import java.io.IOException;
 import java.util.Collection;
 
@@ -17,35 +16,35 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-	
+
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1,
 			Authentication authentication) throws IOException, ServletException {
-		
+
 		boolean hasUserRole = false;
 		boolean hasAdminRole = false;
-		
+
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-		for(GrantedAuthority grantedAuthority : authorities) {
-			if(grantedAuthority.getAuthority().equals("USER")) {
-				hasUserRole=true;
+		for (GrantedAuthority grantedAuthority : authorities) {
+			if (grantedAuthority.getAuthority().equals("USER")) {
+				hasUserRole = true;
 				break;
-			} else if(grantedAuthority.getAuthority().equals("ADMIN")) {
+			} else if (grantedAuthority.getAuthority().equals("ADMIN")) {
 				hasAdminRole = true;
 				break;
 			}
 		}
-		
-		if(hasUserRole) {
+
+		if (hasUserRole) {
 			redirectStrategy.sendRedirect(arg0, arg1, "/lot/home");
-		} else if(hasAdminRole) {
+		} else if (hasAdminRole) {
 			redirectStrategy.sendRedirect(arg0, arg1, "/admin/lot/home");
 		} else {
 			throw new IllegalStateException();
 		}
-		
+
 	}
 
 }

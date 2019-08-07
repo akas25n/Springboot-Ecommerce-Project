@@ -10,20 +10,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableMBeanExport
-public class WebMvcConfig implements WebMvcConfigurer{
+public class WebMvcConfig implements WebMvcConfigurer {
 
-	 @Bean
-	    public BCryptPasswordEncoder passwordEncoder() {
-	        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-	        return bCryptPasswordEncoder;
-	    }
-	 
-	 @Bean
-	 public MBeanExporter exporter()
-	 {
-	     final MBeanExporter exporter = new MBeanExporter();
-	     exporter.setAutodetect(true);
-	     exporter.setExcludedBeans("dataSource");
-	     return exporter;
-	 }
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
+
+	@Bean
+	public MBeanExporter exporter() {
+		final MBeanExporter exporter = new MBeanExporter();
+		exporter.setAutodetect(true);
+		exporter.setExcludedBeans("dataSource");
+		return exporter;
+	}
 }

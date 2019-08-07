@@ -10,7 +10,7 @@ import com.lot.repository.ShippingAddressRepository;
 
 @Service
 public class ShippingAddressService {
-	
+
 	@Autowired
 	private ShippingAddressRepository customerShippingAddressInfoRepository;
 
@@ -18,19 +18,18 @@ public class ShippingAddressService {
 //		return customerShippingAddressInfoRepository.findById(user_id);
 //		
 //	}
-	
+
 	public ShippingAddress saveShipInfo(ShippingAddress customerShippingAddressInfo) {
-		
+
 		customerShippingAddressInfo.setContact_person(customerShippingAddressInfo.getContact_person());
 		customerShippingAddressInfo.setStreet(customerShippingAddressInfo.getStreet());
 		customerShippingAddressInfo.setCity(customerShippingAddressInfo.getCity());
 		customerShippingAddressInfo.setZip_code(customerShippingAddressInfo.getZip_code());
 		customerShippingAddressInfo.setCountry(customerShippingAddressInfo.getCountry());
 		customerShippingAddressInfo.setPhone_number(customerShippingAddressInfo.getPhone_number());
-		
-		return customerShippingAddressInfoRepository.save(customerShippingAddressInfo);
-		
-	}
 
+		return customerShippingAddressInfoRepository.save(customerShippingAddressInfo);
+
+	}
 
 }

@@ -21,9 +21,10 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 	<!-- ********************************************************** pagination***************************************************** -->
 	
+	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
 
 	<style>
 	      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
@@ -75,7 +76,8 @@
 	<!-- ********************************************************** pagination***************************************************** -->
 	
 	<div th:include="admin-header :: copy"></div>
-	<!-- <div th:include="filter :: copy"></div> -->
+	<div th:include="admin-filter :: copy"></div>
+	
 	<div class="container" id="body1"> 
 	<hr>
 	<h2>LOT LIST</h2>

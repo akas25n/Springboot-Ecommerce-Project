@@ -25,6 +25,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
 	
 	<style>
 		.ui-icon, .ui-widget-content .ui-icon 
@@ -67,6 +68,8 @@
 	<!-- ********************************************************** pagination***************************************************** -->
 	
 	<div th:include="admin-header :: copy"></div>
+	<div th:include="admin-filter :: copy"></div>
+	
 	<div class="container" id="body1">
 	<hr>
         <h3 style="color:grey;">USER LIST</h3>   
@@ -129,6 +132,9 @@
 				    </tbody>
 				    
                 </table>
+                <hr>
+                <br>
+                <hr>
             </div>
             </div>
             </div>

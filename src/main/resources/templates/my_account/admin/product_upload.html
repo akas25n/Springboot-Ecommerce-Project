@@ -1,80 +1,92 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>B2B | Products</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>B2B | Products</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-git.js"></script>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous">
 	
-	<script src="https://code.jquery.com/jquery-git.js"></script>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-  </script>
+</script>
 
 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
 
-  <style type="text/css">
-  
-    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
-      border-top: 4px solid #CBD6D5;
-    }
-  
-    #uploadbanner{
-      margin-left: 10px;
-    }
+<style type="text/css">
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover {
+	border-top: 4px solid #CBD6D5;
+}
 
-    h3{
-      margin-left: 10px;
-    }
+#uploadbanner {
+	margin-left: 10px;
+}
 
-  </style>
+h3 {
+	margin-left: 10px;
+}
+</style>
 
 </head>
 
 
-<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+<body style="background-color: #f7f7f7 !important; padding-top: 20px;">
 	<div th:include="admin-header :: copy"></div>
-	
+
 	<div class="container">
-	<hr>
-    <h3>UPLOAD PRODUCTS</h3>
-    <hr>
-    <ul class="nav nav-tabs">
-      
-      <li><a href="/admin/product/list" style="color:blue;">Product List</a></li>
-       <li class="active"><a href="/admin/upload/product"  style="color:green;">Upload Products</a></li>
-      
-    </ul>
-    <br>
-	<br>
-	
-		
-      <form id = "uploadbanner" th:action="@{/admin/product/process}" enctype= "multipart/form-data"  method = "POST">
-      
-         <div th:if="${message}" class="alert alert-success"
-          role="alert" th:text=${message}></div>
-          
-          <div th:if="${failureMessage}" class="alert alert-danger"
-          role="alert" th:text=${failureMessage}></div>
-      
-        <input type="file" name="multi_file" />
-        <br>
-        <br>
-        <input type = "submit" value = "submit" id = "submit"/>
-      </form>
-      <hr>
-      <hr style="border:2px solid grey;">
-      	<h4 style="color:blue;"><span style="color:red;">IMPORTANT!!</span> Before uploading the CSV file Please make sure that there is no <span style="color:red;">"NULL & STRING"</span> value in the a_ean column.</h4>
-      <hr style="border:2px solid grey;">
+		<hr>
+		<h3>UPLOAD PRODUCTS</h3>
+		<hr>
+		<ul class="nav nav-tabs">
 
-      
-      </div>
+			<li><a href="/admin/product/list" style="color: blue;">Product
+					List</a></li>
+			<li class="active"><a href="/admin/upload/product"
+				style="color: green;">Upload Products</a></li>
 
-      <div th:include="admin-footer :: copy"></div>
-  </body>
-  </html>
+		</ul>
+		<br> <br>
+
+
+		<form id="uploadbanner" th:action="@{/admin/product/process}"
+			enctype="multipart/form-data" method="POST">
+
+			<div th:if="${message}" class="alert alert-success" role="alert"
+				th:text=${message}></div>
+
+			<div th:if="${failureMessage}" class="alert alert-danger"
+				role="alert" th:text=${failureMessage}></div>
+
+			<input type="file" name="multi_file" /> <br> <br> <input
+				type="submit" value="submit" id="submit" />
+		</form>
+		<hr>
+		<hr style="border: 2px solid grey;">
+		<h4 style="color: blue;">
+			<span style="color: red;">IMPORTANT!!</span> Before uploading the CSV
+			file Please make sure that there is no <span style="color: red;">"NULL
+				& STRING"</span> value in the a_ean column.
+		</h4>
+		<hr style="border: 2px solid grey;">
+
+
+	</div>
+
+	<div th:include="admin-footer :: copy"></div>
+</body>
+</html>

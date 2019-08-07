@@ -1,271 +1,301 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>B2B | Motion Fashion | Stocklots Details</title>
-  
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-  	<script src="https://code.jquery.com/jquery-git.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  
-  
-  <link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
-   <link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
-  <link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
- <!--  <link rel="stylesheet" type="text/css" th:href="@{/css/campaignDetailsStyle.css}"> -->
-  <link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
-	
-  
-	<style type="text/css">
-	body{
-		
-		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-		}
+<title>B2B | Motion Fashion | Stocklots Details</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-git.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-ChfqqxuZUCnJSK3MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
 
 
-	.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-     }
+<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/campaignDetailsStyle.css}"> -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/countryStyle.css}">
 
-      #lotDescHeader{
-        background-color: #CBD6D5;
-      }
-         
-      #lotDescDetails{
-        background-color: #cbd6d569;
-      }
-         
-        #tdBackground{
-	        background-color: white; !important;
-	        text-align: center;
-	        
-	        }
-	
-	.btn-default{
+
+<style type="text/css">
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#lotDescHeader {
+	background-color: #CBD6D5;
+}
+
+#lotDescDetails {
+	background-color: #cbd6d569;
+}
+
+#tdBackground {
+	background-color: white; ! important;
+	text-align: center;
+}
+
+.btn-default {
 	background-color: #CBD6D5;
 	border-color: #CBD6D5;
 	color: #333;
-	}
-		th{
-	text-align:center;
-	}
-	
-	#contactPersonImage{
-		height: 120px;
-	}
-	</style>
+}
+
+th {
+	text-align: center;
+}
+
+#contactPersonImage {
+	height: 120px;
+}
+</style>
 </head>
-<body style="background-color: #f7f7f7!important; padding-top: 20px;">
+<body style="background-color: #f7f7f7 !important; padding-top: 20px;">
 
 
-<div th:include="header :: copy"></div>
-		
-<div th:include="filter :: copy"></div>
-	<div class="container">
-	<hr>
-	<div th:each="lot : ${lots}">
-	<div class="row">
-      <div class="col-md-12">
-        <div class="col-md-3 col-sm-6">
-          <!-- <a href = "#" class = "thumbnail">  -->
-           <a  th:href="@{/order/lot/details/__${lot.lotId}__}" class="thumbnail">
-             <img th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}" class="image" alt = "Generic placeholder thumbnail">
-              </a>
-              </div>
-      
+	<div th:include="header :: copy"></div>
 
-      <div class="col-md-9 col-sm-6">
-        
-        <div class="row">
-          <h2 style="color:grey;">Lot Details</h2>
-           <span class="glyphicon glyphicon-home"></span>
-          </div>
-          <div class="row" id="lotDescHeader">
-            <div class="col-sm-3">
-              <h4>Lot Name</h4>
-            </div>
+	<div th:include="filter :: copy"></div>
+	<div class="container" style="background-color: white !important;">
+		<hr>
+		<div th:each="lot : ${lots}">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3 col-sm-6">
+						<!-- <a href = "#" class = "thumbnail">  -->
+						<a th:href="@{/order/lot/details/__${lot.lotId}__}"
+							class="thumbnail"> <img
+							th:src="@{'data:image/jpg;base64,'+${lot.teaserImage}}"
+							class="image" alt="Generic placeholder thumbnail">
+						</a>
+					</div>
 
-            <div class="col-sm-5">
-              <h4>Short Description</h4>
-            </div>
-            
-            <div class="col-sm-2">
-              <h4>Volume</h4>
-            </div>
-            
-            <div class="col-sm-2">
-              <h4>Price</h4>
-            </div>
-            
-          </div>
-          <div class="row" id="lotDescDetails">
-             <div class="col-sm-3">
-           		<h5 th:text="${lot.lotName}"></h5>
-            </div>
 
-            <div class="col-sm-5">
-              <h5 th:text="${lot.lotDescription}"></h5>
-            </div>
-            
-             <div class="col-sm-2">
-              <h5 th:text="${lot.volume}" style="padding-left:20px;"></h5>
-            </div>
-            <div class="col-sm-2">
-              <h5 th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}" style="padding-left:10px;"></h5>
-            </div>
-          </div>
-          <hr>
-      </div>
-	</div>
-	</div>
-	<!-- *********************************************************************************Modal******************************************************************************* -->
-			
-    <hr>
-  
-     	
-       <div>
-        	<h2 style="color:grey;">Article Details</h2>
-        	<!-- *********************************************************************************Testing******************************************************************************* -->
-	<hr>
-	
-	<!-- *************************************************************************** Test ********************************************************************************************** -->
-	<div   th:each="lot:${lg}">
-			
-	        <div class="col-md-12">
-        	
-        	<div class="row">
-        	
-         	<div class="col-md-6" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
-         		<div class="col-md-7">
-	  				Brand : <strong th:text="${lot.BRAND}" style="padding-left:10px;"></strong>
-	        		(<strong th:text="${lot.GENDER}"></strong>)
-	        	</div>
-	        	<div class="col-md-5">
-	  				Article Nr : <strong th:text="${lot.article_number}" style="padding-left:10px;"></strong>
-	        	
-	        	</div>
-        	</div>
-        	
-        	<div class="col-md-6">
-        		<!-- Empty Space -->
-        	</div>
-        	</div>
-        	<br>
-        	</div><!-- end of 1st row -->
-        	<br>
-        	
-        		<div class="row"> <!-- 2nd row -->
-        			
-        		
-        		  	<div class="col-md-4">
-        				<div class="col-md-4">
-        					<img th:src="${lot.IMAGE}" style="width:85px; height:130px; padding-bottom: 5px;">
-        				</div>
-        			</div> 
-        			<div class="col-md-8">
-     					<table class="table table-bordered">
-			            <thead >
-			              <tr>
-			                <!-- <th>Gender</th> -->
-			                 <th>Color</th>
-			                <th>Size</th>
-			                <th style="border-left: 2px solid grey;">Volume</th>
-			              </tr>
-			
-			            </thead>
-			            
-			            <tbody id="tdBackground">
-							     
-						<tr th:each="article:${lot.product}">
-				              <!--  <td th:text="${product.p_comp_zielgruppe_}"></td> -->
-				               <td th:text="${article.FARBE}"  style="height:20px;"></td>
-				               <td th:text="${article.GROESSE}"></td>
-				               <td th:text="${article.BESTAND}" style="border-left: 2px solid grey;"></td>
-			              </tr>
-			              <tr style="border-top: 2px solid grey;">
-			              	<!-- <td><h4>TOTAL</h4></td>
+					<div class="col-md-9 col-sm-6">
+
+						<div class="row">
+							<h2 style="color: grey;">Lot Details</h2>
+							<span class="glyphicon glyphicon-home"></span>
+						</div>
+						<div class="row" id="lotDescHeader">
+							<div class="col-sm-3">
+								<h4>Lot Name</h4>
+							</div>
+
+							<div class="col-sm-5">
+								<h4>Short Description</h4>
+							</div>
+
+							<div class="col-sm-2">
+								<h4>Volume</h4>
+							</div>
+
+							<div class="col-sm-2">
+								<h4>Price</h4>
+							</div>
+
+						</div>
+						<div class="row" id="lotDescDetails">
+							<div class="col-sm-3">
+								<h5 th:text="${lot.lotName}"></h5>
+							</div>
+
+							<div class="col-sm-5">
+								<h5 th:text="${lot.lotDescription}"></h5>
+							</div>
+
+							<div class="col-sm-2">
+								<h5 th:text="${lot.volume}" style="padding-left: 20px;"></h5>
+							</div>
+							<div class="col-sm-2">
+								<h5
+									th:text="${#numbers.formatDecimal(lot.lotPrice, 0, 'POINT', 2, 'COMMA')}"
+									style="padding-left: 10px;"></h5>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+			</div>
+			<!-- *********************************************************************************Modal******************************************************************************* -->
+
+			<hr>
+
+
+			<div>
+				<h2 style="color: grey;">Article Details</h2>
+				<!-- *********************************************************************************Testing******************************************************************************* -->
+				<hr>
+
+				<!-- *************************************************************************** Test ********************************************************************************************** -->
+				<div th:each="lot:${lg}">
+
+					<div class="col-md-12">
+
+						<div class="row">
+
+							<div class="col-md-6"
+								style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #CBD6D5;">
+								<div class="col-md-7">
+									Brand : <strong th:text="${lot.BRAND}"
+										style="padding-left: 10px;"></strong> (<strong
+										th:text="${lot.GENDER}"></strong>)
+								</div>
+								<div class="col-md-5">
+									Article Nr : <strong th:text="${lot.article_number}"
+										style="padding-left: 10px;"></strong>
+
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<!-- Empty Space -->
+							</div>
+						</div>
+						<br>
+					</div>
+					<!-- end of 1st row -->
+					<br>
+
+					<div class="row">
+						<!-- 2nd row -->
+
+
+						<div class="col-md-4">
+							<div class="col-md-4">
+								<img th:src="${lot.IMAGE}"
+									style="width: 85px; height: 130px; padding-bottom: 5px;">
+							</div>
+						</div>
+						<div class="col-md-8">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<!-- <th>Gender</th> -->
+										<th>Color</th>
+										<th>Size</th>
+										<th style="border-left: 2px solid grey;">Volume</th>
+									</tr>
+
+								</thead>
+
+								<tbody id="tdBackground">
+
+									<tr th:each="article:${lot.product}">
+										<!--  <td th:text="${product.p_comp_zielgruppe_}"></td> -->
+										<td th:text="${article.FARBE}" style="height: 20px;"></td>
+										<td th:text="${article.GROESSE}"></td>
+										<td th:text="${article.BESTAND}"
+											style="border-left: 2px solid grey;"></td>
+									</tr>
+									<tr style="border-top: 2px solid grey;">
+										<!-- <td><h4>TOTAL</h4></td>
 			              	<td><h4>-</h4></td>
 			              	<td style="border: 2px solid grey; font-size: 20px;" th:text="${lot.BESTAND}"></td> -->
-			              </tr>
-						</tbody>
-			        </table> 
-        			</div>
-        		</div><!-- end of 2nd row -->
-        		
-        		<div class="row">
-        			<div class="col-md-4">
-        				<div style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
-		        			Material : <span th:text="${lot.PROD_MATERIAL}" style="padding-left:5px;"></span>
-		        		</div>
-        			</div>
-        				<div class="col-md-8" style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
-						  <div>
-        					<p><span style="padding-left:10px;">Retail Price:</span> <span class="glyphicon glyphicon-euro" style="float:right;padding-right:22px;"></span>
-        					<span style="float:right; padding-right:6px;" th:text="${#numbers.formatDecimal(lot.UVP, 0, 'POINT', 2, 'COMMA')}"></span></p>
-        					<!-- <span th:with="result=${product.retialPrice * product.quantity}"></span><span th:text="${result}"></span> -->
-        					
-        				
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- end of 2nd row -->
 
-        					<strong style="padding-left:10px;">Offer Price:</strong><span class="glyphicon glyphicon-euro" style="float:right; padding-right:22px; color: red;"></span> 
-        					<strong  style="float:right; padding-right:6px; color: red;" th:text="${#numbers.formatDecimal(lot.PRICE, 0, 'POINT', 2, 'COMMA')}"> </strong> 
-        						
-        				</div>
-        			</div>
-        		
-        		</div>
-        		<hr>
-        		<br>
-        		
-        	</div><!-- end of for each -->
-        	</div>
-        	
-        <div class="row">
-          <h2 style="color:grey;">Articles Description</h2>
-              <hr>
-       
-       	 
-       	  <table class="table table-bordered">
-       	  <col width="10%">
- 			 <col width="90%">
-            <thead >
-              <tr>
-				
-                <th>Article Image</th>
-                <th>Article Description</th>
-         
-              </tr>
+					<div class="row">
+						<div class="col-md-4">
+							<div
+								style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+								Material : <span th:text="${lot.PROD_MATERIAL}"
+									style="padding-left: 5px;"></span>
+							</div>
+						</div>
+						<div class="col-md-8"
+							style="border: 1px solid lightgrey; border-radius: 10px; padding: 10px; background-color: #cbd6d569;">
+							<div>
+								<p>
+									<span style="padding-left: 10px;">Retail Price:</span> <span
+										class="glyphicon glyphicon-euro"
+										style="float: right; padding-right: 22px;"></span> <span
+										style="float: right; padding-right: 6px;"
+										th:text="${#numbers.formatDecimal(lot.UVP, 0, 'POINT', 2, 'COMMA')}"></span>
+								</p>
+								<!-- <span th:with="result=${product.retialPrice * product.quantity}"></span><span th:text="${result}"></span> -->
+								<strong style="padding-left: 10px;">Offer Price:</strong><span
+									class="glyphicon glyphicon-euro"
+									style="float: right; padding-right: 22px; color: red;"></span>
+								<strong style="float: right; padding-right: 6px; color: red;"
+									th:text="${#numbers.formatDecimal(lot.PRICE, 0, 'POINT', 2, 'COMMA')}">
+								</strong>
 
-            </thead>
-            
-            <!-- ****************************showing only the first element************************************************************** -->
-            <tbody id="tdBackground">
-				     
-					<!--  <tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0"> -->
-					<tr th:each="lot:${lg}">
-	               <td><img th:src="${lot.IMAGE}" style="width: 40px; height:60px;"></td>
-	               <td th:text="${lot.PROD_TEXT}"></td>
-              </tr>
-			</tbody>
-			<!-- ****************************showing only the first element************************************************************** -->
-			
-        </table> 
-		<hr>			
+							</div>
+						</div>
+
+					</div>
+					<hr>
+					<br>
+
+				</div>
+				<!-- end of for each -->
+			</div>
+
+			<div class="row">
+				<h2 style="color: grey;">Articles Description</h2>
+				<hr>
+
+
+				<table class="table table-bordered">
+					<col width="10%">
+					<col width="90%">
+					<thead>
+						<tr>
+
+							<th>Article Image</th>
+							<th>Article Description</th>
+
+						</tr>
+
+					</thead>
+
+					<!-- ****************************showing only the first element************************************************************** -->
+					<tbody id="tdBackground">
+
+						<!--  <tr th:each="product, iterStat:${products}" th:if="${iterStat.index} == 0"> -->
+						<tr th:each="lot:${lg}">
+							<td><img th:src="${lot.IMAGE}"
+								style="width: 40px; height: 60px;"></td>
+							<td th:text="${lot.PROD_TEXT}"></td>
+						</tr>
+					</tbody>
+					<!-- ****************************showing only the first element************************************************************** -->
+
+				</table>
+				<hr>
+			</div>
 		</div>
-        </div>
-         
-	<br>
-	<br>
-	<hr>
-	<div th:include="footer :: copy"></div>
-		
+		</div>
+		<hr>
+		<br> <br>
+		<hr>
+		<div th:include="footer :: copy"></div>
 </body>
 </html>

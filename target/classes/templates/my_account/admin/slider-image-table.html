@@ -24,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
-
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
 	<style>
 	      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
           border-top: 4px solid #CBD6D5;
@@ -75,7 +75,7 @@
 	<!-- ********************************************************** pagination***************************************************** -->
 	
 	<div th:include="admin-header :: copy"></div>
-	<!-- <div th:include="filter :: copy"></div> -->
+	<div th:include="admin-filter :: copy"></div>
 	<div class="container" id="body1"> 
 	<hr>
 			<h3 style="color: grey;">CAROUSEL IMAGE LIST</h3>

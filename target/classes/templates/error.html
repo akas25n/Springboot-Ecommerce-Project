@@ -19,6 +19,14 @@
 
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
 	
+	<style type="text/css">
+		body {
+  		background-image: url("/images/new-images/hintergrundbild2.jpg");
+  
+		}
+	
+	</style>
+	
 	
 	</head>
 	<body style="background-repeat: no-repeat;
@@ -32,10 +40,10 @@
 	<div>
 		<a th:href="@{/logout}"><img th:src="@{/images/logo-mf.png}" style="width:60%;"></a>
 		<hr>
-		<h2>STOCKLOTS</h2>
+		<a  th:href="@{/logout}"><h2>STOCKLOTS</h2></a>
 		<hr><br><br>
 		<h3 style="margin-top: 100px; color:red;">Something went wrong. Please go back to Homepage.</h3><br><br>
-		<a th:href="@{/logout}"><h3>Home</h3></a>
+		<a th:href="@{/logout}"><h2>Home</h2></a>
 		</div>
 			
 		<div>

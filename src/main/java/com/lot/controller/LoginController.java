@@ -169,6 +169,7 @@ public class LoginController {
 			modelAndView.addObject("confirmationMessage",
 					"Great!! A confirmation e-mail has been sent to " + user.getEmail() + ". Please check your email.");
 			// ------------------------------------------------------------------------------------------------------------------------------
+
 			modelAndView.setViewName("registerPage");
 
 		}
@@ -239,6 +240,7 @@ public class LoginController {
 		userService.saveUser(user);
 
 		modelAndView.addObject("successMessage", "Your password has been set!");
+
 		// ----------------------------------------------------------------------------------------------------testing---
 		modelAndView.setViewName("login");
 		// ----------------------------------------------------------------------------------------------------testing---

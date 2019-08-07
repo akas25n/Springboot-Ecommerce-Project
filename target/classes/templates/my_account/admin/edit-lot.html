@@ -18,8 +18,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
-<!-- 	<link rel="stylesheet" type="text/css" th:href="@{/css/campaignInformationStyle.css}"> -->
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
 	
 	<style type="text/css">
 	     .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover{
@@ -36,7 +36,9 @@
 	</div>
 	
 <div th:include="admin-header :: copy"></div>
-	<div class="container" id="body1">
+<div th:include="admin-filter :: copy"></div>
+
+	<div class="container" id="body1" style="background-color: white!important;">
 	<hr>
  	<h3 style="color:grey;">EDIT LOT</h3>
    

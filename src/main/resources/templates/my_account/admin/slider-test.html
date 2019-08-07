@@ -20,7 +20,6 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/slidersStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/campaignsStyle.css}">
-	
 	<link rel="stylesheet" type="text/css" th:href="@{/css/addressesStyle.css}"/>
 	
 </head>
@@ -28,12 +27,12 @@
 <body style="background-color: #f7f7f7!important; padding-top: 20px;">
 
 		<div th:include="admin-header :: copy"></div>
-		
+		<div th:include="admin-filter :: copy"></div>
 	
 		
 		
 		<!-- ************************************************************************sliders***************************************************************************** -->
-		<div class="container" th:each="imgs: ${img}">
+		<div class="container" th:each="imgs: ${img}" style="background-color: white !important;">
 		<hr>
 			<h3 style="color: grey;">TEST CAROUSEL</h3>
 		<hr>

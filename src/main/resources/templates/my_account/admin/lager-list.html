@@ -24,6 +24,7 @@
 		<link rel="stylesheet" type="text/css" th:href="@{/css/countryStyle.css}">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/footerStyle.css}">
 		<link rel="stylesheet" type="text/css" th:href="@{/css/headerStyle.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/filterStyle.css}">
 	
 	<style>
 	
@@ -76,7 +77,7 @@ $(document).ready( function () {
 <!-- ********************************************************** pagination***************************************************** -->
 
 	<div th:include="admin-header :: copy"></div>
-	<!-- <div th:include="filter :: copy"></div> -->
+	<div th:include="admin-filter :: copy"></div>
 	
 	<div class="container" id="body1"> 
 	<hr>

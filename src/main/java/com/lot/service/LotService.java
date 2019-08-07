@@ -16,27 +16,23 @@ public class LotService {
 
 	@Autowired
 	private LotRepository lotRepository;
-	
+
 	@Autowired
 	private LotOrderRepository orderRepository;
-	
+
 	public Lot update(Lot lot) {
 		return lotRepository.save(lot);
-		
+
 	}
 
-
 	public Optional<Lot> findLotByLotId(long lotId) {
-		
+
 		return lotRepository.findById(lotId);
 	}
 
-
-	
-	public List<Lot> findByEnabled(){
+	public List<Lot> findByEnabled() {
 
 		return lotRepository.findAllEnabled();
 	}
-	
-}// end of lot service
 
+}// end of lot service

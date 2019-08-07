@@ -12,12 +12,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //@EnableScheduling
 public class B2BLotApplication  extends SpringBootServletInitializer {
 
-	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(B2BLotApplication.class, args);
 	}
-	
 	
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

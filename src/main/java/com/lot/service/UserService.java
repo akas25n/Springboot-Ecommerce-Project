@@ -19,35 +19,33 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private RoleReposirtory roleReposirtory;
+
 	@Autowired
-	
+
 	public UserService(UserRepository userRepository, RoleReposirtory roleReposirtory) {
-		
+
 		this.userRepository = userRepository;
 		this.roleReposirtory = roleReposirtory;
-		
+
 	}
-	
-	  public User findUserByEmail(String email) {
-	        return userRepository.findByEmail(email);
-	  }
-	  
-	  public Optional<User> findUserByUser_id(int user_id) {
+
+	public User findUserByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
+	public Optional<User> findUserByUser_id(int user_id) {
 		return userRepository.findById(user_id);
-		  
-	  }
-	  
-	  public User findByConfirmationToken(String confirmationToken) {
-		  return userRepository.findByConfirmationToken(confirmationToken);
-	  }
-	  
-	  
-	  public User saveUser(User user) {    
-	      //----------------------------------------------------------------------------------------------------changed
-	       // user.setActive(1);
-	        Role userRole = roleReposirtory.findByRole("USER");  // ADMIN or USER
-	        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-	        return userRepository.save(user);
-	    }
+
+	}
+
+	public User findByConfirmationToken(String confirmationToken) {
+		return userRepository.findByConfirmationToken(confirmationToken);
+	}
+
+	public User saveUser(User user) {
+		Role userRole = roleReposirtory.findByRole("USER");
+		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		return userRepository.save(user);
+	}
 
 }
